@@ -1,5 +1,3 @@
-import {UserActionEvent, SdkActionEvent} from "@tonconnect/ui-react";
-
 const logEvent = (scope) => {
   scope = scope.startsWith('ton-connect-ui-') ? 'TonConnectUI' : 'TonConnect';
 

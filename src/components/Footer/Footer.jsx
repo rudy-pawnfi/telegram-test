@@ -1,4 +1,4 @@
-import {BorderRadius, Locales, ReturnStrategy, Theme, THEME, useTonConnectUI} from "@tonconnect/ui-react";
+import { THEME, useTonConnectUI} from "@tonconnect/ui-react";
 import './footer.scss';
 import {useEffect, useState} from "react";
 import {ColorsModal} from "./ColorsModal/ColorsModal";
