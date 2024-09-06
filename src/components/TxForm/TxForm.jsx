@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from 'react';
-import ReactJson from 'react-json-view';
+// import ReactJson from 'react-json-view';
 import './style.scss';
 import { useTonConnectUI, useTonWallet} from "@tonconnect/ui-react";
 
@@ -44,7 +44,7 @@ export function TxForm() {
 	return (
 		<div className="send-tx-form">
 			<h3>Configure and send transaction</h3>
-			<ReactJson src={defaultTx} theme="ocean" onEdit={onChange} onAdd={onChange} onDelete={onChange} />
+			{/* <ReactJson src={defaultTx} theme="ocean" onEdit={onChange} onAdd={onChange} onDelete={onChange} /> */}
 			{wallet ? (
 				<button onClick={() => tonConnectUi.sendTransaction(tx)}>
 					Send transaction
