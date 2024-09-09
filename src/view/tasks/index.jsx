@@ -76,7 +76,7 @@ const TasksPage = () => {
             </div>
             <div className="pa_4">
                 <div className="flex justify_center align_center wallet_connect mb_2">
-                    <img className="mr_3" src="/public/images/Tasks/toncoin-ton-seeklogo.png" alt="" srcset="" />
+                    <img className="mr_3" src="/images/Tasks/toncoin-ton-seeklogo.png" alt="" srcset="" />
                     <div className="fs_3 fw_b">Connect wallet</div>
                 </div>
                 <div className="flex justify_center align_center wallet_connect mb_2">

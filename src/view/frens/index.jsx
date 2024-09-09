@@ -9,10 +9,10 @@ const FrensPage = () => {
                 <div className="fw_b pb_2">352</div>
             </div>
             <div className="flex justify_center align_center mb_5 number_img">
-                <img className="mr_3" src="/public/images/Frens/img-integral2.svg" alt="" srcset="" />
+                <img className="mr_3" src="/images/Frens/img-integral2.svg" alt="" srcset="" />
                 <div className="fs_2 fw_m mr_3">12</div>
 
-                <img className="mr_3" src="/public/images/Farming/img-NumberOfLives.png" alt="" srcset="" />
+                <img className="mr_3" src="/images/Farming/img-NumberOfLives.png" alt="" srcset="" />
                 <div className="fs_2 fw_m">90</div>
             </div>
 
@@ -21,9 +21,9 @@ const FrensPage = () => {
                 <div className="centernt_box pa_4 flex">
 
                     <div className="flex column mr_4">
-                        <img className="img_1" src="/public/images/img-PointsRewards.svg" alt="" srcset="" />
-                        <img className="img_2" src="/public/images/img-DinosaurRun.svg" alt="" srcset="" />
-                        <img className="img_3" src="/public/images/img-MoreRewards.svg" alt="" srcset="" />
+                        <img className="img_1" src="/images/img-PointsRewards.svg" alt="" srcset="" />
+                        <img className="img_2" src="/images/img-DinosaurRun.svg" alt="" srcset="" />
+                        <img className="img_3" src="/images/img-MoreRewards.svg" alt="" srcset="" />
                     </div>
                     <div className="">
                         <div className="pb_4 centernt_box_border centern_1">
@@ -45,11 +45,11 @@ const FrensPage = () => {
             
                 <div className="frens_btn_box flex align_center justify_end">
                     <div className="invite_box fs_3 fw_b flex justify_center align_center mr_4">
-                        <img src="/public/images/Frens/img-InviteFriends.png" alt="" srcset="" />
+                        <img src="/images/Frens/img-InviteFriends.png" alt="" srcset="" />
                         <span className="fs_3 fw_b">Invite Friends</span>
                     </div>
                     <div className="copy_box flex justify_center align_center">
-                        <img src="/public/images/Frens/img-copy.png" alt="" srcset="" />
+                        <img src="/images/Frens/img-copy.png" alt="" srcset="" />
                     </div>
                 </div>
             </div>
