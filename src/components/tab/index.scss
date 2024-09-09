@@ -1,0 +1,9 @@
+.tab_box{
+    display: grid;
+    grid-template-columns:1fr 1fr 1fr 1fr;
+    height: 62px;
+    img{
+        width: 28px;
+        height: 28px;
+    }
+}

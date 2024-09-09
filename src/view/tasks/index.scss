@@ -1,0 +1,46 @@
+.tasks_page{
+    .tasks_herader{
+        height: 125px;
+        background-image: url('/images/img-TasksBg.svg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        font-size: 40px;
+    }
+    .list_box{
+        border-radius: 24px;
+        background-color: #0F0F0F;
+        img{
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+        }
+        .tasks_btn{
+            width: 80px;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 100px;
+            text-align: center;
+        }
+        .go_btn{
+            border: 2px solid #B019FF;
+            color: #B019FF;
+        }
+        .click_btn{
+            background: linear-gradient(to right, #6E19FF, #DC19FF);
+            color: #fff;
+        }
+    }
+    .wallet_connect{
+        img{
+            width: 24px;
+            height: 24px;
+        }
+        .round_box{
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #00FF33;
+        }
+    }
+}
