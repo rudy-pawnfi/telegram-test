@@ -6,6 +6,12 @@ import imgDinosaurRun from '/images/img-DinosaurRun.svg'
 import imgMoreRewards from '/images/img-MoreRewards.svg'
 const FrensPage = () => {
 
+    const inviteFriends = () => {
+        let linkUrl1 = 'https://t.me/rudy_pawnfi_bot'
+        const inviteMessage = 'Start chatting with our bot: https://t.me/rudy_pawnfi_bot';
+        let linkUrl = `https://t.me/share/url?url=${linkUrl1}?`
+        window.open(linkUrl, '_blank');
+    }
     return (
         <div className="frens_page">
             <div className="frens_header_box flex column justify_end align_center mb_4">
@@ -48,7 +54,7 @@ const FrensPage = () => {
                 </div>
             
                 <div className="frens_btn_box flex align_center justify_end">
-                    <div className="invite_box fs_3 fw_b flex justify_center align_center mr_4">
+                    <div className="invite_box fs_3 fw_b flex justify_center align_center mr_4" onClick={inviteFriends}>
                         <i className="picon p-icon-InviteFriends is_2 mr_2"></i>
                         <span className="fs_3 fw_b">Invite Friends</span>
                     </div>
