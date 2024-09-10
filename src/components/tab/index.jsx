@@ -32,7 +32,7 @@ const TabBox = (props) => {
         navigate(val.link)
     }
     const active = (val) => {
-        if(location.pathname === val.link) return 'text_2'
+        if(location.pathname.includes(val.link)) return 'text_2'
         return 'text_4'
     }
     return(
