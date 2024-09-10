@@ -1,11 +1,23 @@
+import { useTonAddress, useTonConnectUI, useTonWallet, TonConnectButton } from '@tonconnect/ui-react'
 import './index.scss'
 import imgicon_1 from '/images/Tasks/icon_1.png'
 import imgicon_2 from '/images/Tasks/icon_2.png'
 import imgicon_3 from '/images/Tasks/icon_3.png'
 import imgicon_4 from '/images/Tasks/icon_4.png'
 import imgicon_5 from '/images/Tasks/icon_5.png'
+import { reduceLen } from '../../untils'
 const TasksPage = () => {
 
+
+    const [tonConnectUI] = useTonConnectUI();
+
+    const wallet = useTonWallet();
+    const tonAddress = useTonAddress()
+
+    
+    const disconnect = async () => {
+        await tonConnectUI.disconnect();
+    }
     return (
         <div className="tasks_page">
             <div className="tasks_herader flex column justify_end align_center">
@@ -79,18 +91,25 @@ const TasksPage = () => {
                 </div>
             </div>
             <div className="pa_4">
-                <div className="flex justify_center align_center wallet_connect mb_2">
-                    <svg className="icon is_4 mr_3" aria-hidden="true">
-                        <use xlinkHref={`#p-icon-TON`}></use>
-                    </svg>
-                    <div className="fs_3 fw_b">Connect wallet</div>
-                </div>
-                <div className="flex justify_center align_center wallet_connect mb_2">
-                    <div className="mr_3 round_box"></div>
-                    <div className="fs_3 fw_b mr_3">0x816...Dcab6</div>
-                    <i className="picon p-icon-quit is_3"></i>
-                </div>
+                {
+                    wallet ?
+                        <div className="flex justify_center align_center wallet_connect mb_2">
+                            <div className="mr_3 round_box"></div>
+                            <div className="fs_3 fw_b mr_3">{reduceLen(tonAddress)}</div>
+                            <i className="picon p-icon-quit is_3" onClick={disconnect}></i>
+                        </div>
+                    :
+                        <div className="flex justify_center align_center wallet_connect mb_2" onClick={() => tonConnectUI.openModal()}>
+                            <svg className="icon is_4 mr_3" aria-hidden="true">
+                                <use xlinkHref={`#p-icon-TON`}></use>
+                            </svg>
+                            <div className="fs_3 fw_b">Connect wallet</div>
+                        </div>
+
+                }
                 <div className="text_center fs_2 fw_m text_4">Complete tasks to earn points for future airdrops!</div>
+
+                {/* <div className="flex justify_center"><TonConnectButton /></div> */}
             </div>
         </div>
     )
