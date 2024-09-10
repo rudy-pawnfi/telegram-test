@@ -1,6 +1,4 @@
 import imgIntegral from '/images/Farming/img-integral.svg'
-import imgFarming2 from '/images/Farming/img-Farming2.png'
-
 import imgTonlord from '/images/Farming/img-Tonlord.png'
 import imgNumberOfLives from '/images/Farming/img-NumberOfLives.png'
 import './index.scss'
@@ -16,7 +14,7 @@ const FarmingPage = () => {
                 </div>
 
                 <div className="farming_btn cursor flex justify_center align_center br_6 py_5">
-                    <img className="mr_2" src={imgFarming2} alt="" srcSet="" />
+                    <i className="picon p-icon-StartUp is_4 mr_2"></i>
                     <div className="fs_3 fw_b">Farming</div>
                 </div>
 

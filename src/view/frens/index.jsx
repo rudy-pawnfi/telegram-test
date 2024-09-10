@@ -4,8 +4,6 @@ import imgNumberOfLives from '/images/Farming/img-NumberOfLives.png'
 import imgPointsRewards from '/images/img-PointsRewards.svg'
 import imgDinosaurRun from '/images/img-DinosaurRun.svg'
 import imgMoreRewards from '/images/img-MoreRewards.svg'
-import imgInviteFriends from '/images/Frens/img-InviteFriends.png'
-import imgCopy from '/images/Frens/img-copy.png'
 const FrensPage = () => {
 
     return (
@@ -51,11 +49,11 @@ const FrensPage = () => {
             
                 <div className="frens_btn_box flex align_center justify_end">
                     <div className="invite_box fs_3 fw_b flex justify_center align_center mr_4">
-                        <img src={imgInviteFriends} alt="" srcSet="" />
+                        <i className="picon p-icon-InviteFriends is_2 mr_2"></i>
                         <span className="fs_3 fw_b">Invite Friends</span>
                     </div>
                     <div className="copy_box flex justify_center align_center">
-                        <img src={imgCopy} alt="" srcSet="" />
+                        <i className="picon p-icon-copy is_2"></i>
                     </div>
                 </div>
             </div>

@@ -4,7 +4,6 @@ import imgicon_2 from '/images/Tasks/icon_2.png'
 import imgicon_3 from '/images/Tasks/icon_3.png'
 import imgicon_4 from '/images/Tasks/icon_4.png'
 import imgicon_5 from '/images/Tasks/icon_5.png'
-import imgseeklogo from "/images/Tasks/toncoin-ton-seeklogo.png"
 const TasksPage = () => {
 
     return (
@@ -81,7 +80,9 @@ const TasksPage = () => {
             </div>
             <div className="pa_4">
                 <div className="flex justify_center align_center wallet_connect mb_2">
-                    <img className="mr_3" src={imgseeklogo} alt="" srcSet="" />
+                    <svg className="icon is_4 mr_3" aria-hidden="true">
+                        <use xlinkHref={`#p-icon-TON`}></use>
+                    </svg>
                     <div className="fs_3 fw_b">Connect wallet</div>
                 </div>
                 <div className="flex justify_center align_center wallet_connect mb_2">

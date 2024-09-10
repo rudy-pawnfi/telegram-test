@@ -1,6 +1,5 @@
 import imgToken from '/images/home/img-Token.svg'
 import imgPolariseCapsule from '/images/home/logo-PolariseCapsule.svg'
-import imgFarming from '/images/tab/img-Farming.png'
 import imgOneClick from '/images/home/img-One-Click.svg'
 import imgBondingCurvev from '/images/home/img-BondingCurvev.svg'
 import imgCurve from '/images/home/img-Curve.svg'
@@ -17,7 +16,8 @@ const HomePage = () => {
                 <div className="fs_2 fw_b text_3">The First bonding curve Launchpad</div>
                 <div className="fs_2 fw_b text_3 mb_5">platform on Ton</div>
                 <div className="home_herader_btn cursor flex justify_center align_center br_6 py_5 mb_7">
-                    <img className="mr_2" src={imgFarming} alt="" srcSet="" />
+                    {/* <img className="mr_2" src={imgFarming} alt="" srcSet="" /> */}
+                    <i className="picon p-icon-Farming is_4 mr_2"></i>
                     <div className="fs_3 fw_b">Star a new coin! (Soon)</div>
                 </div>
             </div>
