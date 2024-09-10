@@ -9,22 +9,22 @@ const TabBox = (props) => {
         {
             label: 'Home',
             icon: '/images/tab/img-Home.png',
-            link: '/'
+            link: '/telegram-test'
         },
         {
             label: 'Farming',
             icon: '/images/tab/img-Farming.png',
-            link: '/farming'
+            link: '/telegram-test/farming'
         },
         {
             label: 'Tasks',
             icon: '/images/tab/img-Tasks.png',
-            link: '/tasks'
+            link: '/telegram-test/tasks'
         },
         {
             label: 'Frens',
             icon: '/images/tab/img-Frens.png',
-            link: '/frens'
+            link: '/telegram-test/frens'
         }
     ]
     const toPage = (val) => {

@@ -11,10 +11,10 @@ const AppRouter = () => {
         <>
             <div className="page">
                 <Routes>
-                    <Route path={'/'} element={<HomePage />} />
-                    <Route path={'/farming'} element={<FarmingPage />} />
-                    <Route path={'/tasks'} element={<TasksPage />} />
-                    <Route path={'/frens'} element={<FrensPage />} />
+                    <Route path={'/telegram-test'} element={<HomePage />} />
+                    <Route path={'/telegram-test/farming'} element={<FarmingPage />} />
+                    <Route path={'/telegram-test/tasks'} element={<TasksPage />} />
+                    <Route path={'/telegram-test/frens'} element={<FrensPage />} />
                 </Routes>
             </div>
             <TabBox />
