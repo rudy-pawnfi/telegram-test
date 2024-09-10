@@ -1,4 +1,4 @@
-
+import imgToken from '/images/home/img-Token.svg'
 import './index.scss'
 const HomePage = () => {
 
@@ -18,7 +18,7 @@ const HomePage = () => {
             <div className="pa_4">
                 <div className="token_issuance p_relative br_5 mb_3">
                     <div className="token_issuance_box flex">
-                        <img className="token_img mr_4" src="/images/home/img-Token.svg" alt="" srcset="" />
+                        <img className="token_img mr_4" src={imgToken} alt="" srcset="" />
                         <div className="flex align_center">
                             <div>
                                 <div className="fs_4 fw_b mb_4">One-Click Token Issuance</div>
