@@ -13,11 +13,11 @@ const HomePage = () => {
 
     return(
         <div className="home_page">
-                <Header />
+                {/* <Header />
                 <TxForm />
-                {/*<TonProofDemo />*/}
-                <Footer/>
-            {/* <div className="flex column align_center home_herader pt_4 br_b_5">
+                <TonProofDemo />
+                <Footer/> */}
+            <div className="flex column align_center home_herader pt_4 br_b_5">
                 <img src={imgPolariseCapsule} alt="" srcSet="" />
                 <div className="fw_b fs_6 mb_2">Polarise Capsule </div>
                 <div className="fs_2 fw_b text_3">The First bonding curve Launchpad</div>
@@ -75,7 +75,7 @@ const HomePage = () => {
                     <i className="picon p-icon-x is_4 mr_4"></i>
                     <i className="picon p-icon-tg is_4 "></i>
                 </div>
-            </div> */}
+            </div>
         </div>
     )
 }
