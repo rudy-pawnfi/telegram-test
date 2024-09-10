@@ -1,5 +1,10 @@
 import './index.scss'
-
+import imgicon_1 from '/images/Tasks/icon_1.png'
+import imgicon_2 from '/images/Tasks/icon_2.png'
+import imgicon_3 from '/images/Tasks/icon_3.png'
+import imgicon_4 from '/images/Tasks/icon_4.png'
+import imgicon_5 from '/images/Tasks/icon_5.png'
+import imgseeklogo from "/images/Tasks/toncoin-ton-seeklogo.png"
 const TasksPage = () => {
 
     return (
@@ -11,7 +16,7 @@ const TasksPage = () => {
                 <div className="fs_4 fw_b mb_4">Launchpad Tasks</div>
                 <div className="list_box pa_4 flex justify_between align_center mb_4">
                     <div className="flex align_center">
-                        <img className="mr_5" src="/images/Tasks/icon_1.png" alt="" srcset="" />
+                        <img className="mr_5" src={imgicon_1} alt="" srcset="" />
                         <div>
                             <div className="fs_2 fw_m">Connect wallet</div>
                             <div className="fs_2 text_4">+900 BP</div>
@@ -24,7 +29,7 @@ const TasksPage = () => {
 
                 <div className="list_box pa_4 flex justify_between align_center mb_4">
                     <div className="flex align_center">
-                        <img className="mr_5" src="/images/Tasks/icon_2.png" alt="" srcset="" />
+                        <img className="mr_5" src={imgicon_2} alt="" srcset="" />
                         <div>
                             <div className="fs_2 fw_m">每日签到</div>
                             <div className="fs_2 text_4">+90 BP</div>
@@ -37,7 +42,7 @@ const TasksPage = () => {
 
                 <div className="list_box pa_4 flex justify_between align_center mb_4">
                     <div className="flex align_center">
-                        <img className="mr_5" src="/images/Tasks/icon_3.png" alt="" srcset="" />
+                        <img className="mr_5" src={imgicon_3} alt="" srcset="" />
                         <div>
                             <div className="fs_2 fw_m">follow blum on X</div>
                             <div className="fs_2 text_4">+90 BP</div>
@@ -50,7 +55,7 @@ const TasksPage = () => {
 
                 <div className="list_box pa_4 flex justify_between align_center mb_4">
                     <div className="flex align_center">
-                        <img className="mr_5" src="/images/Tasks/icon_4.png" alt="" srcset="" />
+                        <img className="mr_5" src={imgicon_4} alt="" srcset="" />
                         <div>
                             <div className="fs_2 fw_m">加入TG频道</div>
                             <div className="fs_2 text_4">+90 BP</div>
@@ -63,7 +68,7 @@ const TasksPage = () => {
 
                 <div className="list_box pa_4 flex justify_between align_center mb_4">
                     <div className="flex align_center">
-                        <img className="mr_5" src="/images/Tasks/icon_5.png" alt="" srcset="" />
+                        <img className="mr_5" src={imgicon_5} alt="" srcset="" />
                         <div>
                             <div className="fs_2 fw_m">Invited 10 Friends</div>
                             <div className="fs_2 text_4">+90 BP   1/10 frens</div>
@@ -76,7 +81,7 @@ const TasksPage = () => {
             </div>
             <div className="pa_4">
                 <div className="flex justify_center align_center wallet_connect mb_2">
-                    <img className="mr_3" src="/images/Tasks/toncoin-ton-seeklogo.png" alt="" srcset="" />
+                    <img className="mr_3" src={imgseeklogo} alt="" srcset="" />
                     <div className="fs_3 fw_b">Connect wallet</div>
                 </div>
                 <div className="flex justify_center align_center wallet_connect mb_2">

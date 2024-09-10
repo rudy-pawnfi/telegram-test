@@ -1,6 +1,9 @@
 import { useNavigate } from 'react-router-dom'
 import './index.scss'
-
+import imgHome from '/images/tab/img-Home.png'
+import imgFarming from '/images/tab/img-Farming.png'
+import imgTasks from '/images/tab/img-Tasks.png'
+import imgFrens from '/images/tab/img-Frens.png'
 const TabBox = (props) => {
 
     const navigate = useNavigate()
@@ -8,22 +11,22 @@ const TabBox = (props) => {
     const list =[
         {
             label: 'Home',
-            icon: '/images/tab/img-Home.png',
+            icon: imgHome,
             link: '/telegram-test'
         },
         {
             label: 'Farming',
-            icon: '/images/tab/img-Farming.png',
+            icon: imgFarming,
             link: '/telegram-test/farming'
         },
         {
             label: 'Tasks',
-            icon: '/images/tab/img-Tasks.png',
+            icon: imgTasks,
             link: '/telegram-test/tasks'
         },
         {
             label: 'Frens',
-            icon: '/images/tab/img-Frens.png',
+            icon: imgFrens,
             link: '/telegram-test/frens'
         }
     ]
