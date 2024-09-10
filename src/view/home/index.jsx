@@ -12,12 +12,12 @@ const HomePage = () => {
     return(
         <div className="home_page">
             <div className="flex column align_center home_herader pt_4 br_b_5">
-                <img src={imgPolariseCapsule} alt="" srcset="" />
+                <img src={imgPolariseCapsule} alt="" srcSet="" />
                 <div className="fw_b fs_6 mb_2">Polarise Capsule </div>
                 <div className="fs_2 fw_b text_3">The First bonding curve Launchpad</div>
                 <div className="fs_2 fw_b text_3 mb_5">platform on Ton</div>
                 <div className="home_herader_btn cursor flex justify_center align_center br_6 py_5 mb_7">
-                    <img className="mr_2" src={imgFarming} alt="" srcset="" />
+                    <img className="mr_2" src={imgFarming} alt="" srcSet="" />
                     <div className="fs_3 fw_b">Star a new coin! (Soon)</div>
                 </div>
             </div>
@@ -25,13 +25,13 @@ const HomePage = () => {
             <div className="pa_4">
                 <div className="token_issuance p_relative br_5 mb_3">
                     <div className="token_issuance_box flex">
-                        <img className="token_img mr_4" src={imgToken} alt="" srcset="" />
+                        <img className="token_img mr_4" src={imgToken} alt="" srcSet="" />
                         <div className="flex align_center">
                             <div>
                                 <div className="fs_4 fw_b mb_4">One-Click Token Issuance</div>
                                 <div className="fs_2 text_3 fw_m">The #1 Bonding Curve Launchpad on TON</div>
                             </div>
-                            <img className="end_img" src={imgOneClick} alt="" srcset="" />
+                            <img className="end_img" src={imgOneClick} alt="" srcSet="" />
                         </div>
                     </div>
                 </div>
@@ -39,26 +39,26 @@ const HomePage = () => {
                 <div className="bonding_issuance p_relative br_5 mb_3">
                     <div className="token_issuance_box flex">
                         <div className="flex align_center mr_4">
-                            <img className="end_img" src={imgBondingCurvev} alt="" srcset="" />
+                            <img className="end_img" src={imgBondingCurvev} alt="" srcSet="" />
                             <div className="text_right">
                                 <div className="fs_4 fw_b mb_4">Bonding Curve</div>
                                 <div className="fs_2 text_3 fw_m">Facilitates fair and transaparent issuance of digital assets.</div>
                             </div>
                         </div>
-                        <img className="token_img " src={imgCurve} alt="" srcset="" />
+                        <img className="token_img " src={imgCurve} alt="" srcSet="" />
                     </div>
                 </div>
 
 
                 <div className="token_issuance p_relative br_5 mb_3">
                     <div className="token_issuance_box flex">
-                        <img className="token_img mr_4" src={imgERC1000} alt="" srcset="" />
+                        <img className="token_img mr_4" src={imgERC1000} alt="" srcSet="" />
                         <div className="flex align_center">
                             <div>
                                 <div className="fs_4 fw_b mb_4">ERC-1000 Support</div>
                                 <div className="fs_2 text_3 fw_m">The launch of the ERC-1000 protocol will also be supported in the future</div>
                             </div>
-                            <img className="end_img" src={imgERC} alt="" srcset="" />
+                            <img className="end_img" src={imgERC} alt="" srcSet="" />
                         </div>
                     </div>
                 </div>

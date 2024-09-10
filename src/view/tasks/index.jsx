@@ -16,7 +16,7 @@ const TasksPage = () => {
                 <div className="fs_4 fw_b mb_4">Launchpad Tasks</div>
                 <div className="list_box pa_4 flex justify_between align_center mb_4">
                     <div className="flex align_center">
-                        <img className="mr_5" src={imgicon_1} alt="" srcset="" />
+                        <img className="mr_5" src={imgicon_1} alt="" srcSet="" />
                         <div>
                             <div className="fs_2 fw_m">Connect wallet</div>
                             <div className="fs_2 text_4">+900 BP</div>
@@ -29,7 +29,7 @@ const TasksPage = () => {
 
                 <div className="list_box pa_4 flex justify_between align_center mb_4">
                     <div className="flex align_center">
-                        <img className="mr_5" src={imgicon_2} alt="" srcset="" />
+                        <img className="mr_5" src={imgicon_2} alt="" srcSet="" />
                         <div>
                             <div className="fs_2 fw_m">每日签到</div>
                             <div className="fs_2 text_4">+90 BP</div>
@@ -42,7 +42,7 @@ const TasksPage = () => {
 
                 <div className="list_box pa_4 flex justify_between align_center mb_4">
                     <div className="flex align_center">
-                        <img className="mr_5" src={imgicon_3} alt="" srcset="" />
+                        <img className="mr_5" src={imgicon_3} alt="" srcSet="" />
                         <div>
                             <div className="fs_2 fw_m">follow blum on X</div>
                             <div className="fs_2 text_4">+90 BP</div>
@@ -55,7 +55,7 @@ const TasksPage = () => {
 
                 <div className="list_box pa_4 flex justify_between align_center mb_4">
                     <div className="flex align_center">
-                        <img className="mr_5" src={imgicon_4} alt="" srcset="" />
+                        <img className="mr_5" src={imgicon_4} alt="" srcSet="" />
                         <div>
                             <div className="fs_2 fw_m">加入TG频道</div>
                             <div className="fs_2 text_4">+90 BP</div>
@@ -68,7 +68,7 @@ const TasksPage = () => {
 
                 <div className="list_box pa_4 flex justify_between align_center mb_4">
                     <div className="flex align_center">
-                        <img className="mr_5" src={imgicon_5} alt="" srcset="" />
+                        <img className="mr_5" src={imgicon_5} alt="" srcSet="" />
                         <div>
                             <div className="fs_2 fw_m">Invited 10 Friends</div>
                             <div className="fs_2 text_4">+90 BP   1/10 frens</div>
@@ -81,7 +81,7 @@ const TasksPage = () => {
             </div>
             <div className="pa_4">
                 <div className="flex justify_center align_center wallet_connect mb_2">
-                    <img className="mr_3" src={imgseeklogo} alt="" srcset="" />
+                    <img className="mr_3" src={imgseeklogo} alt="" srcSet="" />
                     <div className="fs_3 fw_b">Connect wallet</div>
                 </div>
                 <div className="flex justify_center align_center wallet_connect mb_2">

@@ -15,10 +15,10 @@ const FrensPage = () => {
                 <div className="fw_b pb_2">352</div>
             </div>
             <div className="flex justify_center align_center mb_5 number_img">
-                <img className="mr_3" src={imgIntegral2} alt="" srcset="" />
+                <img className="mr_3" src={imgIntegral2} alt="" srcSet="" />
                 <div className="fs_2 fw_m mr_3">12</div>
 
-                <img className="mr_3" src={imgNumberOfLives} alt="" srcset="" />
+                <img className="mr_3" src={imgNumberOfLives} alt="" srcSet="" />
                 <div className="fs_2 fw_m">90</div>
             </div>
 
@@ -27,9 +27,9 @@ const FrensPage = () => {
                 <div className="centernt_box pa_4 flex">
 
                     <div className="flex column mr_4">
-                        <img className="img_1" src={imgPointsRewards} alt="" srcset="" />
-                        <img className="img_2" src={imgDinosaurRun} alt="" srcset="" />
-                        <img className="img_3" src={imgMoreRewards} alt="" srcset="" />
+                        <img className="img_1" src={imgPointsRewards} alt="" srcSet="" />
+                        <img className="img_2" src={imgDinosaurRun} alt="" srcSet="" />
+                        <img className="img_3" src={imgMoreRewards} alt="" srcSet="" />
                     </div>
                     <div className="">
                         <div className="pb_4 centernt_box_border centern_1">
@@ -51,11 +51,11 @@ const FrensPage = () => {
             
                 <div className="frens_btn_box flex align_center justify_end">
                     <div className="invite_box fs_3 fw_b flex justify_center align_center mr_4">
-                        <img src={imgInviteFriends} alt="" srcset="" />
+                        <img src={imgInviteFriends} alt="" srcSet="" />
                         <span className="fs_3 fw_b">Invite Friends</span>
                     </div>
                     <div className="copy_box flex justify_center align_center">
-                        <img src={imgCopy} alt="" srcset="" />
+                        <img src={imgCopy} alt="" srcSet="" />
                     </div>
                 </div>
             </div>

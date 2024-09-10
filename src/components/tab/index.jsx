@@ -38,7 +38,7 @@ const TabBox = (props) => {
             {
                 list.map(val =>
                     <div className="flex column justify_center align_center" key={val.label} onClick={() => toPage(val)}>
-                        <img src={val.icon} alt="" srcset="" className="mb_2" />
+                        <img src={val.icon} alt="" srcSet="" className="mb_2" />
                         <span>{val.label}</span>
                     </div>    
                 )
