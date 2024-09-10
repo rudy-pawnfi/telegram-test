@@ -63,6 +63,13 @@ const HomePage = () => {
                     </div>
                 </div>
             </div>
+
+            <div className="flex justify_center">
+                <div className="telegaml_box flex align_center py_3 px_5">
+                    <i className="picon p-icon-x is_4 mr_4"></i>
+                    <i className="picon p-icon-tg is_4 "></i>
+                </div>
+            </div>
         </div>
     )
 }
