@@ -50,7 +50,7 @@ const HomePage = () => {
                 </div>
 
 
-                <div className="token_issuance p_relative br_5 mb_3">
+                <div className="erc1000_issuance p_relative br_5 mb_3">
                     <div className="token_issuance_box flex">
                         <img className="token_img mr_4" src={imgERC1000} alt="" srcSet="" />
                         <div className="flex align_center">

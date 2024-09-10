@@ -1,0 +1,67 @@
+@font-face {
+  font-family: "picon"; /* Project id 4678886 */
+  src: url('iconfont.woff2?t=1725948165825') format('woff2'),
+       url('iconfont.woff?t=1725948165825') format('woff'),
+       url('iconfont.ttf?t=1725948165825') format('truetype');
+}
+
+.picon {
+  font-family: "picon" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.p-icon-Home:before {
+  content: "\e7c8";
+}
+
+.p-icon-TON:before {
+  content: "\e7bc";
+}
+
+.p-icon-copy:before {
+  content: "\e7bd";
+}
+
+.p-icon-Tasks:before {
+  content: "\e7be";
+}
+
+.p-icon-tg:before {
+  content: "\e7bf";
+}
+
+.p-icon-InviteFriends:before {
+  content: "\e7c0";
+}
+
+.p-icon-StartUp:before {
+  content: "\e7c2";
+}
+
+.p-icon-quit:before {
+  content: "\e7c3";
+}
+
+.p-icon-x:before {
+  content: "\e7c4";
+}
+
+.p-icon-integral:before {
+  content: "\e7c5";
+}
+
+.p-icon-Frens:before {
+  content: "\e7c6";
+}
+
+.p-icon-Farming:before {
+  content: "\e7c7";
+}
+
+.p-icon-Wmatic:before {
+  content: "\e7c1";
+}
+
