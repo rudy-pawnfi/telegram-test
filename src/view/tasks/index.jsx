@@ -87,7 +87,8 @@ const TasksPage = () => {
                 </div>
                 <div className="flex justify_center align_center wallet_connect mb_2">
                     <div className="mr_3 round_box"></div>
-                    <div className="fs_3 fw_b">0x816...Dcab6</div>
+                    <div className="fs_3 fw_b mr_3">0x816...Dcab6</div>
+                    <i className="picon p-icon-quit is_3"></i>
                 </div>
                 <div className="text_center fs_2 fw_m text_4">Complete tasks to earn points for future airdrops!</div>
             </div>
