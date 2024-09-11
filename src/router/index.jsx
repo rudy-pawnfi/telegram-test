@@ -15,7 +15,7 @@ const AppRouter = () => {
                 console.log('themeParams :>> ', themeParams);
                 if (themeParams.bg_color === '#ffffff') {
                     try {
-                        window.Telegram.WebApp.setHeaderColor('bg_light');
+                        window.Telegram.WebApp.setHeaderColor('#000000');
                     } catch (error) {
                         console.error('设置导航栏背景颜色时出错:', error);
                     }
