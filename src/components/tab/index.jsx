@@ -10,7 +10,8 @@ const TabBox = (props) => {
         {
             label: 'Home',
             icon: 'p-icon-Home',
-            link: '/telegram-test'
+            link: '/telegram-test',
+            link2: '/telegram-test/'
         },
         {
             label: 'Farming',
@@ -32,7 +33,7 @@ const TabBox = (props) => {
         navigate(val.link)
     }
     const active = (val) => {
-        if(location.pathname === val.link || location.pathname === '/telegram-test/') return 'text_2'
+        if(location.pathname === val.link || location.pathname === val?.link2) return 'text_2'
         return 'text_4'
     }
     return(
