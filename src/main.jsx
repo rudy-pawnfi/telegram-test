@@ -8,7 +8,7 @@ import { THEME, TonConnectUIProvider } from "@tonconnect/ui-react";
 import AppRouter from './router'
 import './style/public.scss'
 // WebApp.setBackgroundColor('000');
-WebApp.setHeaderColor('bg_dark');
+WebApp.setHeaderColor('secondary_bg_color');
 WebApp.ready();
 
 
