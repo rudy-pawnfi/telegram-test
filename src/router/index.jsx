@@ -12,6 +12,7 @@ const AppRouter = () => {
         if (window.Telegram?.WebApp) {
             const setHeaderColor = () => {
                 const themeParams = window.Telegram.WebApp.themeParams;
+                console.log('themeParams :>> ', themeParams);
                 if (themeParams.bg_color === '#ffffff') {
                     window.Telegram.WebApp.setHeaderColor('bg_light');
                 } else {
