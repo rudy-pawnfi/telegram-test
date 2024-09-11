@@ -24,7 +24,7 @@ const TasksPage = () => {
                 <div className="fw_b pb_3">Tasks</div>
             </div>
             <div className="pa_3">
-                <div className="fs_4 fw_b mb_4">Launchpad Tasks</div>
+                <div className="fs_4 fw_b mb_4 text_center">Launchpad Tasks</div>
                 <div className="list_box pa_4 flex justify_between align_center mb_4">
                     <div className="flex align_center">
                         <img className="mr_5" src={imgicon_1} alt="" srcSet="" />
