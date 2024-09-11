@@ -7,10 +7,11 @@ import { BrowserRouter } from "react-router-dom";
 import { THEME, TonConnectUIProvider } from "@tonconnect/ui-react";
 import AppRouter from './router'
 import './style/public.scss'
+// WebApp.setBackgroundColor('000');
+WebApp.setHeaderColor('bg_dark');
 WebApp.ready();
 
-WebApp?.setBackgroundColor('000');
-window.Telegram?.WebApp?.setHeaderColor('fff');
+
 console.log('WebApp :>> ', WebApp);
 createRoot(document.getElementById('root')).render(
     <StrictMode>
