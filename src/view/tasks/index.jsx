@@ -68,7 +68,7 @@ const TasksPage = () => {
                     <div className="flex align_center">
                         <img className="mr_5" src={imgicon_4} alt="" srcSet="" />
                         <div>
-                            <div className="fs_2 fw_m">加入TG频道</div>
+                            <div className="fs_2 fw_m">Join our TG community</div>
                             <div className="fs_2 text_4">+90 BP</div>
                         </div>
                     </div>

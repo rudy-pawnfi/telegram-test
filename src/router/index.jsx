@@ -7,7 +7,25 @@ import TasksPage from '../view/tasks'
 import FrensPage from '../view/frens'
 const AppRouter = () => {
 
-    return(
+    useEffect(() => {
+        if (window.Telegram?.WebApp) {
+            const setHeaderColor = () => {
+                const themeParams = window.Telegram.WebApp.themeParams;
+                if (themeParams.bg_color === '#ffffff') {
+                    window.Telegram.WebApp.setHeaderColor('bg_light');
+                } else {
+                    window.Telegram.WebApp.setHeaderColor('bg_dark');
+                }
+            };
+
+            // 初始设置
+            setHeaderColor();
+
+            // 监听主题变化
+            window.Telegram.WebApp.onEvent('themeChanged', setHeaderColor);
+        }
+    }, []);
+    return (
         <>
             <div className="page">
                 <Routes>
