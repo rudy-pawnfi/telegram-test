@@ -14,9 +14,17 @@ const AppRouter = () => {
                 const themeParams = window.Telegram.WebApp.themeParams;
                 console.log('themeParams :>> ', themeParams);
                 if (themeParams.bg_color === '#ffffff') {
-                    window.Telegram.WebApp.setHeaderColor('bg_light');
+                    try {
+                        window.Telegram.WebApp.setHeaderColor('bg_light');
+                    } catch (error) {
+                        console.error('设置导航栏背景颜色时出错:', error);
+                    }
                 } else {
-                    window.Telegram.WebApp.setHeaderColor('bg_color');
+                    try {
+                        window.Telegram.WebApp.setHeaderColor('#000000');
+                    } catch (error) {
+                        console.error('设置导航栏背景颜色时出错:', error);
+                    }
                 }
             };
 
