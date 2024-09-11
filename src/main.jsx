@@ -9,6 +9,7 @@ import AppRouter from './router'
 import './style/public.scss'
 // WebApp.setBackgroundColor('000');
 WebApp.ready();
+console.log('WebApp :>> ', WebApp);
 createRoot(document.getElementById('root')).render(
     <StrictMode>
             <TonConnectUIProvider
