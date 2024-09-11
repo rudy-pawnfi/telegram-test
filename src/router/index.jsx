@@ -5,6 +5,7 @@ import HomePage from '../view/home'
 import FarmingPage from '../view/farming'
 import TasksPage from '../view/tasks'
 import FrensPage from '../view/frens'
+import { useEffect } from 'react'
 const AppRouter = () => {
 
     useEffect(() => {
