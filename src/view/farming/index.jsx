@@ -33,10 +33,12 @@ const FarmingPage = () => {
                     <div className="fs_3 fw_b">Farming</div>
                 </div> */}
 
-                <div className="farming_btn_loadding cursor br_6 pa_2 p_relative mb_5">
-                    <div className="farming_btn_loadding_box_bg" style={{ width: `${(progress / targetNumber) * 100}%` }}></div>
+                <div className="farming_btn_loadding cursor br_6 pa_2 p_relative mb_5 overflow_hidden">
+                    <div className="w100 h100 overflow_hidden br_6">
+                        <div className="farming_btn_loadding_box_bg" style={{ width: `${(progress / targetNumber) * 100}%` }}></div>
+                    </div>
                     <div className="farming_btn_loadding_box flex justify_center align_center br_6 py_4">
-                        <img className="mr_2" src="/images/Farming/img-Farming2.png" alt="" srcSet="" />
+                        <i className="picon p-icon-StartUp is_4 mr_2"></i>
                         <div className="fs_3 fw_b">Farming</div>
                     </div>
                 </div>

@@ -18,7 +18,7 @@ const FrensPage = () => {
                 <div className="fs_3 fw_b mb_3">Friends</div>
                 <div className="fw_b pb_2">352</div>
             </div>
-            <div className="flex justify_center align_center mb_5 number_img">
+            <div className="flex justify_center align_center mb_2 number_img">
                 <img className="mr_3" src={imgIntegral2} alt="" srcSet="" />
                 <div className="fs_2 fw_m mr_3">12</div>
 
@@ -27,7 +27,7 @@ const FrensPage = () => {
             </div>
 
             <div className="pa_3">
-                <div className="fs_4 fw_b mb_4 text_center">Invite Friends, earn points</div>
+                <div className="fs_4 fw_b text_center">Invite Friends, earn points</div>
                 <div className="centernt_box pa_4 flex">
 
                     <div className="flex column mr_4">

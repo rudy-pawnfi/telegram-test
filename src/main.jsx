@@ -9,6 +9,9 @@ import AppRouter from './router'
 import './style/public.scss'
 WebApp.ready();
 
+Telegram?.WebApp?.setBackgroundColor('#000');
+Telegram?.WebApp?.setHeaderColor('#fff');
+
 createRoot(document.getElementById('root')).render(
     <StrictMode>
             <TonConnectUIProvider

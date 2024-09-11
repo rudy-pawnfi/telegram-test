@@ -25,7 +25,7 @@ const TasksPage = () => {
             </div>
             <div className="pa_3">
                 <div className="fs_4 fw_b mb_4 text_center">Launchpad Tasks</div>
-                <div className="list_box pa_4 flex justify_between align_center mb_4">
+                <div className="list_box pa_4 flex justify_between align_center mb_3">
                     <div className="flex align_center">
                         <img className="mr_5" src={imgicon_1} alt="" srcSet="" />
                         <div>
@@ -38,7 +38,7 @@ const TasksPage = () => {
                     </div>
                 </div>
 
-                <div className="list_box pa_4 flex justify_between align_center mb_4">
+                <div className="list_box pa_4 flex justify_between align_center mb_3">
                     <div className="flex align_center">
                         <img className="mr_5" src={imgicon_2} alt="" srcSet="" />
                         <div>
@@ -51,7 +51,7 @@ const TasksPage = () => {
                     </div>
                 </div>
 
-                <div className="list_box pa_4 flex justify_between align_center mb_4">
+                <div className="list_box pa_4 flex justify_between align_center mb_3">
                     <div className="flex align_center">
                         <img className="mr_5" src={imgicon_3} alt="" srcSet="" />
                         <div>
@@ -64,7 +64,7 @@ const TasksPage = () => {
                     </div>
                 </div>
 
-                <div className="list_box pa_4 flex justify_between align_center mb_4">
+                <div className="list_box pa_4 flex justify_between align_center mb_3">
                     <div className="flex align_center">
                         <img className="mr_5" src={imgicon_4} alt="" srcSet="" />
                         <div>
@@ -77,7 +77,7 @@ const TasksPage = () => {
                     </div>
                 </div>
 
-                <div className="list_box pa_4 flex justify_between align_center mb_4">
+                <div className="list_box pa_4 flex justify_between align_center mb_3">
                     <div className="flex align_center">
                         <img className="mr_5" src={imgicon_5} alt="" srcSet="" />
                         <div>
