@@ -19,6 +19,7 @@ const FarmingPage = () => {
           return () => clearTimeout(timer);  // 清除定时器，防止内存泄漏
         }
       }, [progress, stepTime, targetNumber]);
+      
     return(
         <div className="farming_page pa_3">
             <div className="farming_bg flex column align_center justify_between pa_3 mb_3">

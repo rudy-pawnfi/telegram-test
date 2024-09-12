@@ -27,7 +27,7 @@ const FrensPage = () => {
             </div>
 
             <div className="pa_3">
-                <div className="fs_4 fw_b text_center">Invite Friends, earn points</div>
+                <div className="fs_4 fw_b text_center">Invite Friends, Earn Rewards! </div>
                 <div className="centernt_box pa_4 flex">
 
                     <div className="flex column mr_4">
@@ -37,12 +37,12 @@ const FrensPage = () => {
                     </div>
                     <div className="">
                         <div className="pb_4 centernt_box_border centern_1">
-                            <div className="fs_4 fw_b mb_2">Points Rewards</div>
-                            <div className="fs_2 fw_m text_3 ">Each friend you invited, you will get 90 points.</div>
+                            <div className="fs_4 fw_b mb_2">Rewards</div>
+                            <div className="fs_2 fw_m text_3 ">Earn up to XXX points worth $XXX of referral fees when your friend sign up for a new account using your unqiue referral link </div>
                         </div>
 
                         <div className="pb_4 centernt_box_border centern_2">
-                            <div className="fs_4 fw_b mb_2">Dinosaur Run</div>
+                            <div className="fs_4 fw_b mb_2">Ton Lord Run</div>
                             <div className="fs_2 fw_m text_3 ">Get exclusive play passes for every friend invited to Ton Lord Run Beta</div>
                         </div>
 

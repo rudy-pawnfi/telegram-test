@@ -42,7 +42,7 @@ const AppRouter = () => {
                     <Route path={'/telegram-test'} element={<HomePage />} />
                     <Route path={'/telegram-test/farming'} element={<FarmingPage />} />
                     <Route path={'/telegram-test/tasks'} element={<TasksPage />} />
-                    <Route path={'/telegram-test/frens'} element={<FrensPage />} />
+                    <Route path={'/telegram-test/friends'} element={<FrensPage />} />
                 </Routes>
             </div>
             <TabBox />

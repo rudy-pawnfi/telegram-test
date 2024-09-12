@@ -24,9 +24,9 @@ const TabBox = (props) => {
             link: '/telegram-test/tasks'
         },
         {
-            label: 'Frens',
+            label: 'Friends',
             icon: 'p-icon-InviteFriends',
-            link: '/telegram-test/frens'
+            link: '/telegram-test/friends'
         }
     ]
     const toPage = (val) => {

@@ -14,7 +14,7 @@ const TasksPage = () => {
     const wallet = useTonWallet();
     const tonAddress = useTonAddress()
 
-    
+    console.log('wallet :>> ', wallet);
     const disconnect = async () => {
         await tonConnectUI.disconnect();
     }
@@ -24,12 +24,12 @@ const TasksPage = () => {
                 <div className="fw_b pb_3">Tasks</div>
             </div>
             <div className="pa_3">
-                <div className="fs_4 fw_b mb_4 text_center">Launchpad Tasks</div>
+                <div className="fs_4 fw_b mb_4 text_center">Capsule Tasks</div>
                 <div className="list_box pa_4 flex justify_between align_center mb_3">
                     <div className="flex align_center">
                         <img className="mr_5" src={imgicon_1} alt="" srcSet="" />
                         <div>
-                            <div className="fs_2 fw_m">Connect wallet</div>
+                            <div className="fs_2 fw_m">Connect your wallet</div>
                             <div className="fs_2 text_4">+900 BP</div>
                         </div>
                     </div>
@@ -42,7 +42,7 @@ const TasksPage = () => {
                     <div className="flex align_center">
                         <img className="mr_5" src={imgicon_2} alt="" srcSet="" />
                         <div>
-                            <div className="fs_2 fw_m">每日签到</div>
+                            <div className="fs_2 fw_m">Login to your account daily</div>
                             <div className="fs_2 text_4">+90 BP</div>
                         </div>
                     </div>
@@ -55,7 +55,7 @@ const TasksPage = () => {
                     <div className="flex align_center">
                         <img className="mr_5" src={imgicon_3} alt="" srcSet="" />
                         <div>
-                            <div className="fs_2 fw_m">follow blum on X</div>
+                            <div className="fs_2 fw_m">Follow us on X</div>
                             <div className="fs_2 text_4">+90 BP</div>
                         </div>
                     </div>
@@ -107,7 +107,7 @@ const TasksPage = () => {
                         </div>
 
                 }
-                <div className="text_center fs_2 fw_m text_4">Complete tasks to earn points for future airdrops!</div>
+                <div className="text_center fs_2 fw_m text_4">Complete more tasks to earn more rewards!</div>
 
                 {/* <div className="flex justify_center"><TonConnectButton /></div> */}
             </div>
