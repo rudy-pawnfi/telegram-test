@@ -6,6 +6,7 @@ import imgicon_3 from '/images/Tasks/icon_3.png'
 import imgicon_4 from '/images/Tasks/icon_4.png'
 import imgicon_5 from '/images/Tasks/icon_5.png'
 import { reduceLen } from '../../untils'
+import { ApiServe } from '../../service'
 const TasksPage = () => {
 
 
@@ -16,6 +17,11 @@ const TasksPage = () => {
 
     console.log('wallet :>> ', wallet);
     const disconnect = async () => {
+        ApiServe.query('usersignout',{
+            tg_account: tonAddress,
+            chain_name: wallet.account.chain,
+            wallet_account: ''
+        })
         await tonConnectUI.disconnect();
     }
     return (
@@ -47,7 +53,7 @@ const TasksPage = () => {
                         </div>
                     </div>
                     <div className="tasks_btn click_btn fs_2 fw_b">
-                        ✔️
+                        <i className="picon p-icon-Finish is_3"></i>
                     </div>
                 </div>
 

@@ -6,6 +6,13 @@
   "description": "polarcapsule-miniapp",
   "glyphs": [
     {
+      "icon_id": "41821873",
+      "name": "icon-Finish",
+      "font_class": "icon-Finish",
+      "unicode": "e7c9",
+      "unicode_decimal": 59337
+    },
+    {
       "icon_id": "41797603",
       "name": "icon-Home",
       "font_class": "icon-Home",

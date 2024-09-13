@@ -4,8 +4,37 @@ import imgNumberOfLives from '/images/Farming/img-NumberOfLives.png'
 import imgPointsRewards from '/images/img-PointsRewards.svg'
 import imgDinosaurRun from '/images/img-DinosaurRun.svg'
 import imgMoreRewards from '/images/img-MoreRewards.svg'
+import { useEffect, useState } from 'react'
+import { ApiServe } from '../../service'
+import { useTonAddress, useTonWallet } from '@tonconnect/ui-react'
+import axios from 'axios';
 const FrensPage = () => {
 
+    const wallet = useTonWallet();
+    const tonAddress = useTonAddress()
+    const [inviteUrl, setInviteUrl] = useState('')
+
+    useEffect(() => {
+        init()
+    },[tonAddress, wallet])
+
+    const init = async() => {
+        if(!wallet || !tonAddress) return
+
+        // const useInfo = await ApiServe.query('userinfo',{
+        //     tg_account: tonAddress
+        // })
+        // console.log('useInfo :>> ', useInfo);
+
+        const res = await ApiServe.query('getrefcode', {
+            tg_account: tonAddress,
+            app_name: wallet.appName
+        })
+
+        
+        
+        console.log( 'res :>> ', res);
+    }
     const inviteFriends = () => {
         let linkUrl1 = 'https://t.me/rudy_pawnfi_bot'
         const inviteMessage = 'Start chatting with our bot: https://t.me/rudy_pawnfi_bot';

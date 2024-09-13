@@ -3,13 +3,35 @@ import imgTonlord from '/images/Farming/img-Tonlord.png'
 import imgNumberOfLives from '/images/Farming/img-NumberOfLives.png'
 import './index.scss'
 import { useEffect, useState } from 'react'
+import { useTonAddress, useTonWallet } from '@tonconnect/ui-react'
+import { ApiServe } from '../../service'
+import { reduceLen } from '../../untils'
 const FarmingPage = () => {
 
     const [progress, setProgress] = useState(0);  // 控制数字的状态
     const targetNumber = 1151;
     const duration = 3000;  // 动画持续时间 3 秒
     const stepTime = duration / targetNumber;  // 每次递增的时间间隔
+    const wallet = useTonWallet();
+    const tonAddress = useTonAddress()
+    useEffect(() => {
+        init()
+    },[])
+    const init = async () => {
 
+        const res = await ApiServe.query('farminglist', {
+            tg_account: tonAddress
+        })
+        console.log('res :>> ', res);
+    }
+
+    const launchpadFarming = async () => {
+        const res = await ApiServe.query('launchfarming', {
+            tg_account: tonAddress,
+            launch_cnt: 1
+        })
+        console.log('launchpadFarming :>> ', res);
+    }
     useEffect(() => {
         if (progress < targetNumber) {
           const timer = setTimeout(() => {
@@ -25,16 +47,16 @@ const FarmingPage = () => {
             <div className="farming_bg flex column align_center justify_between pa_3 mb_3">
                 <img src={imgIntegral} alt="" srcSet="" />
                 <div className="text_center">
-                    <div className="fs_5 fw_b">UserName</div>
+                    <div className="fs_5 fw_b">{reduceLen(tonAddress)}</div>
                     <div className="fs_8 fw_b">{progress}</div>
                 </div>
 
-                {/* <div className="farming_btn cursor flex justify_center align_center br_6 py_5">
+                <div className="farming_btn cursor flex justify_center align_center br_6 py_4" onClick={launchpadFarming}>
                     <i className="picon p-icon-StartUp is_4 mr_2"></i>
                     <div className="fs_3 fw_b">Farming</div>
-                </div> */}
+                </div>
 
-                <div className="farming_btn_loadding cursor br_6 pa_2 p_relative mb_5 overflow_hidden">
+                {/* <div className="farming_btn_loadding cursor br_6 pa_2 p_relative mb_5 overflow_hidden">
                     <div className="w100 h100 overflow_hidden br_6">
                         <div className="farming_btn_loadding_box_bg" style={{ width: `${(progress / targetNumber) * 100}%` }}></div>
                     </div>
@@ -42,7 +64,7 @@ const FarmingPage = () => {
                         <i className="picon p-icon-StartUp is_4 mr_2"></i>
                         <div className="fs_3 fw_b">Farming</div>
                     </div>
-                </div>
+                </div> */}
             </div>
 
             <div className="br_5 pa_4 dinosaur_box flex column align_center">
