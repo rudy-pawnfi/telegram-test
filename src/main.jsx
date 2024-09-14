@@ -13,7 +13,7 @@ console.log('WebApp :>> ', WebApp);
 createRoot(document.getElementById('root')).render(
     <StrictMode>
             <TonConnectUIProvider
-                manifestUrl="../manifest.json"
+                manifestUrl="https://ton-connect.github.io/demo-dapp-with-wallet/tonconnect-manifest.json"
                 uiPreferences={{ theme: THEME.DARK }}
                 walletsListConfiguration={{
                     includeWallets: [

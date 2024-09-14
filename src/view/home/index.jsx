@@ -20,19 +20,21 @@ const HomePage = () => {
     console.log('ref_code :>> ', ref_code);
     const tonAddress = useTonAddress()
     const initData = Telegram.WebApp.initData;
+    const initDataUnsafe = Telegram.WebApp.initDataUnsafe
     console.log('initData', initData);
     useEffect(() => {
         init()
     },[ref_code, tonAddress])
     const init = async() =>{
-        if(!ref_code) return
+        if(!initDataUnsafe.ref_code || !tonAddress) return
         const useInfo = await ApiServe.query('invitinginfo',{
-            ref_code: ref_code,
+            ref_code: initDataUnsafe.ref_code,
             tg_friend_account: tonAddress
         })
     }
     return(
         <div className="home_page">
+            {/* <TxForm /> */}
                 {/* <Header />
                 <TxForm />
                 <TonProofDemo />

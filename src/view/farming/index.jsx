@@ -16,9 +16,10 @@ const FarmingPage = () => {
     const [useInfo, setUseInfo] = useState({})
     useEffect(() => {
         init()
-    },[])
+    },[wallet])
     const init = async () => {
 
+        if(!wallet) return
         const result = await ApiServe.query('userinfo',{
             tg_account: tonAddress
         })

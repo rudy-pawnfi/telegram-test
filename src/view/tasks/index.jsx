@@ -8,6 +8,23 @@ import imgicon_5 from '/images/Tasks/icon_5.png'
 import { reduceLen } from '../../untils'
 import { ApiServe } from '../../service'
 import { useEffect, useState } from 'react'
+const defaultTx = {
+	// The transaction is valid for 10 minutes from now, in unix epoch seconds.
+	validUntil: Math.floor(Date.now() / 1000) + 600,
+	messages: [
+
+		{
+			// The receiver's address.
+			address: '0x0000000000000000000000000000000000000000',
+			// Amount to send in nanoTON. For example, 0.005 TON is 5000000 nanoTON.
+			amount: '0.01',
+			// (optional) State initialization in boc base64 format.
+			stateInit: 'te6cckEBBAEAOgACATQCAQAAART/APSkE/S88sgLAwBI0wHQ0wMBcbCRW+D6QDBwgBDIywVYzxYh+gLLagHPFsmAQPsAlxCarA==',
+			// (optional) Payload in boc base64 format.
+			payload: 'te6ccsEBAQEADAAMABQAAAAASGVsbG8hCaTc/g==',
+		},
+	],
+};
 const TasksPage = () => {
 
 
@@ -19,39 +36,12 @@ const TasksPage = () => {
     const [useInfo, setUseInfo] = useState({})
     const [loginStatus, setLoginStatus] = useState(false)
     const [taskList, setTaskList] = useState([])
-    const [list, setList] = useState([
-        {
-            name: "Connect your wallet",
-            img: imgicon_1,
-            isWallet: true,
-            points: 900
-        },
-        {
-            name: "Login to your account daily",
-            img: imgicon_2,
-            isWallet: false,
-            points: 90
-        },
-        {
-            name: "Follow us on X",
-            img: imgicon_3,
-            isWallet: false,
-            points: 90
-        },
-        {
-            name: "Join our TG community",
-            img: imgicon_4,
-            isWallet: false,
-            points: 90
-        },
-        {
-            name: "Invited 10 Friends",
-            img: imgicon_1,
-            isWallet: true,
-            points: 900
-        },
+    const [invitInfo, setInvitInfo] = useState({})
 
-    ])
+    const [tx, setTx] = useState(defaultTx);
+	const wallet = useTonWallet();
+	const [tonConnectUi] = useTonConnectUI();
+
     console.log('wallet :>> ', wallet);
     useEffect(() => {
         init()
@@ -59,6 +49,17 @@ const TasksPage = () => {
     useEffect(() => {
         loginApi()
     },[wallet])
+
+    const sendTrade = async() => {
+        tonConnectUi.sendTransaction(defaultTx).then(res => {
+            await ApiServe.query('finishtask', {
+                tg_account: tonAddress,
+                task_id: "1",
+                task_name: "Login to your account daily",
+                points: 90
+            })
+        })
+    }
     const loginApi = async () => {
         if(!wallet || !loginStatus) return
         const res = await ApiServe.query('usersignin', {
@@ -77,23 +78,38 @@ const TasksPage = () => {
         setLoginStatus(false)
     }
     const init = async () => {
+        if(!wallet) return
         const res = await ApiServe.query('getrefcode', {
             tg_account: tonAddress,
             app_name: wallet.appName
         })
-        setInviteUrl(`https://t.me/share/url?url=https://t.me/rudy_pawnfi_bot?ref_code=${res?.data?.ref_code}`)
+        setInviteUrl(`https://t.me/share/url?url=https://t.me/polarise?ref_code=${res?.data?.ref_code}`)
         
         const useInfo = await ApiServe.query('userinfo',{
             tg_account: tonAddress
         })
         setUseInfo(useInfo.data)
-        console.log('useInfo :>> ', useInfo);
+
+        const invit = await ApiServe.query('invitinginfo',{
+            tg_account: tonAddress
+        })
+        setInvitInfo(invit.data)
 
         const result = await ApiServe.query('finishedtaskList', {
             tg_account: tonAddress,
         })
         setTaskList(result.data.list)
-        console.log('finishedtaskList :>> ', result);
+        
+    }
+    const inviteFriends = async() => {
+        console.log('inviteUrl :>> ', inviteUrl);
+        window.open(inviteUrl, '_blank');
+        // await ApiServe.query('finishtask', {
+        //     tg_account: tonAddress,
+        //     task_id: "4",
+        //     task_name: "Invited 10 Friends",
+        //     points: 90
+        // })
     }
     const disconnect = async () => {
         ApiServe.query('usersignout',{
@@ -124,8 +140,8 @@ const TasksPage = () => {
                         </div>
                     </div>
                     {
-                        wallet ? 
-                            <div className="tasks_btn click_btn fs_2 fw_b">
+                        wallet && !!taskList.find(val => val.task_id === "0") ? 
+                            <div className="tasks_btn click_btn fs_2 fw_b" onClick={sendTrade}>
                                 <i className="picon p-icon-Finish is_3"></i>
                             </div>
                             :
@@ -144,9 +160,17 @@ const TasksPage = () => {
                             <div className="fs_2 text_4">+90 BP</div>
                         </div>
                     </div>
-                    <div className="tasks_btn click_btn fs_2 fw_b">
-                        <i className="picon p-icon-Finish is_3"></i>
-                    </div>
+                    {
+                        !!taskList.find(val => val.task_id === "1") ?
+                            <div className="tasks_btn click_btn fs_2 fw_b">
+                                <i className="picon p-icon-Finish is_3"></i>
+                            </div>
+                            :
+                            <div className="tasks_btn go_btn fs_2 fw_b">
+                                Go
+                            </div>
+                    }
+                    
                 </div>
 
                 <div className="list_box pa_4 flex justify_between align_center mb_3">
@@ -157,9 +181,16 @@ const TasksPage = () => {
                             <div className="fs_2 text_4">+90 BP</div>
                         </div>
                     </div>
-                    <div className="tasks_btn click_btn fs_2 fw_b">
-                        Go
-                    </div>
+                    {
+                        !!taskList.find(val => val.task_id === "2") ?
+                            <div className="tasks_btn click_btn fs_2 fw_b">
+                                <i className="picon p-icon-Finish is_3"></i>
+                            </div>
+                            :
+                            <div className="tasks_btn go_btn fs_2 fw_b">
+                                Go
+                            </div>
+                    }
                 </div>
 
                 <div className="list_box pa_4 flex justify_between align_center mb_3">
@@ -170,9 +201,16 @@ const TasksPage = () => {
                             <div className="fs_2 text_4">+90 BP</div>
                         </div>
                     </div>
-                    <div className="tasks_btn go_btn fs_2 fw_b">
-                    Go
-                    </div>
+                    {
+                        !!taskList.find(val => val.task_id === "3") ?
+                            <div className="tasks_btn click_btn fs_2 fw_b">
+                                <i className="picon p-icon-Finish is_3"></i>
+                            </div>
+                            :
+                            <div className="tasks_btn go_btn fs_2 fw_b">
+                                Go
+                            </div>
+                    }
                 </div>
 
                 <div className="list_box pa_4 flex justify_between align_center mb_3">
@@ -180,12 +218,19 @@ const TasksPage = () => {
                         <img className="mr_5" src={imgicon_5} alt="" srcSet="" />
                         <div>
                             <div className="fs_2 fw_m">Invited 10 Friends</div>
-                            <div className="fs_2 text_4">+90 BP   1/10 frens</div>
+                            <div className="fs_2 text_4">+90 BP   {invitInfo?.friends?.inviting_ts || 0}/10 frens</div>
                         </div>
                     </div>
-                    <div className="tasks_btn go_btn fs_2 fw_b">
-                    Go
-                    </div>
+                    {
+                        !!taskList.find(val => val.task_id === "4") ?
+                            <div className="tasks_btn click_btn fs_2 fw_b">
+                                <i className="picon p-icon-Finish is_3"></i>
+                            </div>
+                            :
+                            <div className="tasks_btn go_btn fs_2 fw_b" onClick={inviteFriends}>
+                                Go
+                            </div>
+                    }
                 </div>
             </div>
             <div className="pa_4">
