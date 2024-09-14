@@ -13,7 +13,7 @@ const FrensPage = () => {
     const wallet = useTonWallet();
     const tonAddress = useTonAddress()
     const [inviteUrl, setInviteUrl] = useState('')
-
+    const [invitInfo, setInvitInfo] = useState({})
     useEffect(() => {
         init()
     },[tonAddress, wallet])
@@ -21,31 +21,29 @@ const FrensPage = () => {
     const init = async() => {
         if(!wallet || !tonAddress) return
 
-        // const useInfo = await ApiServe.query('userinfo',{
-        //     tg_account: tonAddress
-        // })
-        // console.log('useInfo :>> ', useInfo);
+        const useInfo = await ApiServe.query('invitinginfo',{
+            tg_account: tonAddress
+        })
+        setInvitInfo(useInfo.data)
+        console.log('useInfo :>> ', useInfo);
 
         const res = await ApiServe.query('getrefcode', {
             tg_account: tonAddress,
             app_name: wallet.appName
         })
-
-        
-        
-        console.log( 'res :>> ', res);
+        // https://t.me/catizenbot/gameapp?startapp=r_1381_21625278
+        // telegram-test
+        setInviteUrl(`https://t.me/share/url?url=https://t.me/polarise?ref_code=${res?.data?.ref_code}`)
     }
     const inviteFriends = () => {
-        let linkUrl1 = 'https://t.me/rudy_pawnfi_bot'
-        const inviteMessage = 'Start chatting with our bot: https://t.me/rudy_pawnfi_bot';
-        let linkUrl = `https://t.me/share/url?url=${linkUrl1}?`
-        window.open(linkUrl, '_blank');
+        console.log('inviteUrl :>> ', inviteUrl);
+        window.open(inviteUrl, '_blank');
     }
     return (
         <div className="frens_page">
             <div className="frens_header_box flex column justify_end align_center mb_4">
                 <div className="fs_3 fw_b mb_3">Friends</div>
-                <div className="fw_b pb_2">352</div>
+                <div className="fw_b pb_2">{invitInfo?.friends?.inviting_ts || 0}</div>
             </div>
             <div className="flex justify_center align_center mb_2 number_img">
                 <img className="mr_3" src={imgIntegral2} alt="" srcSet="" />

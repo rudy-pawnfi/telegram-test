@@ -17,8 +17,8 @@ const ApiServe = {
                         'accept': 'application/json',
                     }
                 }).then(res => {
-                    resolve(res)
-                    console.log(res);
+                    resolve(res.data)
+                    console.log(methodName,":",res.data);
                 }).catch(err =>{
                     reject({
                         code: -1,

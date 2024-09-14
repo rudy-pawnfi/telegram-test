@@ -5,56 +5,52 @@ import './index.scss'
 import { useEffect, useState } from 'react'
 import { useTonAddress, useTonWallet } from '@tonconnect/ui-react'
 import { ApiServe } from '../../service'
-import { reduceLen } from '../../untils'
+import { reduceLen, toFmtThousand } from '../../untils'
+import Countdown from '../../components/countDown'
 const FarmingPage = () => {
 
-    const [progress, setProgress] = useState(0);  // 控制数字的状态
-    const targetNumber = 1151;
-    const duration = 3000;  // 动画持续时间 3 秒
-    const stepTime = duration / targetNumber;  // 每次递增的时间间隔
+    
     const wallet = useTonWallet();
     const tonAddress = useTonAddress()
+    const [farmingInfo, setFarmingInfo] = useState({})
+    const [useInfo, setUseInfo] = useState({})
     useEffect(() => {
         init()
     },[])
     const init = async () => {
 
-        const res = await ApiServe.query('farminglist', {
+        const result = await ApiServe.query('userinfo',{
             tg_account: tonAddress
         })
-        console.log('res :>> ', res);
+        setUseInfo(result.data)
+        console.log('useInfo :>> ', useInfo);
+        const res = await ApiServe.query('launchfarming', {
+            tg_account: tonAddress,
+            launch_cnt: result.data?.launch_cnt + 1
+        })
+        setFarmingInfo(res)
+
+        // const res1 = await ApiServe.query('farminglist', {
+        //     tg_account: tonAddress
+        // })
     }
 
     const launchpadFarming = async () => {
         const res = await ApiServe.query('launchfarming', {
             tg_account: tonAddress,
-            launch_cnt: 1
+            launch_cnt: useInfo?.launch_cnt + 1
         })
-        console.log('launchpadFarming :>> ', res);
+        setFarmingInfo(res)
     }
-    useEffect(() => {
-        if (progress < targetNumber) {
-          const timer = setTimeout(() => {
-            setProgress((prev) => prev + 1);
-          }, stepTime);
-    
-          return () => clearTimeout(timer);  // 清除定时器，防止内存泄漏
-        }
-      }, [progress, stepTime, targetNumber]);
-      
     return(
         <div className="farming_page pa_3">
             <div className="farming_bg flex column align_center justify_between pa_3 mb_3">
                 <img src={imgIntegral} alt="" srcSet="" />
-                <div className="text_center">
-                    <div className="fs_5 fw_b">{reduceLen(tonAddress)}</div>
-                    <div className="fs_8 fw_b">{progress}</div>
-                </div>
 
-                <div className="farming_btn cursor flex justify_center align_center br_6 py_4" onClick={launchpadFarming}>
+                {/* <div className="farming_btn cursor flex justify_center align_center br_6 py_4" onClick={launchpadFarming}>
                     <i className="picon p-icon-StartUp is_4 mr_2"></i>
                     <div className="fs_3 fw_b">Farming</div>
-                </div>
+                </div> */}
 
                 {/* <div className="farming_btn_loadding cursor br_6 pa_2 p_relative mb_5 overflow_hidden">
                     <div className="w100 h100 overflow_hidden br_6">
@@ -65,6 +61,7 @@ const FarmingPage = () => {
                         <div className="fs_3 fw_b">Farming</div>
                     </div>
                 </div> */}
+                <Countdown useInfo={useInfo} farmingInfo={farmingInfo} startTime={farmingInfo?.start_ts * 1000} endTime={farmingInfo?.end_ts * 1000} launchpadFarming={launchpadFarming} updata={launchpadFarming} />
             </div>
 
             <div className="br_5 pa_4 dinosaur_box flex column align_center">
@@ -72,7 +69,7 @@ const FarmingPage = () => {
                 <div className="fs_4 fw_b mb_4">Dinosaur Run ( Soon! )</div>
                 <div className="flex align_center justify_center dinosaur_box_box">
                     <img className="mr_2" src={imgNumberOfLives} alt="" srcSet="" />
-                    <span className="fs_3 fw_b">90</span>
+                    <span className="fs_3 fw_b">{farmingInfo.points_ps}</span>
                 </div>
             </div>
         </div>

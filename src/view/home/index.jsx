@@ -9,8 +9,28 @@ import './index.scss'
 import { Header } from '../../components/Header/Header'
 import { Footer } from "../../components/Footer/Footer";
 import { TxForm } from "../../components/TxForm/TxForm";
+import { useSearchParams } from 'react-router-dom'
+import { useEffect } from 'react'
+import { ApiServe } from '../../service'
+import { useTonAddress } from '@tonconnect/ui-react'
 const HomePage = () => {
 
+    const [searchParams] = useSearchParams();
+    const ref_code = searchParams.get('ref_code');
+    console.log('ref_code :>> ', ref_code);
+    const tonAddress = useTonAddress()
+    const initData = Telegram.WebApp.initData;
+    console.log('initData', initData);
+    useEffect(() => {
+        init()
+    },[ref_code, tonAddress])
+    const init = async() =>{
+        if(!ref_code) return
+        const useInfo = await ApiServe.query('invitinginfo',{
+            ref_code: ref_code,
+            tg_friend_account: tonAddress
+        })
+    }
     return(
         <div className="home_page">
                 {/* <Header />

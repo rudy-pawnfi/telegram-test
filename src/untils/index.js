@@ -8,3 +8,13 @@ export function reduceLen(value,beforeLen=6,afterLen=4,adorn="..."){
 
     return value.substring(0,beforeLen) + adorn + value.substring(value.length,value.length - afterLen)
 }
+
+
+export function toFmtThousand(num){
+    let result = num.toString().replace(/\d+/, function(n){
+        return n.replace(/(\d)(?=(\d{3})+$)/g,function($1){
+            return $1+",";
+        });
+    })
+     return result;
+}
