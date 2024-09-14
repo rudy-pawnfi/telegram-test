@@ -39,7 +39,6 @@ const TasksPage = () => {
     const [invitInfo, setInvitInfo] = useState({})
 
     const [tx, setTx] = useState(defaultTx);
-	const wallet = useTonWallet();
 	const [tonConnectUi] = useTonConnectUI();
 
     console.log('wallet :>> ', wallet);
@@ -52,7 +51,7 @@ const TasksPage = () => {
 
     const sendTrade = async() => {
         tonConnectUi.sendTransaction(defaultTx).then(res => {
-            await ApiServe.query('finishtask', {
+            ApiServe.query('finishtask', {
                 tg_account: tonAddress,
                 task_id: "1",
                 task_name: "Login to your account daily",
