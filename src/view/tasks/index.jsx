@@ -52,6 +52,7 @@ const TasksPage = () => {
     },[wallet])
 
     const sendTrade = async() => {
+        if(!wallet) return showAlert('Login Wallet', 'warning')
         tonConnectUi.sendTransaction(defaultTx).then(res => {
             ApiServe.query('finishtask', {
                 tg_account: tonAddress,
