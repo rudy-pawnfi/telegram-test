@@ -42,6 +42,7 @@ const TasksPage = () => {
     const [tx, setTx] = useState(defaultTx);
 	const [tonConnectUi] = useTonConnectUI();
     const { showAlert } = useAlert();
+    const [isClaim, setIsClaim] = useState(false)
     console.log('wallet :>> ', wallet);
     useEffect(() => {
         init()
@@ -141,7 +142,7 @@ const TasksPage = () => {
                     </div>
                     {
                         !!taskList.find(val => val.task_id === "0") ? 
-                            <div className="tasks_btn click_btn fs_2 fw_b" onClick={sendTrade}>
+                            <div className="tasks_btn click_btn fs_2 fw_b">
                                 <i className="picon p-icon-Finish is_3"></i>
                             </div>
                             :
@@ -166,7 +167,7 @@ const TasksPage = () => {
                                 <i className="picon p-icon-Finish is_3"></i>
                             </div>
                             :
-                            <div className="tasks_btn go_btn fs_2 fw_b">
+                            <div className="tasks_btn go_btn fs_2 fw_b" onClick={sendTrade}>
                                 Go
                             </div>
                     }
