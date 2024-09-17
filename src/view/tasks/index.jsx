@@ -8,6 +8,7 @@ import imgicon_5 from '/images/Tasks/icon_5.png'
 import { reduceLen } from '../../untils'
 import { ApiServe } from '../../service'
 import { useEffect, useState } from 'react'
+import { useAlert } from '../../components/alertProvider'
 const defaultTx = {
 	// The transaction is valid for 10 minutes from now, in unix epoch seconds.
 	validUntil: Math.floor(Date.now() / 1000) + 600,
@@ -40,7 +41,7 @@ const TasksPage = () => {
 
     const [tx, setTx] = useState(defaultTx);
 	const [tonConnectUi] = useTonConnectUI();
-
+    const { showAlert } = useAlert();
     console.log('wallet :>> ', wallet);
     useEffect(() => {
         init()
@@ -101,7 +102,7 @@ const TasksPage = () => {
         
     }
     const inviteFriends = async() => {
-        console.log('inviteUrl :>> ', inviteUrl);
+        if(!wallet) return showAlert('Login Wallet', 'warning')
         window.open(inviteUrl, '_blank');
         // await ApiServe.query('finishtask', {
         //     tg_account: tonAddress,
@@ -139,7 +140,7 @@ const TasksPage = () => {
                         </div>
                     </div>
                     {
-                        wallet && !!taskList.find(val => val.task_id === "0") ? 
+                        !!taskList.find(val => val.task_id === "0") ? 
                             <div className="tasks_btn click_btn fs_2 fw_b" onClick={sendTrade}>
                                 <i className="picon p-icon-Finish is_3"></i>
                             </div>

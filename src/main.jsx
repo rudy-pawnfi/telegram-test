@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import { THEME, TonConnectUIProvider } from "@tonconnect/ui-react";
 import AppRouter from './router'
 import './style/public.scss'
+import { AlertProvider } from './components/alertProvider'
 // WebApp.setBackgroundColor('000');
 WebApp.ready();
 console.log('WebApp :>> ', WebApp);
@@ -111,9 +112,11 @@ createRoot(document.getElementById('root')).render(
                     twaReturnUrl: 'https://t.me/tc_twa_demo_bot/start'
                 }}
             >
-                <BrowserRouter>
-                    <AppRouter />
-                </BrowserRouter>
+                <AlertProvider>
+                    <BrowserRouter>
+                        <AppRouter />
+                    </BrowserRouter>
+                </AlertProvider>
             </TonConnectUIProvider>
         
     </StrictMode>,

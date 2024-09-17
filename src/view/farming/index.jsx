@@ -7,6 +7,7 @@ import { useTonAddress, useTonWallet } from '@tonconnect/ui-react'
 import { ApiServe } from '../../service'
 import { reduceLen, toFmtThousand } from '../../untils'
 import Countdown from '../../components/countDown'
+import { useAlert } from '../../components/alertProvider'
 const FarmingPage = () => {
 
     
@@ -14,6 +15,7 @@ const FarmingPage = () => {
     const tonAddress = useTonAddress()
     const [farmingInfo, setFarmingInfo] = useState({})
     const [useInfo, setUseInfo] = useState({})
+    const { showAlert } = useAlert();
     useEffect(() => {
         init()
     },[wallet])
@@ -37,6 +39,7 @@ const FarmingPage = () => {
     }
 
     const launchpadFarming = async () => {
+        if(!wallet) return showAlert('Login Wallet', 'warning')
         const res = await ApiServe.query('launchfarming', {
             tg_account: tonAddress,
             launch_cnt: useInfo?.launch_cnt + 1

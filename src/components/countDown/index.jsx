@@ -1,4 +1,4 @@
-import { useTonAddress } from "@tonconnect/ui-react";
+import { useTonAddress, useTonWallet } from "@tonconnect/ui-react";
 import React, { useState, useEffect, useMemo } from "react";
 import { reduceLen, toFmtThousand } from "../../untils";
 
@@ -8,11 +8,12 @@ const Countdown = ({ endTime, startTime, launchpadFarming, updata, useInfo, farm
     const [percentage, setPercentage] = useState(0)
     const tonAddress = useTonAddress()
     const [count, setCount] = useState(0)
-
+    const wallet = useTonWallet();
     const [progress, setProgress] = useState(0);  // 控制数字的状态
     const duration = 30000;  // 动画持续时间 3 秒
       // 每次递增的时间间隔
     useEffect(() => {
+        if(!wallet) return
         let timeCount = endTime - Date.now()
         let countdown = endTime - startTime
         if (timeCount > 0) {
@@ -27,7 +28,7 @@ const Countdown = ({ endTime, startTime, launchpadFarming, updata, useInfo, farm
         }else{
             updata()
         }
-    }, [remainingTime, endTime]);
+    }, [remainingTime, endTime, wallet]);
 
     useEffect(() => {
         if (progress < useInfo?.farming_points) {

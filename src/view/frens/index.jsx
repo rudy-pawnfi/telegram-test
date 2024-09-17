@@ -8,12 +8,14 @@ import { useEffect, useState } from 'react'
 import { ApiServe } from '../../service'
 import { useTonAddress, useTonWallet } from '@tonconnect/ui-react'
 import axios from 'axios';
+import { useAlert } from '../../components/alertProvider'
 const FrensPage = () => {
 
     const wallet = useTonWallet();
     const tonAddress = useTonAddress()
     const [inviteUrl, setInviteUrl] = useState('')
     const [invitInfo, setInvitInfo] = useState({})
+    const { showAlert } = useAlert();
     useEffect(() => {
         init()
     },[tonAddress, wallet])
@@ -36,8 +38,19 @@ const FrensPage = () => {
         setInviteUrl(`https://t.me/share/url?url=https://t.me/polarise?ref_code=${res?.data?.ref_code}`)
     }
     const inviteFriends = () => {
+        if(!wallet) return showAlert('Login Wallet', 'warning')
         console.log('inviteUrl :>> ', inviteUrl);
         window.open(inviteUrl, '_blank');
+    }
+
+    const copy = () => {
+        if(!wallet) return showAlert('Login Wallet', 'warning')
+        navigator.clipboard.writeText(inviteUrl).then(() => {
+            // 复制成功后显示提示信息
+            showAlert('Replicating Success', 'success')
+        }).catch(err => {
+            console.error('无法复制文本: ', err);
+        });
     }
     return (
         <div className="frens_page">
@@ -85,7 +98,7 @@ const FrensPage = () => {
                         <i className="picon p-icon-InviteFriends is_2 mr_2"></i>
                         <span className="fs_3 fw_b">Invite Friends</span>
                     </div>
-                    <div className="copy_box flex justify_center align_center">
+                    <div className="copy_box flex justify_center align_center" onClick={copy}>
                         <i className="picon p-icon-copy is_2"></i>
                     </div>
                 </div>
