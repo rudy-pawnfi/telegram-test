@@ -29,7 +29,7 @@ const FarmingPage = () => {
         console.log('useInfo :>> ', useInfo);
         const res = await ApiServe.query('launchfarming', {
             tg_account: initDataUnsafe.query_id,
-            launch_cnt: result.data?.launch_cnt + 1
+            launch_cnt: result?.data?.launch_cnt||0 + 1
         })
         setFarmingInfo(res)
 
