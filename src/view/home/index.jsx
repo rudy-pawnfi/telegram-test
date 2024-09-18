@@ -17,25 +17,29 @@ import { useAlert } from '../../components/alertProvider'
 const HomePage = () => {
 
     const [searchParams] = useSearchParams();
-    const ref_code = searchParams.get('ref_code');
-    console.log('ref_code :>> ', ref_code);
     const tonAddress = useTonAddress()
     const initData = Telegram.WebApp;
     const initDataUnsafe = Telegram.WebApp.initDataUnsafe
     const { showAlert } = useAlert();
     console.log('initData', initData);
     console.log('initDataUnsafe :>> ', initDataUnsafe);
+    const startParam = initDataUnsafe.start_param
     useEffect(() => {
         init()
     },[tonAddress])
     const init = async() =>{
+        if (startParam) {
+            // 解析 ref_code 参数
+            const refCode = startParam.split('ref_code=')[1];
+            const useInfo = await ApiServe.query('invitinginfo',{
+                ref_code: refCode,
+                tg_friend_account: initDataUnsafe.query_id
+            })
+            console.log("Referral Code: ", refCode);
+        } else {
+            console.log("没有获取到邀请链接的参数");
+        }
         
-        showAlert(initDataUnsafe.ref_code, 'warning')
-        if(!initDataUnsafe.ref_code) return
-        const useInfo = await ApiServe.query('invitinginfo',{
-            ref_code: initDataUnsafe.ref_code,
-            tg_friend_account: initDataUnsafe.query_id
-        })
     }
     return(
         <div className="home_page">

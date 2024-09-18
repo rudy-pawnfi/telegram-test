@@ -85,7 +85,7 @@ const TasksPage = () => {
             tg_account: initDataUnsafe.query_id,
             app_name: 'Rudy_test'
         })
-        setInviteUrl(`https://t.me/share/url?url=https://t.me/rudy_pawnfi_bot/polarise?ref_code=${res?.data?.ref_code}`)
+        setInviteUrl(`https://t.me/share/url?url=https://t.me/rudy_pawnfi_bot/polarise?startapp=ref_code=${res?.data?.ref_code}`)
         
         const useInfo = await ApiServe.query('userinfo',{
             tg_account: initDataUnsafe.query_id

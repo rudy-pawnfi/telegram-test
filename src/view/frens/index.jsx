@@ -29,7 +29,8 @@ const FrensPage = () => {
         })
         // https://t.me/catizenbot/gameapp?startapp=r_1381_21625278
         // telegram-testt.me/rudy_pawnfi_bot/polarise
-        setInviteUrl(`https://t.me/share/url?url=https://t.me/rudy_pawnfi_bot/polarise?ref_code=${res?.data?.ref_code}`)
+        // https://t.me/rudy_pawnfi_bot/polarise?startapp=polarise_ref_code=ffc09125ee9553c0988b
+        setInviteUrl(`https://t.me/share/url?url=https://t.me/rudy_pawnfi_bot/polarise?startapp=ref_code=${res?.data?.ref_code}`)
         const useInfo = await ApiServe.query('invitinginfo',{
             tg_account: initDataUnsafe.query_id,
         })
