@@ -18,6 +18,7 @@ const FarmingPage = () => {
     const { showAlert } = useAlert();
     const initDataUnsafe = Telegram.WebApp.initDataUnsafe
     const [bubbles, setBubbles] = useState([]);
+    const [invitInfo, setInvitInfo] = useState({})
     useEffect(() => {
         init()
     }, [wallet])
@@ -27,12 +28,16 @@ const FarmingPage = () => {
             tg_account: initDataUnsafe.query_id
         })
         setUseInfo(result.data)
-        console.log('useInfo :>> ', useInfo);
         const res = await ApiServe.query('launchfarming', {
             tg_account: initDataUnsafe.query_id,
             launch_cnt: (result?.data?.launch_cnt || 0) + 1
         })
         setFarmingInfo(res)
+
+        const useInfo = await ApiServe.query('invitinginfo',{
+            tg_account: initDataUnsafe.query_id,
+        })
+        setInvitInfo(useInfo.data)
 
         // const res1 = await ApiServe.query('farminglist', {
         //     tg_account: tonAddress
@@ -130,7 +135,7 @@ const FarmingPage = () => {
                 <div className="fs_4 fw_b mb_4">Dinosaur Run ( Soon! )</div>
                 <div className="flex align_center justify_center dinosaur_box_box">
                     <img className="mr_2" src={imgNumberOfLives} alt="" srcSet="" />
-                    <span className="fs_3 fw_b">{farmingInfo.points_ps || 0}</span>
+                    <span className="fs_3 fw_b">x3 + {invitInfo?.friends?.inviting_ts || 0}</span>
                 </div>
             </div>
         </div>

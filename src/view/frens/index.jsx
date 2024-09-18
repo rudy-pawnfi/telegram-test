@@ -62,7 +62,7 @@ const FrensPage = () => {
                 <div className="fs_2 fw_m mr_3">12</div>
 
                 <img className="mr_3" src={imgNumberOfLives} alt="" srcSet="" />
-                <div className="fs_2 fw_m">90</div>
+                <div className="fs_2 fw_m">{invitInfo?.friends?.inviting_ts || 0}</div>
             </div>
 
             <div className="pa_3">
