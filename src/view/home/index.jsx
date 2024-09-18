@@ -20,7 +20,7 @@ const HomePage = () => {
     const ref_code = searchParams.get('ref_code');
     console.log('ref_code :>> ', ref_code);
     const tonAddress = useTonAddress()
-    const initData = Telegram.WebApp.initData;
+    const initData = Telegram.WebApp;
     const initDataUnsafe = Telegram.WebApp.initDataUnsafe
     const { showAlert } = useAlert();
     console.log('initData', initData);
