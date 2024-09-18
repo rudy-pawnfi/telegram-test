@@ -123,7 +123,8 @@ const TasksPage = () => {
         setInvitInfo(invit.data)
     }
     const inviteFriends = async () => {
-        window.open(inviteUrl, '_blank');
+        Telegram.WebApp.openLink(inviteUrl)
+        // window.open(inviteUrl, '_blank');
         // await ApiServe.query('finishtask', {
         //     tg_account: tonAddress,
         //     task_id: "4",
@@ -145,36 +146,39 @@ const TasksPage = () => {
         setLoginStatus(true)
     }
     const toTollow = async () => {
-        window.open('https://x.com/elonmusk/status/1836319222982701534', '_blank');
         await ApiServe.query('finishtask', {
             tg_account: initDataUnsafe.user.id + '',
             task_id: "2",
             task_name: "Follow us on X",
             points: 90
         })
-        const result = await ApiServe.query('finishedtaskList', {
+        ApiServe.query('finishedtaskList', {
             tg_account: initDataUnsafe.user.id + '',
+        }).then(result => {
+            setTaskList(result.data.list)
         }).catch(err => {
             return { data: { list: [] } }
         })
+        Telegram.WebApp.openLink('https://x.com/elonmusk/status/1836319222982701534')
 
-        setTaskList(result.data.list)
     }
     const toTg = async () => {
-        window.open('https://t.me/officialvanillafinance ', '_blank');
+        
         await ApiServe.query('finishtask', {
             tg_account: initDataUnsafe.user.id + '',
             task_id: "3",
             task_name: "Join our TG community",
             points: 90
         })
-        const result = await ApiServe.query('finishedtaskList', {
+        ApiServe.query('finishedtaskList', {
             tg_account: initDataUnsafe.user.id + '',
+        }).then(result => {
+            setTaskList(result.data.list)
         }).catch(err => {
             return { data: { list: [] } }
         })
+        Telegram.WebApp.openLink('https://t.me/officialvanillafinance ')
 
-        setTaskList(result.data.list)
     }
     return (
         <>

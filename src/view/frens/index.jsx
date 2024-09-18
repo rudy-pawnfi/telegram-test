@@ -40,7 +40,8 @@ const FrensPage = () => {
     }
     const inviteFriends = () => {
         console.log('inviteUrl :>> ', inviteUrl);
-        window.open(inviteUrl, '_blank');
+        // window.open(inviteUrl, '_blank');
+        Telegram.WebApp.openLink(inviteUrl)
     }
 
     const copy = () => {
