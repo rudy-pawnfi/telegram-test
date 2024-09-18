@@ -47,7 +47,7 @@ const FarmingPage = () => {
     const launchpadFarming = async () => {
         const res = await ApiServe.query('launchfarming', {
             tg_account: initDataUnsafe.user.id + '',
-            launch_cnt: useInfo?.launch_cnt + 1
+            launch_cnt: (useInfo?.launch_cnt || 0) + 1
         })
         setFarmingInfo(res)
     }

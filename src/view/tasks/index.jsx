@@ -54,13 +54,20 @@ const TasksPage = () => {
 
     const sendTrade = async () => {
         if (!wallet) return showAlert('Login Wallet', 'warning')
-        tonConnectUi.sendTransaction(defaultTx).then(res => {
-            ApiServe.query('finishtask', {
+        tonConnectUi.sendTransaction(defaultTx).then( async res => {
+            await ApiServe.query('finishtask', {
                 tg_account: initDataUnsafe.user.id + '',
                 task_id: "1",
                 task_name: "Login to your account daily",
                 points: 90
             })
+            const result = await ApiServe.query('finishedtaskList', {
+                tg_account: initDataUnsafe.user.id + '',
+            }).catch(err => {
+                return { data: { list: [] } }
+            })
+    
+            setTaskList(result.data.list)
         })
     }
     const loginApi = async () => {
@@ -78,6 +85,13 @@ const TasksPage = () => {
             points: 900
         })
 
+        const result = await ApiServe.query('finishedtaskList', {
+            tg_account: initDataUnsafe.user.id + '',
+        }).catch(err => {
+            return { data: { list: [] } }
+        })
+
+        setTaskList(result.data.list)
         setLoginStatus(false)
     }
     const init = async () => {
@@ -138,6 +152,13 @@ const TasksPage = () => {
             task_name: "Follow us on X",
             points: 90
         })
+        const result = await ApiServe.query('finishedtaskList', {
+            tg_account: initDataUnsafe.user.id + '',
+        }).catch(err => {
+            return { data: { list: [] } }
+        })
+
+        setTaskList(result.data.list)
     }
     const toTg = async () => {
         window.open('https://t.me/officialvanillafinance ', '_blank');
@@ -147,6 +168,13 @@ const TasksPage = () => {
             task_name: "Join our TG community",
             points: 90
         })
+        const result = await ApiServe.query('finishedtaskList', {
+            tg_account: initDataUnsafe.user.id + '',
+        }).catch(err => {
+            return { data: { list: [] } }
+        })
+
+        setTaskList(result.data.list)
     }
     return (
         <>
