@@ -7,7 +7,7 @@ import { TxForm } from "./components/TxForm/TxForm";
 import TabBox from './components/tab'
 import { BrowserRouter } from "react-router-dom";
 function App() {
-    return (
+    return ( 
         <TonConnectUIProvider
             manifestUrl="https://ton-connect.github.io/demo-dapp-with-wallet/tonconnect-manifest.json"
             uiPreferences={{ theme: THEME.DARK }}
