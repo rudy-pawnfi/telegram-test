@@ -55,14 +55,14 @@ const FrensPage = () => {
         <div className="frens_page">
             <div className="frens_header_box flex column justify_end align_center mb_4">
                 <div className="fs_3 fw_b mb_3">Friends</div>
-                <div className="fw_b pb_2">{invitInfo?.friends?.inviting_ts || 0}</div>
+                <div className="fw_b pb_2">{invitInfo?.friends?.length || 0}</div>
             </div>
             <div className="flex justify_center align_center mb_2 number_img">
                 <img className="mr_3" src={imgIntegral2} alt="" srcSet="" />
                 <div className="fs_2 fw_m mr_3">12</div>
 
                 <img className="mr_3" src={imgNumberOfLives} alt="" srcSet="" />
-                <div className="fs_2 fw_m">{invitInfo?.friends?.inviting_ts || 0}</div>
+                <div className="fs_2 fw_m">{invitInfo?.friends?.length || 0}</div>
             </div>
 
             <div className="pa_3">

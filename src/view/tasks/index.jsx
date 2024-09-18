@@ -271,7 +271,7 @@ const TasksPage = () => {
                             <img className="mr_5" src={imgicon_5} alt="" srcSet="" />
                             <div>
                                 <div className="fs_2 fw_m">Invited 10 Friends</div>
-                                <div className="fs_2 text_4">+90 BP   {invitInfo?.friends?.inviting_ts || 0}/10 frens</div>
+                                <div className="fs_2 text_4">+90 BP   {invitInfo?.friends?.length || 0}/10 frens</div>
                             </div>
                         </div>
                         {
