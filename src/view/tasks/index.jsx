@@ -43,6 +43,7 @@ const TasksPage = () => {
 	const [tonConnectUi] = useTonConnectUI();
     const { showAlert } = useAlert();
     const [isClaim, setIsClaim] = useState(false)
+    const initDataUnsafe = Telegram.WebApp.initDataUnsafe
     console.log('wallet :>> ', wallet);
     useEffect(() => {
         init()
@@ -55,7 +56,7 @@ const TasksPage = () => {
         if(!wallet) return showAlert('Login Wallet', 'warning')
         tonConnectUi.sendTransaction(defaultTx).then(res => {
             ApiServe.query('finishtask', {
-                tg_account: tonAddress,
+                tg_account: initDataUnsafe.query_id,
                 task_id: "1",
                 task_name: "Login to your account daily",
                 points: 90
@@ -65,13 +66,13 @@ const TasksPage = () => {
     const loginApi = async () => {
         if(!wallet || !loginStatus) return
         const res = await ApiServe.query('usersignin', {
-            tg_account: tonAddress,
+            tg_account: initDataUnsafe.query_id,
             chain_name: wallet.account.chain,
-            wallet_account: wallet.account.address
+            wallet_account: tonAddress
         })
 
         await ApiServe.query('finishtask', {
-            tg_account: tonAddress,
+            tg_account: initDataUnsafe.query_id,
             task_id: "0",
             task_name: "Connect your wallet",
             points: 900
@@ -80,31 +81,29 @@ const TasksPage = () => {
         setLoginStatus(false)
     }
     const init = async () => {
-        if(!wallet) return
         const res = await ApiServe.query('getrefcode', {
-            tg_account: tonAddress,
+            tg_account: initDataUnsafe.query_id,
             app_name: wallet.appName
         })
         setInviteUrl(`https://t.me/share/url?url=https://t.me/polarise?ref_code=${res?.data?.ref_code}`)
         
         const useInfo = await ApiServe.query('userinfo',{
-            tg_account: tonAddress
+            tg_account: initDataUnsafe.query_id
         })
         setUseInfo(useInfo.data)
 
         const invit = await ApiServe.query('invitinginfo',{
-            tg_account: tonAddress
+            tg_account: initDataUnsafe.query_id
         })
         setInvitInfo(invit.data)
 
         const result = await ApiServe.query('finishedtaskList', {
-            tg_account: tonAddress,
+            tg_account: initDataUnsafe.query_id,
         })
         setTaskList(result.data.list)
         
     }
     const inviteFriends = async() => {
-        if(!wallet) return showAlert('Login Wallet', 'warning')
         window.open(inviteUrl, '_blank');
         // await ApiServe.query('finishtask', {
         //     tg_account: tonAddress,

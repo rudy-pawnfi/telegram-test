@@ -30,7 +30,7 @@ const HomePage = () => {
         if(!initDataUnsafe.ref_code || !tonAddress) return
         const useInfo = await ApiServe.query('invitinginfo',{
             ref_code: initDataUnsafe.ref_code,
-            tg_friend_account: tonAddress
+            tg_friend_account: initDataUnsafe.query_id
         })
     }
     return(

@@ -16,21 +16,21 @@ const FrensPage = () => {
     const [inviteUrl, setInviteUrl] = useState('')
     const [invitInfo, setInvitInfo] = useState({})
     const { showAlert } = useAlert();
+    const initDataUnsafe = Telegram.WebApp.initDataUnsafe
     useEffect(() => {
         init()
     },[tonAddress, wallet])
 
     const init = async() => {
-        if(!wallet || !tonAddress) return
 
         const useInfo = await ApiServe.query('invitinginfo',{
-            tg_account: tonAddress
+            tg_account: initDataUnsafe.query_id,
         })
         setInvitInfo(useInfo.data)
         console.log('useInfo :>> ', useInfo);
 
         const res = await ApiServe.query('getrefcode', {
-            tg_account: tonAddress,
+            tg_account: initDataUnsafe.query_id,
             app_name: wallet.appName
         })
         // https://t.me/catizenbot/gameapp?startapp=r_1381_21625278
@@ -38,13 +38,11 @@ const FrensPage = () => {
         setInviteUrl(`https://t.me/share/url?url=https://t.me/polarise?ref_code=${res?.data?.ref_code}`)
     }
     const inviteFriends = () => {
-        if(!wallet) return showAlert('Login Wallet', 'warning')
         console.log('inviteUrl :>> ', inviteUrl);
         window.open(inviteUrl, '_blank');
     }
 
     const copy = () => {
-        if(!wallet) return showAlert('Login Wallet', 'warning')
         navigator.clipboard.writeText(inviteUrl).then(() => {
             // 复制成功后显示提示信息
             showAlert('Replicating Success', 'success')

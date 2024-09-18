@@ -96,7 +96,10 @@ const Countdown = ({ endTime, startTime, launchpadFarming, updata, useInfo, farm
                 {remainingTime > 0 ? (
                     <span>{formatTime(remainingTime)}</span>
                 ) : (
-                    <span>00: 00: 00</span>
+                    
+                        useInfo?.launch_cnt === '0' || useInfo?.launch_cnt === 0 &&
+                        <span>00: 00: 00</span>
+                    
                 )}
             </div>
         </>

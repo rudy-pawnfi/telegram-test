@@ -16,19 +16,19 @@ const FarmingPage = () => {
     const [farmingInfo, setFarmingInfo] = useState({})
     const [useInfo, setUseInfo] = useState({})
     const { showAlert } = useAlert();
+    const initDataUnsafe = Telegram.WebApp.initDataUnsafe
     useEffect(() => {
         init()
     },[wallet])
     const init = async () => {
 
-        if(!wallet) return
         const result = await ApiServe.query('userinfo',{
-            tg_account: tonAddress
+            tg_account: initDataUnsafe.query_id
         })
         setUseInfo(result.data)
         console.log('useInfo :>> ', useInfo);
         const res = await ApiServe.query('launchfarming', {
-            tg_account: tonAddress,
+            tg_account: initDataUnsafe.query_id,
             launch_cnt: result.data?.launch_cnt + 1
         })
         setFarmingInfo(res)
@@ -39,9 +39,8 @@ const FarmingPage = () => {
     }
 
     const launchpadFarming = async () => {
-        if(!wallet) return showAlert('Login Wallet', 'warning')
         const res = await ApiServe.query('launchfarming', {
-            tg_account: tonAddress,
+            tg_account: initDataUnsafe.query_id,
             launch_cnt: useInfo?.launch_cnt + 1
         })
         setFarmingInfo(res)
