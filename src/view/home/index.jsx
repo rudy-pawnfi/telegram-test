@@ -33,7 +33,7 @@ const HomePage = () => {
             const refCode = startParam.split('ref_code=')[1];
             const useInfo = await ApiServe.query('launchinviting',{
                 ref_code: refCode,
-                tg_friend_account: initDataUnsafe.user.id
+                tg_friend_account: initDataUnsafe.user.id + ''
             })
             console.log("Referral Code: ", refCode);
         } else {

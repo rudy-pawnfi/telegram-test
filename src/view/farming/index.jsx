@@ -25,17 +25,17 @@ const FarmingPage = () => {
     const init = async () => {
 
         const result = await ApiServe.query('userinfo', {
-            tg_account: initDataUnsafe.user.id
+            tg_account: initDataUnsafe.user.id + ''
         })
         setUseInfo(result.data)
         const res = await ApiServe.query('launchfarming', {
-            tg_account: initDataUnsafe.user.id,
+            tg_account: initDataUnsafe.user.id + '',
             launch_cnt: (result?.data?.launch_cnt || 0) + 1
         })
         setFarmingInfo(res)
 
         const useInfo = await ApiServe.query('invitinginfo',{
-            tg_account: initDataUnsafe.user.id,
+            tg_account: initDataUnsafe.user.id + '',
         })
         setInvitInfo(useInfo.data)
 
@@ -46,7 +46,7 @@ const FarmingPage = () => {
 
     const launchpadFarming = async () => {
         const res = await ApiServe.query('launchfarming', {
-            tg_account: initDataUnsafe.user.id,
+            tg_account: initDataUnsafe.user.id + '',
             launch_cnt: useInfo?.launch_cnt + 1
         })
         setFarmingInfo(res)

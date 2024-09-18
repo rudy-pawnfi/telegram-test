@@ -24,7 +24,7 @@ const FrensPage = () => {
     const init = async() => {
 
         const res = await ApiServe.query('getrefcode', {
-            tg_account: initDataUnsafe.user.id,
+            tg_account: initDataUnsafe.user.id + '',
             app_name: 'Rudy_test'
         })
         // https://t.me/catizenbot/gameapp?startapp=r_1381_21625278
@@ -32,7 +32,7 @@ const FrensPage = () => {
         // https://t.me/rudy_pawnfi_bot/polarise?startapp=polarise_ref_code=ffc09125ee9553c0988b
         setInviteUrl(`https://t.me/share/url?url=https://t.me/rudy_pawnfi_bot/polarise?startapp=ref_code=${res?.data?.ref_code}`)
         const useInfo = await ApiServe.query('invitinginfo',{
-            tg_account: initDataUnsafe.user.id,
+            tg_account: initDataUnsafe.user.id + '',
         })
         setInvitInfo(useInfo.data)
         console.log('useInfo :>> ', useInfo);
@@ -92,14 +92,14 @@ const FrensPage = () => {
                     </div>
                 </div>
             
-                <div className="frens_btn_box flex align_center justify_end mt_3">
-                    <div className="invite_box fs_3 fw_b flex justify_center align_center mr_4" onClick={inviteFriends}>
+                <div className="frens_btn_box flex align_center justify_center mt_3">
+                    <div className="invite_box fs_3 fw_b flex justify_center align_center" onClick={inviteFriends}>
                         <i className="picon p-icon-InviteFriends is_2 mr_2"></i>
                         <span className="fs_3 fw_b">Invite Friends</span>
                     </div>
-                    <div className="copy_box flex justify_center align_center" onClick={copy}>
+                    {/* <div className="copy_box flex justify_center align_center" onClick={copy}>
                         <i className="picon p-icon-copy is_2"></i>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>
