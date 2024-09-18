@@ -22,6 +22,7 @@ const HomePage = () => {
     const initData = Telegram.WebApp.initData;
     const initDataUnsafe = Telegram.WebApp.initDataUnsafe
     console.log('initData', initData);
+    console.log('initDataUnsafe :>> ', initDataUnsafe);
     useEffect(() => {
         init()
     },[ref_code, tonAddress])
