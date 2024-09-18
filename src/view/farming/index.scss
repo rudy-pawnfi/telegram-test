@@ -6,11 +6,11 @@
         }
         60% {
           opacity: 1;
-          transform: translateY(-60%) scale(1);
+          transform: translateY(-200px) scale(1);
         }
         100% {
           opacity: 0;
-          transform: translateY(-100%) scale(1);
+          transform: translateY(-400px) scale(1);
         }
     }
     .farming_bg{
@@ -55,11 +55,11 @@
             }
         }
         .bubble {
-            position: absolute;
-            border-radius: 50%;
-            pointer-events: none;
-            opacity: 0;
-            z-index: 0;
+            // position: absolute;
+            // border-radius: 50%;
+            // pointer-events: none;
+            // opacity: 0;
+            // z-index: 0;
         }
     }
     .dinosaur_box{

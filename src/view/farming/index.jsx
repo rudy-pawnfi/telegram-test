@@ -74,7 +74,6 @@ const FarmingPage = () => {
         };
 
         setBubbles((prevBubbles) => [...prevBubbles, newBubble]);
-
         // 一段时间后移除气泡
         setTimeout(() => {
             setBubbles((prevBubbles) =>
@@ -104,6 +103,7 @@ const FarmingPage = () => {
                             bottom: '0px',
                             background: bubble.background,
                             borderRadius: '50%',
+                            opacity: bubble.opacityStart,
                             animation: `bubbleAnimation ${bubble.animationDuration}ms ease-out forwards`,
                         }}
                     />
