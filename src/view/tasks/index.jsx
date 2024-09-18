@@ -165,7 +165,7 @@ const TasksPage = () => {
                             </div>
                         </div>
                         {
-                            !!taskList.find(val => val.task_id === "0") ?
+                            !!taskList?.find(val => val.task_id === "0") ?
                                 <div className="tasks_btn click_btn fs_2 fw_b">
                                     <i className="picon p-icon-Finish is_3"></i>
                                 </div>
@@ -186,7 +186,7 @@ const TasksPage = () => {
                             </div>
                         </div>
                         {
-                            !!taskList.find(val => val.task_id === "1") ?
+                            !!taskList?.find(val => val.task_id === "1") ?
                                 <div className="tasks_btn click_btn fs_2 fw_b">
                                     <i className="picon p-icon-Finish is_3"></i>
                                 </div>
@@ -207,7 +207,7 @@ const TasksPage = () => {
                             </div>
                         </div>
                         {
-                            !!taskList.find(val => val.task_id === "2") ?
+                            !!taskList?.find(val => val.task_id === "2") ?
                                 <div className="tasks_btn click_btn fs_2 fw_b">
                                     <i className="picon p-icon-Finish is_3"></i>
                                 </div>
@@ -227,7 +227,7 @@ const TasksPage = () => {
                             </div>
                         </div>
                         {
-                            !!taskList.find(val => val.task_id === "3") ?
+                            !!taskList?.find(val => val.task_id === "3") ?
                                 <div className="tasks_btn click_btn fs_2 fw_b">
                                     <i className="picon p-icon-Finish is_3"></i>
                                 </div>
@@ -247,7 +247,7 @@ const TasksPage = () => {
                             </div>
                         </div>
                         {
-                            !!taskList.find(val => val.task_id === "4") ?
+                            !!taskList?.find(val => val.task_id === "4") ?
                                 <div className="tasks_btn click_btn fs_2 fw_b">
                                     <i className="picon p-icon-Finish is_3"></i>
                                 </div>
