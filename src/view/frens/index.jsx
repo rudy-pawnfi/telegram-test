@@ -24,7 +24,7 @@ const FrensPage = () => {
     const init = async() => {
 
         const res = await ApiServe.query('getrefcode', {
-            tg_account: initDataUnsafe.query_id,
+            tg_account: initDataUnsafe.user.id,
             app_name: 'Rudy_test'
         })
         // https://t.me/catizenbot/gameapp?startapp=r_1381_21625278
@@ -32,7 +32,7 @@ const FrensPage = () => {
         // https://t.me/rudy_pawnfi_bot/polarise?startapp=polarise_ref_code=ffc09125ee9553c0988b
         setInviteUrl(`https://t.me/share/url?url=https://t.me/rudy_pawnfi_bot/polarise?startapp=ref_code=${res?.data?.ref_code}`)
         const useInfo = await ApiServe.query('invitinginfo',{
-            tg_account: initDataUnsafe.query_id,
+            tg_account: initDataUnsafe.user.id,
         })
         setInvitInfo(useInfo.data)
         console.log('useInfo :>> ', useInfo);

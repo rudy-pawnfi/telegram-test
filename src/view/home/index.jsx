@@ -31,9 +31,9 @@ const HomePage = () => {
         if (startParam) {
             // 解析 ref_code 参数
             const refCode = startParam.split('ref_code=')[1];
-            const useInfo = await ApiServe.query('invitinginfo',{
+            const useInfo = await ApiServe.query('launchinviting',{
                 ref_code: refCode,
-                tg_friend_account: initDataUnsafe.query_id
+                tg_friend_account: initDataUnsafe.user.id
             })
             console.log("Referral Code: ", refCode);
         } else {

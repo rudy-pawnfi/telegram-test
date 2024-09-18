@@ -56,7 +56,7 @@ const TasksPage = () => {
         if (!wallet) return showAlert('Login Wallet', 'warning')
         tonConnectUi.sendTransaction(defaultTx).then(res => {
             ApiServe.query('finishtask', {
-                tg_account: initDataUnsafe.query_id,
+                tg_account: initDataUnsafe.user.id,
                 task_id: "1",
                 task_name: "Login to your account daily",
                 points: 90
@@ -66,13 +66,13 @@ const TasksPage = () => {
     const loginApi = async () => {
         if (!wallet || !loginStatus) return
         const res = await ApiServe.query('usersignin', {
-            tg_account: initDataUnsafe.query_id,
+            tg_account: initDataUnsafe.user.id,
             chain_name: wallet.account.chain,
             wallet_account: tonAddress
         })
 
         await ApiServe.query('finishtask', {
-            tg_account: initDataUnsafe.query_id,
+            tg_account: initDataUnsafe.user.id,
             task_id: "0",
             task_name: "Connect your wallet",
             points: 900
@@ -82,27 +82,27 @@ const TasksPage = () => {
     }
     const init = async () => {
         const res = await ApiServe.query('getrefcode', {
-            tg_account: initDataUnsafe.query_id,
+            tg_account: initDataUnsafe.user.id,
             app_name: 'Rudy_test'
         })
         setInviteUrl(`https://t.me/share/url?url=https://t.me/rudy_pawnfi_bot/polarise?startapp=ref_code=${res?.data?.ref_code}`)
 
         const result = await ApiServe.query('finishedtaskList', {
-            tg_account: initDataUnsafe.query_id,
+            tg_account: initDataUnsafe.user.id,
         }).catch(err => {
             return { data: { list: [] } }
         })
 
         setTaskList(result.data.list)
         const useInfo = await ApiServe.query('userinfo', {
-            tg_account: initDataUnsafe.query_id
+            tg_account: initDataUnsafe.user.id
         }).catch(err => {
             return {}
         })
         setUseInfo(useInfo.data)
 
         const invit = await ApiServe.query('invitinginfo', {
-            tg_account: initDataUnsafe.query_id
+            tg_account: initDataUnsafe.user.id
         }).catch(err => {
             return {}
         })
@@ -133,7 +133,7 @@ const TasksPage = () => {
     const toTollow = async () => {
         window.open('https://x.com/elonmusk/status/1836319222982701534', '_blank');
         await ApiServe.query('finishtask', {
-            tg_account: initDataUnsafe.query_id,
+            tg_account: initDataUnsafe.user.id,
             task_id: "2",
             task_name: "Follow us on X",
             points: 90
@@ -142,7 +142,7 @@ const TasksPage = () => {
     const toTg = async () => {
         window.open('https://t.me/officialvanillafinance ', '_blank');
         await ApiServe.query('finishtask', {
-            tg_account: initDataUnsafe.query_id,
+            tg_account: initDataUnsafe.user.id,
             task_id: "3",
             task_name: "Join our TG community",
             points: 90
