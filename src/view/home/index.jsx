@@ -13,6 +13,7 @@ import { useSearchParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import { ApiServe } from '../../service'
 import { useTonAddress } from '@tonconnect/ui-react'
+import { useAlert } from '../../components/alertProvider'
 const HomePage = () => {
 
     const [searchParams] = useSearchParams();
@@ -21,13 +22,16 @@ const HomePage = () => {
     const tonAddress = useTonAddress()
     const initData = Telegram.WebApp.initData;
     const initDataUnsafe = Telegram.WebApp.initDataUnsafe
+    const { showAlert } = useAlert();
     console.log('initData', initData);
     console.log('initDataUnsafe :>> ', initDataUnsafe);
     useEffect(() => {
         init()
-    },[ref_code, tonAddress])
+    },[tonAddress])
     const init = async() =>{
-        if(!initDataUnsafe.ref_code || !tonAddress) return
+        
+        showAlert(initDataUnsafe.ref_code, 'warning')
+        if(!initDataUnsafe.ref_code) return
         const useInfo = await ApiServe.query('invitinginfo',{
             ref_code: initDataUnsafe.ref_code,
             tg_friend_account: initDataUnsafe.query_id
@@ -45,9 +49,9 @@ const HomePage = () => {
                 <div className="fw_b fs_6 mb_2">Polarise Capsule </div>
                 <div className="fs_2 fw_b text_3">The First bonding curve Launchpad</div>
                 <div className="fs_2 fw_b text_3 mb_5">platform on Ton</div>
-                <div className="home_herader_btn cursor flex justify_center align_center br_6 py_5 mb_7">
+                <div className="home_herader_btn cursor flex justify_center align_center br_6 mb_7">
                     <i className="picon p-icon-Farming is_4 mr_2"></i>
-                    <div className="fs_3 fw_b">Star a new coin! (Soon)</div>
+                    <div className="fs_3 fw_b">Star A New Coin! (Soon)</div>
                 </div>
             </div>
 

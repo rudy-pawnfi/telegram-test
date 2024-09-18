@@ -11,6 +11,7 @@ const Countdown = ({ endTime, startTime, launchpadFarming, updata, useInfo, farm
     const wallet = useTonWallet();
     const [progress, setProgress] = useState(0);  // 控制数字的状态
     const duration = 30000;  // 动画持续时间 3 秒
+    const initDataUnsafe = Telegram.WebApp.initDataUnsafe
       // 每次递增的时间间隔
     useEffect(() => {
         if(!wallet) return
@@ -69,7 +70,7 @@ const Countdown = ({ endTime, startTime, launchpadFarming, updata, useInfo, farm
     return (
         <>
             <div className="text_center">
-                <div className="fs_5 fw_b">{reduceLen(tonAddress)}</div>
+                <div className="fs_5 fw_b">{initDataUnsafe?.user?.first_name} {initDataUnsafe?.user?.last_name}</div>
                 <div className="fs_8 fw_b">{points}</div>
             </div>
             {
