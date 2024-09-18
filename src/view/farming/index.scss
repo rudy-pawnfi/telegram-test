@@ -1,4 +1,18 @@
 .farming_page{
+    @keyframes bubbleAnimation {
+        0% {
+          opacity: 0;
+          transform: translateY(0) scale(0.5);
+        }
+        60% {
+          opacity: 1;
+          transform: translateY(-60%) scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-100%) scale(1);
+        }
+    }
     .farming_bg{
         position: relative;
         height: 392px;

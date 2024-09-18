@@ -92,7 +92,7 @@ const FrensPage = () => {
                     </div>
                 </div>
             
-                <div className="frens_btn_box flex align_center justify_end">
+                <div className="frens_btn_box flex align_center justify_end mt_3">
                     <div className="invite_box fs_3 fw_b flex justify_center align_center mr_4" onClick={inviteFriends}>
                         <i className="picon p-icon-InviteFriends is_2 mr_2"></i>
                         <span className="fs_3 fw_b">Invite Friends</span>

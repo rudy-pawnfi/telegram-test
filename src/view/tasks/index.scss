@@ -1,4 +1,7 @@
 .tasks_page{
+    height: calc(100vh - 135px);
+    overflow-y: auto;
+    -webkit-tap-highlight-color: transparent;
     .tasks_herader{
         height: 125px;
         background-image: url('/images/img-TasksBg.svg');
@@ -56,6 +59,13 @@
         transform: translateX(100px); /* 初始在左侧 */
         animation: fadeInRight 2s ease-out forwards;
     }
+
+}
+.connect_btn{
+    width: 100%;
+    position: fixed;
+    bottom: 62px;
+    background-color: #000;
     .wallet_connect{
         img{
             width: 24px;

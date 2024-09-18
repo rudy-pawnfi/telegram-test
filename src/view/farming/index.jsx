@@ -10,26 +10,27 @@ import Countdown from '../../components/countDown'
 import { useAlert } from '../../components/alertProvider'
 const FarmingPage = () => {
 
-    
+
     const wallet = useTonWallet();
     const tonAddress = useTonAddress()
     const [farmingInfo, setFarmingInfo] = useState({})
     const [useInfo, setUseInfo] = useState({})
     const { showAlert } = useAlert();
     const initDataUnsafe = Telegram.WebApp.initDataUnsafe
+    const [bubbles, setBubbles] = useState([]);
     useEffect(() => {
         init()
-    },[wallet])
+    }, [wallet])
     const init = async () => {
 
-        const result = await ApiServe.query('userinfo',{
+        const result = await ApiServe.query('userinfo', {
             tg_account: initDataUnsafe.query_id
         })
         setUseInfo(result.data)
         console.log('useInfo :>> ', useInfo);
         const res = await ApiServe.query('launchfarming', {
             tg_account: initDataUnsafe.query_id,
-            launch_cnt: result?.data?.launch_cnt||0 + 1
+            launch_cnt: (result?.data?.launch_cnt || 0) + 1
         })
         setFarmingInfo(res)
 
@@ -48,62 +49,65 @@ const FarmingPage = () => {
 
     const gradients = [
         'linear-gradient(120deg, #5E00FF 20%, #DC19FF 80%)',
-        'linear-gradient(145deg, #5E00FF 20%, #FF8C00 60%)'
-    ];
+        'linear-gradient(145deg, #5E00FF 20%, #FF8C00 60%)',
+      ];
+      
+      // 定义气泡的大小
+      const sizes = [20, 32, 40];
 
-    // 定义气泡的大小
-    const sizes = [20, 32, 40];
-
-    function createBubble() {
-        const bubble = document.createElement('div');
+    // 创建一个气泡的函数
+    const createBubble = () => {
         const size = sizes[Math.floor(Math.random() * sizes.length)]; // 随机选择气泡大小
-        const leftPosition = Math.random() * (368 - size); // 在盒子内随机横坐标
+        const leftPosition = Math.random() * (368 - size); // 随机横坐标
+        const background = gradients[Math.floor(Math.random() * gradients.length)]; // 随机选择渐变
 
-        bubble.classList.add('bubble');
-        bubble.style.width = `${size}px`;
-        bubble.style.height = `${size}px`;
-        bubble.style.left = `${leftPosition}px`;
-        bubble.style.bottom = '0px';
-        bubble.style.background = gradients[Math.floor(Math.random() * gradients.length)]; // 随机选择渐变
-
-        document.querySelector('.farming_bg').appendChild(bubble);
-
-        // 随机最大上升高度
-        const maxHeight = Math.random() * 500 + 100; // 随机在100到500之间
+        const maxHeight = Math.random() * 500 + 100; // 随机最大上升高度
         const animationDuration = (Math.random() * 2 + 2) * 800; // 随机动画时长
 
-        // 动画关键帧
-        bubble.animate([{
-                opacity: 0,
-                transform: 'translateY(0) scale(0.5)'
-            },
-            {
-                opacity: 1,
-                transform: `translateY(-${maxHeight * 0.6}px) scale(1)`
-            },
-            {
-                opacity: 0,
-                transform: `translateY(-${maxHeight}px) scale(1)`
-            }
-        ], {
-            duration: animationDuration,
-            easing: 'ease-out',
-            fill: 'forwards'
-        });
+        const newBubble = {
+            id: Math.random(), // 唯一标识符
+            size,
+            leftPosition,
+            background,
+            maxHeight,
+            animationDuration,
+        };
 
-        // 动画结束后移除气泡
-        setTimeout(() => bubble.remove(), animationDuration + 400);
-    }
+        setBubbles((prevBubbles) => [...prevBubbles, newBubble]);
 
-    // 页面加载时开始生成气泡
-    window.addEventListener('load', () => {
-        setInterval(createBubble, 300); // 每300毫秒生成一个气泡
-    });
-    return(
+        // 一段时间后移除气泡
+        setTimeout(() => {
+            setBubbles((prevBubbles) =>
+                prevBubbles.filter((bubble) => bubble.id !== newBubble.id)
+            );
+        }, animationDuration + 400);
+    };
+
+    useEffect(() => {
+        const intervalId = setInterval(createBubble, 300); // 每300毫秒生成一个气泡
+
+        return () => clearInterval(intervalId); // 清除定时器
+    }, []);
+    return (
         <div className="farming_page pa_3">
-            <div className="farming_bg flex column align_center justify_between pa_3">
+            <div className="farming_bg flex column align_center justify_between pa_3" >
                 <img src={imgIntegral} alt="" srcSet="" />
-
+                {bubbles.map((bubble) => (
+                    <div
+                        key={bubble.id}
+                        className="bubble"
+                        style={{
+                            position: 'absolute',
+                            width: `${bubble.size}px`,
+                            height: `${bubble.size}px`,
+                            left: `${bubble.leftPosition}px`,
+                            bottom: '0px',
+                            background: bubble.background,
+                            borderRadius: '50%',
+                            animation: `bubbleAnimation ${bubble.animationDuration}ms ease-out forwards`,
+                        }}
+                    />
+                ))}
                 {/* <div className="farming_btn cursor flex justify_center align_center br_6 py_4" onClick={launchpadFarming}>
                     <i className="picon p-icon-StartUp is_4 mr_2"></i>
                     <div className="fs_3 fw_b">Farming</div>
@@ -126,7 +130,7 @@ const FarmingPage = () => {
                 <div className="fs_4 fw_b mb_4">Dinosaur Run ( Soon! )</div>
                 <div className="flex align_center justify_center dinosaur_box_box">
                     <img className="mr_2" src={imgNumberOfLives} alt="" srcSet="" />
-                    <span className="fs_3 fw_b">{farmingInfo.points_ps}</span>
+                    <span className="fs_3 fw_b">{farmingInfo.points_ps || 0}</span>
                 </div>
             </div>
         </div>

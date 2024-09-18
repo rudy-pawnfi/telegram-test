@@ -59,8 +59,11 @@ const Countdown = ({ endTime, startTime, launchpadFarming, updata, useInfo, farm
         const hours = Math.floor(totalSeconds / 3600);
         const minutes = Math.floor((totalSeconds % 3600) / 60);
         const seconds = totalSeconds % 60;
-        return `${hours}: ${minutes}: ${seconds}`;
+        return `${formatTimeZeon(hours)}: ${formatTimeZeon(minutes)}: ${formatTimeZeon(seconds)}`;
     };
+    function formatTimeZeon(time) {
+        return time.toString().padStart(2, '0');
+      }
 
     const points = useMemo(() => {
         let totle = progress || 0
