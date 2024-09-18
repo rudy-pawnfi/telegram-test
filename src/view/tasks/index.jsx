@@ -83,7 +83,7 @@ const TasksPage = () => {
     const init = async () => {
         const res = await ApiServe.query('getrefcode', {
             tg_account: initDataUnsafe.query_id,
-            app_name: wallet.appName
+            app_name: 'Rudy_test'
         })
         setInviteUrl(`https://t.me/share/url?url=https://t.me/polarise?ref_code=${res?.data?.ref_code}`)
         
