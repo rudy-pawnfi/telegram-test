@@ -133,7 +133,7 @@ const TasksPage = () => {
         setInvitInfo(invit.data)
     }
     const inviteFriends = async () => {
-        Telegram.WebApp.openLink(inviteUrl)
+        Telegram.WebApp.openTelegramLink(inviteUrl)
     }
     const disconnect = async () => {
         ApiServe.query('usersignout', {
@@ -151,14 +151,14 @@ const TasksPage = () => {
         claimObj[2] = true
         setClaimObj({...claimObj})
         localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
-        Telegram.WebApp.openLink('https://x.com/elonmusk/status/1836319222982701534')
+        Telegram.WebApp.openTelegramLink('https://x.com/elonmusk/status/1836319222982701534')
 
     }
     const toTg = async () => {
         claimObj[3] = true
         setClaimObj({...claimObj})
         localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
-        Telegram.WebApp.openLink('https://t.me/officialvanillafinance ')
+        Telegram.WebApp.openTelegramLink('https://t.me/officialvanillafinance')
 
     }
 
