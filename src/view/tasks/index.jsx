@@ -120,6 +120,15 @@ const TasksPage = () => {
         }).catch(err => {
             return {}
         })
+
+        if(invit?.data?.friends?.length >= 10 && !!taskList?.find(val => val.task_id === "4") ){
+            await ApiServe.query('finishtask', {
+                tg_account: initDataUnsafe.user.id + '',
+                task_id: "4",
+                task_name: "Invited 10 Friends",
+                points: 90
+            })
+        }
         setInvitInfo(invit.data)
     }
     const inviteFriends = async () => {
@@ -134,9 +143,9 @@ const TasksPage = () => {
     }
     const disconnect = async () => {
         ApiServe.query('usersignout', {
-            tg_account: tonAddress,
+            tg_account: initDataUnsafe.user.id + '',
             chain_name: wallet.account.chain,
-            wallet_account: wallet.account.address
+            wallet_account: tonAddress
         })
         await tonConnectUI.disconnect();
     }
