@@ -37,27 +37,27 @@
     .list_box_1{
         opacity: 0; /* 初始透明 */
         transform: translateX(100px); /* 初始在左侧 */
-        animation: fadeInRight 2s ease-out forwards;
+        animation: fadeInRight 1s ease-out forwards;
     }
     .list_box_2{
         opacity: 0; /* 初始透明 */
         transform: translateX(-100px); /* 初始在左侧 */
-        animation: fadeInLeft 2s ease-out forwards;
+        animation: fadeInLeft 1s ease-out forwards;
     }
     .list_box_3{
         opacity: 0; /* 初始透明 */
         transform: translateX(100px); /* 初始在左侧 */
-        animation: fadeInRight 2s ease-out forwards;
+        animation: fadeInRight 1s ease-out forwards;
     }
     .list_box_4{
         opacity: 0; /* 初始透明 */
         transform: translateX(-100px); /* 初始在左侧 */
-        animation: fadeInLeft 2s ease-out forwards;
+        animation: fadeInLeft 1s ease-out forwards;
     }
     .list_box_5{
         opacity: 0; /* 初始透明 */
         transform: translateX(100px); /* 初始在左侧 */
-        animation: fadeInRight 2s ease-out forwards;
+        animation: fadeInRight 1s ease-out forwards;
     }
 
 }
