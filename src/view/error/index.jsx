@@ -7,12 +7,7 @@ const ErrorPage = () => {
     const location = useLocation()
     useEffect(() =>{
         console.log('location :>> ', location);
-        if(location.pathname === '/'){
-            navigate('/telegram-test')
-        }else{
-            navigate(location.pathname)
-        }
-        
+        navigate('/telegram-test')
     },[location])
     return(
         <div></div>
