@@ -9,8 +9,6 @@ const Countdown = ({ endTime, startTime, launchpadFarming, updata, useInfo, farm
     const tonAddress = useTonAddress()
     const [count, setCount] = useState(0)
     const wallet = useTonWallet();
-    const [progress, setProgress] = useState(0);  // 控制数字的状态
-    const duration = 30000;  // 动画持续时间 3 秒
     const initDataUnsafe = Telegram.WebApp.initDataUnsafe
       // 每次递增的时间间隔
     useEffect(() => {
@@ -31,16 +29,6 @@ const Countdown = ({ endTime, startTime, launchpadFarming, updata, useInfo, farm
         }
     }, [remainingTime, endTime, wallet]);
 
-    useEffect(() => {
-        if (progress < useInfo?.farming_points) {
-            const stepTime = duration / useInfo?.farming_points;
-          const timer = setTimeout(() => {
-            setProgress((prev) => prev + 1);
-          }, stepTime);
-    
-          return () => clearTimeout(timer);  // 清除定时器，防止内存泄漏
-        }
-    }, [progress, useInfo]);
 
     // useEffect(() => {
     //     if (percentage < useInfo?.farming_points) {
@@ -66,10 +54,10 @@ const Countdown = ({ endTime, startTime, launchpadFarming, updata, useInfo, farm
       }
 
     const points = useMemo(() => {
-        let totle = progress || 0
+        let totle = useInfo?.farming_points || 0
         totle = totle + (count * farmingInfo.points_ps)
         return toFmtThousand(totle || 0)
-    },[remainingTime, progress, farmingInfo])
+    },[remainingTime, useInfo, farmingInfo])
     return (
         <>
             <div className="text_center">
