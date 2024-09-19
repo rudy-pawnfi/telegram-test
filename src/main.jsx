@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import WebApp from '@twa-dev/sdk'
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
 import { THEME, TonConnectUIProvider } from "@tonconnect/ui-react";
 import AppRouter from './router'
 import './style/public.scss'
@@ -114,9 +114,9 @@ createRoot(document.getElementById('root')).render(
                 }}
             >
                 <AlertProvider>
-                    <BrowserRouter>
+                    <HashRouter>
                         <AppRouter />
-                    </BrowserRouter>
+                    </HashRouter>
                 </AlertProvider>
             </TonConnectUIProvider>
         
