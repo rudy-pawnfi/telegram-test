@@ -61,11 +61,16 @@ const TasksPage = () => {
     }, [wallet])
 
     const sendTrade = async () => {
+        if(isClaim=== '1') return
         if (!wallet) return showAlert('Login Wallet', 'warning')
+        setIsClaim('1')
         tonConnectUi.sendTransaction(defaultTx).then(async res => {
+            setIsClaim('')
             claimObj[1] = true
             setClaimObj(claimObj)
-            localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', claimObj)
+            localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
+        }).catch(err => {
+            setIsClaim('')
         })
     }
     const finshLogin = async () => {
@@ -94,7 +99,7 @@ const TasksPage = () => {
         }, 1000);
     }
     const init = async () => {
-        const claimObj = localStorage.getItem(initDataUnsafe.user.id + 'CLAIM') || {
+        const claimObj = localStorage.getItem(initDataUnsafe.user.id + 'CLAIM') ? JSON.parse(localStorage.getItem(initDataUnsafe.user.id + 'CLAIM')) : {
             1: false,
             2: false,
             3: false,
@@ -145,14 +150,14 @@ const TasksPage = () => {
     const toTollow = async () => {
         claimObj[2] = true
         setClaimObj(claimObj)
-        localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', claimObj)
+        localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
         Telegram.WebApp.openLink('https://x.com/elonmusk/status/1836319222982701534')
 
     }
     const toTg = async () => {
         claimObj[3] = true
         setClaimObj(claimObj)
-        localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', claimObj)
+        localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
         Telegram.WebApp.openLink('https://t.me/officialvanillafinance ')
 
     }
@@ -245,7 +250,12 @@ const TasksPage = () => {
                                             </div>
                                             :
                                             <div className="tasks_btn go_btn fs_2 fw_b" onClick={sendTrade}>
-                                                Go
+                                                {
+                                                    isClaim === '1' ?
+                                                        <span className="loader"></span>
+                                                        :
+                                                        <span>Go</span>
+                                                }
                                             </div>
                                     )
                             }

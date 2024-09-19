@@ -66,7 +66,7 @@ const HomePage = () => {
     }
 
     const toTollow = async () => {
-        const claimObj = localStorage.getItem(initDataUnsafe.user.id + 'CLAIM') || {
+        const claimObj = localStorage.getItem(initDataUnsafe.user.id + 'CLAIM') ? JSON.parse(localStorage.getItem(initDataUnsafe.user.id + 'CLAIM')) : {
             1: false,
             2: false,
             3: false,
@@ -75,7 +75,7 @@ const HomePage = () => {
             Telegram.WebApp.openLink('https://x.com/elonmusk/status/1836319222982701534')
         }else{
             claimObj[2] = true
-            localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', claimObj)
+            localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
             Telegram.WebApp.openLink('https://x.com/elonmusk/status/1836319222982701534')
         }
         
@@ -83,7 +83,7 @@ const HomePage = () => {
 
     }
     const toTg = async () => {
-        const claimObj = localStorage.getItem(initDataUnsafe.user.id + 'CLAIM') || {
+        const claimObj = localStorage.getItem(initDataUnsafe.user.id + 'CLAIM') ? JSON.parse(localStorage.getItem(initDataUnsafe.user.id + 'CLAIM')) : {
             1: false,
             2: false,
             3: false,
@@ -92,7 +92,7 @@ const HomePage = () => {
             Telegram.WebApp.openLink('https://x.com/elonmusk/status/1836319222982701534')
         }else{
             claimObj[3] = true
-            localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', claimObj)
+            localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
             Telegram.WebApp.openLink('https://t.me/officialvanillafinance ')
         }
         
