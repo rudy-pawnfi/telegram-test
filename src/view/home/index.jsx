@@ -27,7 +27,23 @@ const HomePage = () => {
     useEffect(() => {
         init()
     },[tonAddress])
+    Telegram.WebApp.onEvent('backButtonClicked', function() {
+        console.log("用户点击了返回按钮");
+        // 在这里执行自定义逻辑
+        ApiServe.query('usersignout', {
+            tg_account: initDataUnsafe.user.id + '',
+            chain_name: wallet.account.chain,
+            wallet_account: ''
+        })
+    });
     const init = async() =>{
+        if(!tonAddress){
+            const res = await ApiServe.query('usersignin', {
+                tg_account: initDataUnsafe.user.id + '',
+                chain_name: wallet.account.chain,
+                wallet_account: ''
+            })
+        }
         if (startParam) {
             // 解析 ref_code 参数
             const refCode = startParam.split('ref_code=')[1];
@@ -43,7 +59,7 @@ const HomePage = () => {
     }
     return(
         <div className="home_page">
-            {/* <TxForm /> */}
+            <TxForm />
                 {/* <Header />
                 <TxForm />
                 <TonProofDemo />

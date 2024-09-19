@@ -12,19 +12,26 @@ import { useAlert } from '../../components/alertProvider'
 const defaultTx = {
     // The transaction is valid for 10 minutes from now, in unix epoch seconds.
     validUntil: Math.floor(Date.now() / 1000) + 600,
-    messages: [
+    // messages: [
 
+    //     {
+    //         // The receiver's address.
+    //         address: '0x0000000000000000000000000000000000000000',
+    //         // Amount to send in nanoTON. For example, 0.005 TON is 5000000 nanoTON.
+    //         amount: '0',
+    //         // (optional) State initialization in boc base64 format.
+    //         stateInit: 'te6cckEBBAEAOgACATQCAQAAART/APSkE/S88sgLAwBI0wHQ0wMBcbCRW+D6QDBwgBDIywVYzxYh+gLLagHPFsmAQPsAlxCarA==',
+    //         // (optional) Payload in boc base64 format.
+    //         payload: 'te6ccsEBAQEADAAMABQAAAAASGVsbG8hCaTc/g==',
+    //     },
+    // ],
+    messages: [
         {
-            // The receiver's address.
-            address: '0x0000000000000000000000000000000000000000',
-            // Amount to send in nanoTON. For example, 0.005 TON is 5000000 nanoTON.
-            amount: '0.01',
-            // (optional) State initialization in boc base64 format.
+            address: "0:abffb20ca89eb26709ce50ed8eafaf151948603b85d942638ac15966fc380682", // destination address
+            amount: (0.001 * 1e9).toString(), //Toncoin in nanotons
             stateInit: 'te6cckEBBAEAOgACATQCAQAAART/APSkE/S88sgLAwBI0wHQ0wMBcbCRW+D6QDBwgBDIywVYzxYh+gLLagHPFsmAQPsAlxCarA==',
-            // (optional) Payload in boc base64 format.
-            payload: 'te6ccsEBAQEADAAMABQAAAAASGVsbG8hCaTc/g==',
-        },
-    ],
+        }
+    ]
 };
 const TasksPage = () => {
 
@@ -127,13 +134,6 @@ const TasksPage = () => {
     }
     const inviteFriends = async () => {
         Telegram.WebApp.openLink(inviteUrl)
-        // window.open(inviteUrl, '_blank');
-        // await ApiServe.query('finishtask', {
-        //     tg_account: tonAddress,
-        //     task_id: "4",
-        //     task_name: "Invited 10 Friends",
-        //     points: 90
-        // })
     }
     const disconnect = async () => {
         ApiServe.query('usersignout', {
