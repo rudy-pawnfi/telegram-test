@@ -35,7 +35,6 @@ const TasksPage = () => {
     const tonAddress = useTonAddress()
     const [inviteUrl, setInviteUrl] = useState('')
     const [useInfo, setUseInfo] = useState({})
-    const [loginStatus, setLoginStatus] = useState(false)
     const [taskList, setTaskList] = useState([])
     const [invitInfo, setInvitInfo] = useState({})
 
@@ -47,9 +46,6 @@ const TasksPage = () => {
     console.log('wallet :>> ', wallet);
     useEffect(() => {
         init()
-    }, [wallet])
-    useEffect(() => {
-        loginApi()
     }, [wallet])
 
     const sendTrade = async () => {
@@ -70,14 +66,13 @@ const TasksPage = () => {
             setTaskList(result.data.list)
         })
     }
-    const loginApi = async () => {
-        if (!wallet || !loginStatus) return
+    const finshLogin = async () => {
+
         const res = await ApiServe.query('usersignin', {
             tg_account: initDataUnsafe.user.id + '',
             chain_name: wallet.account.chain,
             wallet_account: tonAddress
         })
-
         await ApiServe.query('finishtask', {
             tg_account: initDataUnsafe.user.id + '',
             task_id: "0",
@@ -92,7 +87,6 @@ const TasksPage = () => {
         })
 
         setTaskList(result.data.list)
-        setLoginStatus(false)
     }
     const init = async () => {
         const res = await ApiServe.query('getrefcode', {
@@ -152,7 +146,6 @@ const TasksPage = () => {
 
     const login = async () => {
         tonConnectUI.openModal()
-        setLoginStatus(true)
     }
     const toTollow = async () => {
         await ApiServe.query('finishtask', {
@@ -207,13 +200,20 @@ const TasksPage = () => {
                         </div>
                         {
                             !!taskList?.find(val => val.task_id === "0") ?
-                                <div className="tasks_btn click_btn fs_2 fw_b">
+                            <div className="tasks_btn click_btn fs_2 fw_b">
                                     <i className="picon p-icon-Finish is_3"></i>
+                            </div>
+                            :
+                            (
+                                !!wallet ?
+                                <div className="tasks_btn click_btn fs_2 fw_b" onClick={finshLogin}>
+                                    Claim
                                 </div>
                                 :
                                 <div className="tasks_btn go_btn fs_2 fw_b" onClick={() => login()}>
                                     Go
                                 </div>
+                            )
                         }
 
                     </div>
