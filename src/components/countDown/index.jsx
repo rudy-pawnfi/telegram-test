@@ -64,35 +64,37 @@ const Countdown = ({ endTime, startTime, launchpadFarming, updata, useInfo, farm
                 <div className="fs_5 fw_b">{initDataUnsafe?.user?.first_name} {initDataUnsafe?.user?.last_name}</div>
                 <div className="fs_8 fw_b">{points}</div>
             </div>
-            {
-                remainingTime > 0 ?
-                <div className="farming_btn_loadding cursor br_6 pa_2 p_relative mb_5 overflow_hidden">
-                    <div className="w100 h100 overflow_hidden br_6">
-                        <div className="farming_btn_loadding_box_bg" style={{ width: `${(100 - percentage)}%` }}></div>
+            <div>
+                {
+                    remainingTime > 0 ?
+                    <div className="farming_btn_loadding cursor br_6 pa_2 p_relative mb_3 overflow_hidden">
+                        <div className="w100 h100 overflow_hidden br_6">
+                            <div className="farming_btn_loadding_box_bg" style={{ width: `${(100 - percentage)}%` }}></div>
+                        </div>
+                        <div className="farming_btn_loadding_box flex justify_center align_center br_6 py_4">
+                            <i className="picon p-icon-StartUp is_4 mr_2"></i>
+                            <div className="fs_3 fw_b">Farming</div>
+                        </div>
                     </div>
-                    <div className="farming_btn_loadding_box flex justify_center align_center br_6 py_4">
+                    :
+                    <div className="farming_btn cursor flex justify_center align_center br_6 py_4" onClick={launchpadFarming}>
                         <i className="picon p-icon-StartUp is_4 mr_2"></i>
                         <div className="fs_3 fw_b">Farming</div>
                     </div>
-                </div>
-                :
-                <div className="farming_btn cursor flex justify_center align_center br_6 py_4" onClick={launchpadFarming}>
-                    <i className="picon p-icon-StartUp is_4 mr_2"></i>
-                    <div className="fs_3 fw_b">Farming</div>
-                </div>
 
-            }
-            
-            
-            <div className="fs_3 fw_b">
-                {remainingTime > 0 ? (
-                    <span>{formatTime(remainingTime)}</span>
-                ) : (
-                    
-                        useInfo?.launch_cnt === '0' || useInfo?.launch_cnt === 0 &&
-                        <span>00: 00: 00</span>
-                    
-                )}
+                }
+                
+                
+                <div className="fs_3 fw_b">
+                    {remainingTime > 0 ? (
+                        <span>{formatTime(remainingTime)}</span>
+                    ) : (
+                        
+                        !!useInfo?.launch_cnt && (useInfo?.launch_cnt === '0' || useInfo?.launch_cnt === 0 )&&
+                            <span>00: 00: 00</span>
+                        
+                    )}
+                </div>
             </div>
         </>
     );
