@@ -48,7 +48,12 @@ const TasksPage = () => {
     const [tx, setTx] = useState(defaultTx);
     const [tonConnectUi] = useTonConnectUI();
     const { showAlert } = useAlert();
-    const [isClaim, setIsClaim] = useState(false)
+    const [isClaim, setIsClaim] = useState('')
+    const [claimObj, setClaimObj] = useState({
+        1: false,
+        2: false,
+        3: false,
+    })
     const initDataUnsafe = Telegram.WebApp.initDataUnsafe
     console.log('wallet :>> ', wallet);
     useEffect(() => {
@@ -58,23 +63,14 @@ const TasksPage = () => {
     const sendTrade = async () => {
         if (!wallet) return showAlert('Login Wallet', 'warning')
         tonConnectUi.sendTransaction(defaultTx).then( async res => {
-            await ApiServe.query('finishtask', {
-                tg_account: initDataUnsafe.user.id + '',
-                task_id: "1",
-                task_name: "Login to your account daily",
-                points: 90
-            })
-            const result = await ApiServe.query('finishedtaskList', {
-                tg_account: initDataUnsafe.user.id + '',
-            }).catch(err => {
-                return { data: { list: [] } }
-            })
-    
-            setTaskList(result.data.list)
+            claimObj[1] = true
+            setClaimObj(claimObj)
+            localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', claimObj)
         })
     }
     const finshLogin = async () => {
 
+        setIsClaim('0')
         const res = await ApiServe.query('usersignin', {
             tg_account: initDataUnsafe.user.id + '',
             chain_name: wallet.account.chain,
@@ -92,10 +88,18 @@ const TasksPage = () => {
         }).catch(err => {
             return { data: { list: [] } }
         })
-
         setTaskList(result.data.list)
+        setTimeout(() => {
+            setIsClaim('')
+        }, 1000);
     }
     const init = async () => {
+        const claimObj = localStorage.getItem(initDataUnsafe.user.id + 'CLAIM') || {
+            1: false,
+            2: false,
+            3: false,
+        }
+        setClaimObj(claimObj)
         const res = await ApiServe.query('getrefcode', {
             tg_account: initDataUnsafe.user.id + '',
             app_name: 'Rudy_test'
@@ -121,15 +125,6 @@ const TasksPage = () => {
         }).catch(err => {
             return {}
         })
-
-        if(invit?.data?.friends?.length >= 10 && !!taskList?.find(val => val.task_id === "4") ){
-            await ApiServe.query('finishtask', {
-                tg_account: initDataUnsafe.user.id + '',
-                task_id: "4",
-                task_name: "Invited 10 Friends",
-                points: 90
-            })
-        }
         setInvitInfo(invit.data)
     }
     const inviteFriends = async () => {
@@ -148,39 +143,38 @@ const TasksPage = () => {
         tonConnectUI.openModal()
     }
     const toTollow = async () => {
-        await ApiServe.query('finishtask', {
-            tg_account: initDataUnsafe.user.id + '',
-            task_id: "2",
-            task_name: "Follow us on X",
-            points: 90
-        })
-        ApiServe.query('finishedtaskList', {
-            tg_account: initDataUnsafe.user.id + '',
-        }).then(result => {
-            setTaskList(result.data.list)
-        }).catch(err => {
-            return { data: { list: [] } }
-        })
+        claimObj[2] = true
+        setClaimObj(claimObj)
+        localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', claimObj)
         Telegram.WebApp.openLink('https://x.com/elonmusk/status/1836319222982701534')
 
     }
     const toTg = async () => {
-        
+        claimObj[3] = true
+        setClaimObj(claimObj)
+        localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', claimObj)
+        Telegram.WebApp.openLink('https://t.me/officialvanillafinance ')
+
+    }
+
+    const claimMt = async (task_name, points, task_id) => {
+        setIsClaim(task_id)
         await ApiServe.query('finishtask', {
             tg_account: initDataUnsafe.user.id + '',
-            task_id: "3",
-            task_name: "Join our TG community",
-            points: 90
+            task_id: task_id,
+            task_name: task_name,
+            points: points
         })
         ApiServe.query('finishedtaskList', {
             tg_account: initDataUnsafe.user.id + '',
         }).then(result => {
             setTaskList(result.data.list)
+            setTimeout(() => {
+                setIsClaim('')
+            }, 1000);
         }).catch(err => {
             return { data: { list: [] } }
         })
-        Telegram.WebApp.openLink('https://t.me/officialvanillafinance ')
-
     }
     return (
         <>
@@ -207,7 +201,13 @@ const TasksPage = () => {
                             (
                                 !!wallet ?
                                 <div className="tasks_btn click_btn fs_2 fw_b" onClick={finshLogin}>
-                                    Claim
+                                    {/* Claim */}
+                                    {
+                                        isClaim === '0' ?
+                                        <span className="loader"></span>
+                                        :
+                                        <span>Claim</span>
+                                    }
                                 </div>
                                 :
                                 <div className="tasks_btn go_btn fs_2 fw_b" onClick={() => login()}>
@@ -232,9 +232,21 @@ const TasksPage = () => {
                                     <i className="picon p-icon-Finish is_3"></i>
                                 </div>
                                 :
-                                <div className="tasks_btn go_btn fs_2 fw_b" onClick={sendTrade}>
-                                    Go
-                                </div>
+                                (
+                                    claimObj[1] ?
+                                    <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Login to your account daily', 90, '1')}>
+                                        {
+                                            isClaim === '1' ?
+                                            <span className="loader"></span>
+                                            :
+                                            <span>Claim</span>
+                                        }
+                                    </div>
+                                    :
+                                    <div className="tasks_btn go_btn fs_2 fw_b" onClick={sendTrade}>
+                                        Go
+                                    </div>
+                                )
                         }
 
                     </div>
@@ -253,9 +265,22 @@ const TasksPage = () => {
                                     <i className="picon p-icon-Finish is_3"></i>
                                 </div>
                                 :
-                                <div className="tasks_btn go_btn fs_2 fw_b" onClick={toTollow}>
-                                    Go
-                                </div>
+                                (
+                                    claimObj[2] ?
+                                    <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Follow us on X', 90, '2')}>
+                                        {
+                                            isClaim === '2' ?
+                                            <span className="loader"></span>
+                                            :
+                                            <span>Claim</span>
+                                        }
+                                    </div>
+                                    :
+                                    <div className="tasks_btn go_btn fs_2 fw_b" onClick={toTollow}>
+                                        Go
+                                    </div>
+                                )
+                                
                         }
                     </div>
 
@@ -273,9 +298,22 @@ const TasksPage = () => {
                                     <i className="picon p-icon-Finish is_3"></i>
                                 </div>
                                 :
-                                <div className="tasks_btn go_btn fs_2 fw_b" onClick={toTg}>
-                                    Go
-                                </div>
+                                (
+                                    claimObj[3] ?
+                                    <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Join our TG community', 90, '3')}>
+                                        {
+                                            isClaim === '3' ?
+                                            <span className="loader"></span>
+                                            :
+                                            <span>Claim</span>
+                                        }
+                                    </div>
+                                    :
+                                    <div className="tasks_btn go_btn fs_2 fw_b" onClick={toTg}>
+                                        Go
+                                    </div>
+                                )
+                                
                         }
                     </div>
 
@@ -293,9 +331,22 @@ const TasksPage = () => {
                                     <i className="picon p-icon-Finish is_3"></i>
                                 </div>
                                 :
-                                <div className="tasks_btn go_btn fs_2 fw_b" onClick={inviteFriends}>
-                                    Go
-                                </div>
+                                (
+                                    invitInfo?.friends?.length >= 10 ?
+                                    <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Invited 10 Friends', 90, '4')}>
+                                        {
+                                            isClaim === '4' ?
+                                            <span className="loader"></span>
+                                            :
+                                            <span>Claim</span>
+                                        }
+                                    </div>
+                                    :
+                                    <div className="tasks_btn go_btn fs_2 fw_b" onClick={inviteFriends}>
+                                        Go
+                                    </div>
+                                )
+                                
                         }
                     </div>
                 </div>

@@ -1,9 +1,9 @@
-import imgToken from '/images/home/img-Token.svg'
+import imgToken from '/images/1.png'
 import imgPolariseCapsule from '/images/home/logo-PolariseCapsule.svg'
 import imgOneClick from '/images/home/img-One-Click.svg'
-import imgBondingCurvev from '/images/home/img-BondingCurvev.svg'
+import imgBondingCurvev from '/images/2.png'
 import imgCurve from '/images/home/img-Curve.svg'
-import imgERC1000 from '/images/home/img-ERC1000.svg'
+import imgERC1000 from '/images/3.png'
 import imgERC from '/images/home/img-erc.svg'
 import './index.scss'
 import { Header } from '../../components/Header/Header'
@@ -37,6 +37,13 @@ const HomePage = () => {
         })
     });
     const init = async() =>{
+        const result = await ApiServe.query('userinfo', {
+            tg_account: initDataUnsafe.user.id + ''
+        }).catch(err => {
+            return {
+                data: {}
+            }
+        })
         if(!tonAddress){
             const res = await ApiServe.query('usersignin', {
                 tg_account: initDataUnsafe.user.id + '',
@@ -44,7 +51,7 @@ const HomePage = () => {
                 wallet_account: ''
             })
         }
-        if (startParam) {
+        if (startParam && Object.keys(result?.data).length === 0) {
             // 解析 ref_code 参数
             const refCode = startParam.split('ref_code=')[1];
             const useInfo = await ApiServe.query('launchinviting',{
@@ -57,9 +64,43 @@ const HomePage = () => {
         }
         
     }
+
+    const toTollow = async () => {
+        const claimObj = localStorage.getItem(initDataUnsafe.user.id + 'CLAIM') || {
+            1: false,
+            2: false,
+            3: false,
+        }
+        if(claimObj[2]){
+            Telegram.WebApp.openLink('https://x.com/elonmusk/status/1836319222982701534')
+        }else{
+            claimObj[2] = true
+            localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', claimObj)
+            Telegram.WebApp.openLink('https://x.com/elonmusk/status/1836319222982701534')
+        }
+        
+        
+
+    }
+    const toTg = async () => {
+        const claimObj = localStorage.getItem(initDataUnsafe.user.id + 'CLAIM') || {
+            1: false,
+            2: false,
+            3: false,
+        }
+        if(claimObj[3]){
+            Telegram.WebApp.openLink('https://x.com/elonmusk/status/1836319222982701534')
+        }else{
+            claimObj[3] = true
+            localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', claimObj)
+            Telegram.WebApp.openLink('https://t.me/officialvanillafinance ')
+        }
+        
+
+    }
     return(
         <div className="home_page">
-            <TxForm />
+            {/* <TxForm /> */}
                 {/* <Header />
                 <TxForm />
                 <TonProofDemo />
@@ -75,9 +116,10 @@ const HomePage = () => {
                 </div>
             </div>
 
-            <div className="pa_4">
+            <div className="pa_3">
                 <div className="token_issuance p_relative br_5 mb_3">
-                    <div className="token_issuance_box flex">
+                    <img className="token_img mr_4" src={imgToken} alt="" srcSet="" />
+                    {/* <div className="token_issuance_box flex">
                         <img className="token_img mr_4" src={imgToken} alt="" srcSet="" />
                         <div className="flex align_center">
                             <div>
@@ -86,11 +128,12 @@ const HomePage = () => {
                             </div>
                             <img className="end_img" src={imgOneClick} alt="" srcSet="" />
                         </div>
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className="bonding_issuance p_relative br_5 mb_3">
-                    <div className="token_issuance_box flex">
+                    <img className="token_img mr_4" src={imgBondingCurvev} alt="" srcSet="" />
+                    {/* <div className="token_issuance_box flex">
                         <div className="flex align_center mr_4">
                             <img className="end_img" src={imgBondingCurvev} alt="" srcSet="" />
                             <div className="text_right">
@@ -99,12 +142,13 @@ const HomePage = () => {
                             </div>
                         </div>
                         <img className="token_img " src={imgCurve} alt="" srcSet="" />
-                    </div>
+                    </div> */}
                 </div>
 
 
                 <div className="erc1000_issuance p_relative br_5 mb_3">
-                    <div className="token_issuance_box flex">
+                    <img className="token_img mr_4" src={imgERC1000} alt="" srcSet="" />
+                    {/* <div className="token_issuance_box flex">
                         <img className="token_img mr_4" src={imgERC1000} alt="" srcSet="" />
                         <div className="flex align_center">
                             <div>
@@ -113,14 +157,14 @@ const HomePage = () => {
                             </div>
                             <img className="end_img" src={imgERC} alt="" srcSet="" />
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
             <div className="flex justify_center">
                 <div className="telegaml_box flex align_center py_3 px_5">
-                    <i className="picon p-icon-x is_4 mr_4"></i>
-                    <i className="picon p-icon-tg is_4 "></i>
+                    <i className="picon p-icon-x is_4 mr_4" onClick={toTollow}></i>
+                    <i className="picon p-icon-tg is_4 " onClick={toTg}></i>
                 </div>
             </div>
         </div>

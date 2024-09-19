@@ -54,7 +54,7 @@ const Countdown = ({ endTime, startTime, launchpadFarming, updata, useInfo, farm
       }
 
     const points = useMemo(() => {
-        let totle = useInfo?.farming_points || 0
+        let totle = useInfo?.total_points || 0
         totle = totle + (count * farmingInfo.points_ps)
         return toFmtThousand(totle || 0)
     },[remainingTime, useInfo, farmingInfo])
@@ -77,7 +77,7 @@ const Countdown = ({ endTime, startTime, launchpadFarming, updata, useInfo, farm
                         </div>
                     </div>
                     :
-                    <div className="farming_btn cursor flex justify_center align_center br_6 py_4" onClick={launchpadFarming}>
+                    <div className="farming_btn cursor flex justify_center align_center br_6 py_4 mb_7" onClick={launchpadFarming}>
                         <i className="picon p-icon-StartUp is_4 mr_2"></i>
                         <div className="fs_3 fw_b">Farming</div>
                     </div>
@@ -85,7 +85,7 @@ const Countdown = ({ endTime, startTime, launchpadFarming, updata, useInfo, farm
                 }
                 
                 
-                <div className="fs_3 fw_b">
+                <div className="fs_3 fw_b text_center mb_7">
                     {remainingTime > 0 ? (
                         <span>{formatTime(remainingTime)}</span>
                     ) : (

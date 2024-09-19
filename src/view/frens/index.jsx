@@ -1,7 +1,7 @@
 import './index.scss'
 import imgIntegral2 from "/images/Frens/img-integral2.svg"
 import imgNumberOfLives from '/images/Farming/img-NumberOfLives.png'
-import imgPointsRewards from '/images/img-PointsRewards.svg'
+import imgPointsRewards from '/images/5.png'
 import imgDinosaurRun from '/images/img-DinosaurRun.svg'
 import imgMoreRewards from '/images/img-MoreRewards.svg'
 import { useEffect, useState } from 'react'
@@ -69,8 +69,8 @@ const FrensPage = () => {
             <div className="pa_3">
                 <div className="fs_4 fw_b text_center">Invite Friends, Earn Rewards! </div>
                 <div className="centernt_box pa_4 flex">
-
-                    <div className="flex column mr_4">
+                    <img className="img_1" src={imgPointsRewards} alt="" srcSet="" />
+                    {/* <div className="flex column mr_4">
                         <img className="img_1" src={imgPointsRewards} alt="" srcSet="" />
                         <img className="img_2" src={imgDinosaurRun} alt="" srcSet="" />
                         <img className="img_3" src={imgMoreRewards} alt="" srcSet="" />
@@ -90,7 +90,7 @@ const FrensPage = () => {
                             <div className="fs_4 fw_b mb_2">More Rewards</div>
                             <div className="fs_2 fw_m text_3 ">Invite more friends to earn more rewards!</div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             
                 <div className="frens_btn_box flex align_center justify_center mt_3">

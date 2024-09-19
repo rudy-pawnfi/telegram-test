@@ -1,5 +1,6 @@
 import imgIntegral from '/images/Farming/img-integral.svg'
 import imgTonlord from '/images/Farming/img-Tonlord.png'
+import farmingBg from '/images/Farming/img-FarmingBg.svg'
 import imgNumberOfLives from '/images/Farming/img-NumberOfLives.png'
 import './index.scss'
 import { useEffect, useState } from 'react'
@@ -94,7 +95,8 @@ const FarmingPage = () => {
     }, []);
     return (
         <div className="farming_page pa_3">
-            <div className="farming_bg pa_3" >
+            <div className="farming_bg" >
+                <img className="farming_bg_img" src={farmingBg} alt="" srcset="" />
                 {bubbles.map((bubble) => (
                     <div
                         key={bubble.id}
@@ -138,7 +140,7 @@ const FarmingPage = () => {
                 <div className="fs_4 fw_b mb_4">Dinosaur Run ( Soon! )</div>
                 <div className="flex align_center justify_center dinosaur_box_box">
                     <img className="mr_2" src={imgNumberOfLives} alt="" srcSet="" />
-                    <span className="fs_3 fw_b">x3 + {invitInfo?.friends?.inviting_ts || 0}</span>
+                    <span className="fs_3 fw_b">x3 + {invitInfo?.friends?.length || 0}</span>
                 </div>
             </div>
         </div>
