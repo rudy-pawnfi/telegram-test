@@ -115,20 +115,6 @@ const FarmingPage = () => {
                         }}
                     />
                 ))}
-                {/* <div className="farming_btn cursor flex justify_center align_center br_6 py_4" onClick={launchpadFarming}>
-                    <i className="picon p-icon-StartUp is_4 mr_2"></i>
-                    <div className="fs_3 fw_b">Farming</div>
-                </div> */}
-
-                {/* <div className="farming_btn_loadding cursor br_6 pa_2 p_relative mb_5 overflow_hidden">
-                    <div className="w100 h100 overflow_hidden br_6">
-                        <div className="farming_btn_loadding_box_bg" style={{ width: `${(progress / targetNumber) * 100}%` }}></div>
-                    </div>
-                    <div className="farming_btn_loadding_box flex justify_center align_center br_6 py_4">
-                        <i className="picon p-icon-StartUp is_4 mr_2"></i>
-                        <div className="fs_3 fw_b">Farming</div>
-                    </div>
-                </div> */}
                 <div className="flex column align_center justify_between farming_bg_center">
                     <img src={imgIntegral} alt="" srcSet="" />
                     <Countdown useInfo={useInfo} farmingInfo={farmingInfo} startTime={farmingInfo?.start_ts * 1000} endTime={farmingInfo?.end_ts * 1000} launchpadFarming={launchpadFarming} updata={launchpadFarming} />

@@ -15,6 +15,7 @@ const FrensPage = () => {
     const tonAddress = useTonAddress()
     const [inviteUrl, setInviteUrl] = useState('')
     const [invitInfo, setInvitInfo] = useState({})
+    const [refCode, setRefCode] = useState('')
     const { showAlert } = useAlert();
     const initDataUnsafe = Telegram.WebApp.initDataUnsafe
     useEffect(() => {
@@ -27,6 +28,7 @@ const FrensPage = () => {
             tg_account: initDataUnsafe.user.id + '',
             app_name: 'Rudy_test'
         })
+        setRefCode(res?.data?.ref_code)
         // https://t.me/catizenbot/gameapp?startapp=r_1381_21625278
         // telegram-testt.me/rudy_pawnfi_bot/polarise
         // https://t.me/rudy_pawnfi_bot/polarise?startapp=polarise_ref_code=ffc09125ee9553c0988b
@@ -41,11 +43,11 @@ const FrensPage = () => {
     const inviteFriends = () => {
         console.log('inviteUrl :>> ', inviteUrl);
         // window.open(inviteUrl, '_blank');
-        Telegram.WebApp.openLink(inviteUrl)
+        Telegram.WebApp.openTelegramLink(inviteUrl)
     }
 
     const copy = () => {
-        navigator.clipboard.writeText(inviteUrl).then(() => {
+        navigator.clipboard.writeText(`https://t.me/rudy_pawnfi_bot/polarise?startapp=ref_code=${refCode}`).then(() => {
             // 复制成功后显示提示信息
             showAlert('Replicating Success', 'success')
         }).catch(err => {
@@ -98,9 +100,9 @@ const FrensPage = () => {
                         <i className="picon p-icon-InviteFriends is_2 mr_2"></i>
                         <span className="fs_3 fw_b">Invite Friends</span>
                     </div>
-                    {/* <div className="copy_box flex justify_center align_center" onClick={copy}>
+                    <div className="copy_box flex justify_center align_center" onClick={copy}>
                         <i className="picon p-icon-copy is_2"></i>
-                    </div> */}
+                    </div>
                 </div>
             </div>
         </div>

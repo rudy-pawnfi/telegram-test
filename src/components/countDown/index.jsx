@@ -3,9 +3,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { reduceLen, toFmtThousand } from "../../untils";
 
 const Countdown = ({ endTime, startTime, launchpadFarming, updata, useInfo, farmingInfo }) => {
-    const timeCount = endTime - Date.now()
-    const [remainingTime, setRemainingTime] = useState(Number(timeCount));
-    const [percentage, setPercentage] = useState(0)
+    const [remainingTime, setRemainingTime] = useState(0);
     const tonAddress = useTonAddress()
     const [count, setCount] = useState(0)
     const wallet = useTonWallet();
@@ -14,11 +12,9 @@ const Countdown = ({ endTime, startTime, launchpadFarming, updata, useInfo, farm
     useEffect(() => {
         if(!wallet) return
         let timeCount = endTime - Date.now()
-        let countdown = endTime - startTime
         if (timeCount > 0) {
             const timer = setInterval(() => {
                 const time = endTime - Date.now()
-                setPercentage((time / countdown) * 100)
                 setCount(count + 1)
                 setRemainingTime(Number(time));
             }, 1000);
