@@ -10,49 +10,55 @@
         background-repeat: no-repeat;
         font-size: 40px;
     }
-    .list_box{
-        border-radius: 24px;
-        background-color: #0F0F0F;
-        .loader {
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-top: 2px solid white;
-            border-radius: 50%;
-            width: 16px;
-            height: 16px;
-            animation: spin 1s linear infinite;
-            display: inline-block;
-            margin-top: 10px;
-          }
-  
-          @keyframes spin {
-            0% {
-              transform: rotate(0deg);
+    .tasks_list{
+        // opacity: 0; /* 初始透明 */
+        // transform: translateY(-100px); /* 初始在左侧 */
+        // animation: fadeInDown 2s ease-out forwards;
+        .list_box{
+            border-radius: 24px;
+            background-color: #0F0F0F;
+            .loader {
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                border-top: 2px solid white;
+                border-radius: 50%;
+                width: 16px;
+                height: 16px;
+                animation: spin 1s linear infinite;
+                display: inline-block;
+                margin-top: 10px;
+              }
+      
+              @keyframes spin {
+                0% {
+                  transform: rotate(0deg);
+                }
+                100% {
+                  transform: rotate(360deg);
+                }
+              }
+            img{
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
             }
-            100% {
-              transform: rotate(360deg);
+            .tasks_btn{
+                width: 80px;
+                height: 40px;
+                line-height: 40px;
+                border-radius: 100px;
+                text-align: center;
             }
-          }
-        img{
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-        }
-        .tasks_btn{
-            width: 80px;
-            height: 40px;
-            line-height: 40px;
-            border-radius: 100px;
-            text-align: center;
-        }
-        .go_btn{
-            border: 2px solid #B019FF;
-            color: #B019FF;
-        }
-        .click_btn{
-            background: linear-gradient(to right, #6E19FF, #DC19FF);
-            color: #fff;
+            .go_btn{
+                border: 2px solid #B019FF;
+                color: #B019FF;
+            }
+            .click_btn{
+                background: linear-gradient(to right, #6E19FF, #DC19FF);
+                color: #fff;
+            }
         }
     }
+    
     .list_box_1{
         opacity: 0; /* 初始透明 */
         transform: translateX(100px); /* 初始在左侧 */

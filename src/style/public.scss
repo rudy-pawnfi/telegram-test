@@ -75,6 +75,16 @@ html {
               transform: translateX(0); /* 回到原位置 */
             }
         }
+        @keyframes fadeInDown {
+            0% {
+              opacity: 0;
+              transform: translateY(-100px); /* 从上方开始 */
+            }
+            100% {
+              opacity: 1;
+              transform: translateY(0); /* 回到原位置 */
+            }
+        }
     }
 }
 

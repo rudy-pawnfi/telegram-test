@@ -20,6 +20,7 @@ const FarmingPage = () => {
     const initDataUnsafe = Telegram.WebApp.initDataUnsafe
     const [bubbles, setBubbles] = useState([]);
     const [invitInfo, setInvitInfo] = useState({})
+    console.log('window.innerWidth :>> ', window.innerWidth);
     useEffect(() => {
         init()
     }, [wallet])
@@ -64,7 +65,7 @@ const FarmingPage = () => {
     // 创建一个气泡的函数
     const createBubble = () => {
         const size = sizes[Math.floor(Math.random() * sizes.length)]; // 随机选择气泡大小
-        const leftPosition = Math.random() * (368 - size); // 随机横坐标
+        const leftPosition = Math.random() * (window.innerWidth - size - 20); // 随机横坐标
         const background = gradients[Math.floor(Math.random() * gradients.length)]; // 随机选择渐变
 
         const maxHeight = Math.random() * 500 + 100; // 随机最大上升高度
@@ -135,7 +136,7 @@ const FarmingPage = () => {
                 
             </div>
 
-            <div className="br_5 pa_4 dinosaur_box flex column align_center">
+            <div className="br_5 pa_4 dinosaur_box flex column align_center mt_3">
                 <img className="header_img_box mb_5" src={imgTonlord} alt="" srcSet="" />
                 <div className="fs_4 fw_b mb_4">Dinosaur Run ( Soon! )</div>
                 <div className="flex align_center justify_center dinosaur_box_box">

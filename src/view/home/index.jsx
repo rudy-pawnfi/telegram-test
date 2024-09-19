@@ -118,7 +118,7 @@ const HomePage = () => {
 
             <div className="pa_3">
                 <div className="token_issuance p_relative br_5 mb_3">
-                    <img className="token_img mr_4" src={imgToken} alt="" srcSet="" />
+                    <img className="token_img" src={imgToken} alt="" srcSet="" />
                     {/* <div className="token_issuance_box flex">
                         <img className="token_img mr_4" src={imgToken} alt="" srcSet="" />
                         <div className="flex align_center">
@@ -132,7 +132,7 @@ const HomePage = () => {
                 </div>
 
                 <div className="bonding_issuance p_relative br_5 mb_3">
-                    <img className="token_img mr_4" src={imgBondingCurvev} alt="" srcSet="" />
+                    <img className="token_img" src={imgBondingCurvev} alt="" srcSet="" />
                     {/* <div className="token_issuance_box flex">
                         <div className="flex align_center mr_4">
                             <img className="end_img" src={imgBondingCurvev} alt="" srcSet="" />
@@ -147,7 +147,7 @@ const HomePage = () => {
 
 
                 <div className="erc1000_issuance p_relative br_5 mb_3">
-                    <img className="token_img mr_4" src={imgERC1000} alt="" srcSet="" />
+                    <img className="token_img" src={imgERC1000} alt="" srcSet="" />
                     {/* <div className="token_issuance_box flex">
                         <img className="token_img mr_4" src={imgERC1000} alt="" srcSet="" />
                         <div className="flex align_center">

@@ -62,7 +62,7 @@ const TasksPage = () => {
 
     const sendTrade = async () => {
         if (!wallet) return showAlert('Login Wallet', 'warning')
-        tonConnectUi.sendTransaction(defaultTx).then( async res => {
+        tonConnectUi.sendTransaction(defaultTx).then(async res => {
             claimObj[1] = true
             setClaimObj(claimObj)
             localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', claimObj)
@@ -184,170 +184,172 @@ const TasksPage = () => {
                 </div>
                 <div className="pa_3">
                     <div className="fs_4 fw_b mb_4 text_center">Capsule Tasks</div>
-                    <div className="list_box list_box_1 pa_4 flex justify_between align_center mb_3">
-                        <div className="flex align_center">
-                            <img className="mr_5" src={imgicon_1} alt="" srcSet="" />
-                            <div>
-                                <div className="fs_2 fw_m">Connect your wallet</div>
-                                <div className="fs_2 text_4">+900 BP</div>
-                            </div>
-                        </div>
-                        {
-                            !!taskList?.find(val => val.task_id === "0") ?
-                            <div className="tasks_btn click_btn fs_2 fw_b">
-                                    <i className="picon p-icon-Finish is_3"></i>
-                            </div>
-                            :
-                            (
-                                !!wallet ?
-                                <div className="tasks_btn click_btn fs_2 fw_b" onClick={finshLogin}>
-                                    {/* Claim */}
-                                    {
-                                        isClaim === '0' ?
-                                        <span className="loader"></span>
-                                        :
-                                        <span>Claim</span>
-                                    }
+                    <div className="tasks_list">
+                        <div className="list_box list_box_1 pa_4 flex justify_between align_center mb_3">
+                            <div className="flex align_center">
+                                <img className="mr_5" src={imgicon_1} alt="" srcSet="" />
+                                <div>
+                                    <div className="fs_2 fw_m">Connect your wallet</div>
+                                    <div className="fs_2 text_4">+900 BP</div>
                                 </div>
-                                :
-                                <div className="tasks_btn go_btn fs_2 fw_b" onClick={() => login()}>
-                                    Go
-                                </div>
-                            )
-                        }
-
-                    </div>
-
-                    <div className="list_box list_box_2 pa_4 flex justify_between align_center mb_3">
-                        <div className="flex align_center">
-                            <img className="mr_5" src={imgicon_2} alt="" srcSet="" />
-                            <div>
-                                <div className="fs_2 fw_m">Login to your account daily</div>
-                                <div className="fs_2 text_4">+90 BP</div>
                             </div>
-                        </div>
-                        {
-                            !!taskList?.find(val => val.task_id === "1") ?
-                                <div className="tasks_btn click_btn fs_2 fw_b">
-                                    <i className="picon p-icon-Finish is_3"></i>
-                                </div>
-                                :
-                                (
-                                    claimObj[1] ?
-                                    <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Login to your account daily', 90, '1')}>
-                                        {
-                                            isClaim === '1' ?
-                                            <span className="loader"></span>
-                                            :
-                                            <span>Claim</span>
-                                        }
+                            {
+                                !!taskList?.find(val => val.task_id === "0") ?
+                                    <div className="tasks_btn click_btn fs_2 fw_b">
+                                        <i className="picon p-icon-Finish is_3"></i>
                                     </div>
                                     :
-                                    <div className="tasks_btn go_btn fs_2 fw_b" onClick={sendTrade}>
-                                        Go
-                                    </div>
-                                )
-                        }
-
-                    </div>
-
-                    <div className="list_box list_box_3 pa_4 flex justify_between align_center mb_3">
-                        <div className="flex align_center">
-                            <img className="mr_5" src={imgicon_3} alt="" srcSet="" />
-                            <div>
-                                <div className="fs_2 fw_m">Follow us on X</div>
-                                <div className="fs_2 text_4">+90 BP</div>
-                            </div>
-                        </div>
-                        {
-                            !!taskList?.find(val => val.task_id === "2") ?
-                                <div className="tasks_btn click_btn fs_2 fw_b">
-                                    <i className="picon p-icon-Finish is_3"></i>
-                                </div>
-                                :
-                                (
-                                    claimObj[2] ?
-                                    <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Follow us on X', 90, '2')}>
-                                        {
-                                            isClaim === '2' ?
-                                            <span className="loader"></span>
+                                    (
+                                        !!wallet ?
+                                            <div className="tasks_btn click_btn fs_2 fw_b" onClick={finshLogin}>
+                                                {/* Claim */}
+                                                {
+                                                    isClaim === '0' ?
+                                                        <span className="loader"></span>
+                                                        :
+                                                        <span>Claim</span>
+                                                }
+                                            </div>
                                             :
-                                            <span>Claim</span>
-                                        }
+                                            <div className="tasks_btn go_btn fs_2 fw_b" onClick={() => login()}>
+                                                Go
+                                            </div>
+                                    )
+                            }
+
+                        </div>
+
+                        <div className="list_box list_box_2 pa_4 flex justify_between align_center mb_3">
+                            <div className="flex align_center">
+                                <img className="mr_5" src={imgicon_2} alt="" srcSet="" />
+                                <div>
+                                    <div className="fs_2 fw_m">Login to your account daily</div>
+                                    <div className="fs_2 text_4">+90 BP</div>
+                                </div>
+                            </div>
+                            {
+                                !!taskList?.find(val => val.task_id === "1") ?
+                                    <div className="tasks_btn click_btn fs_2 fw_b">
+                                        <i className="picon p-icon-Finish is_3"></i>
                                     </div>
                                     :
-                                    <div className="tasks_btn go_btn fs_2 fw_b" onClick={toTollow}>
-                                        Go
-                                    </div>
-                                )
-                                
-                        }
-                    </div>
-
-                    <div className="list_box list_box_4 pa_4 flex justify_between align_center mb_3">
-                        <div className="flex align_center">
-                            <img className="mr_5" src={imgicon_4} alt="" srcSet="" />
-                            <div>
-                                <div className="fs_2 fw_m">Join our TG community</div>
-                                <div className="fs_2 text_4">+90 BP</div>
-                            </div>
-                        </div>
-                        {
-                            !!taskList?.find(val => val.task_id === "3") ?
-                                <div className="tasks_btn click_btn fs_2 fw_b">
-                                    <i className="picon p-icon-Finish is_3"></i>
-                                </div>
-                                :
-                                (
-                                    claimObj[3] ?
-                                    <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Join our TG community', 90, '3')}>
-                                        {
-                                            isClaim === '3' ?
-                                            <span className="loader"></span>
+                                    (
+                                        claimObj[1] ?
+                                            <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Login to your account daily', 90, '1')}>
+                                                {
+                                                    isClaim === '1' ?
+                                                        <span className="loader"></span>
+                                                        :
+                                                        <span>Claim</span>
+                                                }
+                                            </div>
                                             :
-                                            <span>Claim</span>
-                                        }
+                                            <div className="tasks_btn go_btn fs_2 fw_b" onClick={sendTrade}>
+                                                Go
+                                            </div>
+                                    )
+                            }
+
+                        </div>
+
+                        <div className="list_box list_box_3 pa_4 flex justify_between align_center mb_3">
+                            <div className="flex align_center">
+                                <img className="mr_5" src={imgicon_3} alt="" srcSet="" />
+                                <div>
+                                    <div className="fs_2 fw_m">Follow us on X</div>
+                                    <div className="fs_2 text_4">+90 BP</div>
+                                </div>
+                            </div>
+                            {
+                                !!taskList?.find(val => val.task_id === "2") ?
+                                    <div className="tasks_btn click_btn fs_2 fw_b">
+                                        <i className="picon p-icon-Finish is_3"></i>
                                     </div>
                                     :
-                                    <div className="tasks_btn go_btn fs_2 fw_b" onClick={toTg}>
-                                        Go
-                                    </div>
-                                )
-                                
-                        }
-                    </div>
-
-                    <div className="list_box list_box_5 pa_4 flex justify_between align_center mb_3">
-                        <div className="flex align_center">
-                            <img className="mr_5" src={imgicon_5} alt="" srcSet="" />
-                            <div>
-                                <div className="fs_2 fw_m">Invited 10 Friends</div>
-                                <div className="fs_2 text_4">+90 BP   {invitInfo?.friends?.length || 0}/10 frens</div>
-                            </div>
-                        </div>
-                        {
-                            !!taskList?.find(val => val.task_id === "4") ?
-                                <div className="tasks_btn click_btn fs_2 fw_b">
-                                    <i className="picon p-icon-Finish is_3"></i>
-                                </div>
-                                :
-                                (
-                                    invitInfo?.friends?.length >= 10 ?
-                                    <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Invited 10 Friends', 90, '4')}>
-                                        {
-                                            isClaim === '4' ?
-                                            <span className="loader"></span>
+                                    (
+                                        claimObj[2] ?
+                                            <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Follow us on X', 90, '2')}>
+                                                {
+                                                    isClaim === '2' ?
+                                                        <span className="loader"></span>
+                                                        :
+                                                        <span>Claim</span>
+                                                }
+                                            </div>
                                             :
-                                            <span>Claim</span>
-                                        }
+                                            <div className="tasks_btn go_btn fs_2 fw_b" onClick={toTollow}>
+                                                Go
+                                            </div>
+                                    )
+
+                            }
+                        </div>
+
+                        <div className="list_box list_box_4 pa_4 flex justify_between align_center mb_3">
+                            <div className="flex align_center">
+                                <img className="mr_5" src={imgicon_4} alt="" srcSet="" />
+                                <div>
+                                    <div className="fs_2 fw_m">Join our TG community</div>
+                                    <div className="fs_2 text_4">+90 BP</div>
+                                </div>
+                            </div>
+                            {
+                                !!taskList?.find(val => val.task_id === "3") ?
+                                    <div className="tasks_btn click_btn fs_2 fw_b">
+                                        <i className="picon p-icon-Finish is_3"></i>
                                     </div>
                                     :
-                                    <div className="tasks_btn go_btn fs_2 fw_b" onClick={inviteFriends}>
-                                        Go
+                                    (
+                                        claimObj[3] ?
+                                            <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Join our TG community', 90, '3')}>
+                                                {
+                                                    isClaim === '3' ?
+                                                        <span className="loader"></span>
+                                                        :
+                                                        <span>Claim</span>
+                                                }
+                                            </div>
+                                            :
+                                            <div className="tasks_btn go_btn fs_2 fw_b" onClick={toTg}>
+                                                Go
+                                            </div>
+                                    )
+
+                            }
+                        </div>
+
+                        <div className="list_box list_box_5 pa_4 flex justify_between align_center mb_3">
+                            <div className="flex align_center">
+                                <img className="mr_5" src={imgicon_5} alt="" srcSet="" />
+                                <div>
+                                    <div className="fs_2 fw_m">Invited 10 Friends</div>
+                                    <div className="fs_2 text_4">+90 BP   {invitInfo?.friends?.length || 0}/10 frens</div>
+                                </div>
+                            </div>
+                            {
+                                !!taskList?.find(val => val.task_id === "4") ?
+                                    <div className="tasks_btn click_btn fs_2 fw_b">
+                                        <i className="picon p-icon-Finish is_3"></i>
                                     </div>
-                                )
-                                
-                        }
+                                    :
+                                    (
+                                        invitInfo?.friends?.length >= 10 ?
+                                            <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Invited 10 Friends', 90, '4')}>
+                                                {
+                                                    isClaim === '4' ?
+                                                        <span className="loader"></span>
+                                                        :
+                                                        <span>Claim</span>
+                                                }
+                                            </div>
+                                            :
+                                            <div className="tasks_btn go_btn fs_2 fw_b" onClick={inviteFriends}>
+                                                Go
+                                            </div>
+                                    )
+
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
