@@ -67,7 +67,7 @@ const TasksPage = () => {
         tonConnectUi.sendTransaction(defaultTx).then(async res => {
             setIsClaim('')
             claimObj[1] = true
-            setClaimObj(claimObj)
+            setClaimObj({...claimObj})
             localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
         }).catch(err => {
             setIsClaim('')
@@ -104,7 +104,7 @@ const TasksPage = () => {
             2: false,
             3: false,
         }
-        setClaimObj(claimObj)
+        setClaimObj({...claimObj})
         const res = await ApiServe.query('getrefcode', {
             tg_account: initDataUnsafe.user.id + '',
             app_name: 'Rudy_test'
@@ -149,14 +149,14 @@ const TasksPage = () => {
     }
     const toTollow = async () => {
         claimObj[2] = true
-        setClaimObj(claimObj)
+        setClaimObj({...claimObj})
         localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
         Telegram.WebApp.openLink('https://x.com/elonmusk/status/1836319222982701534')
 
     }
     const toTg = async () => {
         claimObj[3] = true
-        setClaimObj(claimObj)
+        setClaimObj({...claimObj})
         localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
         Telegram.WebApp.openLink('https://t.me/officialvanillafinance ')
 
