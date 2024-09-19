@@ -94,8 +94,7 @@ const FarmingPage = () => {
     }, []);
     return (
         <div className="farming_page pa_3">
-            <div className="farming_bg flex column align_center justify_between pa_3" >
-                <img src={imgIntegral} alt="" srcSet="" />
+            <div className="farming_bg pa_3" >
                 {bubbles.map((bubble) => (
                     <div
                         key={bubble.id}
@@ -127,7 +126,11 @@ const FarmingPage = () => {
                         <div className="fs_3 fw_b">Farming</div>
                     </div>
                 </div> */}
-                <Countdown useInfo={useInfo} farmingInfo={farmingInfo} startTime={farmingInfo?.start_ts * 1000} endTime={farmingInfo?.end_ts * 1000} launchpadFarming={launchpadFarming} updata={launchpadFarming} />
+                <div className="flex column align_center justify_between farming_bg_center">
+                    <img src={imgIntegral} alt="" srcSet="" />
+                    <Countdown useInfo={useInfo} farmingInfo={farmingInfo} startTime={farmingInfo?.start_ts * 1000} endTime={farmingInfo?.end_ts * 1000} launchpadFarming={launchpadFarming} updata={launchpadFarming} />
+                </div>
+                
             </div>
 
             <div className="br_5 pa_4 dinosaur_box flex column align_center">

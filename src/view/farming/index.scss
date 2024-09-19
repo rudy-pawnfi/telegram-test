@@ -20,8 +20,13 @@
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
-        >img{
-            animation: breathing 3s ease-in-out infinite;
+        .farming_bg_center{
+            position: relative;
+            height: 100%;
+            z-index: 9;
+            >img{
+                animation: breathing 3s ease-in-out infinite;
+            }
         }
         .farming_btn{
             background-color: #000;
