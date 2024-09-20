@@ -61,7 +61,7 @@ const Countdown = ({ endTime, startTime, launchpadFarming, updata, useInfo, farm
         <>
             <div className="text_center">
                 <div className="fs_5 fw_b">{initDataUnsafe?.user?.first_name} {initDataUnsafe?.user?.last_name}</div>
-                <div className="fs_8 fw_b">{toFixed(useInfo?.total_points || 0, 2)}</div>
+                <div className={`${useInfo?.total_points > 100000 ? 'fs_7' : 'fs_8'}fs_8 fw_b`}>{toFixed(useInfo?.total_points || 0, 2)}</div>
             </div>
             <div>
                 {
