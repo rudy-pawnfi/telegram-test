@@ -1,7 +1,7 @@
 {
-    "url": "<app-url>",                        
+    "url": "https://rudy-pawnfi.github.io/telegram-test/",                        
     "name": "polarcapsule-miniapp",                      
-    "iconUrl": "<app-icon-url>",               
+    "iconUrl": "/public/images/logo.jpg",               
     "termsOfUseUrl": "<terms-of-use-url>",     
     "privacyPolicyUrl": "<privacy-policy-url>"
 }

@@ -20,7 +20,6 @@ const FarmingPage = () => {
     const initDataUnsafe = Telegram.WebApp.initDataUnsafe
     const [bubbles, setBubbles] = useState([]);
     const [invitInfo, setInvitInfo] = useState({})
-    console.log('window.innerWidth :>> ', window.innerWidth);
     useEffect(() => {
         init()
     }, [wallet])

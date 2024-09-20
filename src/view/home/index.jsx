@@ -12,7 +12,7 @@ import { TxForm } from "../../components/TxForm/TxForm";
 import { useSearchParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import { ApiServe } from '../../service'
-import { useTonAddress } from '@tonconnect/ui-react'
+import { useTonAddress, useTonWallet } from '@tonconnect/ui-react'
 import { useAlert } from '../../components/alertProvider'
 const HomePage = () => {
 
@@ -20,6 +20,7 @@ const HomePage = () => {
     const tonAddress = useTonAddress()
     const initData = Telegram.WebApp;
     const initDataUnsafe = Telegram.WebApp.initDataUnsafe
+    const wallet = useTonWallet(); 
     const { showAlert } = useAlert();
     console.log('initData', initData);
     console.log('initDataUnsafe :>> ', initDataUnsafe);
