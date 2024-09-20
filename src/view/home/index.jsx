@@ -117,7 +117,7 @@ const HomePage = () => {
                 </div>
             </div>
 
-            <div className="pa_3">
+            <div className="pa_3 mt_2">
                 <div className="token_issuance p_relative br_5 mb_3">
                     <img className="token_img" src={imgToken} alt="" srcSet="" />
                     {/* <div className="token_issuance_box flex">

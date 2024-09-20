@@ -9,6 +9,7 @@ import { ApiServe } from '../../service'
 import { useTonAddress, useTonWallet } from '@tonconnect/ui-react'
 import axios from 'axios';
 import { useAlert } from '../../components/alertProvider'
+import { toFixed } from '../../untils'
 const FrensPage = () => {
 
     const wallet = useTonWallet();
@@ -65,6 +66,7 @@ const FrensPage = () => {
         });
     }
     return (
+        <>
         <div className="frens_page">
             <div className="frens_header_box flex column justify_end align_center mb_4">
                 <div className="fs_3 fw_b mb_3">Friends</div>
@@ -72,7 +74,7 @@ const FrensPage = () => {
             </div>
             <div className="flex justify_center align_center mb_2 number_img">
                 <img className="mr_3" src={imgIntegral2} alt="" srcSet="" />
-                <div className="fs_2 fw_m mr_3">{userInfo?.inviting_points || 0}</div>
+                <div className="fs_2 fw_m mr_3">{toFixed(userInfo?.inviting_points || 0, 2)}</div>
 
                 <img className="mr_3" src={imgNumberOfLives} alt="" srcSet="" />
                 <div className="fs_2 fw_m">{invitInfo?.friends?.length || 0}</div>
@@ -104,18 +106,18 @@ const FrensPage = () => {
                         </div>
                     </div> */}
                 </div>
-            
-                <div className="frens_btn_box flex align_center justify_end mt_3">
-                    <div className="invite_box fs_3 fw_b flex justify_center align_center mr_7" onClick={inviteFriends}>
-                        <i className="picon p-icon-InviteFriends is_2 mr_2"></i>
-                        <span className="fs_3 fw_b">Invite Friends</span>
-                    </div>
-                    <div className="copy_box flex justify_center align_center" onClick={copy}>
-                        <i className="picon p-icon-copy is_2"></i>
-                    </div>
-                </div>
             </div>
         </div>
+        <div className="frens_btn_box flex align_center justify_end py_2">
+            <div className="invite_box fs_3 fw_b flex justify_center align_center mr_4" onClick={inviteFriends}>
+                <i className="picon p-icon-InviteFriends is_2 mr_2"></i>
+                <span className="fs_3 fw_b">Invite Friends</span>
+            </div>
+            <div className="copy_box flex justify_center align_center mr_4" onClick={copy}>
+                <i className="picon p-icon-copy is_2"></i>
+            </div>
+        </div>
+        </>
     )
 }
 

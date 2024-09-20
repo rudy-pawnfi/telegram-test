@@ -1,6 +1,6 @@
 import { useTonAddress, useTonWallet } from "@tonconnect/ui-react";
 import React, { useState, useEffect, useMemo } from "react";
-import { reduceLen, toFmtThousand } from "../../untils";
+import { reduceLen, toFixed, toFmtThousand } from "../../untils";
 
 const Countdown = ({ endTime, startTime, launchpadFarming, updata, useInfo, farmingInfo }) => {
     const [remainingTime, setRemainingTime] = useState(0);
@@ -53,15 +53,15 @@ const Countdown = ({ endTime, startTime, launchpadFarming, updata, useInfo, farm
       }
 
     const points = useMemo(() => {
-        let totle = useInfo?.total_points || 0
+        let totle = farmingInfo?.points || 0
         totle = totle + (count * farmingInfo.points_ps)
-        return toFmtThousand(totle || 0)
+        return toFmtThousand(toFixed(totle || 0, 2))
     },[remainingTime, useInfo, farmingInfo])
     return (
         <>
             <div className="text_center">
                 <div className="fs_5 fw_b">{initDataUnsafe?.user?.first_name} {initDataUnsafe?.user?.last_name}</div>
-                <div className="fs_8 fw_b">{points}</div>
+                <div className="fs_8 fw_b">{toFixed(useInfo?.total_points || 0, 2)}</div>
             </div>
             <div>
                 {
@@ -72,7 +72,8 @@ const Countdown = ({ endTime, startTime, launchpadFarming, updata, useInfo, farm
                         </div>
                         <div className="farming_btn_loadding_box flex justify_center align_center br_6 py_4">
                             <i className="picon p-icon-StartUp is_4 mr_2"></i>
-                            <div className="fs_3 fw_b">Farming</div>
+                            <div className="fs_3 fw_b mr_2">Farming</div>
+                            <span className="gradient_text">{points}</span>
                         </div>
                     </div>
                     :

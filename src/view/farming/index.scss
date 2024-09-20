@@ -74,6 +74,13 @@
             width: 100%;
             z-index: 0;
         }
+        .gradient_text {
+            font-size: 16px;
+            font-weight: bold;
+            background: linear-gradient(to right, #6E19FF, #DC19FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
     }
     .dinosaur_box{
         background-color: #0F0F0F;

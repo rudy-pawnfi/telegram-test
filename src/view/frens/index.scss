@@ -1,4 +1,7 @@
 .frens_page{
+    height: calc(100vh - 109px);
+    overflow-y: auto;
+    -webkit-tap-highlight-color: transparent;
     .frens_header_box{
         height: 125px;
         background-image: url('/images/Frens/img-TasksBg2.svg');
@@ -23,29 +26,33 @@
             // height: 100%;
         }
     }
-    .frens_btn_box{
-        .invite_box{
-            width: 60%;
-            background: linear-gradient(to bottom, #6E19FF, #DC19FF);
-            border-radius: 100px;
-            height: 48px;
-            line-height: 48px;
-            animation: breathing 3s ease-in-out infinite;
-            img{
-                width: 16px;
-                height: 16px;
-            }
+}
+.frens_btn_box{
+    width: 100%;
+    position: fixed;
+    bottom: 61px;
+    background-color: #000;
+    .invite_box{
+        width: 60%;
+        background: linear-gradient(to bottom, #6E19FF, #DC19FF);
+        border-radius: 100px;
+        height: 48px;
+        line-height: 48px;
+        animation: breathing 3s ease-in-out infinite;
+        img{
+            width: 16px;
+            height: 16px;
         }
-        .copy_box{
-            width: 72px;
-            background: linear-gradient(to bottom, #6E19FF, #DC19FF);
-            border-radius: 100px;
-            height: 48px;
-            line-height: 48px;
-            img{
-                width: 16px;
-                height: 16px;
-            }
+    }
+    .copy_box{
+        width: 72px;
+        background: linear-gradient(to bottom, #6E19FF, #DC19FF);
+        border-radius: 100px;
+        height: 48px;
+        line-height: 48px;
+        img{
+            width: 16px;
+            height: 16px;
         }
     }
 }
