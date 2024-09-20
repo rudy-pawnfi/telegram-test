@@ -3,7 +3,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { reduceLen, toFmtThousand } from "../../untils";
 
 const Countdown = ({ endTime, startTime, launchpadFarming, updata, useInfo, farmingInfo }) => {
-    const [remainingTime, setRemainingTime] = useState();
+    const [remainingTime, setRemainingTime] = useState(0);
     const [percentage, setPercentage] = useState(0)
     const tonAddress = useTonAddress()
     const [count, setCount] = useState(0)
@@ -12,6 +12,7 @@ const Countdown = ({ endTime, startTime, launchpadFarming, updata, useInfo, farm
       // 每次递增的时间间隔
     useEffect(() => {
         if(!wallet) return
+        let timeCount = endTime - Date.now()
         let countdown = endTime - startTime
         if (timeCount > 0) {
             const timer = setInterval(() => {
