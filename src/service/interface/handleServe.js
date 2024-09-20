@@ -15,7 +15,7 @@ const ApiServe = {
                     headers: {
                         'content-type': 'application/json',
                         'accept': 'application/json',
-                        "api-key-pft": 'ixIXLkRK6tFi49kDYy535rrI-s0'
+                        // "api-key-pft": 'ixIXLkRK6tFi49kDYy535rrI-s0'
                     }
                 }).then(res => {
                     resolve(res.data)
