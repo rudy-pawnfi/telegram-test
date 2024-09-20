@@ -85,7 +85,7 @@ const TasksPage = () => {
             tg_account: initDataUnsafe.user.id + '',
             task_id: "0",
             task_name: "Connect your wallet",
-            points: 900
+            points: 900.00
         })
 
         const result = await ApiServe.query('finishedtaskList', {
@@ -195,7 +195,7 @@ const TasksPage = () => {
                                 <img className="mr_5" src={imgicon_1} alt="" srcSet="" />
                                 <div>
                                     <div className="fs_2 fw_m">Connect your wallet</div>
-                                    <div className="fs_2 text_4">+900 BP</div>
+                                    <div className="fs_2 text_4">+900.00 BP</div>
                                 </div>
                             </div>
                             {
@@ -229,7 +229,7 @@ const TasksPage = () => {
                                 <img className="mr_5" src={imgicon_2} alt="" srcSet="" />
                                 <div>
                                     <div className="fs_2 fw_m">Login to your account daily</div>
-                                    <div className="fs_2 text_4">+90 BP</div>
+                                    <div className="fs_2 text_4">+90.00 BP</div>
                                 </div>
                             </div>
                             {
@@ -240,7 +240,7 @@ const TasksPage = () => {
                                     :
                                     (
                                         claimObj[1] ?
-                                            <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Login to your account daily', 90, '1')}>
+                                            <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Login to your account daily', 90.00, '1')}>
                                                 {
                                                     isClaim === '1' ?
                                                         <span className="loader"></span>
@@ -267,7 +267,7 @@ const TasksPage = () => {
                                 <img className="mr_5" src={imgicon_3} alt="" srcSet="" />
                                 <div>
                                     <div className="fs_2 fw_m">Follow us on X</div>
-                                    <div className="fs_2 text_4">+90 BP</div>
+                                    <div className="fs_2 text_4">+90.00 BP</div>
                                 </div>
                             </div>
                             {
@@ -278,7 +278,7 @@ const TasksPage = () => {
                                     :
                                     (
                                         claimObj[2] ?
-                                            <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Follow us on X', 90, '2')}>
+                                            <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Follow us on X', 90.00, '2')}>
                                                 {
                                                     isClaim === '2' ?
                                                         <span className="loader"></span>
@@ -300,7 +300,7 @@ const TasksPage = () => {
                                 <img className="mr_5" src={imgicon_4} alt="" srcSet="" />
                                 <div>
                                     <div className="fs_2 fw_m">Join our TG community</div>
-                                    <div className="fs_2 text_4">+90 BP</div>
+                                    <div className="fs_2 text_4">+90.00 BP</div>
                                 </div>
                             </div>
                             {
@@ -311,7 +311,7 @@ const TasksPage = () => {
                                     :
                                     (
                                         claimObj[3] ?
-                                            <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Join our TG community', 90, '3')}>
+                                            <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Join our TG community', 90.00, '3')}>
                                                 {
                                                     isClaim === '3' ?
                                                         <span className="loader"></span>
@@ -333,7 +333,7 @@ const TasksPage = () => {
                                 <img className="mr_5" src={imgicon_5} alt="" srcSet="" />
                                 <div>
                                     <div className="fs_2 fw_m">Invited 10 Friends</div>
-                                    <div className="fs_2 text_4">+90 BP   {invitInfo?.friends?.length || 0}/10 frens</div>
+                                    <div className="fs_2 text_4">+90.00 BP   {invitInfo?.friends?.length || 0}/10 frens</div>
                                 </div>
                             </div>
                             {
@@ -344,7 +344,7 @@ const TasksPage = () => {
                                     :
                                     (
                                         invitInfo?.friends?.length >= 10 ?
-                                            <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Invited 10 Friends', 90, '4')}>
+                                            <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Invited 10 Friends', 90.00, '4')}>
                                                 {
                                                     isClaim === '4' ?
                                                         <span className="loader"></span>
