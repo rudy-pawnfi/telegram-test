@@ -62,7 +62,7 @@ const TasksPage = () => {
 
     const sendTrade = async () => {
         if(isClaim=== '1') return
-        if (!wallet) return showAlert('Login Wallet', 'warning')
+        if (!wallet) return login()
         setIsClaim('1')
         tonConnectUi.sendTransaction(defaultTx).then(async res => {
             setIsClaim('')

@@ -33,7 +33,7 @@ const HomePage = () => {
         // 在这里执行自定义逻辑
         ApiServe.query('usersignout', {
             tg_account: initDataUnsafe.user.id + '',
-            chain_name: wallet.account.chain,
+            chain_name: wallet?.account?.chain || "-239",
             wallet_account: ''
         })
     });
@@ -48,7 +48,7 @@ const HomePage = () => {
         if(!tonAddress){
             const res = await ApiServe.query('usersignin', {
                 tg_account: initDataUnsafe.user.id + '',
-                chain_name: wallet.account.chain,
+                chain_name: wallet?.account?.chain || "-239",
                 wallet_account: ''
             })
         }
