@@ -22,7 +22,6 @@ const Countdown = ({ endTime, startTime, launchpadFarming, useInfo, farmingInfo 
             }, 1000);
 
             return () => clearInterval(timer); // 清理计时器
-        }else{
         }
     }, [remainingTime, endTime]);
 
