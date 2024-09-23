@@ -10,21 +10,7 @@ import { ApiServe } from '../../service'
 import { useEffect, useState } from 'react'
 import { useAlert } from '../../components/alertProvider'
 const defaultTx = {
-    // The transaction is valid for 10 minutes from now, in unix epoch seconds.
-    validUntil: Math.floor(Date.now() / 1000) + 600,
-    // messages: [
-
-    //     {
-    //         // The receiver's address.
-    //         address: '0x0000000000000000000000000000000000000000',
-    //         // Amount to send in nanoTON. For example, 0.005 TON is 5000000 nanoTON.
-    //         amount: '0',
-    //         // (optional) State initialization in boc base64 format.
-    //         stateInit: 'te6cckEBBAEAOgACATQCAQAAART/APSkE/S88sgLAwBI0wHQ0wMBcbCRW+D6QDBwgBDIywVYzxYh+gLLagHPFsmAQPsAlxCarA==',
-    //         // (optional) Payload in boc base64 format.
-    //         payload: 'te6ccsEBAQEADAAMABQAAAAASGVsbG8hCaTc/g==',
-    //     },
-    // ],
+    validUntil: Math.floor(Date.now() / 1000) + 1200,
     messages: [
         {
             address: "0:abffb20ca89eb26709ce50ed8eafaf151948603b85d942638ac15966fc380682", // destination address
@@ -148,9 +134,11 @@ const TasksPage = () => {
         tonConnectUI.openModal()
     }
     const toTollow = async () => {
-        claimObj[2] = true
-        setClaimObj({...claimObj})
-        localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
+        setTimeout(() => {
+            claimObj[2] = true
+            setClaimObj({...claimObj})
+            localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
+        }, 2000);
         // Telegram.WebApp.openTelegramLink('https://x.com/elonmusk/status/1836319222982701534')
         // Telegram.WebApp.openLink('https://x.com/elonmusk/status/1836319222982701534')
         window.open('https://x.com/elonmusk/status/1836319222982701534','_blank')
