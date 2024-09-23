@@ -21,7 +21,6 @@ const TasksPage = () => {
     const [taskList, setTaskList] = useState([])
     const [invitInfo, setInvitInfo] = useState({})
 
-    const [tx, setTx] = useState(defaultTx);
     const [tonConnectUi] = useTonConnectUI();
     const { showAlert } = useAlert();
     const [isClaim, setIsClaim] = useState('')
