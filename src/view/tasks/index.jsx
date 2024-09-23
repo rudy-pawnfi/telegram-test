@@ -9,16 +9,6 @@ import { reduceLen } from '../../untils'
 import { ApiServe } from '../../service'
 import { useEffect, useState } from 'react'
 import { useAlert } from '../../components/alertProvider'
-const defaultTx = {
-    validUntil: Math.floor(Date.now() / 1000) + 1200,
-    messages: [
-        {
-            address: "0:abffb20ca89eb26709ce50ed8eafaf151948603b85d942638ac15966fc380682", // destination address
-            amount: (0.001 * 1e9).toString(), //Toncoin in nanotons
-            // stateInit: 'te6cckEBBAEAOgACATQCAQAAART/APSkE/S88sgLAwBI0wHQ0wMBcbCRW+D6QDBwgBDIywVYzxYh+gLLagHPFsmAQPsAlxCarA==',
-        }
-    ]
-};
 const TasksPage = () => {
 
 
@@ -50,8 +40,17 @@ const TasksPage = () => {
         if(isClaim=== '1') return
         if (!wallet) return login()
         setIsClaim('1')
-        console.log('defaultTx :>> ', defaultTx);
-        tonConnectUi.sendTransaction(defaultTx).then(async res => {
+        
+        tonConnectUi.sendTransaction({
+            validUntil: Math.floor(Date.now() / 1000) + 1200,
+            messages: [
+                {
+                    address: "0:abffb20ca89eb26709ce50ed8eafaf151948603b85d942638ac15966fc380682", // destination address
+                    amount: (0.001 * 1e9).toString(), //Toncoin in nanotons
+                    stateInit: wallet.account.walletStateInit,
+                }
+            ]
+        }).then(async res => {
             setIsClaim('')
             claimObj[1] = true
             setClaimObj({...claimObj})

@@ -24,6 +24,7 @@ const HomePage = () => {
     const { showAlert } = useAlert();
     console.log('initData', initData);
     console.log('initDataUnsafe :>> ', initDataUnsafe);
+    console.log('wallet :>> ', wallet);
     const startParam = initDataUnsafe.start_param
     useEffect(() => {
         init()
@@ -56,7 +57,7 @@ const HomePage = () => {
             tg_account: initDataUnsafe.user.id + '',
             app_name: 'Rudy_test'
         })
-        const refCode = startParam.split('ref_code=')[1];
+        const refCode = startParam && startParam?.split('ref_code=')[1];
         if (startParam && Object.keys(result?.data).length === 0 && res?.data?.ref_code !== refCode) {
             // 解析 ref_code 参数
             const useInfo = await ApiServe.query('launchinviting',{
