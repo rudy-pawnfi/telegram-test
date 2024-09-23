@@ -22,11 +22,13 @@ const FarmingPage = () => {
     const [invitInfo, setInvitInfo] = useState({})
     useEffect(() => {
         init()
-    }, [wallet])
+    }, [])
     const init = async () => {
 
         const result = await ApiServe.query('userinfo', {
             tg_account: initDataUnsafe.user.id + ''
+        }).catch(err => {
+            return {data: {}}
         })
         setUseInfo(result.data)
         if(!!result.data?.launch_cnt && result.data?.launch_cnt !== 0){
@@ -128,7 +130,7 @@ const FarmingPage = () => {
                 ))}
                 <div className="flex column align_center justify_between farming_bg_center">
                     <img src={imgIntegral} alt="" srcSet="" />
-                    <Countdown useInfo={useInfo} farmingInfo={farmingInfo} startTime={farmingInfo?.start_ts * 1000} endTime={farmingInfo?.end_ts * 1000} launchpadFarming={launchpadFarming1} updata={launchpadFarming} />
+                    <Countdown useInfo={useInfo} farmingInfo={farmingInfo} startTime={farmingInfo?.start_ts * 1000} endTime={farmingInfo?.end_ts * 1000} launchpadFarming={launchpadFarming} updata={launchpadFarming1} />
                 </div>
                 
             </div>

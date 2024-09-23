@@ -25,7 +25,7 @@ const Countdown = ({ endTime, startTime, launchpadFarming, updata, useInfo, farm
         }else{
             updata()
         }
-    }, [remainingTime, endTime, wallet]);
+    }, [remainingTime, endTime]);
 
 
     // useEffect(() => {
