@@ -72,5 +72,5 @@ export function toFixed(num, dec = 18,type) {
         default: round = Decimal.ROUND_FLOOR;
     }
 
-    return mul(new Decimal(num).toFixed(Number(dec||0),round),1);
+    return new Decimal(num).toFixed(Number(dec||0),round);
 }
