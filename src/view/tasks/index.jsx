@@ -141,14 +141,14 @@ const TasksPage = () => {
         }, 2000);
         // Telegram.WebApp.openTelegramLink('https://x.com/elonmusk/status/1836319222982701534')
         // Telegram.WebApp.openLink('https://x.com/elonmusk/status/1836319222982701534')
-        window.open('https://x.com/elonmusk/status/1836319222982701534','_blank')
+        window.open('https://x.com/Polartonlord','_blank')
 
     }
     const toTg = async () => {
         claimObj[3] = true
         setClaimObj({...claimObj})
         localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
-        Telegram.WebApp.openTelegramLink('https://t.me/officialvanillafinance')
+        Telegram.WebApp.openTelegramLink('https://t.me/polartonlord')
 
     }
 

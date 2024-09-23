@@ -79,13 +79,13 @@ const HomePage = () => {
         if(claimObj[2]){
             // Telegram.WebApp.openTelegramLink('https://x.com/elonmusk/status/1836319222982701534')
             // Telegram.WebApp.openLink('https://x.com/elonmusk/status/1836319222982701534')
-            window.open('https://x.com/elonmusk/status/1836319222982701534','_blank')
+            window.open('https://x.com/Polartonlord','_blank')
         }else{
             claimObj[2] = true
             localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
             // Telegram.WebApp.openTelegramLink('https://x.com/elonmusk/status/1836319222982701534')
             // Telegram.WebApp.openLink('https://x.com/elonmusk/status/1836319222982701534')
-            window.open('https://x.com/elonmusk/status/1836319222982701534','_blank')
+            window.open('https://x.com/Polartonlord','_blank')
         }
         
         
@@ -98,11 +98,11 @@ const HomePage = () => {
             3: false,
         }
         if(claimObj[3]){
-            Telegram.WebApp.openTelegramLink('https://t.me/officialvanillafinance')
+            Telegram.WebApp.openTelegramLink('https://t.me/polartonlord')
         }else{
             claimObj[3] = true
             localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
-            Telegram.WebApp.openTelegramLink('https://t.me/officialvanillafinance')
+            Telegram.WebApp.openTelegramLink('https://t.me/polartonlord')
         }
         
 
