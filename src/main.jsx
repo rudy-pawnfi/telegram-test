@@ -16,7 +16,10 @@ createRoot(document.getElementById('root')).render(
             <TonConnectUIProvider
                 // manifestUrl="https://ton-connect.github.io/demo-dapp-with-wallet/tonconnect-manifest.json"
                 manifestUrl="https://rudy-pawnfi.github.io/telegram-test/tonconnect-manifest.json"
-                uiPreferences={{ theme: THEME.DARK }}
+                uiPreferences={{ 
+                    theme: THEME.DARK,
+                    standalone: true // 设置为 standalone，避免展示二维码
+                }}
                 // walletsListConfiguration={{
                 //     includeWallets: [
                 //         {

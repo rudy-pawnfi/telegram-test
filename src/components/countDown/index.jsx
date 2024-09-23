@@ -2,7 +2,7 @@ import { useTonAddress, useTonWallet } from "@tonconnect/ui-react";
 import React, { useState, useEffect, useMemo } from "react";
 import { reduceLen, toFixed, toFmtThousand } from "../../untils";
 
-const Countdown = ({ endTime, startTime, launchpadFarming, updata, useInfo, farmingInfo }) => {
+const Countdown = ({ endTime, startTime, launchpadFarming, useInfo, farmingInfo }) => {
     const [remainingTime, setRemainingTime] = useState(0);
     const [percentage, setPercentage] = useState(0)
     const tonAddress = useTonAddress()
@@ -23,7 +23,6 @@ const Countdown = ({ endTime, startTime, launchpadFarming, updata, useInfo, farm
 
             return () => clearInterval(timer); // 清理计时器
         }else{
-            updata()
         }
     }, [remainingTime, endTime]);
 
