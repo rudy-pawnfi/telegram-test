@@ -50,6 +50,7 @@ const TasksPage = () => {
         if(isClaim=== '1') return
         if (!wallet) return login()
         setIsClaim('1')
+        console.log('defaultTx :>> ', defaultTx);
         tonConnectUi.sendTransaction(defaultTx).then(async res => {
             setIsClaim('')
             claimObj[1] = true
