@@ -52,9 +52,13 @@ const HomePage = () => {
                 wallet_account: ''
             })
         }
-        if (startParam && Object.keys(result?.data).length === 0) {
+        const res = await ApiServe.query('getrefcode', {
+            tg_account: initDataUnsafe.user.id + '',
+            app_name: 'Rudy_test'
+        })
+        const refCode = startParam.split('ref_code=')[1];
+        if (startParam && Object.keys(result?.data).length === 0 && res?.data?.ref_code !== refCode) {
             // 解析 ref_code 参数
-            const refCode = startParam.split('ref_code=')[1];
             const useInfo = await ApiServe.query('launchinviting',{
                 ref_code: refCode,
                 tg_friend_account: initDataUnsafe.user.id + ''

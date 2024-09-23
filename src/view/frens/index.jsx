@@ -107,6 +107,9 @@ const FrensPage = () => {
                     </div> */}
                 </div>
             </div>
+
+            
+            <div className="copy_box pa_5" onClick={() => {localStorage.clear()}}>clear</div>
         </div>
         <div className="frens_btn_box flex align_center justify_end py_2">
             <div className="invite_box fs_3 fw_b flex justify_center align_center mr_4" onClick={inviteFriends}>
