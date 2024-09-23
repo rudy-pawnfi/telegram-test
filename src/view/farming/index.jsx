@@ -135,7 +135,7 @@ const FarmingPage = () => {
                 
             </div>
 
-            <div className="br_5 pa_4 dinosaur_box flex column align_center mt_3">
+            <div className="br_5 px_4 pt_2 pb_4 dinosaur_box flex column align_center">
                 <img className="header_img_box mb_5" src={imgTonlord} alt="" srcSet="" />
                 <div className="fs_4 fw_b mb_4">Dinosaur Run ( Soon! )</div>
                 <div className="flex align_center justify_center dinosaur_box_box">

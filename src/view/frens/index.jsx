@@ -82,7 +82,7 @@ const FrensPage = () => {
 
             <div className="pa_3">
                 <div className="fs_4 fw_b text_center">Invite Friends, Earn Rewards! </div>
-                <div className="centernt_box pa_4 flex">
+                <div className="centernt_box flex">
                     <img className="img_1" src={imgPointsRewards} alt="" srcSet="" />
                     {/* <div className="flex column mr_4">
                         <img className="img_1" src={imgPointsRewards} alt="" srcSet="" />
@@ -111,8 +111,8 @@ const FrensPage = () => {
             
             <div className="copy_box pa_5" onClick={() => {localStorage.clear()}}>clear</div>
         </div>
-        <div className="frens_btn_box flex align_center justify_end py_2">
-            <div className="invite_box fs_3 fw_b flex justify_center align_center mr_4" onClick={inviteFriends}>
+        <div className="frens_btn_box flex align_center justify_end py_4 ">
+            <div className="invite_box fs_3 fw_b flex justify_center align_center mr_4 ml_5" onClick={inviteFriends}>
                 <i className="picon p-icon-InviteFriends is_2 mr_2"></i>
                 <span className="fs_3 fw_b">Invite Friends</span>
             </div>

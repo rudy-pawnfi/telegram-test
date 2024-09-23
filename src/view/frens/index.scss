@@ -1,5 +1,5 @@
 .frens_page{
-    height: calc(100vh - 109px);
+    height: calc(100vh - 125px);
     overflow-y: auto;
     -webkit-tap-highlight-color: transparent;
     .frens_header_box{
@@ -33,7 +33,7 @@
     bottom: 61px;
     background-color: #000;
     .invite_box{
-        width: 60%;
+        flex: 1;
         background: linear-gradient(to bottom, #6E19FF, #DC19FF);
         border-radius: 100px;
         height: 48px;

@@ -11,6 +11,12 @@ html {
         color: #fff;
         background-color: #000;
         font-size: 12px;
+        margin: 0;
+        box-sizing: border-box
+        div, img, p{
+            margin: 0;
+            padding: 0;
+        }
         // &::-webkit-scrollbar {
         //     display: none;
         // }
