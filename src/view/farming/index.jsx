@@ -130,7 +130,7 @@ const FarmingPage = () => {
                 ))}
                 <div className="flex column align_center justify_between farming_bg_center">
                     <img src={imgIntegral} alt="" srcSet="" />
-                    <Countdown useInfo={useInfo} farmingInfo={farmingInfo} startTime={farmingInfo?.start_ts * 1000} endTime={farmingInfo?.end_ts * 1000} launchpadFarming={launchpadFarming} updata={launchpadFarming1} />
+                    <Countdown useInfo={useInfo} farmingInfo={farmingInfo} startTime={farmingInfo?.start_ts * 1000} endTime={farmingInfo?.end_ts * 1000} launchpadFarming={launchpadFarming} />
                 </div>
                 
             </div>
