@@ -11,7 +11,6 @@ const Countdown = ({ endTime, startTime, launchpadFarming, updata, useInfo, farm
     const initDataUnsafe = Telegram.WebApp.initDataUnsafe
       // 每次递增的时间间隔
     useEffect(() => {
-        if(!wallet) return
         let timeCount = endTime - Date.now()
         let countdown = endTime - startTime
         if (timeCount > 0) {
