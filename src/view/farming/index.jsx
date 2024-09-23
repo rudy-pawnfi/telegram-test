@@ -34,7 +34,7 @@ const FarmingPage = () => {
         if(!!result.data?.launch_cnt && result.data?.launch_cnt !== 0){
             const res = await ApiServe.query('launchfarming', {
                 tg_account: initDataUnsafe.user.id + '',
-                launch_cnt: (result?.data?.launch_cnt || 0) + 1
+                launch_cnt: (result?.data?.launch_cnt || 0)
             })
             setFarmingInfo(res)
         }
