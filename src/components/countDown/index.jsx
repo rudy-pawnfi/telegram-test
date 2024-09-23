@@ -83,14 +83,16 @@ const Countdown = ({ endTime, startTime, launchpadFarming, useInfo, farmingInfo 
                 
                 
                 <div className="fs_3 fw_b text_center mb_7">
-                    {remainingTime > 0 ? (
+                    {remainingTime > 0 && (
                         <span>{formatTime(remainingTime)}</span>
-                    ) : (
+                    )
+}
+                    {/* // ) : (
                         
-                        !!useInfo?.launch_cnt && (useInfo?.launch_cnt === '0' || useInfo?.launch_cnt === 0 )&&
-                            <span>00: 00: 00</span>
+                    //     !!useInfo?.launch_cnt && (useInfo?.launch_cnt === '0' || useInfo?.launch_cnt === 0 )&&
+                    //         <span>00: 00: 00</span>
                         
-                    )}
+                    // )} */}
                 </div>
             </div>
         </>
