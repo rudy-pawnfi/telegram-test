@@ -140,7 +140,7 @@ const FarmingPage = () => {
                 <div className="fs_4 fw_b mb_4">Dinosaur Run ( Soon! )</div>
                 <div className="flex align_center justify_center dinosaur_box_box">
                     <img className="mr_2" src={imgNumberOfLives} alt="" srcSet="" />
-                    <span className="fs_3 fw_b">{3 * invitInfo?.friends?.length || 0}</span>
+                    <span className="fs_3 fw_b">x {3 + invitInfo?.friends?.length || 0}</span>
                 </div>
             </div>
         </div>
