@@ -29,11 +29,13 @@ const FarmingPage = () => {
             tg_account: initDataUnsafe.user.id + ''
         })
         setUseInfo(result.data)
-        const res = await ApiServe.query('launchfarming', {
-            tg_account: initDataUnsafe.user.id + '',
-            launch_cnt: (result?.data?.launch_cnt || 0) + 1
-        })
-        setFarmingInfo(res)
+        if(!!result.data?.launch_cnt && result.data?.launch_cnt !== 0){
+            const res = await ApiServe.query('launchfarming', {
+                tg_account: initDataUnsafe.user.id + '',
+                launch_cnt: (result?.data?.launch_cnt || 0) + 1
+            })
+            setFarmingInfo(res)
+        }
 
         const useInfo = await ApiServe.query('invitinginfo',{
             tg_account: initDataUnsafe.user.id + '',
@@ -51,6 +53,16 @@ const FarmingPage = () => {
             launch_cnt: (useInfo?.launch_cnt || 0) + 1
         })
         setFarmingInfo(res)
+    }
+
+    const launchpadFarming1 = async () => {
+        if(!!useInfo?.launch_cnt && useInfo?.launch_cnt !== 0){
+            const res = await ApiServe.query('launchfarming', {
+                tg_account: initDataUnsafe.user.id + '',
+                launch_cnt: (useInfo?.launch_cnt || 0) + 1
+            })
+            setFarmingInfo(res)
+        }
     }
 
     const gradients = [
@@ -116,7 +128,7 @@ const FarmingPage = () => {
                 ))}
                 <div className="flex column align_center justify_between farming_bg_center">
                     <img src={imgIntegral} alt="" srcSet="" />
-                    <Countdown useInfo={useInfo} farmingInfo={farmingInfo} startTime={farmingInfo?.start_ts * 1000} endTime={farmingInfo?.end_ts * 1000} launchpadFarming={launchpadFarming} updata={launchpadFarming} />
+                    <Countdown useInfo={useInfo} farmingInfo={farmingInfo} startTime={farmingInfo?.start_ts * 1000} endTime={farmingInfo?.end_ts * 1000} launchpadFarming={launchpadFarming1} updata={launchpadFarming} />
                 </div>
                 
             </div>
@@ -126,7 +138,7 @@ const FarmingPage = () => {
                 <div className="fs_4 fw_b mb_4">Dinosaur Run ( Soon! )</div>
                 <div className="flex align_center justify_center dinosaur_box_box">
                     <img className="mr_2" src={imgNumberOfLives} alt="" srcSet="" />
-                    <span className="fs_3 fw_b">x3 + {invitInfo?.friends?.length || 0}</span>
+                    <span className="fs_3 fw_b">{3 * invitInfo?.friends?.length || 0}</span>
                 </div>
             </div>
         </div>

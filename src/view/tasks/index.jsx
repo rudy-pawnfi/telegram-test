@@ -333,7 +333,7 @@ const TasksPage = () => {
                                 <img className="mr_5" src={imgicon_5} alt="" srcSet="" />
                                 <div>
                                     <div className="fs_2 fw_m">Invited 10 Friends</div>
-                                    <div className="fs_2 text_4">+90.00 BP   {invitInfo?.friends?.length || 0}/10 frens</div>
+                                    <div className="fs_2 text_4">+90.00 BP   {invitInfo?.friends?.length || 0}/2 frens</div>
                                 </div>
                             </div>
                             {
@@ -343,7 +343,7 @@ const TasksPage = () => {
                                     </div>
                                     :
                                     (
-                                        invitInfo?.friends?.length >= 10 ?
+                                        invitInfo?.friends?.length >= 2 ?
                                             <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Invited 10 Friends', 90.00, '4')}>
                                                 {
                                                     isClaim === '4' ?
