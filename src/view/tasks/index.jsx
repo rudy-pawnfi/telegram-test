@@ -59,6 +59,7 @@ const TasksPage = () => {
         })
     }
     const sendTradeClaim = async (task_id) => {
+        if (!wallet) return login()
         setIsClaim(task_id)
         const res = await ApiServe.query('usersignin', {
             tg_account: initDataUnsafe.user.id + '',
