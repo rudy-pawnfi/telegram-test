@@ -236,7 +236,7 @@ const TasksPage = () => {
                                 </div>
                             </div>
                             {
-                                useInfo.state !== 2 ?
+                                useInfo.state === 2 ?
                                     <div className="tasks_btn click_btn fs_2 fw_b">
                                         <i className="picon p-icon-Finish is_3"></i>
                                     </div>
