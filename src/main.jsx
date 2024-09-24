@@ -113,7 +113,7 @@ createRoot(document.getElementById('root')).render(
                 //     ]
                 // }}
                 actionsConfiguration={{
-                    twaReturnUrl: 'https://t.me/tc_twa_demo_bot/start'
+                    twaReturnUrl: 'https://t.me/rudy_pawnfi_bot/polarise'
                 }}
             >
                 <AlertProvider>
