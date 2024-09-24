@@ -74,7 +74,7 @@ const FrensPage = () => {
             </div>
             <div className="flex justify_center align_center mb_2 number_img">
                 <img className="mr_3" src={imgIntegral2} alt="" srcSet="" />
-                <div className="fs_2 fw_m mr_3">{toFixed(userInfo?.inviting_points || 0, 2)}</div>
+                <div className="fs_2 fw_m mr_3">{userInfo?.inviting_points || 0}</div>
 
                 <img className="mr_3" src={imgNumberOfLives} alt="" srcSet="" />
                 <div className="fs_2 fw_m">{invitInfo?.friends?.length || 0}</div>
