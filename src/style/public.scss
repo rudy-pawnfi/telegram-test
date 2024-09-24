@@ -11,6 +11,12 @@ html {
         color: #fff;
         background-color: #000;
         font-size: 12px;
+        margin: 0;
+        box-sizing: border-box
+        div, img, p{
+            margin: 0;
+            padding: 0;
+        }
         // &::-webkit-scrollbar {
         //     display: none;
         // }
@@ -40,6 +46,50 @@ html {
         #lo_loading.active {
             width: 100%;
             transition: width 0.8s;
+        }
+        @keyframes breathing {
+            0% {
+              transform: scale(1);
+            //   opacity: 0.7;
+            }
+            50% {
+              transform: scale(1.1);
+            //   opacity: 1;
+            }
+            100% {
+              transform: scale(1);
+            //   opacity: 0.7;
+            }
+        }
+        @keyframes fadeInLeft {
+            0% {
+              opacity: 0;
+              transform: translateX(-100px); /* 从左侧开始 */
+            }
+            100% {
+              opacity: 1;
+              transform: translateX(0); /* 回到原位置 */
+            }
+        }
+        @keyframes fadeInRight {
+            0% {
+              opacity: 0;
+              transform: translateX(100px); /* 从左侧开始 */
+            }
+            100% {
+              opacity: 1;
+              transform: translateX(0); /* 回到原位置 */
+            }
+        }
+        @keyframes fadeInDown {
+            0% {
+              opacity: 0;
+              transform: translateY(-100px); /* 从上方开始 */
+            }
+            100% {
+              opacity: 1;
+              transform: translateY(0); /* 回到原位置 */
+            }
         }
     }
 }
