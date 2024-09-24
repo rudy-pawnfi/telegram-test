@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react'
 import { useAlert } from '../../components/alertProvider'
 const TasksPage = () => {
 
-
+    
     const [tonConnectUI] = useTonConnectUI();
 
     const wallet = useTonWallet();
@@ -29,7 +29,12 @@ const TasksPage = () => {
         2: false,
         3: false,
     })
-    const initDataUnsafe = Telegram.WebApp.initDataUnsafe
+    const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
+    // const initDataUnsafe = {
+    //     user: {
+    //         id: 5354957141
+    //     }
+    // }
     console.log('wallet :>> ', wallet);
     useEffect(() => {
         init()
@@ -44,7 +49,8 @@ const TasksPage = () => {
             validUntil: Math.floor(Date.now() / 1000) + 1200,
             messages: [
                 {
-                    address: "0:abffb20ca89eb26709ce50ed8eafaf151948603b85d942638ac15966fc380682", // destination address
+                    // address: "0:abffb20ca89eb26709ce50ed8eafaf151948603b85d942638ac15966fc380682", // destination address
+                    address: wallet.account.address,
                     amount: (0.001 * 1e9).toString(), //Toncoin in nanotons
                     stateInit: wallet.account.walletStateInit,
                 }
@@ -229,7 +235,7 @@ const TasksPage = () => {
                                 </div>
                             </div>
                             {
-                                !!taskList?.find(val => val.task_id === "1") ?
+                                useInfo.state !== 1 ?
                                     <div className="tasks_btn click_btn fs_2 fw_b">
                                         <i className="picon p-icon-Finish is_3"></i>
                                     </div>

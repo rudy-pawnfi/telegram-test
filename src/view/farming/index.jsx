@@ -17,7 +17,12 @@ const FarmingPage = () => {
     const [farmingInfo, setFarmingInfo] = useState({})
     const [useInfo, setUseInfo] = useState({})
     const { showAlert } = useAlert();
-    const initDataUnsafe = Telegram.WebApp.initDataUnsafe
+    const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
+    // const initDataUnsafe = {
+    //     user: {
+    //         id: 5354957141
+    //     }
+    // }
     const [bubbles, setBubbles] = useState([]);
     const [invitInfo, setInvitInfo] = useState({})
     useEffect(() => {
@@ -31,13 +36,13 @@ const FarmingPage = () => {
             return {data: {}}
         })
         setUseInfo(result.data)
-        if(!!result.data?.launch_cnt && result.data?.launch_cnt !== 0){
+        // if(!!result.data?.launch_cnt && result.data?.launch_cnt !== 0){
             const res = await ApiServe.query('launchfarming', {
                 tg_account: initDataUnsafe.user.id + '',
-                launch_cnt: (result?.data?.launch_cnt || 0)
+                launch_cnt: -1
             })
             setFarmingInfo(res)
-        }
+        // }
 
         const useInfo = await ApiServe.query('invitinginfo',{
             tg_account: initDataUnsafe.user.id + '',
