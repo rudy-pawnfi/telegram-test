@@ -57,16 +57,6 @@ const FarmingPage = () => {
         setFarmingInfo(res)
     }
 
-    const launchpadFarming1 = async () => {
-        if(!!useInfo?.launch_cnt && useInfo?.launch_cnt !== 0){
-            const res = await ApiServe.query('launchfarming', {
-                tg_account: initDataUnsafe.user.id + '',
-                launch_cnt: (useInfo?.launch_cnt || 0) + 1
-            })
-            setFarmingInfo(res)
-        }
-    }
-
     const gradients = [
         'linear-gradient(120deg, #5E00FF 20%, #DC19FF 80%)',
         'linear-gradient(145deg, #5E00FF 20%, #FF8C00 60%)',
