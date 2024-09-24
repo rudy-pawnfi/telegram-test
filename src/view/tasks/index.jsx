@@ -58,14 +58,20 @@ const TasksPage = () => {
             setIsClaim('')
         })
     }
-    const finshLogin = async () => {
-
-        setIsClaim('0')
+    const sendTradeClaim = async (task_id) => {
+        setIsClaim(task_id)
         const res = await ApiServe.query('usersignin', {
             tg_account: initDataUnsafe.user.id + '',
             chain_name: wallet.account.chain,
             wallet_account: tonAddress
         })
+        setTimeout(() => {
+            setIsClaim('')
+        }, 1000);
+    }
+    const finshLogin = async () => {
+
+        setIsClaim('0')
         await ApiServe.query('finishtask', {
             tg_account: initDataUnsafe.user.id + '',
             task_id: "0",
@@ -229,7 +235,7 @@ const TasksPage = () => {
                                     :
                                     (
                                         claimObj[1] ?
-                                            <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Login to your account daily', 90.00, '1')}>
+                                            <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => sendTradeClaim('1')}>
                                                 {
                                                     isClaim === '1' ?
                                                         <span className="loader"></span>
