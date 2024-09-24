@@ -31,13 +31,13 @@ const FarmingPage = () => {
             return {data: {}}
         })
         setUseInfo(result.data)
-        // if(!!result.data?.launch_cnt && result.data?.launch_cnt !== 0){
-        //     const res = await ApiServe.query('launchfarming', {
-        //         tg_account: initDataUnsafe.user.id + '',
-        //         launch_cnt: (result?.data?.launch_cnt || 0)
-        //     })
-        //     setFarmingInfo(res)
-        // }
+        if(!!result.data?.launch_cnt && result.data?.launch_cnt !== 0){
+            const res = await ApiServe.query('launchfarming', {
+                tg_account: initDataUnsafe.user.id + '',
+                launch_cnt: (result?.data?.launch_cnt || 0)
+            })
+            setFarmingInfo(res)
+        }
 
         const useInfo = await ApiServe.query('invitinginfo',{
             tg_account: initDataUnsafe.user.id + '',
