@@ -123,6 +123,10 @@ const TasksPage = () => {
         }).catch(err => {
             return {}
         })
+        if((useInfo.state&0x02) === 0x02){
+            claimObj[1] = false
+            setClaimObj({...claimObj})
+        }
         setUseInfo(useInfo.data)
 
         const invit = await ApiServe.query('invitinginfo', {
