@@ -1,9 +1,13 @@
 .tab_box{
     display: grid;
-    grid-template-columns:1fr 1fr 1fr 1fr;
+    grid-template-columns:1fr 1fr 1fr 1fr 1fr;
     height: 62px;
     img{
-        width: 28px;
-        height: 28px;
+        width: 24px;
+        height: 24px;
+        margin-top: 7px;
+    }
+    .tab_icon_box{
+        height: 36px;
     }
 }

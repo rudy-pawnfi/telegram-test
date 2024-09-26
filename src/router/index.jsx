@@ -6,6 +6,7 @@ import FarmingPage from '../view/farming'
 import TasksPage from '../view/tasks'
 import FrensPage from '../view/frens'
 import ErrorPage from '../view/error'
+import PrairiePage from '../view/prairie'
 import { useEffect } from 'react'
 const AppRouter = () => {
     const location = useLocation()
@@ -44,6 +45,7 @@ const AppRouter = () => {
                     <Route path={'/telegram-test/farming'} element={<FarmingPage />} />
                     <Route path={'/telegram-test/tasks'} element={<TasksPage />} />
                     <Route path={'/telegram-test/friends'} element={<FrensPage />} />
+                    <Route path={'/telegram-test/prairie'} element={<PrairiePage />} />
                     <Route path='*' element={<ErrorPage />} />
                 </Routes>
             </div>

@@ -1,8 +1,8 @@
 @font-face {
   font-family: "picon"; /* Project id 4678886 */
-  src: url('iconfont.woff2?t=1726222706968') format('woff2'),
-       url('iconfont.woff?t=1726222706968') format('woff'),
-       url('iconfont.ttf?t=1726222706968') format('truetype');
+  src: url('iconfont.woff2?t=1727340710298') format('woff2'),
+       url('iconfont.woff?t=1727340710298') format('woff'),
+       url('iconfont.ttf?t=1727340710298') format('truetype');
 }
 
 .picon {
@@ -11,6 +11,30 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.p-icon-usdt:before {
+  content: "\e72d";
+}
+
+.p-icon-Twitter2:before {
+  content: "\e73f";
+}
+
+.p-icon-Discord:before {
+  content: "\e746";
+}
+
+.p-icon-medium:before {
+  content: "\e747";
+}
+
+.p-icon-eth2:before {
+  content: "\e788";
+}
+
+.p-tuite:before {
+  content: "\e6aa";
 }
 
 .p-icon-Finish:before {
