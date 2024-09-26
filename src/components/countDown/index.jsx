@@ -54,6 +54,12 @@ const Countdown = ({ endTime, startTime, launchpadFarming, useInfo, farmingInfo 
         totle = totle + (count * farmingInfo.points_ps)
         return toFmtThousand(toFixed(totle || 0, 2))
     },[remainingTime, useInfo, farmingInfo])
+
+
+    const onclickFarming = async () => {
+        setCount(0)
+        launchpadFarming()
+    }
     return (
         <>
             <div className="text_center">
@@ -74,7 +80,7 @@ const Countdown = ({ endTime, startTime, launchpadFarming, useInfo, farmingInfo 
                         </div>
                     </div>
                     :
-                    <div className="farming_btn cursor flex justify_center align_center br_6 py_4 mb_7" onClick={launchpadFarming}>
+                    <div className="farming_btn cursor flex justify_center align_center br_6 py_4 mb_7" onClick={onclickFarming}>
                         <i className="picon p-icon-StartUp is_4 mr_2"></i>
                         <div className="fs_3 fw_b">Farming</div>
                     </div>

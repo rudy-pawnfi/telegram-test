@@ -74,7 +74,7 @@ const FrensPage = () => {
             </div>
             <div className="flex justify_center align_center mb_2 number_img">
                 <img className="mr_3" src={imgIntegral2} alt="" srcSet="" />
-                <div className="fs_2 fw_m mr_3">{toFixed(userInfo?.inviting_points || 0, 2)}</div>
+                <div className="fs_2 fw_m mr_3">{userInfo?.inviting_points || 0}</div>
 
                 <img className="mr_3" src={imgNumberOfLives} alt="" srcSet="" />
                 <div className="fs_2 fw_m">{invitInfo?.friends?.length || 0}</div>
@@ -109,7 +109,7 @@ const FrensPage = () => {
             </div>
 
             
-            <div className="copy_box pa_5 text_center" onClick={() => {localStorage.clear()}}>clear</div>
+            {/* <div className="copy_box pa_5 text_center" onClick={() => {localStorage.clear()}}>clear</div> */}
         </div>
         <div className="frens_btn_box flex align_center justify_end py_4 ">
             <div className="invite_box fs_3 fw_b flex justify_center align_center mr_4 ml_5" onClick={inviteFriends}>

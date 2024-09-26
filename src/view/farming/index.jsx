@@ -16,7 +16,12 @@ const FarmingPage = () => {
     const [farmingInfo, setFarmingInfo] = useState({})
     const [useInfo, setUseInfo] = useState({})
     const { showAlert } = useAlert();
-    const initDataUnsafe = Telegram.WebApp.initDataUnsafe
+    const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
+    // const initDataUnsafe = {
+    //     user: {
+    //         id: 5354957141
+    //     }
+    // }
     const [bubbles, setBubbles] = useState([]);
     const [invitInfo, setInvitInfo] = useState({})
     useEffect(() => {
@@ -31,11 +36,11 @@ const FarmingPage = () => {
         })
         setUseInfo(result.data)
         // if(!!result.data?.launch_cnt && result.data?.launch_cnt !== 0){
-        //     const res = await ApiServe.query('launchfarming', {
-        //         tg_account: initDataUnsafe.user.id + '',
-        //         launch_cnt: (result?.data?.launch_cnt || 0)
-        //     })
-        //     setFarmingInfo(res)
+            const res = await ApiServe.query('launchfarming', {
+                tg_account: initDataUnsafe.user.id + '',
+                launch_cnt: -1
+            })
+            setFarmingInfo(res)
         // }
 
         const useInfo = await ApiServe.query('invitinginfo',{
@@ -54,16 +59,6 @@ const FarmingPage = () => {
             launch_cnt: (useInfo?.launch_cnt || 0) + 1
         })
         setFarmingInfo(res)
-    }
-
-    const launchpadFarming1 = async () => {
-        if(!!useInfo?.launch_cnt && useInfo?.launch_cnt !== 0){
-            const res = await ApiServe.query('launchfarming', {
-                tg_account: initDataUnsafe.user.id + '',
-                launch_cnt: (useInfo?.launch_cnt || 0) + 1
-            })
-            setFarmingInfo(res)
-        }
     }
 
     const gradients = [
@@ -139,7 +134,7 @@ const FarmingPage = () => {
                 <div className="fs_4 fw_b mb_4">Dinosaur Run ( Soon! )</div>
                 <div className="flex align_center justify_center dinosaur_box_box">
                     <img className="mr_2" src={imgNumberOfLives} alt="" srcSet="" />
-                    <span className="fs_3 fw_b">x {3 + invitInfo?.friends?.length || 0}</span>
+                    <span className="fs_3 fw_b">x {3 + (invitInfo?.friends?.length || 0)}</span>
                 </div>
             </div>
         </div>

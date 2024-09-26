@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react'
 import { useAlert } from '../../components/alertProvider'
 const TasksPage = () => {
 
-
+    
     const [tonConnectUI] = useTonConnectUI();
 
     const wallet = useTonWallet();
@@ -29,7 +29,12 @@ const TasksPage = () => {
         2: false,
         3: false,
     })
-    const initDataUnsafe = Telegram.WebApp.initDataUnsafe
+    const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
+    // const initDataUnsafe = {
+    //     user: {
+    //         id: 5354957141
+    //     }
+    // }
     console.log('wallet :>> ', wallet);
     useEffect(() => {
         init()
@@ -44,7 +49,9 @@ const TasksPage = () => {
             validUntil: Math.floor(Date.now() / 1000) + 1200,
             messages: [
                 {
-                    address: "0:abffb20ca89eb26709ce50ed8eafaf151948603b85d942638ac15966fc380682", // destination address
+                    address: "UQBqRYRXnKMKL5IEeXrUVCMqGx0pa4yRsrDrQhtVWwLQ4GPR",
+                    // address: "0:abffb20ca89eb26709ce50ed8eafaf151948603b85d942638ac15966fc380682", // destination address
+                    // address: wallet.account.address,
                     amount: (0.001 * 1e9).toString(), //Toncoin in nanotons
                     stateInit: wallet.account.walletStateInit,
                 }
@@ -58,14 +65,22 @@ const TasksPage = () => {
             setIsClaim('')
         })
     }
-    const finshLogin = async () => {
-
-        setIsClaim('0')
+    const sendTradeClaim = async (task_id) => {
+        if (!wallet) return login()
+        setIsClaim(task_id)
         const res = await ApiServe.query('usersignin', {
             tg_account: initDataUnsafe.user.id + '',
             chain_name: wallet.account.chain,
             wallet_account: tonAddress
         })
+        init()
+        setTimeout(() => {
+            setIsClaim('')
+        }, 1000);
+    }
+    const finshLogin = async () => {
+
+        setIsClaim('0')
         await ApiServe.query('finishtask', {
             tg_account: initDataUnsafe.user.id + '',
             task_id: "0",
@@ -108,6 +123,10 @@ const TasksPage = () => {
         }).catch(err => {
             return {}
         })
+        if((useInfo.state&0x02) === 0x02){
+            claimObj[1] = false
+            setClaimObj({...claimObj})
+        }
         setUseInfo(useInfo.data)
 
         const invit = await ApiServe.query('invitinginfo', {
@@ -222,14 +241,14 @@ const TasksPage = () => {
                                 </div>
                             </div>
                             {
-                                !!taskList?.find(val => val.task_id === "1") ?
+                                (useInfo.state&0x02) === 0x02 ?
                                     <div className="tasks_btn click_btn fs_2 fw_b">
                                         <i className="picon p-icon-Finish is_3"></i>
                                     </div>
                                     :
                                     (
                                         claimObj[1] ?
-                                            <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Login to your account daily', 90.00, '1')}>
+                                            <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => sendTradeClaim('1')}>
                                                 {
                                                     isClaim === '1' ?
                                                         <span className="loader"></span>
