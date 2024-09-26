@@ -1,6 +1,7 @@
 .tasks_page{
     height: calc(100vh - 135px);
     overflow-y: auto;
+    overflow-x: hidden;
     -webkit-tap-highlight-color: transparent;
     .tasks_herader{
         height: 125px;
