@@ -102,27 +102,27 @@ const TasksPage = () => {
     }
     const init = async () => {
         setLoadding(true)
-        const claimObj = localStorage.getItem(initDataUnsafe.user.id + 'CLAIM') ? JSON.parse(localStorage.getItem(initDataUnsafe.user.id + 'CLAIM')) : {
+        const claimObj = localStorage.getItem(initDataUnsafe?.user?.id + 'CLAIM') ? JSON.parse(localStorage.getItem(initDataUnsafe?.user?.id + 'CLAIM')) : {
             1: false,
             2: false,
             3: false,
         }
         setClaimObj({ ...claimObj })
         const res = await ApiServe.query('getrefcode', {
-            tg_account: initDataUnsafe.user.id + '',
+            tg_account: initDataUnsafe?.user?.id + '',
             app_name: 'Rudy_test'
         })
         setInviteUrl(`https://t.me/share/url?url=https://t.me/rudy_pawnfi_bot/polarise?startapp=ref_code=${res?.data?.ref_code}`)
 
         const result = await ApiServe.query('finishedtaskList', {
-            tg_account: initDataUnsafe.user.id + '',
+            tg_account: initDataUnsafe?.user?.id + '',
         }).catch(err => {
             return { data: { list: [] } }
         })
 
         setTaskList(result.data.list)
         const useInfores = await ApiServe.query('userinfo', {
-            tg_account: initDataUnsafe.user.id + ''
+            tg_account: initDataUnsafe?.user?.id + ''
         }).catch(err => {
             return {}
         })
@@ -134,7 +134,7 @@ const TasksPage = () => {
         setUseInfo(useInfores.data)
 
         const invit = await ApiServe.query('invitinginfo', {
-            tg_account: initDataUnsafe.user.id + ''
+            tg_account: initDataUnsafe?.user?.id + ''
         }).catch(err => {
             return {}
         })
@@ -251,7 +251,7 @@ const TasksPage = () => {
                                             </div>
                                         </div>
                                         {
-                                            (useInfo.state & 0x02) === 0x02 ?
+                                            (useInfo?.state & 0x02) === 0x02 ?
                                                 <div className="tasks_btn click_btn fs_2 fw_b">
                                                     <i className="picon p-icon-Finish is_3"></i>
                                                 </div>

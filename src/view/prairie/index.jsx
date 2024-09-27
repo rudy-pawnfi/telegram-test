@@ -1,8 +1,60 @@
-import { useState } from 'react'
+import { useTonAddress, useTonConnectUI, useTonWallet } from '@tonconnect/ui-react'
+import { useEffect, useMemo, useState } from 'react'
+import { useAlert } from '../../components/alertProvider'
+import ApiContact from '../../service/contract/handleServe'
+import { toFixed } from '../../untils'
+import { getFormatDate } from '../../untils/formatDate'
 import './index.scss'
 import headerImg from '/images/prairie/img-PrairieDog2.png'
 const PrairiePage = () => {
 
+
+    const tonAddress = useTonAddress()
+    const [mintInfo, setMintInfo] = useState({
+        white: {
+            startTime: 1727413649,
+            endTime: 1727500049,
+            amount: 3000,
+            address: '0QAS2LYYZVTqLxoZfkuas5Qerjtr6T4QxnoXLRwyQWEqr5mU'
+
+        },
+        public: {
+            startTime: 1727500049,
+            endTime: 1727586449,
+            amount: 3000,
+            address: '0QCPwqYk_hYpnxTA_2li09mo6VD41UqGr0ftJs0X6ZNMvpas'
+        },
+    })
+    useEffect(() => {
+        init()
+    },[tonAddress])
+
+    const init = async () => {
+        if(!tonAddress) return
+        const balance = await ApiContact.query('getAddressBalance',{
+                address: tonAddress
+            },'get')
+        const balance1 = await ApiContact.query('getAddressBalance',{
+                address: mintInfo.white.address
+            },'get')
+        const balance2 = await ApiContact.query('getAddressBalance',{
+                address: mintInfo.public.address
+            },'get')
+        let info = {
+            white: {
+                ...mintInfo.white,
+                amountBalance: balance1?.result / 1e9
+            },
+            public: {
+                ...mintInfo.public,
+                amountBalance: balance2?.result / 1e9
+            },
+            amount: mintInfo.amount,
+            balance: balance?.result / 1e9
+        }
+        console.log('info :>> ', info);
+        setMintInfo({...info})
+    }
     return (
         <div className="prairie_page">
             <div className="prairie_header pa_4">
@@ -41,7 +93,9 @@ const PrairiePage = () => {
                     <div className="flex justify_between align_center mb_2">
                         <span className="fs_2 fw_m text_4">Network </span>
                         <div className="flex align_center">
-                            <i className="picon p-icon-eth2 is_2 mr_2"></i>
+                            <svg className="icon is_2 mr_2" aria-hidden="true">
+                                <use xlinkHref={`#p-icon-eth2`}></use>
+                            </svg>
                             <span className="fs_2 fw_m">Ethereum</span>
                         </div>
                     </div>
@@ -51,9 +105,9 @@ const PrairiePage = () => {
                     </div>
                 </div>
 
-                <TimeLineBox />
+                <TimeLineBox mintInfo={mintInfo} />
 
-                <MintBox />
+                <MintBox mintInfo={mintInfo} />
                 
                 <TableDec />
             </div>
@@ -61,12 +115,74 @@ const PrairiePage = () => {
     )
 }
 
-const MintBox = () => {
+const MintBox = (props) => {
+    const {mintInfo} = props
+    const tonAddress = useTonAddress()
+    const [ tonConnectUi ] = useTonConnectUI()
+    const [loadding, setLoadding] = useState(false)
+    const wallet = useTonWallet();
+    const { showAlert } = useAlert();
+    const progress = useMemo(() => {
 
+        let amountBalance = 0, amount= 0
+        if((Date.now()) > (mintInfo?.white?.startTime * 1000) && (Date.now()) < (mintInfo?.white?.endTime * 1000)){
+            amountBalance = mintInfo.white?.amountBalance
+            amount = mintInfo.white?.amount
+        }else{
+            amountBalance = mintInfo.public?.amountBalance
+            amount = mintInfo.public?.amount
+        }
+        let width = 0
+        width = amountBalance === 0 ? 0 : toFixed(amountBalance / amount * 100, 4)
+        return width > 100 ? 100 : width
+
+    },[mintInfo])
+
+    const sendTrade = async () => {
+        if(!tonAddress) return tonConnectUi.openModal()
+        
+        setLoadding(true)
+        let address = ''
+        let amount = 0, maxAmount=0
+        if((Date.now()) > (mintInfo?.white?.startTime * 1000) && (Date.now()) < (mintInfo?.white?.endTime * 1000)){
+            address = mintInfo?.white?.address
+            amount = mintInfo?.white?.amountBalance
+            maxAmount = mintInfo?.white?.amount
+        }else{
+            address = mintInfo?.public?.address
+            amount = mintInfo?.public?.amountBalance
+            maxAmount = mintInfo?.public?.amount
+        }
+        if(amount > maxAmount) return showAlert('已筹满', 'warning')
+        tonConnectUi.sendTransaction({
+            validUntil: Math.floor(Date.now() / 1000) + 1200,
+            messages: [
+                {
+                    address: address,
+                    amount: (5 * 1e9).toString(), //Toncoin in nanotons
+                    stateInit: wallet.account.walletStateInit,
+                }
+            ]
+        }).then(async res => {
+            init()
+            setLoadding(false)
+        }).catch(err => {
+            setLoadding(false)
+        })
+    }
     return(
         <>
+        {
+            (Date.now()) > (mintInfo?.public?.endTime * 1000) ?
             <div className="mint_box pa_6 br_6 mb_3">
-                <div className="fs_5 fw_b text_center mb_4">White List</div>
+                <div className="fs_5 fw_b text_center mb_4">Airdrop</div>
+                <img src={headerImg} alt="" srcset="" className="mb_4" />
+                <div className="fs_5 fw_b text_center">空投已发放！请在钱包中查收。</div>
+                
+            </div>
+        :
+            <div className="mint_box pa_6 br_6 mb_3">
+                <div className="fs_5 fw_b text_center mb_4">{(Date.now()) > (mintInfo?.white?.startTime * 1000) && (Date.now()) < (mintInfo?.white?.endTime * 1000) ? 'White List' : 'Public List'}</div>
                 <div className="flex justify_between align_center mb_4">
                     <div className="flex align_center">
                         <svg className="icon is_5 mr_3" aria-hidden="true">
@@ -78,17 +194,17 @@ const MintBox = () => {
                 </div>
 
                 <div className="flex justify_between align_center mb_4">
-                    <span className="fs_2 fw_b">Progress - -%</span>
-                    <span className="fs_2 fw_b"> - -/3,000 PFT</span>
+                    <span className="fs_2 fw_b">Progress {progress}%</span>
+                    <span className="fs_2 fw_b"> {(Date.now()) > (mintInfo?.white?.startTime * 1000) && (Date.now()) < (mintInfo?.white?.endTime * 1000) ? ((mintInfo?.white?.amountBalance || '- -') + '/' + mintInfo?.white?.amount) : ((mintInfo.public?.amountBalance  || '- -') + '/' + mintInfo?.white?.amount)} PFT</span>
                 </div>
 
                 <div className="progress_box br_7 pa_3 mb_4">
-                    <div className="progress_box_box br_7"></div>
+                    <div className="progress_box_box br_7" style={{width: progress + '%'}}></div>
                 </div>
 
                 <div className="flex justify_between align_center mb_2">
                     <span className="fs_2 fw_m text_4">Per Wallet Purchase</span>
-                    <span className="fs_2 fw_m"> 200 PFT</span>
+                    <span className="fs_2 fw_m"> 5 PFT</span>
                 </div>
                 {/* <div className="flex justify_between align_center mb_2">
                     <span className="fs_2 fw_m text_4">My Reservation</span>
@@ -96,16 +212,67 @@ const MintBox = () => {
                 </div> */}
                 <div className="flex justify_between align_center mb_4">
                     <span className="fs_2 fw_m text_4">Wallet Balance</span>
-                    <span className="fs_2 fw_m">200 USDT</span>
+                    <span className="fs_2 fw_m">{mintInfo?.balance || '--'} USDT</span>
                 </div>
 
-                <div className="mint_btn br_7 text_center fs_4 fw_b">
-                    1.00 USDT / PFT 
+                <div className="mint_btn br_7 text_center fs_4 fw_b" onClick={sendTrade}>
+                    
+                    {
+                        loadding ?
+                        <span className="loader"></span>
+                        :
+                        <span>5.00 USDT / PFT </span>
+                    }
                 </div>
             </div>
+            }
         </> 
     )
 }
+
+
+
+const TimeLineBox = (props) => {
+
+    const {mintInfo} = props
+    return(
+        <div className="time_line_box br_6 pa_6 mb_3">
+            <div className="time_box_list mb_4">
+                    <div className="fs_2 fw_b flex column align_center justify_center">White List</div>
+                    <div className="fs_2 fw_b flex column align_center justify_center">Public List</div>
+                    <div className="fs_2 fw_b flex column align_center justify_center">Airdrop PFT</div>
+                </div>
+                <div className="time_box_list mb_4">
+                    <div className="flex column align_center justify_center">
+                        <div className="new_b_g_1 br_7 bd round_box flex column align_center justify_center ">
+                            <div className={`${(Date.now()) > (mintInfo?.white?.startTime * 1000) && (Date.now()) < (mintInfo?.white?.endTime * 1000) ? 'b_g_1' : '' } br_7`}></div>
+                        </div>
+                    </div>
+                    <div className="flex column align_center justify_center">
+                        <div className="new_b_g_1 br_7 bd round_box flex column align_center justify_center ">
+                            <div className={`${(Date.now()) > (mintInfo?.public?.startTime * 1000) && (Date.now()) < (mintInfo?.public?.endTime * 1000) ? 'b_g_1' : '' } br_7`}></div>
+                        </div>
+                    </div>
+                    <div className="flex column align_center justify_center">
+                        <div className="new_b_g_1 br_7 bd round_box flex column align_center justify_center ">
+                            <div className={`${(Date.now()) > (mintInfo?.public?.endTime * 1000) ? 'b_g_1' : ''} br_7`}></div>
+                        </div>
+                    </div>
+                    <div className="line_box"></div>
+                </div>
+                <div className="time_box_list text_4">
+                    <div className="fs_1 fw_m text_center ">
+                        {getFormatDate(new Date(mintInfo?.white?.startTime * 1000),"M d y h:i P u")}
+                    </div>
+                    <div className="fs_1 fw_m text_center ">
+                    {getFormatDate(new Date(mintInfo?.public?.startTime * 1000),"M d y h:i P u")}
+                    </div>
+                    <div className="fs_1 fw_m text_center ">TBU</div>
+                </div>
+        </div>
+    )
+}
+
 
 const TableDec = () => {
     const tabList = [
@@ -227,44 +394,6 @@ const TableDec = () => {
                 </>
             }
             </div>
-        </div>
-    )
-}
-
-const TimeLineBox = () => {
-
-    return(
-        <div className="time_line_box br_6 pa_6 mb_3">
-            <div className="time_box_list mb_4">
-                    <div className="fs_2 fw_b flex column align_center justify_center">White List</div>
-                    <div className="fs_2 fw_b flex column align_center justify_center">Public List</div>
-                    <div className="fs_2 fw_b flex column align_center justify_center">Airdrop PFT</div>
-                </div>
-                <div className="time_box_list mb_4">
-                    <div className="flex column align_center justify_center">
-                        <div className="new_b_g_1 br_7 bd round_box flex column align_center justify_center ">
-                            <div className={` b_g_1 br_7`}></div>
-                        </div>
-                    </div>
-                    <div className="flex column align_center justify_center">
-                        <div className="new_b_g_1 br_7 bd round_box flex column align_center justify_center ">
-                            <div className={`br_7`}></div>
-                        </div>
-                    </div>
-                    <div className="flex column align_center justify_center">
-                        <div className="new_b_g_1 br_7 bd round_box flex column align_center justify_center ">
-                            <div className={` br_7`}></div>
-                        </div>
-                    </div>
-                    <div className="line_box"></div>
-                </div>
-                <div className="time_box_list text_4">
-                    <div className="fs_1 fw_m text_center ">April 05 2024 10:00 (UTC)</div>
-                    <div className="fs_1 fw_m text_center ">
-                    April 05 2024 10:00 (UTC)
-                    </div>
-                    <div className="fs_1 fw_m text_center ">TBU</div>
-                </div>
         </div>
     )
 }
