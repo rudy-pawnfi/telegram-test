@@ -140,7 +140,7 @@ const MintBox = (props) => {
 
     const sendTrade = async () => {
         if(!tonAddress) return tonConnectUi.openModal()
-        
+        if(mintInfo.balance < 5) return showAlert('余额不足', 'warning')
         setLoadding(true)
         let address = ''
         let amount = 0, maxAmount=0
@@ -153,7 +153,10 @@ const MintBox = (props) => {
             amount = mintInfo?.public?.amountBalance
             maxAmount = mintInfo?.public?.amount
         }
-        if(amount > maxAmount) return showAlert('已筹满', 'warning')
+        if(amount > maxAmount){
+            setLoadding(false)
+            return showAlert('已筹满', 'warning')
+        } 
         tonConnectUi.sendTransaction({
             validUntil: Math.floor(Date.now() / 1000) + 1200,
             messages: [
@@ -190,7 +193,7 @@ const MintBox = (props) => {
                         </svg>
                         <span className="fs_5 fw_b">USDT</span>
                     </div>
-                    <span className="fs_5 fw_b">- -</span>
+                    <span className="fs_5 fw_b">{(Date.now()) > (mintInfo?.white?.startTime * 1000) && (Date.now()) < (mintInfo?.white?.endTime * 1000) ? (mintInfo?.white?.amountBalance || '- -') : (mintInfo?.public?.amountBalance || '- -')}</span>
                 </div>
 
                 <div className="flex justify_between align_center mb_4">
