@@ -121,17 +121,17 @@ const TasksPage = () => {
         })
 
         setTaskList(result.data.list)
-        const useInfo = await ApiServe.query('userinfo', {
+        const useInfores = await ApiServe.query('userinfo', {
             tg_account: initDataUnsafe.user.id + ''
         }).catch(err => {
             return {}
         })
-        if ((useInfo.state & 0x02) === 0x02) {
+        if ((useInfores?.data?.state & 0x02) === 0x02) {
             claimObj[1] = false
             setClaimObj({ ...claimObj })
             localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
         }
-        setUseInfo(useInfo.data)
+        setUseInfo(useInfores.data)
 
         const invit = await ApiServe.query('invitinginfo', {
             tg_account: initDataUnsafe.user.id + ''
