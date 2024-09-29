@@ -151,16 +151,16 @@ const MintBox = (props) => {
         if((Date.now())  < (mintInfo?.white?.endTime * 1000)){
             address = mintInfo?.white?.address
             amount = mintInfo?.white?.amountBalance
-            maxAmount = mintInfo?.white?.amount
+            // maxAmount = mintInfo?.white?.amount
         }else{
             address = mintInfo?.public?.address
             amount = mintInfo?.public?.amountBalance
-            maxAmount = mintInfo?.public?.amount
+            // maxAmount = mintInfo?.public?.amount
         }
-        if(amount > maxAmount){
-            setLoadding(false)
-            return showAlert('已筹满', 'warning')
-        } 
+        // if(amount > maxAmount){
+        //     setLoadding(false)
+        //     return showAlert('已筹满', 'warning')
+        // } 
         tonConnectUi.sendTransaction({
             validUntil: Math.floor(Date.now() / 1000) + 1200,
             messages: [
@@ -228,7 +228,7 @@ const MintBox = (props) => {
                         loadding ?
                         <span className="loader"></span>
                         :
-                        <span>5.00 USDT / PFT </span>
+                        <span>Revelation </span>
                     }
                 </div>
             </div>
