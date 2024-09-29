@@ -43,14 +43,14 @@ const PrairiePage = () => {
         let info = {
             white: {
                 ...mintInfo.white,
-                amountBalance: toFixed(balance1?.result / 1e9, 2)
+                amountBalance: balance1?.result ? toFixed(balance1?.result / 1e9, 2) : 0
             },
             public: {
                 ...mintInfo.public,
-                amountBalance: toFixed(balance2?.result / 1e9, 2)
+                amountBalance: balance2?.result ? toFixed(balance2?.result / 1e9, 2) : 0
             },
             amount: mintInfo.amount,
-            balance: toFixed(balance?.result / 1e9, 2)
+            balance: balance?.result ? toFixed(balance?.result / 1e9, 2) : 0
         }
         console.log('info :>> ', info);
         setMintInfo({...info})
@@ -133,7 +133,7 @@ const MintBox = (props) => {
         }
         let width = 0
         width = amountBalance === 0 ? 0 : toFixed(amountBalance / amount * 100, 4)
-        return width > 100 ? 100 : toFixed(width,2)
+        return width > 100 ? 100 : toFixed(width || 0,2)
 
     },[mintInfo])
 
