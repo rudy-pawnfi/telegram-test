@@ -20,7 +20,7 @@ const TabBox = (props) => {
             link: '/telegram-test/farming'
         },
         {
-            label: 'prairie',
+            label: 'Prairie',
             icon: '',
             img: iconPrairieDog,
             link: '/telegram-test/prairie'
@@ -44,7 +44,7 @@ const TabBox = (props) => {
         return 'text_4'
     }
     return(
-        <div className="tab_box w100">
+        <div className="tab_box w100 pb_6 pt_4">
             {
                 list.map(val =>
                     <div className={`flex column align_center ${active(val)}`} key={val.label} onClick={() => toPage(val)}>

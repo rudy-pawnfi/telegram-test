@@ -51,15 +51,15 @@
             background-color: #0F0F0F;
             .progress_box{
                 background-color: #000;
-                height: 17px;
                 .progress_box_box{
                     width: 100%;
-                    height: 100%;
+                    height: 24px;
                     background: linear-gradient(to right, #6E19FF, #DC19FF); 
+
                 }
             }
             .mint_btn{
-                background-color: #000;
+                background: linear-gradient(to bottom, #6E19FF, #DC19FF); 
                 height: 56px;
                 line-height: 56px;
             }

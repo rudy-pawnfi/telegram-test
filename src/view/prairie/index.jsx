@@ -13,7 +13,7 @@ const PrairiePage = () => {
     const [mintInfo, setMintInfo] = useState({
         white: {
             startTime: 1727591400,
-            endTime: 1727593200,
+            endTime: 1727593200,//
             amount: 3000,
             address: '0QAS2LYYZVTqLxoZfkuas5Qerjtr6T4QxnoXLRwyQWEqr5mU'
 
@@ -43,14 +43,14 @@ const PrairiePage = () => {
         let info = {
             white: {
                 ...mintInfo.white,
-                amountBalance: balance1?.result / 1e9
+                amountBalance: toFixed(balance1?.result / 1e9, 2)
             },
             public: {
                 ...mintInfo.public,
-                amountBalance: balance2?.result / 1e9
+                amountBalance: toFixed(balance2?.result / 1e9, 2)
             },
             amount: mintInfo.amount,
-            balance: balance?.result / 1e9
+            balance: toFixed(balance?.result / 1e9, 2)
         }
         console.log('info :>> ', info);
         setMintInfo({...info})
@@ -60,9 +60,9 @@ const PrairiePage = () => {
             <div className="prairie_header pa_4">
                 <div className="flex column align_center prairie_header_img mb_3">
                     <img src={headerImg} alt="" srcset="" className="mb_4" />
-                    <span className="fw_b fs_6 mb_4">prairie dog</span>
-                    <div className="flex py_2 mb_4" style={{gap: '12px'}}>
-                        <i className="picon p-icon-Discord is_5"></i>
+                    <span className="fw_b fs_6">Prairie dog</span>
+                    <div className="flex" style={{gap: '12px'}}>
+                        <i className="picon p-icon-etherscan is_5"></i>
                         <i className="picon p-icon-Discord is_5"></i>
                         <i className="picon p-icon-Twitter2 is_5"></i>
                         <i className="picon p-icon-medium is_5"></i>
@@ -133,7 +133,7 @@ const MintBox = (props) => {
         }
         let width = 0
         width = amountBalance === 0 ? 0 : toFixed(amountBalance / amount * 100, 4)
-        return width > 100 ? 100 : width
+        return width > 100 ? 100 : toFixed(width,2)
 
     },[mintInfo])
 
@@ -193,7 +193,7 @@ const MintBox = (props) => {
                         </svg>
                         <span className="fs_5 fw_b">USDT</span>
                     </div>
-                    <span className="fs_5 fw_b">{(Date.now()) < (mintInfo?.white?.endTime * 1000) ? (mintInfo?.white?.amountBalance || '- -') : (mintInfo?.public?.amountBalance || '- -')}</span>
+                    <span className="fs_5 fw_b">{(Date.now()) < (mintInfo?.white?.endTime * 1000) ? (mintInfo?.white?.amountBalance || '- -') : (mintInfo?.public?.amountBalance || '- -')} USDT / PFT</span>
                 </div>
 
                 <div className="flex justify_between align_center mb_4">
@@ -201,7 +201,7 @@ const MintBox = (props) => {
                     <span className="fs_2 fw_b"> {(Date.now()) < (mintInfo?.white?.endTime * 1000) ? ((mintInfo?.white?.amountBalance || '- -') + '/' + mintInfo?.white?.amount) : ((mintInfo.public?.amountBalance  || '- -') + '/' + mintInfo?.white?.amount)} PFT</span>
                 </div>
 
-                <div className="progress_box br_7 pa_3 mb_4">
+                <div className="progress_box br_7 pa_2 mb_4">
                     <div className="progress_box_box br_7" style={{width: progress + '%'}}></div>
                 </div>
 

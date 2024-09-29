@@ -6,6 +6,13 @@
   "description": "polarcapsule-miniapp",
   "glyphs": [
     {
+      "icon_id": "29556831",
+      "name": "icon-Etherscan",
+      "font_class": "icon-etherscan",
+      "unicode": "e75d",
+      "unicode_decimal": 59229
+    },
+    {
       "icon_id": "24922695",
       "name": "icon-usdt",
       "font_class": "icon-usdt",
