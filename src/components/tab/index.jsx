@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom'
+import iconPrairieDog from '/images/prairie/icon-PrairieDog.png'
 import './index.scss'
 const TabBox = (props) => {
 
@@ -21,7 +22,7 @@ const TabBox = (props) => {
         {
             label: 'prairie',
             icon: '',
-            img: '/images/prairie/icon-PrairieDog.png',
+            img: iconPrairieDog,
             link: '/telegram-test/prairie'
         },
         {
