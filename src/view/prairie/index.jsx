@@ -12,15 +12,15 @@ const PrairiePage = () => {
     const tonAddress = useTonAddress()
     const [mintInfo, setMintInfo] = useState({
         white: {
-            startTime: 1727413649,
-            endTime: 1727500049,
+            startTime: 1727591400,
+            endTime: 1727593200,
             amount: 3000,
             address: '0QAS2LYYZVTqLxoZfkuas5Qerjtr6T4QxnoXLRwyQWEqr5mU'
 
         },
         public: {
-            startTime: 1727500049,
-            endTime: 1727586449,
+            startTime: 1727595000,
+            endTime: 1727596800,
             amount: 3000,
             address: '0QCPwqYk_hYpnxTA_2li09mo6VD41UqGr0ftJs0X6ZNMvpas'
         },
@@ -62,7 +62,6 @@ const PrairiePage = () => {
                     <img src={headerImg} alt="" srcset="" className="mb_4" />
                     <span className="fw_b fs_6 mb_4">prairie dog</span>
                     <div className="flex py_2 mb_4" style={{gap: '12px'}}>
-                        <i className="picon p-icon-Discord is_5"></i>
                         <i className="picon p-icon-Discord is_5"></i>
                         <i className="picon p-icon-Discord is_5"></i>
                         <i className="picon p-icon-Twitter2 is_5"></i>
@@ -141,6 +140,7 @@ const MintBox = (props) => {
     const sendTrade = async () => {
         if(!tonAddress) return tonConnectUi.openModal()
         if(mintInfo.balance < 5) return showAlert('余额不足', 'warning')
+        if((Date.now()) < (mintInfo?.white?.startTime * 1000)  || ((Date.now()) < (mintInfo?.public?.startTime * 1000) && (Date.now()) > (mintInfo?.white?.endTime * 1000)) ) return showAlert('筹集活动还未开始', 'warning')
         setLoadding(true)
         let address = ''
         let amount = 0, maxAmount=0
@@ -179,7 +179,7 @@ const MintBox = (props) => {
             (Date.now()) > (mintInfo?.public?.endTime * 1000) ?
             <div className="mint_box pa_6 br_6 mb_3">
                 <div className="fs_5 fw_b text_center mb_4">Airdrop</div>
-                <img src={headerImg} alt="" srcset="" className="mb_4" />
+                <img src={headerImg} alt="" srcset="" className="text_center" />
                 <div className="fs_5 fw_b text_center">空投已发放！请在钱包中查收。</div>
                 
             </div>
