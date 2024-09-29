@@ -14,7 +14,6 @@ console.log('WebApp :>> ', WebApp);
 createRoot(document.getElementById('root')).render(
     <StrictMode>
             <TonConnectUIProvider
-                // manifestUrl="https://ton-connect.github.io/demo-dapp-with-wallet/tonconnect-manifest.json"
                 manifestUrl="https://rudy-pawnfi.github.io/telegram-test/tonconnect-manifest.json"
                 uiPreferences={{ 
                     theme: THEME.DARK,
@@ -114,7 +113,6 @@ createRoot(document.getElementById('root')).render(
                 // }}
                 actionsConfiguration={{
                     twaReturnUrl: 'https://t.me/rudy_pawnfi_bot/polarise/start',
-                    // network: 'testnet', // 设置为测试网
                 }}
             >
                 <AlertProvider>
