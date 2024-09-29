@@ -24,6 +24,9 @@ const PrairiePage = () => {
             amount: 60,
             address: '0QCPwqYk_hYpnxTA_2li09mo6VD41UqGr0ftJs0X6ZNMvpas'
         },
+        claim: {
+            startTime: 1727602200,
+        }
     })
     useEffect(() => {
         init()
@@ -141,6 +144,7 @@ const MintBox = (props) => {
         if(!tonAddress) return tonConnectUi.openModal()
         if(mintInfo.balance < 5) return showAlert('余额不足', 'warning')
         if((Date.now()) < (mintInfo?.white?.startTime * 1000)  || ((Date.now()) < (mintInfo?.public?.startTime * 1000) && (Date.now()) > (mintInfo?.white?.endTime * 1000)) ) return showAlert('筹集活动还未开始', 'warning')
+        if((Date.now()) > (mintInfo?.public?.endTime * 1000)) return showAlert('活动结束', 'warning')
         setLoadding(true)
         let address = ''
         let amount = 0, maxAmount=0
@@ -176,7 +180,7 @@ const MintBox = (props) => {
     return(
         <>
         {
-            (Date.now()) > (mintInfo?.public?.endTime * 1000) ?
+            (Date.now()) > (mintInfo?.claim?.startTime * 1000) ?
             <div className="mint_box pa_6 br_6 mb_3 text_center">
                 <div className="fs_5 fw_b text_center mb_4">Airdrop</div>
                 <img src={headerImg} alt="" srcset="" className="" />
@@ -258,7 +262,7 @@ const TimeLineBox = (props) => {
                     </div>
                     <div className="flex column align_center justify_center">
                         <div className="new_b_g_1 br_7 bd round_box flex column align_center justify_center ">
-                            <div className={`${(Date.now()) > (mintInfo?.public?.endTime * 1000) ? 'b_g_1' : ''} br_7`}></div>
+                            <div className={`${(Date.now()) > (mintInfo?.claim?.startTime * 1000) ? 'b_g_1' : ''} br_7`}></div>
                         </div>
                     </div>
                     <div className="line_box"></div>
