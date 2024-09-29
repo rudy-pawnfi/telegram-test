@@ -6,6 +6,48 @@
   "description": "polarcapsule-miniapp",
   "glyphs": [
     {
+      "icon_id": "24922695",
+      "name": "icon-usdt",
+      "font_class": "icon-usdt",
+      "unicode": "e72d",
+      "unicode_decimal": 59181
+    },
+    {
+      "icon_id": "25170851",
+      "name": "icon-kfckfc",
+      "font_class": "icon-Twitter2",
+      "unicode": "e73f",
+      "unicode_decimal": 59199
+    },
+    {
+      "icon_id": "25188475",
+      "name": "icon-Discord",
+      "font_class": "icon-Discord",
+      "unicode": "e746",
+      "unicode_decimal": 59206
+    },
+    {
+      "icon_id": "25188932",
+      "name": "icon-medium",
+      "font_class": "icon-medium",
+      "unicode": "e747",
+      "unicode_decimal": 59207
+    },
+    {
+      "icon_id": "30972856",
+      "name": "Vector",
+      "font_class": "icon-eth2",
+      "unicode": "e788",
+      "unicode_decimal": 59272
+    },
+    {
+      "icon_id": "40402530",
+      "name": "推特",
+      "font_class": "tuite",
+      "unicode": "e6aa",
+      "unicode_decimal": 59050
+    },
+    {
       "icon_id": "41821873",
       "name": "icon-Finish",
       "font_class": "icon-Finish",

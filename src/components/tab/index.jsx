@@ -19,6 +19,12 @@ const TabBox = (props) => {
             link: '/telegram-test/farming'
         },
         {
+            label: 'prairie',
+            icon: '',
+            img: '/images/prairie/icon-PrairieDog.png',
+            link: '/telegram-test/prairie'
+        },
+        {
             label: 'Tasks',
             icon: 'p-icon-Tasks',
             link: '/telegram-test/tasks'
@@ -41,8 +47,16 @@ const TabBox = (props) => {
             {
                 list.map(val =>
                     <div className={`flex column align_center ${active(val)}`} key={val.label} onClick={() => toPage(val)}>
-                        {/* <img src={val.icon} alt="" srcSet="" className="mb_2" /> */}
-                        <i className={`picon is_4 ${val.icon}`} />
+                        
+                        
+                        <div className="tab_icon_box">
+                            {
+                                val.img ?
+                                <img src={val.img} alt="" srcSet="" className="" />
+                                :
+                                <i className={`picon is_4 ${val.icon}`} />
+                            }
+                        </div>
                         <span className="fw_m">{val.label}</span>
                     </div>    
                 )
