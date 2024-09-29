@@ -195,9 +195,9 @@ const MintBox = (props) => {
                         <svg className="icon is_5 mr_3" aria-hidden="true">
                             <use xlinkHref={`#p-icon-usdt`}></use>
                         </svg>
-                        <span className="fs_5 fw_b">USDT</span>
+                        <span className="fs_4 fw_b">{(Date.now()) < (mintInfo?.white?.endTime * 1000) ? (mintInfo?.white?.amountBalance || '- -') : (mintInfo?.public?.amountBalance || '- -')}USDT</span>
                     </div>
-                    <span className="fs_5 fw_b">{(Date.now()) < (mintInfo?.white?.endTime * 1000) ? (mintInfo?.white?.amountBalance || '- -') : (mintInfo?.public?.amountBalance || '- -')} USDT / PFT</span>
+                    <span className="fs_4 fw_b">3 USDT / PFT</span>
                 </div>
 
                 <div className="flex justify_between align_center mb_4">
