@@ -52,6 +52,9 @@ const PrairiePage = () => {
                 ...mintInfo.public,
                 amountBalance: balance2?.result ? toFixed(balance2?.result / 1e9, 2) : 0
             },
+            claim: {
+                ...mintInfo.claim,
+            },
             amount: mintInfo.amount,
             balance: balance?.result ? toFixed(balance?.result / 1e9, 2) : 0
         }
