@@ -12,16 +12,16 @@ const PrairiePage = () => {
     const tonAddress = useTonAddress()
     const [mintInfo, setMintInfo] = useState({
         white: {
-            startTime: 1727591400,
-            endTime: 1727593200,//
-            amount: 3000,
+            startTime: 1727598600,
+            endTime: 1727599800,//
+            amount: 50,
             address: '0QAS2LYYZVTqLxoZfkuas5Qerjtr6T4QxnoXLRwyQWEqr5mU'
 
         },
         public: {
-            startTime: 1727595000,
-            endTime: 1727596800,
-            amount: 3000,
+            startTime: 1727600400,
+            endTime: 1727601600,
+            amount: 60,
             address: '0QCPwqYk_hYpnxTA_2li09mo6VD41UqGr0ftJs0X6ZNMvpas'
         },
     })
@@ -177,9 +177,9 @@ const MintBox = (props) => {
         <>
         {
             (Date.now()) > (mintInfo?.public?.endTime * 1000) ?
-            <div className="mint_box pa_6 br_6 mb_3">
+            <div className="mint_box pa_6 br_6 mb_3 text_center">
                 <div className="fs_5 fw_b text_center mb_4">Airdrop</div>
-                <img src={headerImg} alt="" srcset="" className="text_center" />
+                <img src={headerImg} alt="" srcset="" className="" />
                 <div className="fs_5 fw_b text_center">空投已发放！请在钱包中查收。</div>
                 
             </div>
