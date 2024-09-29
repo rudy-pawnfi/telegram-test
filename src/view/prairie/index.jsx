@@ -125,7 +125,7 @@ const MintBox = (props) => {
     const progress = useMemo(() => {
 
         let amountBalance = 0, amount= 0
-        if((Date.now()) > (mintInfo?.white?.startTime * 1000) && (Date.now()) < (mintInfo?.white?.endTime * 1000)){
+        if((Date.now())  < (mintInfo?.white?.endTime * 1000)){
             amountBalance = mintInfo.white?.amountBalance
             amount = mintInfo.white?.amount
         }else{
@@ -144,7 +144,7 @@ const MintBox = (props) => {
         setLoadding(true)
         let address = ''
         let amount = 0, maxAmount=0
-        if((Date.now()) > (mintInfo?.white?.startTime * 1000) && (Date.now()) < (mintInfo?.white?.endTime * 1000)){
+        if((Date.now())  < (mintInfo?.white?.endTime * 1000)){
             address = mintInfo?.white?.address
             amount = mintInfo?.white?.amountBalance
             maxAmount = mintInfo?.white?.amount
@@ -185,7 +185,7 @@ const MintBox = (props) => {
             </div>
         :
             <div className="mint_box pa_6 br_6 mb_3">
-                <div className="fs_5 fw_b text_center mb_4">{(Date.now()) > (mintInfo?.white?.startTime * 1000) && (Date.now()) < (mintInfo?.white?.endTime * 1000) ? 'White List' : 'Public List'}</div>
+                <div className="fs_5 fw_b text_center mb_4">{(Date.now()) < (mintInfo?.white?.endTime * 1000) ? 'White List' : 'Public List'}</div>
                 <div className="flex justify_between align_center mb_4">
                     <div className="flex align_center">
                         <svg className="icon is_5 mr_3" aria-hidden="true">
@@ -193,12 +193,12 @@ const MintBox = (props) => {
                         </svg>
                         <span className="fs_5 fw_b">USDT</span>
                     </div>
-                    <span className="fs_5 fw_b">{(Date.now()) > (mintInfo?.white?.startTime * 1000) && (Date.now()) < (mintInfo?.white?.endTime * 1000) ? (mintInfo?.white?.amountBalance || '- -') : (mintInfo?.public?.amountBalance || '- -')}</span>
+                    <span className="fs_5 fw_b">{(Date.now()) < (mintInfo?.white?.endTime * 1000) ? (mintInfo?.white?.amountBalance || '- -') : (mintInfo?.public?.amountBalance || '- -')}</span>
                 </div>
 
                 <div className="flex justify_between align_center mb_4">
                     <span className="fs_2 fw_b">Progress {progress}%</span>
-                    <span className="fs_2 fw_b"> {(Date.now()) > (mintInfo?.white?.startTime * 1000) && (Date.now()) < (mintInfo?.white?.endTime * 1000) ? ((mintInfo?.white?.amountBalance || '- -') + '/' + mintInfo?.white?.amount) : ((mintInfo.public?.amountBalance  || '- -') + '/' + mintInfo?.white?.amount)} PFT</span>
+                    <span className="fs_2 fw_b"> {(Date.now()) < (mintInfo?.white?.endTime * 1000) ? ((mintInfo?.white?.amountBalance || '- -') + '/' + mintInfo?.white?.amount) : ((mintInfo.public?.amountBalance  || '- -') + '/' + mintInfo?.white?.amount)} PFT</span>
                 </div>
 
                 <div className="progress_box br_7 pa_3 mb_4">
