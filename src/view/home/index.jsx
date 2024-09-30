@@ -23,7 +23,6 @@ const HomePage = () => {
     const wallet = useTonWallet(); 
     const { showAlert } = useAlert();
     console.log('initData', initData);
-    console.log('initDataUnsafe :>> ', initDataUnsafe);
     console.log('wallet :>> ', wallet);
     const startParam = initDataUnsafe.start_param
     useEffect(() => {

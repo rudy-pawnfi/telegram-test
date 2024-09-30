@@ -99,7 +99,7 @@ const FarmingPage = () => {
     useEffect(() => {
         const intervalId = setInterval(createBubble, 300); // 每300毫秒生成一个气泡
 
-        return () => clearInterval(intervalId); // 清除定时器
+        return () => clearInterval(intervalId);
     }, []);
     return (
         <div className="farming_page pa_3">
