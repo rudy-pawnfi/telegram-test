@@ -6,7 +6,6 @@ const ErrorPage = () => {
     const navigate = useNavigate()
     const location = useLocation()
     useEffect(() =>{
-        console.log('location :>> ', location);
         navigate('/telegram-test')
     },[location])
     return(
