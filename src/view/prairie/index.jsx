@@ -12,20 +12,20 @@ const PrairiePage = () => {
     const tonAddress = useTonAddress()
     const [mintInfo, setMintInfo] = useState({
         white: {
-            startTime: 1727598600,
-            endTime: 1727599800,//
-            amount: 50,
+            startTime: 1727679600,
+            endTime: 1727680800,//
+            amount: 60,
             address: '0QAS2LYYZVTqLxoZfkuas5Qerjtr6T4QxnoXLRwyQWEqr5mU'
 
         },
         public: {
-            startTime: 1727600400,
-            endTime: 1727601600,
+            startTime: 1727681400,
+            endTime: 1727682600,
             amount: 60,
             address: '0QCPwqYk_hYpnxTA_2li09mo6VD41UqGr0ftJs0X6ZNMvpas'
         },
         claim: {
-            startTime: 1727602200,
+            startTime: 1727683200,
         }
     })
     useEffect(() => {
