@@ -101,7 +101,7 @@ const TasksPage = () => {
         }, 1000);
     }
     const init = async () => {
-        // setLoadding(true)
+        setLoadding(true)
         const claimObj = localStorage.getItem(initDataUnsafe.user.id + 'CLAIM') ? JSON.parse(localStorage.getItem(initDataUnsafe.user.id + 'CLAIM')) : {
             1: false,
             2: false,
