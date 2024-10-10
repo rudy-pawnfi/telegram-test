@@ -5,9 +5,11 @@ import imgicon_2 from '/images/Tasks/icon_2.png'
 import imgicon_3 from '/images/Tasks/icon_3.png'
 import imgicon_4 from '/images/Tasks/icon_4.png'
 import imgicon_5 from '/images/Tasks/icon_5.png'
+import channelIcon from '/images/Tasks/channel.png'
+import erc1000Icon from '/images/Tasks/erc1000.png'
 import { reduceLen } from '../../untils'
 import { ApiServe } from '../../service'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useAlert } from '../../components/alertProvider'
 import LoadingSpinner from '../../components/loadding'
 const TasksPage = () => {
@@ -30,6 +32,8 @@ const TasksPage = () => {
         1: false,
         2: false,
         3: false,
+        4: false,
+        5: false,
     })
     const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
     // const initDataUnsafe = {
@@ -101,11 +105,13 @@ const TasksPage = () => {
         }, 1000);
     }
     const init = async () => {
-        setLoadding(true)
+        // setLoadding(true)
         const claimObj = localStorage.getItem(initDataUnsafe.user.id + 'CLAIM') ? JSON.parse(localStorage.getItem(initDataUnsafe.user.id + 'CLAIM')) : {
             1: false,
             2: false,
             3: false,
+            4: false,
+            5: false,
         }
         setClaimObj({ ...claimObj })
         const res = await ApiServe.query('getrefcode', {
@@ -130,6 +136,22 @@ const TasksPage = () => {
             claimObj[1] = false
             setClaimObj({ ...claimObj })
             localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
+        }
+        let task5 = result?.data?.list?.find(val => val.task_id === "5")
+        let task6 = result?.data?.list?.find(val => val.task_id === "6")
+        if(!!task5){
+            if(!isNotNewDay(task5.finish_ts)){
+                claimObj[4] = false
+                setClaimObj({ ...claimObj })
+                localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
+            }
+        }
+        if(!!task6){
+            if(!isNotNewDay(task6.finish_ts)){
+                claimObj[5] = false
+                setClaimObj({ ...claimObj })
+                localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
+            }
         }
         setUseInfo(useInfores.data)
 
@@ -172,8 +194,21 @@ const TasksPage = () => {
         setClaimObj({ ...claimObj })
         localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
         Telegram.WebApp.openTelegramLink('https://t.me/polartonlord')
-
     }
+
+    const toChannel = async () => {
+        claimObj[4] = true
+        setClaimObj({ ...claimObj })
+        localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
+        Telegram.WebApp.openTelegramLink('https://t.me/polartonlord')
+    }
+    const toWebsite = async () => {
+        claimObj[5] = true
+        setClaimObj({ ...claimObj })
+        localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
+        Telegram.WebApp.openTelegramLink('https://erc1000.polarise.org/ ')
+    }
+    
 
     const claimMt = async (task_name, points, task_id) => {
         setIsClaim(task_id)
@@ -194,6 +229,19 @@ const TasksPage = () => {
             return { data: { list: [] } }
         })
     }
+
+    function isNotNewDay(lastTimestamp) {
+        if(!!lastTimestamp) return false
+        const currentTime = Date.now(); // 当前时间的时间戳（毫秒）
+        
+        // 获取当前日期的时间戳（从凌晨12点开始）
+        const currentMidnight = new Date();
+        currentMidnight.setHours(0, 0, 0, 0); // 设置为当天凌晨12:00
+        const currentMidnightTimestamp = currentMidnight.getTime(); // 获取当前日期凌晨的时间戳
+    
+        // 如果上次完成任务的时间戳小于今天凌晨12点的时间戳，说明不是新的一天
+        return lastTimestamp > currentMidnightTimestamp;
+    }
     return (
         <>
             {
@@ -208,38 +256,70 @@ const TasksPage = () => {
                             <div className="pa_3">
                                 <div className="fs_4 fw_b mb_4 text_center">Capsule Tasks</div>
                                 <div className="tasks_list">
-                                    <div className="list_box list_box_1 pa_4 flex justify_between align_center mb_3">
+                                    <div className="list_box list_box_3 pa_4 flex justify_between align_center mb_3">
                                         <div className="flex align_center">
-                                            <img className="mr_5" src={imgicon_1} alt="" srcSet="" />
+                                            <img className="mr_5" src={channelIcon} alt="" srcSet="" />
                                             <div>
-                                                <div className="fs_2 fw_m">Connect your wallet</div>
-                                                <div className="fs_2 text_4">+900 BP</div>
+                                                <div className="fs_2 fw_m">Visit channel</div>
+                                                <div className="fs_2 text_4">+90 BP</div>
                                             </div>
                                         </div>
                                         {
-                                            !!taskList?.find(val => val.task_id === "0") ?
+                                            !!taskList?.find(val => val.task_id === "5") && isNotNewDay(taskList?.find(val => val.task_id === "5")?.finish_ts) ?
                                                 <div className="tasks_btn click_btn fs_2 fw_b">
                                                     <i className="picon p-icon-Finish is_3"></i>
                                                 </div>
                                                 :
                                                 (
-                                                    !!wallet ?
-                                                        <div className="tasks_btn click_btn fs_2 fw_b" onClick={finshLogin}>
-                                                            {/* Claim */}
+                                                    claimObj[2] ?
+                                                        <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Visit channel', 90.00, '5')}>
                                                             {
-                                                                isClaim === '0' ?
+                                                                isClaim === '2' ?
                                                                     <span className="loader"></span>
                                                                     :
                                                                     <span>Claim</span>
                                                             }
                                                         </div>
                                                         :
-                                                        <div className="tasks_btn go_btn fs_2 fw_b" onClick={() => login()}>
+                                                        <div className="tasks_btn go_btn fs_2 fw_b" onClick={toChannel}>
                                                             Go
                                                         </div>
                                                 )
-                                        }
 
+                                        }
+                                    </div>
+
+                                    <div className="list_box list_box_3 pa_4 flex justify_between align_center mb_3">
+                                        <div className="flex align_center">
+                                            <img className="mr_5" src={erc1000Icon} alt="" srcSet="" />
+                                            <div>
+                                                <div className="fs_2 fw_m">Visit ERC-1000 website</div>
+                                                <div className="fs_2 text_4">+90 BP</div>
+                                            </div>
+                                        </div>
+                                        {
+                                            !!taskList?.find(val => val.task_id === "6") && isNotNewDay(taskList?.find(val => val.task_id === "5")?.finish_ts)?
+                                                <div className="tasks_btn click_btn fs_2 fw_b">
+                                                    <i className="picon p-icon-Finish is_3"></i>
+                                                </div>
+                                                :
+                                                (
+                                                    claimObj[2] ?
+                                                        <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Visit ERC-1000 website', 90.00, '6')}>
+                                                            {
+                                                                isClaim === '2' ?
+                                                                    <span className="loader"></span>
+                                                                    :
+                                                                    <span>Claim</span>
+                                                            }
+                                                        </div>
+                                                        :
+                                                        <div className="tasks_btn go_btn fs_2 fw_b" onClick={toWebsite}>
+                                                            Go
+                                                        </div>
+                                                )
+
+                                        }
                                     </div>
 
                                     <div className="list_box list_box_2 pa_4 flex justify_between align_center mb_3">
@@ -274,6 +354,39 @@ const TasksPage = () => {
                                                                     :
                                                                     <span>Go</span>
                                                             }
+                                                        </div>
+                                                )
+                                        }
+
+                                    </div>
+                                    <div className="list_box list_box_1 pa_4 flex justify_between align_center mb_3">
+                                        <div className="flex align_center">
+                                            <img className="mr_5" src={imgicon_1} alt="" srcSet="" />
+                                            <div>
+                                                <div className="fs_2 fw_m">Connect your wallet</div>
+                                                <div className="fs_2 text_4">+900 BP</div>
+                                            </div>
+                                        </div>
+                                        {
+                                            !!taskList?.find(val => val.task_id === "0") ?
+                                                <div className="tasks_btn click_btn fs_2 fw_b">
+                                                    <i className="picon p-icon-Finish is_3"></i>
+                                                </div>
+                                                :
+                                                (
+                                                    !!wallet ?
+                                                        <div className="tasks_btn click_btn fs_2 fw_b" onClick={finshLogin}>
+                                                            {/* Claim */}
+                                                            {
+                                                                isClaim === '0' ?
+                                                                    <span className="loader"></span>
+                                                                    :
+                                                                    <span>Claim</span>
+                                                            }
+                                                        </div>
+                                                        :
+                                                        <div className="tasks_btn go_btn fs_2 fw_b" onClick={() => login()}>
+                                                            Go
                                                         </div>
                                                 )
                                         }
