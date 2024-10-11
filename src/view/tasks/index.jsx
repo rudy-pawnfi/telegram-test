@@ -34,6 +34,7 @@ const TasksPage = () => {
         3: false,
         4: false,
         5: false,
+        6: false,
     })
     const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
     // const initDataUnsafe = {
@@ -111,6 +112,7 @@ const TasksPage = () => {
             3: false,
             4: false,
             5: false,
+            6: false,
         }
         setClaimObj({ ...claimObj })
         const res = await ApiServe.query('getrefcode', {
@@ -138,6 +140,7 @@ const TasksPage = () => {
         }
         let task5 = result?.data?.list?.find(val => val.task_id === "5")
         let task6 = result?.data?.list?.find(val => val.task_id === "6")
+        let task7 = result?.data?.list?.find(val => val.task_id === "7")
         if(!!task5){
             if(!isNotNewDay(task5.finish_ts)){
                 claimObj[4] = false
@@ -148,6 +151,13 @@ const TasksPage = () => {
         if(!!task6){
             if(!isNotNewDay(task6.finish_ts)){
                 claimObj[5] = false
+                setClaimObj({ ...claimObj })
+                localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
+            }
+        }
+        if(!!task7){
+            if(!isNotNewDay(task7.finish_ts)){
+                claimObj[6] = false
                 setClaimObj({ ...claimObj })
                 localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
             }
@@ -201,11 +211,11 @@ const TasksPage = () => {
         localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
         Telegram.WebApp.openTelegramLink('https://t.me/polartonlord')
     }
-    const toWebsite = async () => {
-        claimObj[5] = true
+    const toWebsite = async (url, index) => {
+        claimObj[index] = true
         setClaimObj({ ...claimObj })
         localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
-        window.open('https://erc1000.polarise.org/ ','_blank')
+        window.open(url,'_blank')
     }
     
 
@@ -231,6 +241,7 @@ const TasksPage = () => {
 
     function isNotNewDay(lastTimestamp) {
         if(!!lastTimestamp) return false
+        let last = lastTimestamp * 1000
         const currentTime = Date.now(); // 当前时间的时间戳（毫秒）
         
         // 获取当前日期的时间戳（从凌晨12点开始）
@@ -239,7 +250,7 @@ const TasksPage = () => {
         const currentMidnightTimestamp = currentMidnight.getTime(); // 获取当前日期凌晨的时间戳
     
         // 如果上次完成任务的时间戳小于今天凌晨12点的时间戳，说明不是新的一天
-        return lastTimestamp > currentMidnightTimestamp;
+        return last > currentMidnightTimestamp;
     }
     return (
         <>
@@ -288,6 +299,8 @@ const TasksPage = () => {
                                         }
                                     </div>
 
+                                    
+
                                     <div className="list_box list_box_3 pa_4 flex justify_between align_center mb_3">
                                         <div className="flex align_center">
                                             <img className="mr_5" src={erc1000Icon} alt="" srcSet="" />
@@ -297,7 +310,7 @@ const TasksPage = () => {
                                             </div>
                                         </div>
                                         {
-                                            !!taskList?.find(val => val.task_id === "6") && isNotNewDay(taskList?.find(val => val.task_id === "5")?.finish_ts)?
+                                            !!taskList?.find(val => val.task_id === "6") && isNotNewDay(taskList?.find(val => val.task_id === "6")?.finish_ts)?
                                                 <div className="tasks_btn click_btn fs_2 fw_b">
                                                     <i className="picon p-icon-Finish is_3"></i>
                                                 </div>
@@ -313,7 +326,40 @@ const TasksPage = () => {
                                                             }
                                                         </div>
                                                         :
-                                                        <div className="tasks_btn go_btn fs_2 fw_b" onClick={toWebsite}>
+                                                        <div className="tasks_btn go_btn fs_2 fw_b" onClick={() => {toWebsite('https://erc1000.polarise.org/ ', 5)}}>
+                                                            Go
+                                                        </div>
+                                                )
+
+                                        }
+                                    </div>
+
+                                    <div className="list_box list_box_3 pa_4 flex justify_between align_center mb_3">
+                                        <div className="flex align_center">
+                                            <img className="mr_5" src={erc1000Icon} alt="" srcSet="" />
+                                            <div>
+                                                <div className="fs_2 fw_m">Visit Polarise website</div>
+                                                <div className="fs_2 text_4">+90 BP</div>
+                                            </div>
+                                        </div>
+                                        {
+                                            !!taskList?.find(val => val.task_id === "7") && isNotNewDay(taskList?.find(val => val.task_id === "7")?.finish_ts)?
+                                                <div className="tasks_btn click_btn fs_2 fw_b">
+                                                    <i className="picon p-icon-Finish is_3"></i>
+                                                </div>
+                                                :
+                                                (
+                                                    claimObj[5] ?
+                                                        <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Visit Polarise website', 90.00, '7')}>
+                                                            {
+                                                                isClaim === '7' ?
+                                                                    <span className="loader"></span>
+                                                                    :
+                                                                    <span>Claim</span>
+                                                            }
+                                                        </div>
+                                                        :
+                                                        <div className="tasks_btn go_btn fs_2 fw_b" onClick={() => {toWebsite('https://www.polarise.org/', 6)}}>
                                                             Go
                                                         </div>
                                                 )
