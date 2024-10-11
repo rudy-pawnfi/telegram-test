@@ -270,7 +270,7 @@ const TasksPage = () => {
                                                 </div>
                                                 :
                                                 (
-                                                    claimObj[2] ?
+                                                    claimObj[4] ?
                                                         <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Visit channel', 90.00, '5')}>
                                                             {
                                                                 isClaim === '5' ?
@@ -303,7 +303,7 @@ const TasksPage = () => {
                                                 </div>
                                                 :
                                                 (
-                                                    claimObj[2] ?
+                                                    claimObj[5] ?
                                                         <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Visit ERC-1000 website', 90.00, '6')}>
                                                             {
                                                                 isClaim === '6' ?
