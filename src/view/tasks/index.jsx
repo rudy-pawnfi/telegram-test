@@ -372,7 +372,7 @@ const TasksPage = () => {
                                             <img className="mr_5" src={imgicon_2} alt="" srcSet="" />
                                             <div>
                                                 <div className="fs_2 fw_m">Login to your account daily</div>
-                                                <div className="fs_2 text_4">+90 BP</div>
+                                                <div className="fs_2 text_4">+200 BP</div>
                                             </div>
                                         </div>
                                         {
