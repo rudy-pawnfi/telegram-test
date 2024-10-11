@@ -36,12 +36,12 @@ const TasksPage = () => {
         5: false,
         6: false,
     })
-    const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
-    // const initDataUnsafe = {
-    //     user: {
-    //         id: 5354957141
-    //     }
-    // }
+    // const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
+    const initDataUnsafe = {
+        user: {
+            id: 5354957141
+        }
+    }
     console.log('wallet :>> ', wallet);
     useEffect(() => {
         init()
@@ -240,7 +240,7 @@ const TasksPage = () => {
     }
 
     function isNotNewDay(lastTimestamp) {
-        if(!!lastTimestamp) return false
+        if(!lastTimestamp) return false
         let last = lastTimestamp * 1000
         const currentTime = Date.now(); // 当前时间的时间戳（毫秒）
         
