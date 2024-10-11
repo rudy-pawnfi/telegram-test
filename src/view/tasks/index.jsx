@@ -205,7 +205,7 @@ const TasksPage = () => {
         claimObj[5] = true
         setClaimObj({ ...claimObj })
         localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
-        Telegram.WebApp.openTelegramLink('https://erc1000.polarise.org/ ')
+        window.open('https://erc1000.polarise.org/ ','_blank')
     }
     
 
@@ -273,7 +273,7 @@ const TasksPage = () => {
                                                     claimObj[2] ?
                                                         <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Visit channel', 90.00, '5')}>
                                                             {
-                                                                isClaim === '2' ?
+                                                                isClaim === '5' ?
                                                                     <span className="loader"></span>
                                                                     :
                                                                     <span>Claim</span>
@@ -306,7 +306,7 @@ const TasksPage = () => {
                                                     claimObj[2] ?
                                                         <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Visit ERC-1000 website', 90.00, '6')}>
                                                             {
-                                                                isClaim === '2' ?
+                                                                isClaim === '6' ?
                                                                     <span className="loader"></span>
                                                                     :
                                                                     <span>Claim</span>
