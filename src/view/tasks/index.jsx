@@ -142,21 +142,21 @@ const TasksPage = () => {
         let task6 = result?.data?.list?.find(val => val.task_id === "6")
         let task7 = result?.data?.list?.find(val => val.task_id === "7")
         if(!!task5){
-            if(!isNotNewDay(task5.finish_ts)){
+            if(!isNotNewDay(task5.finish_ts) && !claimObj[4]){
                 claimObj[4] = false
                 setClaimObj({ ...claimObj })
                 localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
             }
         }
         if(!!task6){
-            if(!isNotNewDay(task6.finish_ts)){
+            if(!isNotNewDay(task6.finish_ts) && !claimObj[5]){
                 claimObj[5] = false
                 setClaimObj({ ...claimObj })
                 localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
             }
         }
         if(!!task7){
-            if(!isNotNewDay(task7.finish_ts)){
+            if(!isNotNewDay(task7.finish_ts) && !claimObj[6]){
                 claimObj[6] = false
                 setClaimObj({ ...claimObj })
                 localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
@@ -349,7 +349,7 @@ const TasksPage = () => {
                                                 </div>
                                                 :
                                                 (
-                                                    claimObj[5] ?
+                                                    claimObj[6] ?
                                                         <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Visit Polarise website', 90.00, '7')}>
                                                             {
                                                                 isClaim === '7' ?
