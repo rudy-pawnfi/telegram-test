@@ -23,6 +23,7 @@ const TasksPage = () => {
     const [useInfo, setUseInfo] = useState({})
     const [taskList, setTaskList] = useState([])
     const [invitInfo, setInvitInfo] = useState({})
+    const [dayTaskList, setDayTaskList] = useState([])
 
     const [tonConnectUi] = useTonConnectUI();
     const { showAlert } = useAlert();
@@ -36,12 +37,12 @@ const TasksPage = () => {
         5: false,
         6: false,
     })
-    // const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
-    const initDataUnsafe = {
-        user: {
-            id: 5354957141
-        }
-    }
+    const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
+    // const initDataUnsafe = {
+    //     user: {
+    //         id: 5354957141
+    //     }
+    // }
     console.log('wallet :>> ', wallet);
     useEffect(() => {
         init()
@@ -133,35 +134,51 @@ const TasksPage = () => {
         }).catch(err => {
             return {}
         })
-        if ((useInfores?.data?.state & 0x02) === 0x02) {
-            claimObj[1] = false
-            setClaimObj({ ...claimObj })
-            localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
+        // if ((useInfores?.data?.state & 0x02) === 0x02) {
+        //     claimObj[1] = false
+        //     setClaimObj({ ...claimObj })
+        //     localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
+        // }
+        const filterTask5 = result?.data?.list?.filter(val => val.task_id === "5")?.sort((a, b) => b.finish_ts - a.finish_ts)
+        const filterTask6 = result?.data?.list?.filter(val => val.task_id === "6")?.sort((a, b) => b.finish_ts - a.finish_ts)
+        const filterTask7 = result?.data?.list?.filter(val => val.task_id === "7")?.sort((a, b) => b.finish_ts - a.finish_ts)
+        const list = []
+        if(filterTask5.length > 0){
+            list.push(filterTask5[0])
         }
-        let task5 = result?.data?.list?.find(val => val.task_id === "5")
-        let task6 = result?.data?.list?.find(val => val.task_id === "6")
-        let task7 = result?.data?.list?.find(val => val.task_id === "7")
-        if(!!task5){
-            if(!isNotNewDay(task5.finish_ts) && !claimObj[4]){
-                claimObj[4] = false
-                setClaimObj({ ...claimObj })
-                localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
-            }
+        if(filterTask6.length > 0){
+            list.push(filterTask6[0])
         }
-        if(!!task6){
-            if(!isNotNewDay(task6.finish_ts) && !claimObj[5]){
-                claimObj[5] = false
-                setClaimObj({ ...claimObj })
-                localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
-            }
+        if(filterTask7.length > 0){
+            list.push(filterTask7[0])
         }
-        if(!!task7){
-            if(!isNotNewDay(task7.finish_ts) && !claimObj[6]){
-                claimObj[6] = false
-                setClaimObj({ ...claimObj })
-                localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
-            }
-        }
+        setDayTaskList([...list])
+        console.log('list :>> ', list);
+        // 过滤排序5,6,7最新的
+        // let task5 = result?.data?.list?.find(val => val.task_id === "5")
+        // let task6 = result?.data?.list?.find(val => val.task_id === "6")
+        // let task7 = result?.data?.list?.find(val => val.task_id === "7")
+        // if(!!task5){
+        //     if(!isNotNewDay(task5.finish_ts) && !claimObj[4]){
+        //         claimObj[4] = false
+        //         setClaimObj({ ...claimObj })
+        //         localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
+        //     }
+        // }
+        // if(!!task6){
+        //     if(!isNotNewDay(task6.finish_ts) && !claimObj[5]){
+        //         claimObj[5] = false
+        //         setClaimObj({ ...claimObj })
+        //         localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
+        //     }
+        // }
+        // if(!!task7){
+        //     if(!isNotNewDay(task7.finish_ts) && !claimObj[6]){
+        //         claimObj[6] = false
+        //         setClaimObj({ ...claimObj })
+        //         localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
+        //     }
+        // }
         setUseInfo(useInfores.data)
 
         const invit = await ApiServe.query('invitinginfo', {
@@ -219,7 +236,7 @@ const TasksPage = () => {
     }
     
 
-    const claimMt = async (task_name, points, task_id) => {
+    const claimMt = async (task_name, points, task_id, index) => {
         setIsClaim(task_id)
         await ApiServe.query('finishtask', {
             tg_account: initDataUnsafe.user.id + '',
@@ -231,6 +248,25 @@ const TasksPage = () => {
             tg_account: initDataUnsafe.user.id + '',
         }).then(result => {
             setTaskList(result.data.list)
+            const filterTask5 = result?.data?.list?.filter(val => val.task_id === "5")?.sort((a, b) => b.finish_ts - a.finish_ts)
+            const filterTask6 = result?.data?.list?.filter(val => val.task_id === "6")?.sort((a, b) => b.finish_ts - a.finish_ts)
+            const filterTask7 = result?.data?.list?.filter(val => val.task_id === "7")?.sort((a, b) => b.finish_ts - a.finish_ts)
+            const list = []
+            if(filterTask5.length > 0){
+                list.push(filterTask5[0])
+            }
+            if(filterTask6.length > 0){
+                list.push(filterTask6[0])
+            }
+            if(filterTask7.length > 0){
+                list.push(filterTask7[0])
+            }
+            setDayTaskList([...list])
+            if(!!index){
+                claimObj[index] = true
+                setClaimObj({ ...claimObj })
+                localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
+            }
             setTimeout(() => {
                 setIsClaim('')
             }, 1000);
@@ -275,14 +311,14 @@ const TasksPage = () => {
                                             </div>
                                         </div>
                                         {
-                                            !!taskList?.find(val => val.task_id === "5") && isNotNewDay(taskList?.find(val => val.task_id === "5")?.finish_ts) ?
+                                            !!dayTaskList?.find(val => val.task_id === "5") && isNotNewDay(dayTaskList?.find(val => val.task_id === "5")?.finish_ts) ?
                                                 <div className="tasks_btn click_btn fs_2 fw_b">
                                                     <i className="picon p-icon-Finish is_3"></i>
                                                 </div>
                                                 :
                                                 (
                                                     claimObj[4] ?
-                                                        <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Visit channel', 90.00, '5')}>
+                                                        <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Visit channel', 90.00, '5', 4)}>
                                                             {
                                                                 isClaim === '5' ?
                                                                     <span className="loader"></span>
@@ -310,14 +346,14 @@ const TasksPage = () => {
                                             </div>
                                         </div>
                                         {
-                                            !!taskList?.find(val => val.task_id === "6") && isNotNewDay(taskList?.find(val => val.task_id === "6")?.finish_ts)?
+                                            !!dayTaskList?.find(val => val.task_id === "6") && isNotNewDay(dayTaskList?.find(val => val.task_id === "6")?.finish_ts)?
                                                 <div className="tasks_btn click_btn fs_2 fw_b">
                                                     <i className="picon p-icon-Finish is_3"></i>
                                                 </div>
                                                 :
                                                 (
                                                     claimObj[5] ?
-                                                        <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Visit ERC-1000 website', 90.00, '6')}>
+                                                        <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Visit ERC-1000 website', 90.00, '6', 5)}>
                                                             {
                                                                 isClaim === '6' ?
                                                                     <span className="loader"></span>
@@ -343,14 +379,14 @@ const TasksPage = () => {
                                             </div>
                                         </div>
                                         {
-                                            !!taskList?.find(val => val.task_id === "7") && isNotNewDay(taskList?.find(val => val.task_id === "7")?.finish_ts)?
+                                            !!dayTaskList?.find(val => val.task_id === "7") && isNotNewDay(dayTaskList?.find(val => val.task_id === "7")?.finish_ts)?
                                                 <div className="tasks_btn click_btn fs_2 fw_b">
                                                     <i className="picon p-icon-Finish is_3"></i>
                                                 </div>
                                                 :
                                                 (
                                                     claimObj[6] ?
-                                                        <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Visit Polarise website', 90.00, '7')}>
+                                                        <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Visit Polarise website', 90.00, '7', 6)}>
                                                             {
                                                                 isClaim === '7' ?
                                                                     <span className="loader"></span>
@@ -454,7 +490,7 @@ const TasksPage = () => {
                                                 :
                                                 (
                                                     claimObj[2] ?
-                                                        <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Follow us on X', 90.00, '2')}>
+                                                        <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Follow us on X', 90.00, '2', 2)}>
                                                             {
                                                                 isClaim === '2' ?
                                                                     <span className="loader"></span>
@@ -487,7 +523,7 @@ const TasksPage = () => {
                                                 :
                                                 (
                                                     claimObj[3] ?
-                                                        <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Join our TG community', 90.00, '3')}>
+                                                        <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Join our TG community', 90.00, '3', 3)}>
                                                             {
                                                                 isClaim === '3' ?
                                                                     <span className="loader"></span>
