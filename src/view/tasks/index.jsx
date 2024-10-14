@@ -36,6 +36,7 @@ const TasksPage = () => {
         4: false,
         5: false,
         6: false,
+        7: false,
     })
     const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
     // const initDataUnsafe = {
@@ -114,6 +115,7 @@ const TasksPage = () => {
             4: false,
             5: false,
             6: false,
+            7: false,
         }
         setClaimObj({ ...claimObj })
         const res = await ApiServe.query('getrefcode', {
@@ -134,14 +136,15 @@ const TasksPage = () => {
         }).catch(err => {
             return {}
         })
-        // if ((useInfores?.data?.state & 0x02) === 0x02) {
-        //     claimObj[1] = false
-        //     setClaimObj({ ...claimObj })
-        //     localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
-        // }
+        if ((useInfores?.data?.state & 0x02) === 0x02) {
+            claimObj[1] = false
+            setClaimObj({ ...claimObj })
+            localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
+        }
         const filterTask5 = result?.data?.list?.filter(val => val.task_id === "5")?.sort((a, b) => b.finish_ts - a.finish_ts)
         const filterTask6 = result?.data?.list?.filter(val => val.task_id === "6")?.sort((a, b) => b.finish_ts - a.finish_ts)
         const filterTask7 = result?.data?.list?.filter(val => val.task_id === "7")?.sort((a, b) => b.finish_ts - a.finish_ts)
+        const filterTask8 = result?.data?.list?.filter(val => val.task_id === "8")?.sort((a, b) => b.finish_ts - a.finish_ts)
         const list = []
         if(filterTask5.length > 0){
             list.push(filterTask5[0])
@@ -151,6 +154,9 @@ const TasksPage = () => {
         }
         if(filterTask7.length > 0){
             list.push(filterTask7[0])
+        }
+        if(filterTask8.length > 0){
+            list.push(filterTask8[0])
         }
         setDayTaskList([...list])
         console.log('list :>> ', list);
@@ -251,6 +257,7 @@ const TasksPage = () => {
             const filterTask5 = result?.data?.list?.filter(val => val.task_id === "5")?.sort((a, b) => b.finish_ts - a.finish_ts)
             const filterTask6 = result?.data?.list?.filter(val => val.task_id === "6")?.sort((a, b) => b.finish_ts - a.finish_ts)
             const filterTask7 = result?.data?.list?.filter(val => val.task_id === "7")?.sort((a, b) => b.finish_ts - a.finish_ts)
+            const filterTask8 = result?.data?.list?.filter(val => val.task_id === "8")?.sort((a, b) => b.finish_ts - a.finish_ts)
             const list = []
             if(filterTask5.length > 0){
                 list.push(filterTask5[0])
@@ -261,9 +268,12 @@ const TasksPage = () => {
             if(filterTask7.length > 0){
                 list.push(filterTask7[0])
             }
+            if(filterTask8.length > 0){
+                list.push(filterTask8[0])
+            }
             setDayTaskList([...list])
             if(!!index){
-                claimObj[index] = true
+                claimObj[index] = false
                 setClaimObj({ ...claimObj })
                 localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
             }
@@ -302,6 +312,34 @@ const TasksPage = () => {
                             <div className="pa_3">
                                 <div className="fs_4 fw_b mb_4 text_center">Capsule Tasks</div>
                                 <div className="tasks_list">
+                                    <div className="list_box list_box_3 pa_4 flex justify_between align_center mb_3">
+                                        <div className="flex align_center"> 
+                                            <img className="mr_5" src={channelIcon} alt="" srcSet="" />
+                                            <div>
+                                                <div className="fs_2 fw_m">login to Polarise Capsule</div>
+                                                <div className="fs_2 text_4">+90 BP</div>
+                                            </div>
+                                        </div>
+                                        {
+                                            !!dayTaskList?.find(val => val.task_id === "8") && isNotNewDay(dayTaskList?.find(val => val.task_id === "8")?.finish_ts) ?
+                                                <div className="tasks_btn click_btn fs_2 fw_b">
+                                                    <i className="picon p-icon-Finish is_3"></i>
+                                                </div>
+                                                :
+                                                (
+                                                    <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('login to Polarise Capsule', 90.00, '8', 7)}>
+                                                        {
+                                                            isClaim === '8' ?
+                                                                <span className="loader"></span>
+                                                                :
+                                                                <span>Claim</span>
+                                                        }
+                                                    </div>
+                                                )
+
+                                        }
+                                    </div>
+
                                     <div className="list_box list_box_3 pa_4 flex justify_between align_center mb_3">
                                         <div className="flex align_center"> 
                                             <img className="mr_5" src={channelIcon} alt="" srcSet="" />
