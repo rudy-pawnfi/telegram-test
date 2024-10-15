@@ -294,20 +294,19 @@ const TasksPage = () => {
         let last = lastTimestamp * 1000
         // const currentTime = Date.now(); // 当前时间的时间戳（毫秒）
         
-        // // 获取当前日期的时间戳（从凌晨12点开始）
-        // const currentMidnight = new Date();
-        // currentMidnight.setHours(0, 0, 0, 0); // 设置为当天凌晨12:00
-        // const currentMidnightTimestamp = currentMidnight.getTime(); // 获取当前日期凌晨的时间戳
-    
-        // // 如果上次完成任务的时间戳小于今天凌晨12点的时间戳，说明不是新的一天
-        // return last > currentMidnightTimestamp;
+        // 获取当前日期的时间戳（从凌晨12点开始）
+        const currentMidnight = new Date();
+        currentMidnight.setHours(0, 0, 0, 0); // 设置为当天凌晨12:00
+        const currentMidnightTimestamp = currentMidnight.getTime(); // 获取当前日期凌晨的时间戳
+        // 如果上次完成任务的时间戳小于今天凌晨12点的时间戳，说明不是新的一天
+        return last > currentMidnightTimestamp;
 
 
-        const currentTime = Date.now(); // 获取当前时间的时间戳（毫秒）
-        const oneHourInMilliseconds = 60 * 60 * 1000; // 1 小时 = 3600000 毫秒
+        // const currentTime = Date.now(); // 获取当前时间的时间戳（毫秒）
+        // const oneHourInMilliseconds = 60 * 60 * 1000; // 1 小时 = 3600000 毫秒
 
-        // 比较当前时间和上次任务完成的时间是否相差超过 1 小时
-        return currentTime - last < oneHourInMilliseconds;
+        // // 比较当前时间和上次任务完成的时间是否相差超过 1 小时
+        // return currentTime - last < oneHourInMilliseconds;
     }
     return (
         <>
