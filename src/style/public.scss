@@ -20,6 +20,7 @@ html {
         // &::-webkit-scrollbar {
         //     display: none;
         // }
+        
         #root {
             display: flex;
             flex-direction: column;
@@ -33,6 +34,14 @@ html {
             overflow-y: auto;
             overflow-x: hidden;
             -webkit-tap-highlight-color: transparent;
+        }
+        @media (min-width: 768px) {
+            #root{
+                align-items: center;
+            }
+            .page {
+                width: 768px;
+            }
         }
 
         #lo_loading {
@@ -276,6 +285,9 @@ html {
 .w50 {
     width: 50%;
 }
+.w60 {
+    width: 60%;
+}
 
 .w33 {
     width: 33%;
@@ -287,6 +299,10 @@ html {
 
 .w25 {
     width: 25%;
+}
+
+.w10 {
+    width: 10%;
 }
 
 

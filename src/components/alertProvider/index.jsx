@@ -52,7 +52,7 @@ const Alert = ({ message, type, visible }) => {
     };
 
     return (
-        <div className="flex justify_center fs_3" style={{ ...styles.alertBox, ...getAlertStyle(type) }}>
+        <div className="flex justify_center fs_3 flex_warp" style={{ ...styles.alertBox, ...getAlertStyle(type) }}>
             {message}
         </div>
     );

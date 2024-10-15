@@ -48,7 +48,6 @@ const FrensPage = () => {
             }
         })
         setUserInfo(result.data)
-        console.log('useInfo :>> ', useInfo);
 
     }
     const inviteFriends = () => {
