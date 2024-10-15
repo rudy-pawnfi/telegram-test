@@ -108,7 +108,7 @@ const TasksPage = () => {
     }
     const init = async () => {
         setLoadding(true)
-        showAlert(localStorage.getItem(initDataUnsafe.user.id + 'CLAIM') , 'success')
+        // showAlert(localStorage.getItem(initDataUnsafe.user.id + 'CLAIM') , 'success')
         console.log('localStorage.getItem(initDataUnsafe.user.id  :>> ', localStorage.getItem(initDataUnsafe.user.id + 'CLAIM') );
         const claimObj = localStorage.getItem(initDataUnsafe.user.id + 'CLAIM') ? JSON.parse(localStorage.getItem(initDataUnsafe.user.id + 'CLAIM')) : {
             1: false,
@@ -123,6 +123,8 @@ const TasksPage = () => {
         const res = await ApiServe.query('getrefcode', {
             tg_account: initDataUnsafe.user.id + '',
             app_name: 'Rudy_test'
+        }).catch(err => {
+            return {data:{ref_code: ''}}
         })
         setInviteUrl(`https://t.me/share/url?url=https://t.me/rudy_pawnfi_bot/polarise?startapp=ref_code=${res?.data?.ref_code}`)
 

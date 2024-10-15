@@ -15,7 +15,7 @@ export const AlertProvider = ({ children }) => {
     const showAlert = (message, type = 'info') => {
         setAlert({ message, type, visible: true });
         // 自动关闭提示框
-        setTimeout(() => setAlert({ ...alert, visible: false }), 13000); // 3秒后自动隐藏
+        setTimeout(() => setAlert({ ...alert, visible: false }), 3000); // 3秒后自动隐藏
     };
 
     // 隐藏提示框
