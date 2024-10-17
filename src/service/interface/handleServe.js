@@ -36,6 +36,11 @@ const ApiServe = {
                 })
                 console.error('Error fetching data:', error);
             }
+        }).catch(err =>{
+            // reject({
+            //     code: -1,
+            //     error: error
+            // })
         })
         
         // return instance.request({
