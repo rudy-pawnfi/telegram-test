@@ -8,7 +8,7 @@ export default defineConfig({
         historyApiFallback: true, // 确保所有请求重定向到 index.html
     },
     build: {
-        outDir: './docs'
+        outDir: './build'
     },
     base: './'
 })
