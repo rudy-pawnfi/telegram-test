@@ -1,6 +1,21 @@
+import { Buffer } from 'buffer';
+debugger
+window.Buffer = Buffer;
+// if (typeof window !== 'undefined') {
+//     window.Buffer = Buffer; // 在浏览器中设置
+//     globalThis.Buffer = Buffer; // 在 globalThis 中设置
+// }
+console.log('Buffer :>> ', Buffer);
+console.log('globalThis :>> ', globalThis.Buffer);
+
+// // 确保 Buffer 被设置到全局对象
+// if (typeof window !== 'undefined') {
+//     window.Buffer = Buffer;
+// } else {
+//     global.Buffer = Buffer;
+// }
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './App.jsx'
 import './index.css'
 import WebApp from '@twa-dev/sdk'
 import { BrowserRouter, HashRouter } from "react-router-dom";
@@ -8,6 +23,7 @@ import { THEME, TonConnectUIProvider } from "@tonconnect/ui-react";
 import AppRouter from './router'
 import './style/public.scss'
 import { AlertProvider } from './components/alertProvider'
+
 // WebApp.setBackgroundColor('000');
 WebApp.ready();
 console.log('WebApp :>> ', WebApp); 

@@ -7,7 +7,7 @@ import TasksPage from '../view/tasks'
 import FrensPage from '../view/frens'
 import ErrorPage from '../view/error'
 import PrairiePage from '../view/prairie'
-
+import TestPage from '../view/test'
 import GamePage from '../view/game'
 import { useEffect } from 'react'
 const AppRouter = () => {
@@ -50,6 +50,7 @@ const AppRouter = () => {
                     <Route path={'/telegram-test/friends'} element={<FrensPage />} />
                     <Route path={'/telegram-test/prairie'} element={<PrairiePage />} />
                     <Route path={'/telegram-test/game'} element={<GamePage />} />
+                    <Route path={'/telegram-test/test'} element={<TestPage />} />
                     <Route path='*' element={<ErrorPage />} />
                 </Routes>
             </div>

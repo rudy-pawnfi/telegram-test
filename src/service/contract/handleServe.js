@@ -68,7 +68,7 @@ const ApiContact = {
 
     resSuccess(response,params,responseMethod){
 
-        if(!response?.data)return
+        if(!response.data){return}
         console.log('response :>> ', response);
         const { data,code, msg } = response.data;
         if(code === '0' || code === '4' || code === '200'){
@@ -111,7 +111,7 @@ const ApiContact = {
         // if (process.env.NODE_ENV === 'development' && error.response)
         //     console.error(`Api ${error.response?.config?.url} response:`, error.response);
 
-        return Promise.reject({msg: error.response?.statusText || '', code: error.response?.status});
+        return Promise.reject({msg: error.response.statusText || '', code: error.response.status});
 
     },
 
