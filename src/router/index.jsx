@@ -9,7 +9,7 @@ import ErrorPage from '../view/error'
 import PrairiePage from '../view/prairie'
 import TestPage from '../view/test'
 import GamePage from '../view/game'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 const AppRouter = () => {
     const location = useLocation()
     useEffect(() => {
@@ -40,9 +40,16 @@ const AppRouter = () => {
             window.Telegram.WebApp.onEvent('themeChanged', setHeaderColor);
         }
     }, [location.pathname]);
+
+    const className = useMemo(() => {
+        if(location.pathname === '/telegram-test/game'){
+            return 'page1'
+        }
+        return 'page2'
+    },[location])
     return (
         <>
-            <div className="page">
+            <div className={className}>
                 <Routes>
                     <Route path={'/telegram-test'} element={<HomePage />} />
                     <Route path={'/telegram-test/farming'} element={<FarmingPage />} />

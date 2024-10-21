@@ -1,4 +1,10 @@
 .game_page {
+    background: url('./images/game/game_bg.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
     .box {
         // width: 800px;
         height: 600px;

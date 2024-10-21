@@ -1,5 +1,4 @@
 import { Buffer } from 'buffer';
-debugger
 window.Buffer = Buffer;
 // if (typeof window !== 'undefined') {
 //     window.Buffer = Buffer; // 在浏览器中设置

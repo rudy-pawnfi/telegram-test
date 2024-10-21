@@ -35,6 +35,13 @@ html {
             overflow-x: hidden;
             -webkit-tap-highlight-color: transparent;
         }
+        .page1 {
+            //   padding-bottom: 62px;
+            height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
         @media (min-width: 768px) {
             #root{
                 align-items: center;
