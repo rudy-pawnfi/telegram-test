@@ -38,12 +38,12 @@ const TasksPage = () => {
         6: false,
         7: false,
     })
-    const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
-    // const initDataUnsafe = {
-    //     user: {
-    //         id: 5354957141
-    //     }
-    // }
+    // const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
+    const initDataUnsafe = {
+        user: {
+            id: 5354957141
+        }
+    }
     console.log('wallet :>> ', wallet);
     useEffect(() => {
         init()
@@ -460,7 +460,7 @@ const TasksPage = () => {
                                             </div>
                                         </div>
                                         {
-                                            (useInfo.state & 0x02) === 0x02 ?
+                                            (useInfo?.state & 0x02) === 0x02 ?
                                                 <div className="tasks_btn click_btn fs_2 fw_b">
                                                     <i className="picon p-icon-Finish is_3"></i>
                                                 </div>

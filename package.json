@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "babel src --out-dir build && vite build",
+    "build": "babel src --out-dir build && vite build && cp -r ./build/* ./docs/",
     "lint": "eslint .",
     "preview": "vite preview"
   },
