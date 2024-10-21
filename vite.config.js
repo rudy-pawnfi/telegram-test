@@ -5,24 +5,23 @@ import replace from '@rollup/plugin-replace';
 import {Buffer} from 'buffer'
 import buffer from 'buffer'
 import { createRequire } from 'module';
-import nodeBuiltins from 'rollup-plugin-node-builtins';
-import nodeGlobals from 'rollup-plugin-node-globals';
+// import nodeBuiltins from 'rollup-plugin-node-builtins';
+// import nodeGlobals from 'rollup-plugin-node-globals';
 import { nodePolyfills } from 'vite-plugin-node-polyfills'
 const require = createRequire(import.meta.url);
 // https://vitejs.dev/config/
 // console.log('buffer :>> ', buffer);
 // console.log(typeof Buffer,'JSON.stringify(Buffer) :>> ', Buffer);
-console.log('window :>> ', Buffer);
 export default defineConfig({
     plugins: [
-        {
-            ...nodeBuiltins(),
-            enforce: 'pre',
-          },
-          {
-            ...nodeGlobals(),
-            enforce: 'pre',
-          },
+        // {
+        //     ...nodeBuiltins(),
+        //     enforce: 'pre',
+        //   },
+        //   {
+        //     ...nodeGlobals(),
+        //     enforce: 'pre',
+        //   },
           nodePolyfills({
             // 可以在这里指定需要的 polyfill 模块
             include: [

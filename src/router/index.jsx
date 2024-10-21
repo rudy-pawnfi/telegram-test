@@ -45,7 +45,7 @@ const AppRouter = () => {
         if(location.pathname === '/telegram-test/game'){
             return 'page1'
         }
-        return 'page2'
+        return 'page'
     },[location])
     return (
         <>

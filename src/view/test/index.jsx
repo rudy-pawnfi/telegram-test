@@ -3,17 +3,16 @@ import { useTonConnectUI } from "@tonconnect/ui-react";
 import { Buffer } from 'buffer';
 
 // 设置全局 Buffer 对象
-window.Buffer = Buffer;
 import { begiTonClient, libnCell } from '@ton/ton'
 const TestPage = () => {
 
     const [tonConnectUI] = useTonConnectUI();
     const send = async () => {
-        const client = new TonClient({
-            network: {
-              endpoints: ['https://testnet.toncenter.com/api/v2/jsonRPC'] // 替换为你的节点地址
-            },
-          });
+        // const client = new TonClient({
+        //     network: {
+        //       endpoints: ['https://testnet.toncenter.com/api/v2/jsonRPC'] // 替换为你的节点地址
+        //     },
+        //   });
 //         const body = beginCell()
 //   .storeUint(0, 32) // 写入32个零位以表示后面将跟随文本评论
 //   .storeStringTail("Hello, TON!") // 写下我们的文本评论
