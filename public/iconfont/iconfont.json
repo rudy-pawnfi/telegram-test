@@ -6,6 +6,27 @@
   "description": "polarcapsule-miniapp",
   "glyphs": [
     {
+      "icon_id": "42186472",
+      "name": "icon-NormalSound",
+      "font_class": "icon-NormalSound",
+      "unicode": "e7ca",
+      "unicode_decimal": 59338
+    },
+    {
+      "icon_id": "42186471",
+      "name": "icon-Mute",
+      "font_class": "icon-Mute",
+      "unicode": "e7cb",
+      "unicode_decimal": 59339
+    },
+    {
+      "icon_id": "42186470",
+      "name": "icon-return",
+      "font_class": "icon-return",
+      "unicode": "e7cc",
+      "unicode_decimal": 59340
+    },
+    {
       "icon_id": "29556831",
       "name": "icon-Etherscan",
       "font_class": "icon-etherscan",

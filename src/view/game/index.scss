@@ -1,89 +1,184 @@
 .game_page {
-    background: url('./images/game/game_bg.png');
+    background: url('./images/game/1080-2400.png');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    width: 100vw;
+    position: relative;
+    // width: 100vw;
     height: 100vh;
-    .box {
-        // width: 800px;
-        height: 600px;
-        background: url('./images/game/timg.jpg') no-repeat center;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: content-box;
+    // justify-content: center;
+    // @media (max-width: 720px) {
+        
+    // }
+    .title_box{
+        height: 40%;
+        img{
+            height: 60px;
+        }
+        .title_round{
+            width: 24px;
+            height: 24px;
+            text-align: center;
+            line-height: 24px;
+            border-radius: 50%;
+            background-color: #000;
+            color: #fff;
+        }
+        .btn_box{
+            .start{
+                width: 100px;
+                background-color: #6E1AFF;
+            }
+            .quite{
+                width: 100px;
+                background-color: #6E1AFF;
+            }
+        }
+        .btn_box_fade_out {
+            opacity: 1; /* 初始不透明 */
+            transform: translateY(0); /* 初始位置 */
+            animation: fadeOutUp 2s forwards; /* 向上淡出动画 */
+        }
+    }
+    .game_box{
+        background: url('./images/game/all_dong.png');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
         position: relative;
-        cursor: url('./images/game/chuizi.png'), auto;
-        margin: 20px auto;
-    }
+        height: 200px;
+        width: 100%;
+        top: 50px;
+        img {
+            width: 48px;
+            height: 48px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            visibility: hidden;
+            z-index: 2;
+        }
 
-    .box img {
-        width: 130px;
-        height: 130px;
-        position: absolute;
-        top: 100px;
-        left: 140px;
-        visibility: hidden;
-        z-index: 2;
+        img:nth-child(2) {
+            top: 20px;
+            left: 120px;
+        }
+        img:nth-child(3) {
+            top: -2px;
+            left: 230px;
+        }
+        img:nth-child(4) {
+            top: 28px;
+            left: 318px;
+        }
+        img:nth-child(5) {
+            top: 70px;
+            left: 26px;
+        }
+        img:nth-child(6) {
+            top: 80px;
+            left: 110px;
+        }
+        img:nth-child(7) {
+            top: 68px;
+            left: 204px;
+        }
+        img:nth-child(8) {
+            top: 86px;
+            left: 308px;
+        }
+        img:nth-child(9) {
+            top: 130px;
+            left: 6px;
+        }
+        img:nth-child(10) {
+            top: 130px;
+            left: 250px;
+        }
     }
+    // .box {
+    //     // width: 800px;
+    //     height: 600px;
+    //     background: url('./images/game/timg.jpg') no-repeat center;
+    //     position: relative;
+    //     cursor: url('./images/game/chuizi.png'), auto;
+    //     margin: 20px auto;
+    // }
 
-    .box img:nth-child(2) {
-        top: 100px;
-        left: 340px;
-    }
+    // .box img {
+    //     width: 130px;
+    //     height: 130px;
+    //     position: absolute;
+    //     top: 100px;
+    //     left: 140px;
+    //     visibility: hidden;
+    //     z-index: 2;
+    // }
 
-    .box img:nth-child(3) {
-        top: 100px;
-        left: 540px;
-    }
+    // .box img:nth-child(2) {
+    //     top: 100px;
+    //     left: 340px;
+    // }
 
-    .box img:nth-child(4) {
-        top: 250px;
-        left: 140px;
-    }
+    // .box img:nth-child(3) {
+    //     top: 100px;
+    //     left: 540px;
+    // }
 
-    .box img:nth-child(5) {
-        top: 250px;
-        left: 340px;
-    }
+    // .box img:nth-child(4) {
+    //     top: 250px;
+    //     left: 140px;
+    // }
 
-    .box img:nth-child(6) {
-        top: 250px;
-        left: 540px;
-    }
+    // .box img:nth-child(5) {
+    //     top: 250px;
+    //     left: 340px;
+    // }
 
-    .box img:nth-child(7) {
-        top: 380px;
-        left: 140px;
-    }
+    // .box img:nth-child(6) {
+    //     top: 250px;
+    //     left: 540px;
+    // }
 
-    .box img:nth-child(8) {
-        top: 380px;
-        left: 340px;
-    }
+    // .box img:nth-child(7) {
+    //     top: 380px;
+    //     left: 140px;
+    // }
 
-    .box img:nth-child(9) {
-        top: 380px;
-        left: 540px;
-    }
+    // .box img:nth-child(8) {
+    //     top: 380px;
+    //     left: 340px;
+    // }
 
-    button {
-        width: 200px;
-        height: 60px;
-        background-color: red;
-        border-radius: 20px;
-        border: none;
-        outline: none;
-        margin: 20px auto;
-        display: block;
-    }
+    // .box img:nth-child(9) {
+    //     top: 380px;
+    //     left: 540px;
+    // }
 
-    .times,
-    .fens {
-        width: 200px;
-        height: 30px;
-        background-color: red;
-        border-radius: 20px;
-        line-height: 30px;
-        text-align: center;
-        margin: 10px auto;
-    }
+    // button {
+    //     width: 200px;
+    //     height: 60px;
+    //     background-color: red;
+    //     border-radius: 20px;
+    //     border: none;
+    //     outline: none;
+    //     margin: 20px auto;
+    //     display: block;
+    // }
+
+    // .times,
+    // .fens {
+    //     width: 200px;
+    //     height: 30px;
+    //     background-color: red;
+    //     border-radius: 20px;
+    //     line-height: 30px;
+    //     text-align: center;
+    //     margin: 10px auto;
+    // }
 
 }

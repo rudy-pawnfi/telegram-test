@@ -108,6 +108,16 @@ html {
               transform: translateY(0); /* 回到原位置 */
             }
         }
+        @keyframes fadeOutUp {
+            0% {
+                opacity: 1; /* 完全可见 */
+                transform: translateY(0); /* 原位置 */
+            }
+            100% {
+                opacity: 0; /* 完全透明 */
+                transform: translateY(-50px); /* 向上移动50px */
+            }
+        }
 
         .loader {
             border: 2px solid rgba(255, 255, 255, 0.3);
