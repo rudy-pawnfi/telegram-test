@@ -1,5 +1,4 @@
 import { useLocation, useNavigate } from 'react-router-dom'
-import iconPrairieDog from '/images/prairie/icon-PrairieDog.png'
 import './index.scss'
 import { useEffect, useMemo } from 'react'
 const TabBox = (props) => {
