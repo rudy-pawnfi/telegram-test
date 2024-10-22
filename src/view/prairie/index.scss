@@ -1,0 +1,95 @@
+.prairie_page{
+    .prairie_header{
+        background-image: url('/images/prairie/bg.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        .prairie_header_img{
+            >img{
+                width: 72px;
+                height: 80px;
+            }
+        }
+        .header_box_text{
+            background-color: #0F0F0F;
+        }
+        .time_line_box{
+            background-color: #0F0F0F;
+            .time_box_list{
+                position: relative;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 12px;
+            }
+            .round_box{
+                width: 20px;
+                height: 20px;
+                z-index: 1;
+                >div{
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+            .line_box{
+                position: absolute;
+                width: 100%;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                border: 2px solid rgba(255, 255, 255, 0.08)
+            }
+            .new_b_g_1{
+                background-color: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                backdrop-filter: blur(64px);
+            }
+            .b_g_1{
+                background: linear-gradient(to bottom, #6E19FF, #DC19FF);
+            }
+        }
+        .mint_box{
+            background-color: #0F0F0F;
+            .progress_box{
+                background-color: #000;
+                .progress_box_box{
+                    width: 100%;
+                    height: 24px;
+                    background: linear-gradient(to right, #6E19FF, #DC19FF); 
+
+                }
+            }
+            .mint_btn{
+                background: linear-gradient(to bottom, #6E19FF, #DC19FF); 
+                height: 56px;
+                line-height: 56px;
+            }
+        }
+
+        .table_dec{
+            width: 100%;
+            // padding: 16px;
+            .table_dec_box{
+                width: 100%;
+                .table_dec_list{
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+                    .active{
+                        border-bottom: 2px solid rgba(255, 255, 255, 1);
+                    }
+                }
+            }
+            
+            .text_box{
+                line-height: 21px;
+            }
+            .team_img{
+                width: 48px;
+                height: 48px;
+            }
+            .table_dec_list_1{
+                height: 700px;
+            }
+        }
+    }
+}

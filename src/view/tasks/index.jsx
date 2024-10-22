@@ -121,7 +121,7 @@ const TasksPage = () => {
         }
         setClaimObj({ ...claimObj })
         const res = await ApiServe.query('getrefcode', {
-            tg_account: initDataUnsafe.user.id + '',
+            tg_account: initDataUnsafe?.user?.id + '',
             app_name: 'Rudy_test'
         }).catch(err => {
             return {data:{ref_code: ''}}
@@ -129,14 +129,14 @@ const TasksPage = () => {
         setInviteUrl(`https://t.me/share/url?url=https://t.me/rudy_pawnfi_bot/polarise?startapp=ref_code=${res?.data?.ref_code}`)
 
         const result = await ApiServe.query('finishedtaskList', {
-            tg_account: initDataUnsafe.user.id + '',
+            tg_account: initDataUnsafe?.user?.id + '',
         }).catch(err => {
             return { data: { list: [] } }
         })
 
         setTaskList(result.data.list)
         const useInfores = await ApiServe.query('userinfo', {
-            tg_account: initDataUnsafe.user.id + ''
+            tg_account: initDataUnsafe?.user?.id + ''
         }).catch(err => {
             return {}
         })
@@ -192,7 +192,7 @@ const TasksPage = () => {
         setUseInfo(useInfores.data)
 
         const invit = await ApiServe.query('invitinginfo', {
-            tg_account: initDataUnsafe.user.id + ''
+            tg_account: initDataUnsafe?.user?.id + ''
         }).catch(err => {
             return {}
         })

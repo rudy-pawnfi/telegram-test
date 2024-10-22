@@ -2,8 +2,8 @@ import axios from 'axios';
 
 import handleApi from './handleApi';
 
-const baseURL = "https://api-capsule.polarise.org"
-// const baseURL =  "https://apipolarcapsule.pawnfi.io"
+// const baseURL = "https://api-capsule.polarise.org"
+const baseURL =  "https://apipolarcapsule.pawnfi.io"
 const ApiServe = {
 
     query(methodName,params={},requestType='post') {
@@ -54,7 +54,7 @@ const ApiServe = {
 
     resSuccess(response,params,responseMethod){
 
-        if(!response?.data)return
+        if(!response.data)return
         console.log('response :>> ', response);
         const { data,code, msg } = response.data;
         if(code === '0' || code === '4' || code === '200'){
@@ -97,7 +97,7 @@ const ApiServe = {
         // if (process.env.NODE_ENV === 'development' && error.response)
         //     console.error(`Api ${error.response?.config?.url} response:`, error.response);
 
-        return Promise.reject({msg: error.response?.statusText || '', code: error.response?.status});
+        return Promise.reject({msg: error.response.statusText || '', code: error.response.status});
 
     },
 
