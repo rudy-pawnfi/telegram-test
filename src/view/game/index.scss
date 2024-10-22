@@ -92,54 +92,102 @@
         background-repeat: no-repeat;
         position: relative;
         height: 200px;
-        width: 320px;
+        width: 476px;
         top: 50px;
         box-sizing: border-box;
         img {
             width: 48px;
             height: 48px;
             position: absolute;
-            top: 10px;
-            left: 10px;
+            top: -1px;
+            left: 24px;
             visibility: hidden;
             z-index: 2;
         }
 
         img:nth-child(2) {
-            top: 20px;
-            left: 120px;
+            top: 10px;
+            left: 164px;
         }
         img:nth-child(3) {
-            top: -2px;
-            left: 230px;
+            top: -18px;
+            left: 304px;
         }
         img:nth-child(4) {
-            top: 28px;
-            left: 318px;
+            top: 19px;
+            left: 413px;
         }
         img:nth-child(5) {
             top: 70px;
-            left: 26px;
+            left: 45px;
         }
         img:nth-child(6) {
-            top: 80px;
-            left: 110px;
+            top: 85px;
+            left: 151px;
         }
         img:nth-child(7) {
-            top: 68px;
-            left: 204px;
+            top: 70px;
+            left: 271px;
         }
         img:nth-child(8) {
-            top: 86px;
-            left: 308px;
+            top: 93px;
+            left: 403px;
         }
         img:nth-child(9) {
-            top: 130px;
-            left: 6px;
+            top: 146px;
+            left: 20px;
         }
         img:nth-child(10) {
-            top: 130px;
-            left: 250px;
+            top: 146px;
+            left: 328px;
+        }
+    }
+    @media (max-width: 500px) {
+        .game_box{
+            width: 376px;
+            top: 50px;
+            box-sizing: border-box;
+            img {
+                top: 9px;
+                left: 11px;
+            }
+
+            img:nth-child(2) {
+                top: 16px;
+                left: 124px;
+            }
+            img:nth-child(3) {
+                top: -6px;
+                left: 238px;
+            }
+            img:nth-child(4) {
+                top: 25px;
+                left: 326px;
+            }
+            img:nth-child(5) {
+                top: 66px;
+                left: 29px;
+            }
+            img:nth-child(6) {
+                top: 78px;
+                left: 113px;
+            }
+            img:nth-child(7) {
+                top: 66px;
+                left: 211px;
+            }
+            img:nth-child(8) {
+                top: 84px;
+                left: 318px;
+            }
+            img:nth-child(9) {
+                top: 127px;
+                left: 6px;
+            }
+            img:nth-child(10) {
+                top: 128px;
+                left: 258px;
+            }
         }
     }
     @media (max-width: 400px) {
@@ -190,55 +238,7 @@
             }
         }
     }
-
-    @media (min-width: 400px) {
-        .game_box{
-            width: 376px;
-            top: 50px;
-            box-sizing: border-box;
-            img {
-                top: 10px;
-                left: 9px;
-            }
-
-            img:nth-child(2) {
-                top: 20px;
-                left: 120px;
-            }
-            img:nth-child(3) {
-                top: -2px;
-                left: 230px;
-            }
-            img:nth-child(4) {
-                top: 28px;
-                left: 318px;
-            }
-            img:nth-child(5) {
-                top: 70px;
-                left: 26px;
-            }
-            img:nth-child(6) {
-                top: 80px;
-                left: 110px;
-            }
-            img:nth-child(7) {
-                top: 68px;
-                left: 204px;
-            }
-            img:nth-child(8) {
-                top: 86px;
-                left: 308px;
-            }
-            img:nth-child(9) {
-                top: 130px;
-                left: 6px;
-            }
-            img:nth-child(10) {
-                top: 130px;
-                left: 250px;
-            }
-        }
-    }
+    
     
     .game_filter{
         filter: blur(5px);
