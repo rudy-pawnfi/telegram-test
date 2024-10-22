@@ -1,8 +1,8 @@
 @font-face {
   font-family: "picon"; /* Project id 4678886 */
-  src: url('iconfont.woff2?t=1729501426441') format('woff2'),
-       url('iconfont.woff?t=1729501426441') format('woff'),
-       url('iconfont.ttf?t=1729501426441') format('truetype');
+  src: url('iconfont.woff2?t=1729574872584') format('woff2'),
+       url('iconfont.woff?t=1729574872584') format('woff'),
+       url('iconfont.ttf?t=1729574872584') format('truetype');
 }
 
 .picon {
@@ -11,6 +11,14 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.p-icon-Countdown:before {
+  content: "\e7cd";
+}
+
+.p-icon-money:before {
+  content: "\e7ce";
 }
 
 .p-icon-NormalSound:before {

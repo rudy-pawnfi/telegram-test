@@ -1,6 +1,7 @@
 import { useTonWallet } from '@tonconnect/ui-react';
 import React, { useState, useEffect, useRef } from 'react';
 import { useLayoutEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import './index.scss'
 
@@ -8,20 +9,20 @@ const GamePage = () => {
 
     const wallet = useTonWallet();
     const [moles, setMoles] = useState(new Array(10).fill({ visible: true, hit: false })); // 地鼠状态：是否显示、是否被击中
-    const [time, setTime] = useState(10); // 剩余时间
+    const [time, setTime] = useState(0); // 剩余时间
     const [score, setScore] = useState(0); // 分数
     const [gameRunning, setGameRunning] = useState(false); // 游戏是否正在进行
     const [intervals, setIntervals] = useState({ t1: null, t2: null }); // 保存计时器
     const [musicPlaying, setMusicPlaying] = useState(false); // 控制背景音乐
     const audioRef = useRef(null); // 引用 audio 元素
     const [fadeOut, setFadeOut] = useState(false)
-
+    const navigate = useNavigate()
     // 游戏开始
     const startGame = () => {
         clearInterval(intervals.t2);
         setFadeOut(true)
         setScore(0);
-        setTime(60);
+        setTime(10);
         
         setTimeout(() => {
             setGameRunning(true);
@@ -84,24 +85,24 @@ const GamePage = () => {
         setMusicPlaying(!musicPlaying);
     };
     useEffect(() => {
-        // const t2 = setInterval(() => {
-        //     const randomMole = Math.floor(Math.random() * 10);
-        //     const newMoles = moles.map((_, index) => {
-        //         if (index === randomMole) {
-        //             return { visible: true, hit: false }; // 随机地鼠出现，未被击中
-        //         }
-        //         return { visible: false, hit: false };
-        //     });
-        //     setMoles(newMoles);
-        // }, 2000);
-        // setIntervals({t1: null, t2: t2})
+        const t2 = setInterval(() => {
+            const randomMole = Math.floor(Math.random() * 10);
+            const newMoles = moles.map((_, index) => {
+                if (index === randomMole) {
+                    return { visible: true, hit: false }; // 随机地鼠出现，未被击中
+                }
+                return { visible: false, hit: false };
+            });
+            setMoles(newMoles);
+        }, 2000);
+        setIntervals({t1: null, t2: t2})
     },[])
 
-    // useEffect(() => {
-    //     if (audioRef.current) {
-    //         toggleMusic()
-    //     }
-    // }, []);
+    useEffect(() => {
+        if (audioRef.current) {
+            toggleMusic()
+        }
+    }, []);
 
     // 组件销毁时清除计时器
     useEffect(() => {
@@ -111,15 +112,17 @@ const GamePage = () => {
         };
     }, [intervals]);
 
+    const back = () => {
+        navigate(-1)
+    }
     return (
         <div className="game_page">
             <audio ref={audioRef} src="/images/game/bgm.mp3" loop />
             <div className="title_box flex justify_between column">
                 <div className="flex justify_between align_center">
-                    <div className="title_round"><i className="picon p-icon-return is_1" /></div>
+                    <div className="title_round" onClick={back}><i className="picon p-icon-return is_1" /></div>
                     <div className="title_round" onClick={toggleMusic}><i className={`picon ${musicPlaying ? 'p-icon-NormalSound' : 'p-icon-Mute'} is_1`} /></div>
                 </div>
-                
                 {
                     gameRunning ?
                         <>
@@ -140,19 +143,19 @@ const GamePage = () => {
                         </>
                     :
                         (
-                            score === 0 ?
+                            time !== -1 ?
                             <div className={`${fadeOut && 'btn_box_fade_out'} btn_box flex justify_center column align_center`}>
                                 <img src="/public/images/game/title.png" alt="" srcset="" />
                                 <div className="flex">
-                                    <div className="start py_3 text_center mr_4 br_4" onClick={startGame}>NEW</div>
-                                    <div className="quite py_3 text_center br_4">Quite</div>
+                                    <div className="start py_3 text_center fw_b mr_4 br_4" onClick={startGame}>NEW</div>
+                                    <div className="quite py_3 text_center fw_b br_4" onClick={back}>Quite</div>
                                 </div>
                             </div>
                             :
-                            <div className={`${fadeOut && 'btn_box_fade_out'} btn_box flex justify_center column align_center`}>
+                            <div className={`${fadeOut && 'btn_box_fadeInDown'} btn_box flex justify_center column align_center`}>
                                 <img src="/public/images/game/over.png" alt="" srcset="" />
                                 <div className="flex">
-                                    <div className="startend py_3 text_center mr_4 br_4" onClick={startGame}>Start</div>
+                                    <div className="startend py_3 text_center fw_b mr_4 br_4" onClick={startGame}>Start</div>
                                     <div className="score py_3 text_center br_4 flex align_center justify_center">
                                         <i className="picon p-icon-money is_3 mr_2"></i>
                                         <span className="fw_b">{score}</span>
@@ -164,9 +167,10 @@ const GamePage = () => {
                 }
             </div>
             <div className="px_4 flex justify_center">
-                <div className={`game_box ${gameRunning && score !== 0 && 'game_filter'}`}>
+                <div className={`game_box ${!gameRunning && time === -1 && 'game_filter'}`}>
                     {moles.map((mole, index) => (
                         <img
+                            className={mole.visible || mole.hit ? 'game_fadeInUp' : 'game_fadeOutDown'}
                             key={index}
                             src={
                                 mole.hit

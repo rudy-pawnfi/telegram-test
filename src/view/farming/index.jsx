@@ -9,6 +9,7 @@ import { ApiServe } from '../../service'
 import { reduceLen, toFmtThousand } from '../../untils'
 import Countdown from '../../components/countDown'
 import { useAlert } from '../../components/alertProvider'
+import { useNavigate } from 'react-router-dom'
 const FarmingPage = () => {
 
     const wallet = useTonWallet();
@@ -17,6 +18,7 @@ const FarmingPage = () => {
     const [useInfo, setUseInfo] = useState({})
     const { showAlert } = useAlert();
     const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
+    const navigate = useNavigate()
     // const initDataUnsafe = {
     //     user: {
     //         id: 5354957141
@@ -132,10 +134,11 @@ const FarmingPage = () => {
             <div className="br_5 px_4 pt_2 pb_4 dinosaur_box flex column align_center">
                 <img className="header_img_box mb_5" src={imgTonlord} alt="" srcSet="" />
                 <div className="fs_4 fw_b mb_4">Polarlord run ( Soon! )</div>
-                <div className="flex align_center justify_center dinosaur_box_box">
+                <div className="flex align_center justify_center dinosaur_box_box mb_4">
                     <img className="mr_2" src={imgNumberOfLives} alt="" srcSet="" />
                     <span className="fs_3 fw_b">x {3 + (invitInfo?.friends?.length || 0)}</span>
                 </div>
+                <div className="game_btn fs_2 fw_b" onClick={() => {navigate('/telegram-test/game')}}>进入游戏</div>
             </div>
         </div>
     )

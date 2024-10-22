@@ -34,7 +34,7 @@
             .start{
                 width: 100px;
                 height: 58px;
-                line-height: 58px;
+                line-height: 64px;
                 background: url('./images/game/btn4.png');
                 background-size: contain;
                 background-position: center;
@@ -83,6 +83,11 @@
             transform: translateY(0); /* 初始位置 */
             animation: fadeOutUp 2s forwards; /* 向上淡出动画 */
         }
+        .btn_box_fadeInDown{
+            opacity: 1; /* 初始不透明 */
+            transform: translateY(20px); /* 初始位置 */
+            animation: fadeInDown 2s forwards; /* 向下淡入动画 */
+        }
     }
     .game_box{
         padding: 12px;
@@ -103,6 +108,16 @@
             left: 24px;
             visibility: hidden;
             z-index: 2;
+        }
+        .game_fadeOutDown{
+            transform: translateY(0); /* 初始位置 */
+            animation: fadeOutDown .5s forwards; /* 向下淡出动画 */
+            // animation-delay: .5s; /* 设置延迟，让淡出在淡入后执行 */
+        }
+
+        .game_fadeInUp {
+            transform: translateY(20px); /* 初始向下偏移 */
+            animation: fadeInUp .5s forwards; /* 向上淡入动画 */
         }
 
         img:nth-child(2) {

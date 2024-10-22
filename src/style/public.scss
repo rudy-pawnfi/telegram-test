@@ -119,6 +119,28 @@ html {
             }
         }
 
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0; /* 完全透明 */
+                transform: translateY(20px); /* 向下偏移 */
+            }
+            100% {
+                opacity: 1; /* 完全可见 */
+                transform: translateY(0); /* 回到原位置 */
+            }
+        }
+
+        @keyframes fadeOutDown {
+            0% {
+                opacity: 1; /* 完全可见 */
+                transform: translateY(0); /* 原位置 */
+            }
+            100% {
+                opacity: 0; /* 完全透明 */
+                transform: translateY(20px); /* 向下偏移 */
+            }
+        }
+
         .loader {
             border: 2px solid rgba(255, 255, 255, 0.3);
             border-top: 2px solid white;
