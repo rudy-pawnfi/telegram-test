@@ -55,6 +55,7 @@ const GamePage = () => {
 
     // 击中地鼠
     const whackMole = (index) => {
+        if(!gameRunning) return
         if (moles[index].visible && !moles[index].hit) {
             setScore(score + 1);
             const newMoles = moles.map((mole, i) => {
@@ -83,17 +84,17 @@ const GamePage = () => {
         setMusicPlaying(!musicPlaying);
     };
     useEffect(() => {
-        const t2 = setInterval(() => {
-            const randomMole = Math.floor(Math.random() * 10);
-            const newMoles = moles.map((_, index) => {
-                if (index === randomMole) {
-                    return { visible: true, hit: false }; // 随机地鼠出现，未被击中
-                }
-                return { visible: false, hit: false };
-            });
-            setMoles(newMoles);
-        }, 2000);
-        setIntervals({t1: null, t2: t2})
+        // const t2 = setInterval(() => {
+        //     const randomMole = Math.floor(Math.random() * 10);
+        //     const newMoles = moles.map((_, index) => {
+        //         if (index === randomMole) {
+        //             return { visible: true, hit: false }; // 随机地鼠出现，未被击中
+        //         }
+        //         return { visible: false, hit: false };
+        //     });
+        //     setMoles(newMoles);
+        // }, 2000);
+        // setIntervals({t1: null, t2: t2})
     },[])
 
     // useEffect(() => {
@@ -124,8 +125,14 @@ const GamePage = () => {
                         <>
                             <div className="btn_box flex justify_center column align_center">
                                 <div className="flex">
-                                    <div className="start py_3 text_center mr_4 br_4" onClick={startGame}>{time}</div>
-                                    <div className="quite py_3 text_center br_4">{score}</div>
+                                    <div className="time py_3 text_center mr_4 br_4 flex align_center justify_center" onClick={startGame}>
+                                        <i className="picon p-icon-Countdown is_3 mr_2"></i>
+                                        <span className="fw_b">{time}</span>
+                                    </div>
+                                    <div className="score py_3 text_center br_4 flex align_center justify_center">
+                                        <i className="picon p-icon-money is_3 mr_2"></i>
+                                        <span className="fw_b">{score}</span>
+                                    </div>
                                 </div>
                             </div>
 
@@ -145,30 +152,35 @@ const GamePage = () => {
                             <div className={`${fadeOut && 'btn_box_fade_out'} btn_box flex justify_center column align_center`}>
                                 <img src="/public/images/game/over.png" alt="" srcset="" />
                                 <div className="flex">
-                                    <div className="start py_3 text_center mr_4 br_4" onClick={startGame}>Start</div>
-                                    <div className="quite py_3 text_center br_4">Quite</div>
+                                    <div className="startend py_3 text_center mr_4 br_4" onClick={startGame}>Start</div>
+                                    <div className="score py_3 text_center br_4 flex align_center justify_center">
+                                        <i className="picon p-icon-money is_3 mr_2"></i>
+                                        <span className="fw_b">{score}</span>
+                                    </div>
                                 </div>
                             </div>
                         )
                         
                 }
             </div>
-            <div className="game_box">
-                {moles.map((mole, index) => (
-                    <img
-                        key={index}
-                        src={
-                            mole.hit
-                            ? './images/game/hit.png' // 击中时显示的图片
-                            : mole.visible
-                            ? './images/game/mouse.png' // 出现时的图片
-                            : './images/game/mouse.png' // 默认图片
-                        }
-                    alt="地鼠"
-                    style={{ visibility: mole.visible || mole.hit ? 'visible' : 'hidden' }} // 隐藏未出现或未被击中的地鼠
-                    onClick={() => whackMole(index)}
-                    />
-                ))}
+            <div className="px_4 flex justify_center">
+                <div className={`game_box ${gameRunning && score !== 0 && 'game_filter'}`}>
+                    {moles.map((mole, index) => (
+                        <img
+                            key={index}
+                            src={
+                                mole.hit
+                                ? './images/game/hit.png' // 击中时显示的图片
+                                : mole.visible
+                                ? './images/game/mouse.png' // 出现时的图片
+                                : './images/game/mouse.png' // 默认图片
+                            }
+                        alt="地鼠"
+                        style={{ visibility: mole.visible || mole.hit ? 'visible' : 'hidden' }} // 隐藏未出现或未被击中的地鼠
+                        onClick={() => whackMole(index)}
+                        />
+                    ))}
+                </div>
             </div>
         </div>
     // <div className="game_page">
