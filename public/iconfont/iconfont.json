@@ -6,6 +6,90 @@
   "description": "polarcapsule-miniapp",
   "glyphs": [
     {
+      "icon_id": "42188032",
+      "name": "icon-Countdown",
+      "font_class": "icon-Countdown",
+      "unicode": "e7cd",
+      "unicode_decimal": 59341
+    },
+    {
+      "icon_id": "42188031",
+      "name": "icon-money",
+      "font_class": "icon-money",
+      "unicode": "e7ce",
+      "unicode_decimal": 59342
+    },
+    {
+      "icon_id": "42186472",
+      "name": "icon-NormalSound",
+      "font_class": "icon-NormalSound",
+      "unicode": "e7ca",
+      "unicode_decimal": 59338
+    },
+    {
+      "icon_id": "42186471",
+      "name": "icon-Mute",
+      "font_class": "icon-Mute",
+      "unicode": "e7cb",
+      "unicode_decimal": 59339
+    },
+    {
+      "icon_id": "42186470",
+      "name": "icon-return",
+      "font_class": "icon-return",
+      "unicode": "e7cc",
+      "unicode_decimal": 59340
+    },
+    {
+      "icon_id": "29556831",
+      "name": "icon-Etherscan",
+      "font_class": "icon-etherscan",
+      "unicode": "e75d",
+      "unicode_decimal": 59229
+    },
+    {
+      "icon_id": "24922695",
+      "name": "icon-usdt",
+      "font_class": "icon-usdt",
+      "unicode": "e72d",
+      "unicode_decimal": 59181
+    },
+    {
+      "icon_id": "25170851",
+      "name": "icon-kfckfc",
+      "font_class": "icon-Twitter2",
+      "unicode": "e73f",
+      "unicode_decimal": 59199
+    },
+    {
+      "icon_id": "25188475",
+      "name": "icon-Discord",
+      "font_class": "icon-Discord",
+      "unicode": "e746",
+      "unicode_decimal": 59206
+    },
+    {
+      "icon_id": "25188932",
+      "name": "icon-medium",
+      "font_class": "icon-medium",
+      "unicode": "e747",
+      "unicode_decimal": 59207
+    },
+    {
+      "icon_id": "30972856",
+      "name": "Vector",
+      "font_class": "icon-eth2",
+      "unicode": "e788",
+      "unicode_decimal": 59272
+    },
+    {
+      "icon_id": "40402530",
+      "name": "推特",
+      "font_class": "tuite",
+      "unicode": "e6aa",
+      "unicode_decimal": 59050
+    },
+    {
       "icon_id": "41821873",
       "name": "icon-Finish",
       "font_class": "icon-Finish",
