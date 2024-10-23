@@ -2,9 +2,12 @@ import { useTonWallet } from '@tonconnect/ui-react';
 import React, { useState, useEffect, useRef } from 'react';
 import { useLayoutEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAlert } from '../../components/alertProvider';
+import { ApiServe } from '../../service';
 
 import './index.scss'
-
+const TimeCount = 60
+let SCORE = 0
 const GamePage = () => {
 
     const wallet = useTonWallet();
@@ -17,12 +20,46 @@ const GamePage = () => {
     const audioRef = useRef(null); // 引用 audio 元素
     const [fadeOut, setFadeOut] = useState(false)
     const navigate = useNavigate()
+    const [gameInfo, setGameInfo] = useState({})
+    const { showAlert } = useAlert();
+    const [loadding, setLoadding] = useState(false)
+    // const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
+    const initDataUnsafe = {
+        user: {
+            id: 5354957141
+        }
+    }
+
+    const init = async() => {
+        const res = await ApiServe.query('availableplayinfo', {
+            tg_account: initDataUnsafe?.user?.id + '',
+            now_ts:Math.floor(new Date().getTime() / 1000)
+        }).catch(err => {
+            return {data:{}}
+        })
+        setGameInfo(res?.data)
+        console.log('res :>> ', res);
+    }
+    const submintScor = async() => {
+        const res = await ApiServe.query('finishgroundhog', {
+            tg_account: initDataUnsafe?.user?.id + '',
+            play_points: SCORE,
+            start_ts: Math.floor(new Date().getTime() / 1000) - TimeCount,
+            end_ts: Math.floor(new Date().getTime() / 1000),
+            count_day: gameInfo?.count_day + 1
+        }).catch(err => {
+            return {data:{}}
+        })
+    }
     // 游戏开始
     const startGame = () => {
+        if(gameInfo?.remain_day === 0) return showAlert('没有游戏次数', 'warning')
         clearInterval(intervals.t2);
         setFadeOut(true)
         setScore(0);
+        SCORE = 0
         setTime(10);
+        setLoadding(false)
         
         setTimeout(() => {
             setGameRunning(true);
@@ -39,12 +76,20 @@ const GamePage = () => {
             }, 2000);
             // 每秒减少时间
             const t1 = setInterval(() => {
+                console.log('SCORE :>> ', SCORE);
                 setTime((prevTime) => {
                     if (prevTime <= 0) {
+                        
                         clearInterval(t1);
                         clearInterval(t2);
                         setGameRunning(false);
                         setMoles(new Array(10).fill({ visible: false, hit: false })); // 隐藏所有地鼠
+                        if(!loadding){
+                            
+                            setLoadding(true)
+                            submintScor()
+                        }
+                        
                     }
                     return prevTime - 1;
                 });
@@ -58,6 +103,7 @@ const GamePage = () => {
     const whackMole = (index) => {
         if(!gameRunning) return
         if (moles[index].visible && !moles[index].hit) {
+            SCORE = SCORE + 1
             setScore(score + 1);
             const newMoles = moles.map((mole, i) => {
                 if (i === index) {
@@ -102,6 +148,7 @@ const GamePage = () => {
         if (audioRef.current) {
             toggleMusic()
         }
+        init()
     }, []);
 
     // 组件销毁时清除计时器

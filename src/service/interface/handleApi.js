@@ -14,6 +14,10 @@ const API = {
     usersignin: "/api/polarcapsule-app-service/v1/user/usersignin",
     usersignout:"/api/polarcapsule-app-service/v1/user/usersignout",
 
+
+    // game
+    availableplayinfo:"/api/polarcapsule-app-service/v1/groundhog/availableplayinfo",
+    finishgroundhog: "/api/polarcapsule-app-service/v1/groundhog/finishgroundhog"
     
 }
 
