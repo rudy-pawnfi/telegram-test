@@ -58,7 +58,7 @@ const GamePage = () => {
     // 游戏开始
     const startGame = useCallback(() => {
         if(gameRunning) return
-        if(gameInfo?.remain_day === 0) return showAlert('没有游戏次数', 'warning')
+        // if(gameInfo?.remain_day === 0) return showAlert('没有游戏次数', 'warning')
         clearInterval(intervals.t3);
         clearInterval(intervals.t1)
         clearInterval(intervals.t2)
@@ -208,15 +208,15 @@ const GamePage = () => {
                                 </div>
                             </div>
                             :
-                            <div className={`${fadeOut && 'btn_box_fadeInDown'} btn_box flex justify_center column align_center`}>
+                            <div className={`${fadeOut && 'btn_box_fadeInDown'} btn_box btn_over flex justify_center column align_center`}>
                                 <img src={OverImg} alt="" srcset="" />
-                                <div className="flex">
-                                    <div className="startend py_3 text_center fw_b mr_4 br_4" onClick={startGame}>Start</div>
-                                    <div className="score py_3 text_center br_4 flex align_center justify_center">
-                                        <i className="picon p-icon-money is_3 mr_2"></i>
-                                        <span className="fw_b">{score}</span>
+                                {/* <div className="flex"> */}
+                                    <div className="score py_3 text_center br_4 flex align_center column py_4">
+                                        <i className="picon p-icon-money is_5"></i>
+                                        <span className="fw_b fs_6">+{score}</span>
                                     </div>
-                                </div>
+                                    <div className="startend py_3 text_center fw_b br_4" onClick={startGame}>Start</div>
+                                {/* </div> */}
                             </div>
                         )
                         
@@ -225,20 +225,22 @@ const GamePage = () => {
             <div className="px_4 flex justify_center">
                 <div className={`game_box ${!gameRunning && time === -1 && 'game_filter'}`}>
                     {moles.map((mole, index) => (
-                        <img
-                            className={mole.visible || mole.hit ? 'game_fadeInUp' : 'game_fadeOutDown'}
-                            key={index}
-                            src={
-                                mole.hit
-                                ? './images/game/hit.png' // 击中时显示的图片
-                                : mole.visible
-                                ? './images/game/mouse.png' // 出现时的图片
-                                : './images/game/mouse.png' // 默认图片
-                            }
-                        alt="地鼠"
-                        style={{ visibility: mole.visible || mole.hit ? 'visible' : 'hidden' }} // 隐藏未出现或未被击中的地鼠
-                        onClick={() => whackMole(index)}
-                        />
+                        // <div key={index} style={{ display: mole.visible ? 'block' : 'none' }} onClick={() => handleMoleHit(index)}>
+                            <img
+                                className={mole.visible || mole.hit ? 'game_fadeInUp' : 'game_fadeOutDown'}
+                                key={index}
+                                src={
+                                    mole.hit
+                                    ? './images/game/hit.png' // 击中时显示的图片
+                                    : mole.visible
+                                    ? './images/game/mouse.png' // 出现时的图片
+                                    : './images/game/mouse.png' // 默认图片
+                                }
+                                alt="地鼠"
+                                style={{ visibility: mole.visible || mole.hit ? 'visible' : 'hidden' }} // 隐藏未出现或未被击中的地鼠
+                                onClick={() => whackMole(index)}
+                            />
+                        // </div>
                     ))}
                 </div>
             </div>
@@ -282,4 +284,13 @@ const GamePage = () => {
   );
 }
 
+
+const SplashScreen = ({ onStart }) => {
+    return (
+      <div className="splash-screen">
+        <img src="path/to/splash-image.jpg" alt="Splash" />
+        <button onClick={onStart}>开始游戏</button>
+      </div>
+    );
+};
 export default GamePage
