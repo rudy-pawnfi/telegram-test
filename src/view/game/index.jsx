@@ -173,7 +173,6 @@ const GamePage = () => {
     }
     return (
         <div className="game_page">
-            {time}
             <audio ref={audioRef} src={BGM} loop />
             <div className="title_box flex justify_between column">
                 <div className="flex justify_between align_center">

@@ -43,7 +43,7 @@ const TabBox = (props) => {
             return false
         }
         return true
-    },[])
+    },[location])
     return(
         <>
             {
