@@ -1,5 +1,5 @@
 import { useTonWallet } from '@tonconnect/ui-react';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useLayoutEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAlert } from '../../components/alertProvider';
@@ -10,14 +10,15 @@ import BGM from '/images/game/bgm.mp3'
 import './index.scss'
 const TimeCount = 60
 let SCORE = 0
+let TIME = 10
 const GamePage = () => {
 
     const wallet = useTonWallet();
-    const [moles, setMoles] = useState(new Array(10).fill({ visible: true, hit: false })); // 地鼠状态：是否显示、是否被击中
+    const [moles, setMoles] = useState(new Array(10).fill({ visible: false, hit: false })); // 地鼠状态：是否显示、是否被击中
     const [time, setTime] = useState(0); // 剩余时间
     const [score, setScore] = useState(0); // 分数
     const [gameRunning, setGameRunning] = useState(false); // 游戏是否正在进行
-    const [intervals, setIntervals] = useState({ t1: null, t2: null }); // 保存计时器
+    const [intervals, setIntervals] = useState({ t1: null, t2: null, t3: null }); // 保存计时器
     const [musicPlaying, setMusicPlaying] = useState(false); // 控制背景音乐
     const audioRef = useRef(null); // 引用 audio 元素
     const [fadeOut, setFadeOut] = useState(false)
@@ -25,12 +26,12 @@ const GamePage = () => {
     const [gameInfo, setGameInfo] = useState({})
     const { showAlert } = useAlert();
     const [loadding, setLoadding] = useState(false)
-    const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
-    // const initDataUnsafe = {
-    //     user: {
-    //         id: 5354957141
-    //     }
-    // }
+    // const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
+    const initDataUnsafe = {
+        user: {
+            id: 5354957141
+        }
+    }
 
     const init = async() => {
         const res = await ApiServe.query('availableplayinfo', {
@@ -43,6 +44,7 @@ const GamePage = () => {
         console.log('res :>> ', res);
     }
     const submintScor = async() => {
+        console.log('1 :>> ', 1);
         const res = await ApiServe.query('finishgroundhog', {
             tg_account: initDataUnsafe?.user?.id + '',
             play_points: SCORE,
@@ -54,12 +56,16 @@ const GamePage = () => {
         })
     }
     // 游戏开始
-    const startGame = () => {
+    const startGame = useCallback(() => {
+        if(gameRunning) return
         if(gameInfo?.remain_day === 0) return showAlert('没有游戏次数', 'warning')
-        clearInterval(intervals.t2);
+        clearInterval(intervals.t3);
+        clearInterval(intervals.t1)
+        clearInterval(intervals.t2)
         setFadeOut(true)
         setScore(0);
         SCORE = 0
+        // TIME = 10
         setTime(10);
         setLoadding(false)
         
@@ -78,28 +84,29 @@ const GamePage = () => {
             }, 2000);
             // 每秒减少时间
             const t1 = setInterval(() => {
-                console.log('SCORE :>> ', SCORE);
                 setTime((prevTime) => {
-                    if (prevTime <= 0) {
-                        
+                    if (prevTime === 0) {
+                        // console.log('prevTime :>> ', prevTime);
+                        setLoadding(true)
                         clearInterval(t1);
                         clearInterval(t2);
                         setGameRunning(false);
                         setMoles(new Array(10).fill({ visible: false, hit: false })); // 隐藏所有地鼠
-                        if(!loadding){
-                            
-                            setLoadding(true)
-                            submintScor()
-                        }
-                        
+                        return -1
                     }
                     return prevTime - 1;
                 });
             }, 1000);
 
-            setIntervals({ t1, t2 });
+            setIntervals({ t1, t2, t3: null });
         }, 2000);
-    };
+    },[]);
+
+    useEffect(() => {
+        if(time === -1 && !gameRunning){
+            submintScor()
+        }
+    },[time])
 
     // 击中地鼠
     const whackMole = (index) => {
@@ -133,7 +140,7 @@ const GamePage = () => {
         setMusicPlaying(!musicPlaying);
     };
     useEffect(() => {
-        const t2 = setInterval(() => {
+        const t3 = setInterval(() => {
             const randomMole = Math.floor(Math.random() * 10);
             const newMoles = moles.map((_, index) => {
                 if (index === randomMole) {
@@ -143,7 +150,7 @@ const GamePage = () => {
             });
             setMoles(newMoles);
         }, 2000);
-        setIntervals({t1: null, t2: t2})
+        setIntervals({t1: null, t2: null, t3: t3})
     },[])
 
     useEffect(() => {
@@ -166,6 +173,7 @@ const GamePage = () => {
     }
     return (
         <div className="game_page">
+            {time}
             <audio ref={audioRef} src={BGM} loop />
             <div className="title_box flex justify_between column">
                 <div className="flex justify_between align_center">
