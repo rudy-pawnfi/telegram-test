@@ -23,12 +23,12 @@ const GamePage = () => {
     const [gameInfo, setGameInfo] = useState({})
     const { showAlert } = useAlert();
     const [loadding, setLoadding] = useState(false)
-    // const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
-    const initDataUnsafe = {
-        user: {
-            id: 5354957141
-        }
-    }
+    const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
+    // const initDataUnsafe = {
+    //     user: {
+    //         id: 5354957141
+    //     }
+    // }
 
     const init = async() => {
         const res = await ApiServe.query('availableplayinfo', {
