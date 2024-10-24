@@ -17,15 +17,16 @@ const FarmingPage = () => {
     const [farmingInfo, setFarmingInfo] = useState({})
     const [useInfo, setUseInfo] = useState({})
     const { showAlert } = useAlert();
-    const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
+    // const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
     const navigate = useNavigate()
-    // const initDataUnsafe = {
-    //     user: {
-    //         id: 5354957141
-    //     }
-    // }
+    const initDataUnsafe = {
+        user: {
+            id: 5354957141
+        }
+    }
     const [bubbles, setBubbles] = useState([]);
     const [invitInfo, setInvitInfo] = useState({})
+    const [gameInfo, setGameInfo] = useState({})
     useEffect(() => {
         init()
     }, [])
@@ -38,11 +39,11 @@ const FarmingPage = () => {
         })
         setUseInfo(result.data)
         // if(!!result.data?.launch_cnt && result.data?.launch_cnt !== 0){
-            const res = await ApiServe.query('launchfarming', {
-                tg_account: initDataUnsafe.user.id + '',
-                launch_cnt: -1
-            })
-            setFarmingInfo(res)
+        const res = await ApiServe.query('launchfarming', {
+            tg_account: initDataUnsafe.user.id + '',
+            launch_cnt: -1
+        })
+        setFarmingInfo(res)
         // }
 
         const useInfo = await ApiServe.query('invitinginfo',{
@@ -50,6 +51,13 @@ const FarmingPage = () => {
         })
         setInvitInfo(useInfo.data)
 
+        const game = await ApiServe.query('availableplayinfo', {
+            tg_account: initDataUnsafe?.user?.id + '',
+            now_ts:Math.floor(new Date().getTime() / 1000)
+        }).catch(err => {
+            return {data:{}}
+        })
+        setGameInfo(game?.data)
         // const res1 = await ApiServe.query('farminglist', {
         //     tg_account: tonAddress
         // })
@@ -133,12 +141,12 @@ const FarmingPage = () => {
 
             <div className="br_5 px_4 pt_2 pb_4 dinosaur_box flex column align_center">
                 <img className="header_img_box mb_5" src={imgTonlord} alt="" srcSet="" />
-                <div className="fs_4 fw_b mb_4">Polarlord run ( Soon! )</div>
+                <div className="fs_4 fw_b mb_4">Polarlord run</div>
                 <div className="flex align_center justify_center dinosaur_box_box mb_4">
                     <img className="mr_2" src={imgNumberOfLives} alt="" srcSet="" />
-                    <span className="fs_3 fw_b">x {3 + (invitInfo?.friends?.length || 0)}</span>
+                    <span className="fs_3 fw_b">x {gameInfo?.remain_day || 3}</span>
                 </div>
-                <div className="game_btn fs_2 fw_b" onClick={() => {navigate('/telegram-test/game')}}>进入游戏</div>
+                <div className="game_btn fs_2 fw_b" onClick={() => {navigate('/telegram-test/game')}}>Start</div>
             </div>
         </div>
     )
