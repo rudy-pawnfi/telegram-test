@@ -1,5 +1,5 @@
 .game_page {
-    background: url('./images/game/1080-2400.png');
+    background: url('/images/game/1080-2400.png');
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -35,7 +35,7 @@
                 width: 100px;
                 height: 58px;
                 line-height: 64px;
-                background: url('./images/game/btn4.png');
+                background: url('/images/game/btn4.png');
                 background-size: contain;
                 background-position: center;
                 background-repeat: no-repeat;
@@ -45,7 +45,7 @@
                 width: 100px;
                 height: 58px;
                 line-height: 58px;
-                background: url('./images/game/btn3.png');
+                background: url('/images/game/btn3.png');
                 background-size: contain;
                 background-position: center;
                 background-repeat: no-repeat;
@@ -54,7 +54,7 @@
                 width: 100px;
                 height: 58px;
                 line-height: 58px;
-                background: url('./images/game/btn1.png');
+                background: url('/images/game/btn1.png');
                 background-size: contain;
                 background-position: center;
                 background-repeat: no-repeat;
@@ -63,7 +63,7 @@
                 width: 100px;
                 height: 58px;
                 line-height: 58px;
-                background: url('./images/game/btn2.png');
+                background: url('/images/game/btn2.png');
                 background-size: contain;
                 background-position: center;
                 background-repeat: no-repeat;
@@ -72,7 +72,7 @@
                 width: 100px;
                 height: 58px;
                 line-height: 58px;
-                background: url('./images/game/btn3.png');
+                background: url('/images/game/btn3.png');
                 background-size: contain;
                 background-position: center;
                 background-repeat: no-repeat;
@@ -91,7 +91,7 @@
     }
     .game_box{
         padding: 12px;
-        background: url('./images/game/all_dong.png');
+        background: url('/images/game/all_dong.png');
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;

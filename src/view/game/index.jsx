@@ -4,7 +4,9 @@ import { useLayoutEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAlert } from '../../components/alertProvider';
 import { ApiServe } from '../../service';
-
+import TitleImg from '/images/game/title.png'
+import OverImg from '/images/game/over.png'
+import BGM from '/images/game/bgm.mp3'
 import './index.scss'
 const TimeCount = 60
 let SCORE = 0
@@ -164,7 +166,7 @@ const GamePage = () => {
     }
     return (
         <div className="game_page">
-            <audio ref={audioRef} src="/images/game/bgm.mp3" loop />
+            <audio ref={audioRef} src={BGM} loop />
             <div className="title_box flex justify_between column">
                 <div className="flex justify_between align_center">
                     <div className="title_round" onClick={back}><i className="picon p-icon-return is_1" /></div>
@@ -192,7 +194,7 @@ const GamePage = () => {
                         (
                             time !== -1 ?
                             <div className={`${fadeOut && 'btn_box_fade_out'} btn_box flex justify_center column align_center`}>
-                                <img src="/public/images/game/title.png" alt="" srcset="" />
+                                <img src={TitleImg} alt="" srcset="" />
                                 <div className="flex">
                                     <div className="start py_3 text_center fw_b mr_4 br_4" onClick={startGame}>NEW</div>
                                     <div className="quite py_3 text_center fw_b br_4" onClick={back}>Quite</div>
@@ -200,7 +202,7 @@ const GamePage = () => {
                             </div>
                             :
                             <div className={`${fadeOut && 'btn_box_fadeInDown'} btn_box flex justify_center column align_center`}>
-                                <img src="/public/images/game/over.png" alt="" srcset="" />
+                                <img src={OverImg} alt="" srcset="" />
                                 <div className="flex">
                                     <div className="startend py_3 text_center fw_b mr_4 br_4" onClick={startGame}>Start</div>
                                     <div className="score py_3 text_center br_4 flex align_center justify_center">
