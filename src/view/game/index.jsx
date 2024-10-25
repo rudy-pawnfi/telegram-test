@@ -219,7 +219,7 @@ const GamePage = () => {
                                     <div className={`${fadeOut && 'btn_box_fadeInDown'} btn_box btn_over flex justify_center column align_center`}>
                                         <img src={OverImg} alt="" srcset="" />
                                         {/* <div className="flex"> */}
-                                            <div className="score py_3 text_center br_4 flex align_center column py_4">
+                                            <div className="score py_3 text_center br_4 flex column">
                                                 <i className="picon p-icon-money is_5"></i>
                                                 <span className="fw_b fs_6">+{score}</span>
                                             </div>
