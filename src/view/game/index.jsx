@@ -7,6 +7,7 @@ import { ApiServe } from '../../service';
 import TitleImg from '/images/game/title.png'
 import OverImg from '/images/game/over.png'
 import BGM from '/images/game/bgm.mp3'
+import splashImage from '/images/game/splash-image.jpg'
 import './index.scss'
 const TimeCount = 60
 let SCORE = 0
@@ -261,7 +262,7 @@ const GamePage = () => {
 const SplashScreen = ({ loadding }) => {
     return (
       <div className={`splash-screen ${loadding ? 'splash_screen_in' : 'splash_screen_out'}`}>
-        <img src="/public/images/game/splash-image.jpg" alt="Splash" />
+        <img src={splashImage} alt="Splash" />
       </div>
     );
 };

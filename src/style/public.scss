@@ -95,6 +95,7 @@ html {
             }
             100% {
                 opacity: 0; /* 完全透明 */
+                z-index: -99;
                 transform: translateX(50px); /* 向右移动50px */
             }
         }
