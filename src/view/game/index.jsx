@@ -25,13 +25,13 @@ const GamePage = () => {
     const navigate = useNavigate()
     const [gameInfo, setGameInfo] = useState({})
     const { showAlert } = useAlert();
-    const [loadding, setLoadding] = useState(false)
-    // const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
-    const initDataUnsafe = {
-        user: {
-            id: 5354957141
-        }
-    }
+    const [loadding, setLoadding] = useState(true)
+    const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
+    // const initDataUnsafe = {
+    //     user: {
+    //         id: 5354957141
+    //     }
+    // }
 
     const init = async() => {
         const res = await ApiServe.query('availableplayinfo', {
@@ -58,7 +58,7 @@ const GamePage = () => {
     // 游戏开始
     const startGame = useCallback(() => {
         if(gameRunning) return
-        // if(gameInfo?.remain_day === 0) return showAlert('没有游戏次数', 'warning')
+        if(gameInfo?.remain_day === 0) return showAlert('No play pass today', 'warning')
         clearInterval(intervals.t3);
         clearInterval(intervals.t1)
         clearInterval(intervals.t2)
@@ -66,8 +66,7 @@ const GamePage = () => {
         setScore(0);
         SCORE = 0
         // TIME = 10
-        setTime(10);
-        setLoadding(false)
+        setTime(TimeCount);
         
         setTimeout(() => {
             setGameRunning(true);
@@ -87,7 +86,6 @@ const GamePage = () => {
                 setTime((prevTime) => {
                     if (prevTime === 0) {
                         // console.log('prevTime :>> ', prevTime);
-                        setLoadding(true)
                         clearInterval(t1);
                         clearInterval(t2);
                         setGameRunning(false);
@@ -151,6 +149,10 @@ const GamePage = () => {
             setMoles(newMoles);
         }, 2000);
         setIntervals({t1: null, t2: null, t3: t3})
+        setLoadding(true)
+        setTimeout(() => {
+            setLoadding(false)
+        }, 3000);
     },[])
 
     useEffect(() => {
@@ -172,124 +174,94 @@ const GamePage = () => {
         navigate(-1)
     }
     return (
-        <div className="game_page">
+        <>
             <audio ref={audioRef} src={BGM} loop />
-            <div className="title_box flex justify_between column">
-                <div className="flex justify_between align_center">
-                    <div className="title_round" onClick={back}><i className="picon p-icon-return is_1" /></div>
-                    <div className="title_round" onClick={toggleMusic}><i className={`picon ${musicPlaying ? 'p-icon-NormalSound' : 'p-icon-Mute'} is_1`} /></div>
-                </div>
-                {
-                    gameRunning ?
-                        <>
-                            <div className="btn_box flex justify_center column align_center">
-                                <div className="flex">
-                                    <div className="time py_3 text_center mr_4 br_4 flex align_center justify_center" onClick={startGame}>
-                                        <i className="picon p-icon-Countdown is_3 mr_2"></i>
-                                        <span className="fw_b">{time}</span>
+            {/* {
+                loadding ? */}
+                <SplashScreen loadding={loadding} />
+                {/* : */}
+                <div className="game_page">
+                    <div className="title_box flex justify_between column">
+                        <div className="flex justify_between align_center">
+                            <div className="title_round" onClick={back}><i className="picon p-icon-return is_1" /></div>
+                            <div className="title_round" onClick={toggleMusic}><i className={`picon ${musicPlaying ? 'p-icon-NormalSound' : 'p-icon-Mute'} is_1`} /></div>
+                        </div>
+                        {
+                            gameRunning ?
+                                <>
+                                    <div className="btn_box flex justify_center column align_center">
+                                        <div className="flex">
+                                            <div className="time py_3 text_center mr_4 br_4 flex align_center justify_center" onClick={startGame}>
+                                                <i className="picon p-icon-Countdown is_3 mr_2"></i>
+                                                <span className="fw_b">{time}</span>
+                                            </div>
+                                            <div className="score py_3 text_center br_4 flex align_center justify_center">
+                                                <i className="picon p-icon-money is_3 mr_2"></i>
+                                                <span className="fw_b">{score}</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="score py_3 text_center br_4 flex align_center justify_center">
-                                        <i className="picon p-icon-money is_3 mr_2"></i>
-                                        <span className="fw_b">{score}</span>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div></div>
-                        </>
-                    :
-                        (
-                            time !== -1 ?
-                            <div className={`${fadeOut && 'btn_box_fade_out'} btn_box flex justify_center column align_center`}>
-                                <img src={TitleImg} alt="" srcset="" />
-                                <div className="flex">
-                                    <div className="start py_3 text_center fw_b mr_4 br_4" onClick={startGame}>NEW</div>
-                                    <div className="quite py_3 text_center fw_b br_4" onClick={back}>Quite</div>
-                                </div>
-                            </div>
+                                    <div></div>
+                                </>
                             :
-                            <div className={`${fadeOut && 'btn_box_fadeInDown'} btn_box btn_over flex justify_center column align_center`}>
-                                <img src={OverImg} alt="" srcset="" />
-                                {/* <div className="flex"> */}
-                                    <div className="score py_3 text_center br_4 flex align_center column py_4">
-                                        <i className="picon p-icon-money is_5"></i>
-                                        <span className="fw_b fs_6">+{score}</span>
+                                (
+                                    time !== -1 ?
+                                    <div className={`${fadeOut && 'btn_box_fade_out'} btn_box flex justify_center column align_center`}>
+                                        <img src={TitleImg} alt="" srcset="" />
+                                        <div className="flex">
+                                            <div className="start py_3 text_center fw_b mr_4 br_4" onClick={startGame}>NEW</div>
+                                            <div className="quite py_3 text_center fw_b br_4" onClick={back}>Quite</div>
+                                        </div>
                                     </div>
-                                    <div className="startend py_3 text_center fw_b br_4" onClick={startGame}>Start</div>
-                                {/* </div> */}
-                            </div>
-                        )
-                        
-                }
-            </div>
-            <div className="px_4 flex justify_center">
-                <div className={`game_box ${!gameRunning && time === -1 && 'game_filter'}`}>
-                    {moles.map((mole, index) => (
-                        // <div key={index} style={{ display: mole.visible ? 'block' : 'none' }} onClick={() => handleMoleHit(index)}>
-                            <img
-                                className={mole.visible || mole.hit ? 'game_fadeInUp' : 'game_fadeOutDown'}
-                                key={index}
-                                src={
-                                    mole.hit
-                                    ? './images/game/hit.png' // 击中时显示的图片
-                                    : mole.visible
-                                    ? './images/game/mouse.png' // 出现时的图片
-                                    : './images/game/mouse.png' // 默认图片
-                                }
-                                alt="地鼠"
-                                style={{ visibility: mole.visible || mole.hit ? 'visible' : 'hidden' }} // 隐藏未出现或未被击中的地鼠
-                                onClick={() => whackMole(index)}
-                            />
-                        // </div>
-                    ))}
+                                    :
+                                    <div className={`${fadeOut && 'btn_box_fadeInDown'} btn_box btn_over flex justify_center column align_center`}>
+                                        <img src={OverImg} alt="" srcset="" />
+                                        {/* <div className="flex"> */}
+                                            <div className="score py_3 text_center br_4 flex align_center column py_4">
+                                                <i className="picon p-icon-money is_5"></i>
+                                                <span className="fw_b fs_6">+{score}</span>
+                                            </div>
+                                            <div className="startend py_3 text_center fw_b br_4" onClick={startGame}>Start</div>
+                                        {/* </div> */}
+                                    </div>
+                                )
+                                
+                        }
+                    </div>
+                    <div className="px_4 flex justify_center">
+                        <div className={`game_box ${!gameRunning && time === -1 && 'game_filter'}`}>
+                            {moles.map((mole, index) => (
+                                // <div key={index} style={{ display: mole.visible ? 'block' : 'none' }} onClick={() => handleMoleHit(index)}>
+                                    <img
+                                        className={mole.visible || mole.hit ? 'game_fadeInUp' : 'game_fadeOutDown'}
+                                        key={index}
+                                        src={
+                                            mole.hit
+                                            ? './images/game/hit.png' // 击中时显示的图片
+                                            : mole.visible
+                                            ? './images/game/mouse.png' // 出现时的图片
+                                            : './images/game/mouse.png' // 默认图片
+                                        }
+                                        alt="地鼠"
+                                        style={{ visibility: mole.visible || mole.hit ? 'visible' : 'hidden' }} // 隐藏未出现或未被击中的地鼠
+                                        onClick={() => whackMole(index)}
+                                    />
+                                // </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    // <div className="game_page">
-    //   <h1>打地鼠游戏</h1>
-    //   <div className="game-container">
-    //     {/* 背景音乐 */}
-    //     <audio ref={audioRef} src="./background-music.mp3" loop />
-
-    //     {/* 音乐控制按钮 */}
-    //     <button onClick={toggleMusic}>
-    //       {musicPlaying ? '关闭背景音乐' : '打开背景音乐'}
-    //     </button>
-
-    //     {/* 游戏网格 */}
-    //     <div className="box">
-    //       {moles.map((mole, index) => (
-    //         <img
-    //           key={index}
-    //           src={
-    //             mole.hit
-    //               ? './images/game/mouse2.png' // 击中时显示的图片
-    //               : mole.visible
-    //               ? './images/game/mouse.png' // 出现时的图片
-    //               : './images/game/mouse.png' // 默认图片
-    //           }
-    //           alt="地鼠"
-    //           style={{ visibility: mole.visible || mole.hit ? 'visible' : 'hidden' }} // 隐藏未出现或未被击中的地鼠
-    //           onClick={() => whackMole(index)}
-    //         />
-    //       ))}
-    //     </div>
-    //     <button onClick={startGame} disabled={gameRunning}>
-    //       {gameRunning ? '游戏进行中...' : '点击开始游戏'}
-    //     </button>
-    //     <div className="times">剩余时间：{time}秒</div>
-    //     <div className="fens">当前得分为：{score}分</div>
-    //   </div>
-    // </div>
+            {/* } */}
+        </>
   );
 }
 
 
-const SplashScreen = ({ onStart }) => {
+const SplashScreen = ({ loadding }) => {
     return (
-      <div className="splash-screen">
-        <img src="path/to/splash-image.jpg" alt="Splash" />
-        <button onClick={onStart}>开始游戏</button>
+      <div className={`splash-screen ${loadding ? 'splash_screen_in' : 'splash_screen_out'}`}>
+        <img src="/public/images/game/splash-image.jpg" alt="Splash" />
       </div>
     );
 };

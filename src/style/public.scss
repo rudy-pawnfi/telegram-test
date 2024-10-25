@@ -88,6 +88,16 @@ html {
               transform: translateX(0); /* 回到原位置 */
             }
         }
+        @keyframes fadeOutRight {
+            0% {
+                opacity: 1; /* 完全可见 */
+                transform: translateX(0); /* 原位置 */
+            }
+            100% {
+                opacity: 0; /* 完全透明 */
+                transform: translateX(50px); /* 向右移动50px */
+            }
+        }
         @keyframes fadeInRight {
             0% {
               opacity: 0;

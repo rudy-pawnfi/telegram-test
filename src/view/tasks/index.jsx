@@ -37,6 +37,7 @@ const TasksPage = () => {
         5: false,
         6: false,
         7: false,
+        8: false
     })
     const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
     // const initDataUnsafe = {
@@ -118,6 +119,7 @@ const TasksPage = () => {
             5: false,
             6: false,
             7: false,
+            8: false
         }
         setClaimObj({ ...claimObj })
         const res = await ApiServe.query('getrefcode', {
@@ -225,11 +227,11 @@ const TasksPage = () => {
         window.open('https://x.com/Polartonlord', '_blank')
 
     }
-    const toTg = async () => {
-        claimObj[3] = true
+    const toTg = async (url, index) => {
+        claimObj[index] = true
         setClaimObj({ ...claimObj })
         localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
-        Telegram.WebApp.openTelegramLink('https://t.me/polartonlord')
+        Telegram.WebApp.openTelegramLink(url)
     }
 
     const toChannel = async () => {
@@ -580,7 +582,40 @@ const TasksPage = () => {
                                                             }
                                                         </div>
                                                         :
-                                                        <div className="tasks_btn go_btn fs_2 fw_b" onClick={toTg}>
+                                                        <div className="tasks_btn go_btn fs_2 fw_b" onClick={() => {toTg('https://t.me/polartonlord', 3)}}>
+                                                            Go
+                                                        </div>
+                                                )
+
+                                        }
+                                    </div>
+
+                                    <div className="list_box list_box_4 pa_4 flex justify_between align_center mb_3">
+                                        <div className="flex align_center">
+                                            <img className="mr_5" src={imgicon_3} alt="" srcSet="" />
+                                            <div>
+                                                <div className="fs_2 fw_m">Follow Polarise on X</div>
+                                                <div className="fs_2 text_4">+90 BP</div>
+                                            </div>
+                                        </div>
+                                        {
+                                            !!taskList?.find(val => val.task_id === "9") ?
+                                                <div className="tasks_btn click_btn fs_2 fw_b">
+                                                    <i className="picon p-icon-Finish is_3"></i>
+                                                </div>
+                                                :
+                                                (
+                                                    claimObj[7] ?
+                                                        <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Follow Polarise on X', 90.00, '9', 7)}>
+                                                            {
+                                                                isClaim === '9' ?
+                                                                    <span className="loader"></span>
+                                                                    :
+                                                                    <span>Claim</span>
+                                                            }
+                                                        </div>
+                                                        :
+                                                        <div className="tasks_btn go_btn fs_2 fw_b" onClick={() => {toTg("https://x.com/polariseorg", 7)}}>
                                                             Go
                                                         </div>
                                                 )

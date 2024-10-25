@@ -345,3 +345,24 @@
     // }
 
 }
+.splash-screen{
+    position: absolute;
+    top: 0;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    img{
+        width: 100%;
+        height: 100%;
+    }
+}
+.splash_screen_out{
+    transform: translateX(0); /* 初始位置 */
+    animation: fadeOutRight 2s forwards; /* 向右淡出动画 */
+}
+.splash_screen_in{
+    opacity: 0; /* 初始透明 */
+    transform: translateX(-100px); /* 初始在左侧 */
+    animation: fadeInLeft 2s ease-out forwards;
+
+}
