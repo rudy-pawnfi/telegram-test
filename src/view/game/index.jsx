@@ -183,7 +183,7 @@ const GamePage = () => {
                 {/* : */}
                 <div className="game_page">
                     <div className="title_box flex justify_between column">
-                        <div className="flex justify_between align_center">
+                        <div className="flex justify_between align_center back_box">
                             <div className="title_round" onClick={back}><i className="picon p-icon-return is_1" /></div>
                             <div className="title_round" onClick={toggleMusic}><i className={`picon ${musicPlaying ? 'p-icon-NormalSound' : 'p-icon-Mute'} is_1`} /></div>
                         </div>
@@ -196,7 +196,7 @@ const GamePage = () => {
                                                 <i className="picon p-icon-Countdown is_3 mr_2"></i>
                                                 <span className="fw_b">{time}</span>
                                             </div>
-                                            <div className="score py_3 text_center br_4 flex align_center justify_center">
+                                            <div className="score1 py_3 text_center br_4 flex align_center justify_center">
                                                 <i className="picon p-icon-money is_3 mr_2"></i>
                                                 <span className="fw_b">{score}</span>
                                             </div>

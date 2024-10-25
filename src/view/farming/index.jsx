@@ -42,12 +42,16 @@ const FarmingPage = () => {
         const res = await ApiServe.query('launchfarming', {
             tg_account: initDataUnsafe.user.id + '',
             launch_cnt: -1
+        }).catch(err => {
+            return {}
         })
         setFarmingInfo(res)
         // }
 
         const useInfo = await ApiServe.query('invitinginfo',{
             tg_account: initDataUnsafe.user.id + '',
+        }).catch(err => {
+            return {data: {}}
         })
         setInvitInfo(useInfo.data)
 
@@ -144,7 +148,7 @@ const FarmingPage = () => {
                 <div className="fs_4 fw_b mb_4">Polarlord run</div>
                 <div className="flex align_center justify_center dinosaur_box_box mb_4">
                     <img className="mr_2" src={imgNumberOfLives} alt="" srcSet="" />
-                    <span className="fs_3 fw_b">x {gameInfo?.remain_day || 3}</span>
+                    <span className="fs_3 fw_b">x {gameInfo?.remain_day || gameInfo?.remain_day === 0  ? gameInfo?.remain_day : 3}</span>
                 </div>
                 <div className="game_btn fs_2 fw_b" onClick={() => {navigate('/telegram-test/game')}}>Start</div>
             </div>

@@ -93,6 +93,10 @@ html {
                 opacity: 1; /* 完全可见 */
                 transform: translateX(0); /* 原位置 */
             }
+            50% {
+                opacity: 0.5; /* 完全可见 */
+                transform: translateX(0); /* 原位置 */
+            }
             100% {
                 opacity: 0; /* 完全透明 */
                 z-index: -99;

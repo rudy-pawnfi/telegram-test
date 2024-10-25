@@ -21,6 +21,10 @@
         img{
             height: 60px;
         }
+        .back_box{
+            position: relative;
+            z-index: 999;
+        }
         .title_round{
             width: 24px;
             height: 24px;
@@ -66,6 +70,14 @@
                 // background-position: center;
                 // background-repeat: no-repeat;
                 // box-sizing: border-box;
+            }
+            .score1{
+                width: 100px;
+                background: url('/images/game/btn2.png');
+                background-size: contain;
+                background-position: center;
+                background-repeat: no-repeat;
+                box-sizing: border-box;
             }
             .startend{
                 width: 100px;
