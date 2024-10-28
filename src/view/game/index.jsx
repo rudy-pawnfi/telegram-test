@@ -67,7 +67,7 @@ const GamePage = () => {
         }).catch(err => {
             return {data:{}}
         })
-        // if(res?.data?.remain_day <= 0) return showAlert('No play pass today', 'warning')
+        if(res?.data?.remain_day <= 0) return showAlert('No play pass today', 'warning')
         console.log('object :>> ', intervals);
         await clearInterval(intervals.t3);
         await clearInterval(intervals.t1)
