@@ -15,6 +15,7 @@ const GamePage = () => {
 
     const wallet = useTonWallet();
     const [moles, setMoles] = useState(new Array(10).fill({ visible: false, hit: false })); // 地鼠状态：是否显示、是否被击中
+    const [moles1, setMoles1] = useState(new Array(10).fill({ visible: false, hit: false })); // 地鼠状态：是否显示、是否被击中
     const [time, setTime] = useState(0); // 剩余时间
     const [score, setScore] = useState(0); // 分数
     const [gameRunning, setGameRunning] = useState(false); // 游戏是否正在进行
@@ -25,7 +26,6 @@ const GamePage = () => {
     const navigate = useNavigate()
     const [gameInfo, setGameInfo] = useState({})
     const { showAlert } = useAlert();
-    const [loadding, setLoadding] = useState(true)
     const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
     const [allowNewMole, setAllowNewMole] = useState(true); // 控制新地鼠出现的状态
 
@@ -60,24 +60,25 @@ const GamePage = () => {
     // 游戏开始
     const startGame = async () => {
         if(gameRunning) return
+        setMoles(new Array(10).fill({ visible: false, hit: false }))
         const res = await ApiServe.query('availableplayinfo', {
             tg_account: initDataUnsafe?.user?.id + '',
             now_ts:Math.floor(new Date().getTime() / 1000)
         }).catch(err => {
             return {data:{}}
         })
-        if(res?.data?.remain_day <= 0) return showAlert('No play pass today', 'warning')
-        clearInterval(intervals.t3);
-        clearInterval(intervals.t1)
-        clearInterval(intervals.t2)
-        setMoles(new Array(10).fill({ visible: false, hit: false }))
+        // if(res?.data?.remain_day <= 0) return showAlert('No play pass today', 'warning')
+        console.log('object :>> ', intervals);
+        await clearInterval(intervals.t3);
+        await clearInterval(intervals.t1)
+        await clearInterval(intervals.t2)
         setFadeOut(true)
         setAllowNewMole(true)
         setScore(0);
         SCORE = 0
         // TIME = 10
         setTime(TimeCount);
-        
+        console.log('intervals :>> ', intervals);
         setTimeout(() => {
             setGameRunning(true);
             // 每2秒随机出现地鼠
@@ -95,6 +96,8 @@ const GamePage = () => {
                 });
             }, 1000);
             const t2 = setInterval(() => {
+                console.log('moles :>> ', moles);
+                console.log('!moles.some(mole => mole.visible) :>> ', !moles.some(mole => mole.visible));
                 if (!moles.some(mole => mole.visible)) {
                     const randomMole = Math.floor(Math.random() * 9);
                     setMoles(prevMoles => {
@@ -113,7 +116,7 @@ const GamePage = () => {
           
                       return newMoles;
                     });
-                  }
+                }
             }, 2000);
             // 每秒减少时间
             setIntervals({ t1, t2, t3: null });
@@ -166,19 +169,19 @@ const GamePage = () => {
     useEffect(() => {
         const t3 = setInterval(() => {
             const randomMole = Math.floor(Math.random() * 10);
-            const newMoles = moles.map((_, index) => {
+            const newMoles = moles1.map((_, index) => {
                 if (index === randomMole) {
                     return { visible: true, hit: false }; // 随机地鼠出现，未被击中
                 }
                 return { visible: false, hit: false };
             });
-            setMoles(newMoles);
+            console.log('intervals :>> ', intervals);
+            setMoles1(newMoles);
         }, 2000);
         setIntervals({t1: null, t2: null, t3: t3})
-        setLoadding(true)
-        setTimeout(() => {
-            setLoadding(false)
-        }, 3000);
+        return () => {
+            clearInterval(t3)
+        }
     },[])
 
     useEffect(() => {
@@ -193,6 +196,7 @@ const GamePage = () => {
         return () => {
             clearInterval(intervals.t1);
             clearInterval(intervals.t2);
+            clearInterval(intervals.t3);
         };
     }, [intervals]);
 
@@ -252,26 +256,51 @@ const GamePage = () => {
                         }
                     </div>
                     <div className="px_4 flex justify_center">
-                        <div className={`game_box ${!gameRunning && time === -1 && 'game_filter'}`}>
-                            {moles.map((mole, index) => (
-                                // <div key={index} style={{ display: mole.visible ? 'block' : 'none' }} onClick={() => handleMoleHit(index)}>
-                                    <img
-                                        className={mole.visible || mole.hit ? 'game_fadeInUp' : 'game_fadeOutDown'}
-                                        key={index}
-                                        src={
-                                            mole.hit
-                                            ? './images/game/hit.png' // 击中时显示的图片
-                                            : mole.visible
-                                            ? './images/game/mouse.png' // 出现时的图片
-                                            : './images/game/mouse.png' // 默认图片
-                                        }
-                                        alt="地鼠"
-                                        style={{ visibility: mole.visible || mole.hit ? 'visible' : 'hidden' }} // 隐藏未出现或未被击中的地鼠
-                                        onClick={() => whackMole(index)}
-                                    />
-                                // </div>
-                            ))}
-                        </div>
+                        
+                        {
+                            gameRunning ?
+                            <div className={`game_box ${!gameRunning && time === -1 && 'game_filter'}`}>
+                                {moles.map((mole, index) => (
+                                    // <div key={index} style={{ display: mole.visible ? 'block' : 'none' }} onClick={() => handleMoleHit(index)}>
+                                        <img
+                                            className={mole.visible || mole.hit ? 'game_fadeInUp' : 'game_fadeOutDown'}
+                                            key={index}
+                                            src={
+                                                mole.hit
+                                                ? './images/game/hit.png' // 击中时显示的图片
+                                                : mole.visible
+                                                ? './images/game/mouse.png' // 出现时的图片
+                                                : './images/game/mouse.png' // 默认图片
+                                            }
+                                            alt="地鼠"
+                                            style={{ visibility: mole.visible || mole.hit ? 'visible' : 'hidden' }} // 隐藏未出现或未被击中的地鼠
+                                            onClick={() => whackMole(index)}
+                                        />
+                                    // </div>
+                                ))}
+                            </div>
+                            :
+                            <div className={`game_box ${!gameRunning && time === -1 && 'game_filter'}`}>
+                                {moles1.map((mole, index) => (
+                                    // <div key={index} style={{ display: mole.visible ? 'block' : 'none' }} onClick={() => handleMoleHit(index)}>
+                                        <img
+                                            className={mole.visible || mole.hit ? 'game_fadeInUp' : 'game_fadeOutDown'}
+                                            key={index}
+                                            src={
+                                                mole.hit
+                                                ? './images/game/hit.png' // 击中时显示的图片
+                                                : mole.visible
+                                                ? './images/game/mouse.png' // 出现时的图片
+                                                : './images/game/mouse.png' // 默认图片
+                                            }
+                                            alt="地鼠"
+                                            style={{ visibility: mole.visible || mole.hit ? 'visible' : 'hidden' }} // 隐藏未出现或未被击中的地鼠
+                                            onClick={() => whackMole(index)}
+                                        />
+                                    // </div>
+                                ))}
+                            </div>
+                        }
                     </div>
                 </div>
             {/* } */}
