@@ -70,6 +70,7 @@ const GamePage = () => {
         clearInterval(intervals.t3);
         clearInterval(intervals.t1)
         clearInterval(intervals.t2)
+        setMoles(new Array(10).fill({ visible: false, hit: false }))
         setFadeOut(true)
         setAllowNewMole(true)
         setScore(0);
@@ -80,35 +81,6 @@ const GamePage = () => {
         setTimeout(() => {
             setGameRunning(true);
             // 每2秒随机出现地鼠
-            const t2 = setInterval(() => {
-                if (allowNewMole) {
-                    const randomMole = Math.floor(Math.random() * 9);
-                    setMoles(prevMoles => {
-                      const newMoles = prevMoles.map((mole, index) => {
-                        // 如果当前地鼠可见，则保持可见状态
-                        if (index === randomMole && !mole.visible) {
-                          return { visible: true, hit: false };
-                        }
-                        return mole.visible ? mole : { visible: false, hit: false }; // 保持不可见状态
-                      });
-          
-                      // 设置地鼠在一段时间后消失
-                      setTimeout(() => {
-                        setMoles(prevMoles => 
-                          prevMoles.map((mole, index) => {
-                            if (index === randomMole) {
-                              return { visible: false, hit: false }; // 隐藏被击中的地鼠
-                            }
-                            return mole;
-                          })
-                        );
-                      }, 10); // 设置消失时间
-          
-                      return newMoles;
-                    });
-                  }
-            }, 2000);
-            // 每秒减少时间
             const t1 = setInterval(() => {
                 setTime((prevTime) => {
                     if (prevTime === 0) {
@@ -122,7 +94,28 @@ const GamePage = () => {
                     return prevTime - 1;
                 });
             }, 1000);
-
+            const t2 = setInterval(() => {
+                if (!moles.some(mole => mole.visible)) {
+                    const randomMole = Math.floor(Math.random() * 9);
+                    setMoles(prevMoles => {
+                      const newMoles = prevMoles.map((mole, index) => 
+                        index === randomMole ? { visible: true, hit: false } : mole
+                      );
+          
+                      // 设置地鼠在一段时间后消失
+                      setTimeout(() => {
+                        setMoles(prevMoles => 
+                          prevMoles.map((mole, index) => 
+                            index === randomMole ? { visible: false, hit: false } : mole
+                          )
+                        );
+                      }, 1000); // 设置消失时间
+          
+                      return newMoles;
+                    });
+                  }
+            }, 2000);
+            // 每秒减少时间
             setIntervals({ t1, t2, t3: null });
         }, 2000);
     };
@@ -136,7 +129,7 @@ const GamePage = () => {
 
     // 击中地鼠
     const whackMole = (index) => {
-
+        if(!gameRunning) return
         if (moles[index].visible) {
             const newMoles = moles.map((mole, i) => {
               if (i === index) {
