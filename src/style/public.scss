@@ -91,7 +91,7 @@ html {
         @keyframes fadeOutRight {
             0% {
                 opacity: 1; /* 完全可见 */
-                transform: translateX(0); /* 原位置 */
+                // transform: translateX(0); /* 原位置 */
             }
             // 20% {
             //     opacity: .8; /* 完全可见 */
@@ -112,7 +112,7 @@ html {
             100% {
                 opacity: 0; /* 完全透明 */
                 z-index: -99;
-                transform: translateX(50px); /* 向右移动50px */
+                // transform: translateX(50px); /* 向右移动50px */
             }
         }
         @keyframes fadeInRight {
