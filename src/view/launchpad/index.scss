@@ -1,46 +1,78 @@
-.launchpad_page{
-    .header_box{
+.launchpad_page {
+    .header_box {
         background-image: url('/images/launchpad/img-launchpool.png');
         background-size: 100% 100%;
         // background-position: center;
         // background-repeat: no-repeat;
         height: 249px;
-        img{
+
+        img {
             width: 52px;
             height: 60px;
         }
     }
-    .count_down{
+
+    .count_down {
         border-radius: 46px;
         padding: 12px;
-        background-color: rgba(0, 0,0,0.12);
-        .count_down_box{
+        background-color: rgba(0, 0, 0, 0.12);
+        width: 100px;
+
+        .count_down_box {
             border-radius: 46px;
             padding: 12px;
             background-color: #000000;
-            .line{
+
+            .line {
                 margin: 0 4px;
                 height: 1px;
                 width: 100%;
-                background-color: rgba(0, 0,0,0.12);
+                background-color: rgba(255, 255, 255, 0.12);
             }
         }
     }
 
-    .token_name_box{
+    .token_name_box {
         background-color: #101010;
     }
-    .tab_list_box{
+
+    .tab_list_box {
         display: grid;
-        grid-template-columns:1fr 1fr;
+        grid-template-columns: 1fr 1fr;
     }
-    .active{
+
+    .active {
         background: linear-gradient(to bottom, #6E19FF, #DC19FF);
     }
-    .pool_box{
-        img{
+
+    .pool_box {
+        img {
             width: 35px;
             height: 35px;
         }
     }
+
+
+    .dot-loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+        .dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: rgba(0, 255, 60, .2);
+            /* 默认颜色 */
+            // transition: background-color 0.3s;
+            /* 添加过渡效果 */
+        }
+        .active_dot {
+            background-color: #00FF3C;
+            /* 激活状态的颜色 */
+        }
+    }
+
+    
+
 }

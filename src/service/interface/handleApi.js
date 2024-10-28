@@ -17,7 +17,13 @@ const API = {
 
     // game
     availableplayinfo:"/api/polarcapsule-app-service/v1/groundhog/availableplayinfo",
-    finishgroundhog: "/api/polarcapsule-app-service/v1/groundhog/finishgroundhog"
+    finishgroundhog: "/api/polarcapsule-app-service/v1/groundhog/finishgroundhog",
+
+    //launchpad
+    staketokens:'/api/polarcapsule-app-service/v1/pool/staketokens',
+    stakepoints: '/api/polarcapsule-app-service/v1/pool/stakepoints',
+    getstaketokens: '/api/polarcapsule-app-service/v1/pool/getstaketokens',
+    getstakepoints: '/api/polarcapsule-app-service/v1/pool/getstakepoints',
     
 }
 

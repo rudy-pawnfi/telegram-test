@@ -2,8 +2,8 @@ import axios from 'axios';
 
 import handleApi from './handleApi';
 
-// const baseURL = "https://api-capsule.polarise.org"
-const baseURL =  "https://apipolarcapsule.pawnfi.io"
+// const baseURL = "https://api-capsule.polarise.org" // 生产
+const baseURL =  "https://apipolarcapsule.pawnfi.io" // 测试
 const ApiServe = {
 
     query(methodName,params={},requestType='post') {
@@ -40,7 +40,7 @@ const ApiServe = {
         }).catch(err =>{
             return {
                 code: -1,
-                error: error
+                error: err
             }
         })
         

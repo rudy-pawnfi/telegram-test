@@ -1,5 +1,10 @@
+import { useTonAddress, useTonConnectUI } from '@tonconnect/ui-react'
+import { useEffect } from 'react'
 import { useState } from 'react'
 import Modal from '../../components/Modal'
+import { ApiServe } from '../../service'
+import { toFmtThousand } from '../../untils'
+import Countdown from './app/countDown'
 import './index.scss'
 import launchpoolIcon from '/images/launchpad/img-img-launchpoolIcon.png'
 import InvitePool from '/images/launchpad/img-InvitePool.png'
@@ -13,6 +18,63 @@ const LaunchpadPage = () => {
         { lable: '项目信息', value: '2' },
     ]
     const [tab, setTab] = useState('1')
+    const [tonConnectUi] = useTonConnectUI();
+    const tonAddress = useTonAddress()
+    const [info, setInfo] = useState({
+        endTime: 1730535077
+    })
+    // const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
+
+    const initDataUnsafe = {
+        user: {
+            id: 5354957141
+        }
+    }
+    useEffect(() => {
+        init()
+    },[])
+
+    const init = async() => {
+
+        const stakeToken = await ApiServe.query('getstaketokens', {
+            tg_account: initDataUnsafe.user.id + '',
+        })
+        
+        const stakePoint = await ApiServe.query('getstakepoints', {
+            tg_account: initDataUnsafe.user.id + '',
+        })
+        console.log('stakePoint :>> ', stakePoint);
+    }
+
+    const stakePoints = async() => {
+        const res = await ApiServe.query('stakepoints', {
+            tg_account: initDataUnsafe.user.id + '',
+            stake_ts: Math.floor(Date.now() / 1000),
+            stake_points: '100',
+        })
+    }
+    const stakeToken = async() => {
+        tonConnectUi.sendTransaction({
+            validUntil: Math.floor(Date.now() / 1000) + 1200,
+            messages: [
+                {
+                    address: "UQBqRYRXnKMKL5IEeXrUVCMqGx0pa4yRsrDrQhtVWwLQ4GPR",
+                    // address: "0:abffb20ca89eb26709ce50ed8eafaf151948603b85d942638ac15966fc380682", // destination address
+                    amount: (0.001 * 1e9).toString(), //Toncoin in nanotons
+                    // stateInit: wallet.account.walletStateInit,
+                }
+            ]
+        }).then(async res => {
+            const result = await ApiServe.query('staketokens', {
+                tg_account: initDataUnsafe.user.id + '',
+                wallet_account: tonAddress,
+                stake_ts: Math.floor(Date.now() / 1000),
+                stake_tokens: 100 * 1e9,
+                tx_hash: '100',
+            })
+        }).catch(err => {
+        })
+    }
     return (
         <div className="launchpad_page">
             <div className="header_box br_5 flex column justify_end align_center overflow_hidden">
@@ -24,7 +86,9 @@ const LaunchpadPage = () => {
                             进行中
                         </div>
                         <div className="line"></div>
-                        <div className="time fs_2 fw_m">25:12:23</div>
+                        <div className="time fs_2 fw_m">
+                            <Countdown endTime={info.endTime * 1000} />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -35,7 +99,7 @@ const LaunchpadPage = () => {
                 <div className="pa_6 br_5 token_name_box mb_3">
                     <div className="flex justify_between align_center mb_2">
                         <div className="fw_m text_4">空投总量</div>
-                        <div className="fs_2 fw_m">3000000</div>
+                        <div className="fs_2 fw_m">{toFmtThousand(3000000)}</div>
                     </div>
                     <div className="flex justify_between align_center mb_2">
                         <div className="fw_m text_4">项目时长</div>
