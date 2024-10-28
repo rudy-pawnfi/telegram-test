@@ -58,9 +58,15 @@ const GamePage = () => {
         })
     }
     // 游戏开始
-    const startGame = () => {
+    const startGame = async () => {
         if(gameRunning) return
-        if(gameInfo?.remain_day <= 0) return showAlert('No play pass today', 'warning')
+        const res = await ApiServe.query('availableplayinfo', {
+            tg_account: initDataUnsafe?.user?.id + '',
+            now_ts:Math.floor(new Date().getTime() / 1000)
+        }).catch(err => {
+            return {data:{}}
+        })
+        if(res?.data?.remain_day <= 0) return showAlert('No play pass today', 'warning')
         clearInterval(intervals.t3);
         clearInterval(intervals.t1)
         clearInterval(intervals.t2)
@@ -76,22 +82,31 @@ const GamePage = () => {
             // 每2秒随机出现地鼠
             const t2 = setInterval(() => {
                 if (allowNewMole) {
-                const randomMole = Math.floor(Math.random() * 10);
-                // const newMoles = moles.map((_, index) => {
-                //     return index === randomMole && !_.visible ? { visible: true, hit: false } : _;
-                //     // if (index === randomMole) {
-                //     //     return { visible: true, hit: false }; // 随机地鼠出现，未被击中
-                //     // }
-                //     // return { visible: false, hit: false };
-                // });
-                setMoles(prevMoles => 
-                    prevMoles.map((mole, index) => {
-                      if (index === randomMole && !mole.visible) {
-                        return { visible: true, hit: false };
-                      }
-                      return mole.visible ? mole : { visible: false, hit: false }; // 保持不可见状态
-                    }));
-                }
+                    const randomMole = Math.floor(Math.random() * 9);
+                    setMoles(prevMoles => {
+                      const newMoles = prevMoles.map((mole, index) => {
+                        // 如果当前地鼠可见，则保持可见状态
+                        if (index === randomMole && !mole.visible) {
+                          return { visible: true, hit: false };
+                        }
+                        return mole.visible ? mole : { visible: false, hit: false }; // 保持不可见状态
+                      });
+          
+                      // 设置地鼠在一段时间后消失
+                      setTimeout(() => {
+                        setMoles(prevMoles => 
+                          prevMoles.map((mole, index) => {
+                            if (index === randomMole) {
+                              return { visible: false, hit: false }; // 隐藏被击中的地鼠
+                            }
+                            return mole;
+                          })
+                        );
+                      }, 10); // 设置消失时间
+          
+                      return newMoles;
+                    });
+                  }
             }, 2000);
             // 每秒减少时间
             const t1 = setInterval(() => {
@@ -114,31 +129,13 @@ const GamePage = () => {
 
     useEffect(() => {
         if(time === -1 && !gameRunning){
-            submintScor()
             init()
+            submintScor()
         }
     },[time])
 
     // 击中地鼠
     const whackMole = (index) => {
-        // if(!gameRunning) return
-        // if (moles[index].visible && !moles[index].hit) {
-        //     SCORE = SCORE + 1
-        //     setScore(score + 1);
-        //     const newMoles = moles.map((mole, i) => {
-        //         if (i === index) {
-        //             return { visible: true, hit: true }; // 设置为击中状态
-        //         }
-        //         return mole;
-        //     });
-        //     setMoles(newMoles);
-
-        //     // 1秒后隐藏击中的地鼠
-        //     setTimeout(() => {
-        //         const resetMoles = moles.map((mole, i) => (i === index ? { visible: false, hit: false } : mole));
-        //         setMoles(resetMoles);
-        //     }, 1000);
-        // }
 
         if (moles[index].visible) {
             const newMoles = moles.map((mole, i) => {
@@ -222,7 +219,7 @@ const GamePage = () => {
                                 <>
                                     <div className="btn_box flex justify_center column align_center">
                                         <div className="flex">
-                                            <div className="time py_3 text_center mr_4 br_4 flex align_center justify_center" onClick={startGame}>
+                                            <div className="time py_3 text_center mr_4 br_4 flex align_center justify_center" onClick={() => startGame(true)}>
                                                 <i className="picon p-icon-Countdown is_3 mr_2"></i>
                                                 <span className="fw_b">{time}</span>
                                             </div>
