@@ -1,3 +1,36 @@
 .launchpad_page{
-    
+
+    .count_down{
+        border-radius: 46px;
+        padding: 12px;
+        background-color: rgba(0, 0,0,0.12);
+        .count_down_box{
+            border-radius: 46px;
+            padding: 12px;
+            background-color: #000000;
+            .line{
+                margin: 0 4px;
+                height: 1px;
+                width: 100%;
+                background-color: rgba(0, 0,0,0.12);
+            }
+        }
+    }
+
+    .token_name_box{
+        background-color: #101010;
+    }
+    .tab_list_box{
+        display: grid;
+        grid-template-columns:1fr 1fr;
+    }
+    .active{
+        background: linear-gradient(to bottom, #6E19FF, #DC19FF);
+    }
+    .pool_box{
+        img{
+            width: 35px;
+            height: 35px;
+        }
+    }
 }
