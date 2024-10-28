@@ -93,10 +93,22 @@ html {
                 opacity: 1; /* 完全可见 */
                 transform: translateX(0); /* 原位置 */
             }
-            50% {
-                opacity: 0.5; /* 完全可见 */
-                transform: translateX(0); /* 原位置 */
-            }
+            // 20% {
+            //     opacity: .8; /* 完全可见 */
+            //     transform: translateX(10px); /* 原位置 */
+            // }
+            // 40% {
+            //     opacity: .6; /* 完全可见 */
+            //     transform: translateX(20px); /* 原位置 */
+            // }
+            // 60% {
+            //     opacity: 0.4; /* 完全可见 */
+            //     transform: translateX(30x); /* 原位置 */
+            // }
+            // 80% {
+            //     opacity: 0.2; /* 完全可见 */
+            //     transform: translateX(40px); /* 原位置 */
+            // }
             100% {
                 opacity: 0; /* 完全透明 */
                 z-index: -99;

@@ -7,7 +7,7 @@ const SplashScreen = ({ onAnimationEnd, loadding }) => {
     useEffect(() => {
         const timer = setTimeout(() => {
             onAnimationEnd(); // 动画结束后调用回调函数
-        }, 4000); // 显示时间，单位为毫秒
+        }, 5000); // 显示时间，单位为毫秒
         return () => clearTimeout(timer); // 清理定时器
     }, [onAnimationEnd]);
     return (

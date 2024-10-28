@@ -9,7 +9,8 @@
         height: 100%;
     }
     transform: translateX(0); /* 初始位置 */
-    animation: fadeOutRight 4s forwards; /* 向右淡出动画 */
+    animation: fadeOutRight 2s forwards; /* 向右淡出动画 */
+    animation-delay: 3s;
 }
 .splash_screen_out{
     display: none;
