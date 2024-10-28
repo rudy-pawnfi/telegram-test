@@ -10,6 +10,7 @@ import TestPage from '../view/test'
 import GamePage from '../view/game'
 import { useEffect, useMemo, useState } from 'react'
 import SplashScreen from '../components/splashscreen'
+import LaunchpadPage from '../view/launchpad'
 const AppRouter = () => {
     const location = useLocation()
     const [loadding, setLoadding] = useState(true)
@@ -59,6 +60,7 @@ const AppRouter = () => {
                     <Route path={'/telegram-test/tasks'} element={<TasksPage />} />
                     <Route path={'/telegram-test/friends'} element={<FrensPage />} />
                     <Route path={'/telegram-test/game'} element={<GamePage />} />
+                    <Route path={'/telegram-test/launchpad'} element={<LaunchpadPage />} />
                     <Route path={'/telegram-test/test'} element={<TestPage />} />
                     <Route path='*' element={<ErrorPage />} />
                 </Routes>
