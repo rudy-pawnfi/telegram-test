@@ -145,6 +145,7 @@ const GamePage = () => {
               return mole;
             });
             setMoles(newMoles);
+            SCORE += 1
             setScore(prevScore => prevScore + 1);
             setAllowNewMole(false);
             // 添加闪现效果
