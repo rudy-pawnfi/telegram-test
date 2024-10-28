@@ -20,7 +20,7 @@ const TabBox = (props) => {
             link: '/telegram-test/farming'
         },
         {
-            label: 'Prairie',
+            label: 'LaunchpadPool',
             icon: 'p-icon-Farming',
             link: '/telegram-test/launchpad'
         },

@@ -17,13 +17,13 @@ const FarmingPage = () => {
     const [farmingInfo, setFarmingInfo] = useState({})
     const [useInfo, setUseInfo] = useState({})
     const { showAlert } = useAlert();
-    const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
+    // const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
     const navigate = useNavigate()
-    // const initDataUnsafe = {
-    //     user: {
-    //         id: 5354957141
-    //     }
-    // }
+    const initDataUnsafe = {
+        user: {
+            id: 5354957141
+        }
+    }
     const [bubbles, setBubbles] = useState([]);
     const [invitInfo, setInvitInfo] = useState({})
     const [gameInfo, setGameInfo] = useState({})

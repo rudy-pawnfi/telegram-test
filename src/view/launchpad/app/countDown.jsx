@@ -44,7 +44,7 @@ const Countdown = ({ endTime }) => {
     return (
         <>
             {
-                remainingTime > 0 && (
+                remainingTime > 0 ? (
                     <div>
                         <span>{formatTime(remainingTime)}</span>
                         <div className="dot-loader">
@@ -54,6 +54,10 @@ const Countdown = ({ endTime }) => {
                         </div>
                     </div>
                 )
+                :
+                <div>
+                    <span>00:00:00</span>
+                </div>
             }
         </>
     );

@@ -1,9 +1,11 @@
 import { useTonAddress, useTonConnectUI } from '@tonconnect/ui-react'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import { useAlert } from '../../components/alertProvider'
 import Modal from '../../components/Modal'
 import { ApiServe } from '../../service'
-import { toFmtThousand } from '../../untils'
+import { toFixed, toFmtThousand } from '../../untils'
+import { getFormatDate } from '../../untils/formatDate'
 import Countdown from './app/countDown'
 import './index.scss'
 import launchpoolIcon from '/images/launchpad/img-img-launchpoolIcon.png'
@@ -20,8 +22,14 @@ const LaunchpadPage = () => {
     const [tab, setTab] = useState('1')
     const [tonConnectUi] = useTonConnectUI();
     const tonAddress = useTonAddress()
+    const { showAlert } = useAlert();
     const [info, setInfo] = useState({
-        endTime: 1730535077
+        endTime: 1730535077,
+        launchpadAddress: '0QBLM5tohk1hY7EQ7ijaOKVDFH68dpMH76NTllGVKb0MBG54',
+        stakeToken: 1,
+        tokensTotal: 3000000,
+        pointsTotal: 3000000,
+        stakePoint: 100
     })
     // const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
 
@@ -38,29 +46,49 @@ const LaunchpadPage = () => {
 
         const stakeToken = await ApiServe.query('getstaketokens', {
             tg_account: initDataUnsafe.user.id + '',
+        }).catch(err => {
+            return {data:{}}
         })
         
         const stakePoint = await ApiServe.query('getstakepoints', {
             tg_account: initDataUnsafe.user.id + '',
+        }).catch(err => {
+            return {data:{}}
         })
-        console.log('stakePoint :>> ', stakePoint);
+        const result = await ApiServe.query('userinfo', {
+            tg_account: initDataUnsafe.user.id + ''
+        }).catch(err => {
+            return {data: {}}
+        })
+        setInfo({
+            ...info,
+            selfTokens: stakeToken?.data?.self_tokens ? stakeToken?.data?.self_tokens / 1e9 : 0,
+            totalTokens: stakeToken?.data?.total_tokens ? stakeToken?.data?.total_tokens / 1e9 : 0,
+            selfPoints: stakePoint?.data?.self_points || 0,
+            totalPoints: stakePoint?.data?.total_points || 0,
+            myPoints: result.data?.total_points || 0
+        })
+        console.log('info :>> ', info);
     }
 
-    const stakePoints = async() => {
+    const mtStakePoints = async() => {
+        if(info?.myPoints < info?.stakePoint) return showAlert('积分不足', 'warning')
         const res = await ApiServe.query('stakepoints', {
             tg_account: initDataUnsafe.user.id + '',
             stake_ts: Math.floor(Date.now() / 1000),
-            stake_points: '100',
+            stake_points: info?.stakePoint,
         })
+        init()
     }
-    const stakeToken = async() => {
+    const mtStakeToken = async() => {
+        if(!tonAddress) return showAlert('请前往task登录', 'warning')
         tonConnectUi.sendTransaction({
             validUntil: Math.floor(Date.now() / 1000) + 1200,
             messages: [
                 {
-                    address: "UQBqRYRXnKMKL5IEeXrUVCMqGx0pa4yRsrDrQhtVWwLQ4GPR",
+                    address: info?.launchpadAddress,
                     // address: "0:abffb20ca89eb26709ce50ed8eafaf151948603b85d942638ac15966fc380682", // destination address
-                    amount: (0.001 * 1e9).toString(), //Toncoin in nanotons
+                    amount: (info.stakeToken * 1e9).toString(), //Toncoin in nanotons
                     // stateInit: wallet.account.walletStateInit,
                 }
             ]
@@ -69,9 +97,10 @@ const LaunchpadPage = () => {
                 tg_account: initDataUnsafe.user.id + '',
                 wallet_account: tonAddress,
                 stake_ts: Math.floor(Date.now() / 1000),
-                stake_tokens: 100 * 1e9,
-                tx_hash: '100',
+                stake_tokens: (info.stakeToken * 1e9).toString(),
+                tx_hash: res.boc,
             })
+            init()
         }).catch(err => {
         })
     }
@@ -79,11 +108,13 @@ const LaunchpadPage = () => {
         <div className="launchpad_page">
             <div className="header_box br_5 flex column justify_end align_center overflow_hidden">
                 <img className="mb_2" src={launchpoolIcon} alt="" srcset="" />
-                <span className="fs_6 fw_b mb_4">launchpool</span>
+                <span className="fs_6 fw_b mb_4">Launchpool</span>
                 <div className="count_down">
                     <div className="count_down_box flex column align_center">
                         <div className="fs_2 fw_m">
-                            进行中
+                            {
+                                info?.endTime * 1000 > Date.now() ? '进行中' : '已结束'
+                            }
                         </div>
                         <div className="line"></div>
                         <div className="time fs_2 fw_m">
@@ -99,7 +130,7 @@ const LaunchpadPage = () => {
                 <div className="pa_6 br_5 token_name_box mb_3">
                     <div className="flex justify_between align_center mb_2">
                         <div className="fw_m text_4">空投总量</div>
-                        <div className="fs_2 fw_m">{toFmtThousand(3000000)}</div>
+                        <div className="fs_2 fw_m">{toFmtThousand(info.tokensTotal + info.pointsTotal)}</div>
                     </div>
                     <div className="flex justify_between align_center mb_2">
                         <div className="fw_m text_4">项目时长</div>
@@ -107,7 +138,7 @@ const LaunchpadPage = () => {
                     </div>
                     <div className="flex justify_between align_center mb_2">
                         <div className="fw_m text_4">项目结束日期</div>
-                        <div className="fs_2 fw_m">May 3 2024</div>
+                        <div className="fs_2 fw_m">{getFormatDate(new Date(info.endTime * 1000),"M d y")}</div>
                     </div>
                 </div>
 
@@ -132,25 +163,34 @@ const LaunchpadPage = () => {
                             <div className="token_name_box pa_6 br_5 mb_3">
                                 <div className="flex justify_between align_center mb_2">
                                     <div className="fw_m text_4">分配空投总量！</div>
-                                    <div className="fs_2 fw_m">30000 TOKEN</div>
+                                    <div className="fs_2 fw_m">{toFmtThousand(info?.tokensTotal)} TOKEN</div>
                                 </div>
                                 <div className="flex justify_between align_center mb_2">
                                     <div className="fw_m text_4">我的质押数量</div>
-                                    <div className="fs_2 fw_m">0 TON</div>
+                                    <div className="fs_2 fw_m">{toFmtThousand(info?.selfTokens || 0)} TON</div>
                                 </div>
                                 <div className="flex justify_between align_center mb_2">
                                     <div className="fw_m text_4">我的份额占比</div>
-                                    <div className="fs_2 fw_m">00.00%</div>
+                                    <div className="fs_2 fw_m">{info?.totalTokens === 0 ? toFixed(0, 2) : (info?.selfTokens / info?.totalTokens * 100 < 0.01 ? '<0.01' : toFixed(info?.selfTokens / info?.totalTokens * 100, 2))}%</div>
                                 </div>
                                 <div className="flex justify_between align_center mb_4">
-                                    <div className="fw_m text_4">我的预计空投</div>
-                                    <div className="fs_2 fw_m">0 TOKEN</div>
+                                    <div className="fw_m text_4">{info?.endTime * 1000 > Date.now() ? '我的预计空投' : '我的获取空投'}</div>
+                                    <div className="fs_2 fw_m">{toFmtThousand(info.tokensTotal * (info?.totalTokens === 0 ? 0 : info?.selfTokens / info?.totalTokens))} TOKEN</div>
                                 </div>
 
-                                <div className="br_6 active pa_4 flex justify_center align_center">
-                                    <i className="is_4"></i>
-                                    <span className="fs_2 fw_b ml_4">质押10 TON获取空投</span>
-                                </div>
+                                
+                                {
+                                    info?.endTime * 1000 > Date.now() ? 
+                                    <div className="br_6 active pa_4 flex justify_center align_center" onClick={mtStakeToken}>
+                                        <i className="picon p-icon-airdrop is_4"></i>
+                                        <span className="fs_2 fw_b ml_4">质押{info?.stakeToken} TON获取空投</span>
+                                    </div>
+                                    :
+                                    <div className="br_6 active pa_4 flex justify_center align_center" onClick={()=> window.open('https://x.com/Polartonlord', '_blank')}>
+                                        <i className="picon p-icon-trade is_4"></i>
+                                        <span className="fs_2 fw_b ml_4">去DEX中进行交易</span>
+                                    </div>
+                                }
                             </div>
 
                             <div className="flex align_center justify_center mb_3">
@@ -161,55 +201,36 @@ const LaunchpadPage = () => {
                             <div className="token_name_box pa_6 br_5 mb_3">
                                 <div className="flex justify_between align_center mb_2">
                                     <div className="fw_m text_4">分配空投总量</div>
-                                    <div className="fs_2 fw_m">30000 TOKEN</div>
+                                    <div className="fs_2 fw_m">{toFmtThousand(info?.pointsTotal || 0)} TOKEN</div>
                                 </div>
                                 <div className="flex justify_between align_center mb_2">
                                     <div className="fw_m text_4">我的燃烧积分</div>
-                                    <div className="fs_2 fw_m">0 TON</div>
+                                    <div className="fs_2 fw_m">{toFmtThousand(info?.selfPoints || 0)} TON</div>
                                 </div>
                                 <div className="flex justify_between align_center mb_2">
                                     <div className="fw_m text_4">我的份额占比</div>
-                                    <div className="fs_2 fw_m">00.00%</div>
+                                    <div className="fs_2 fw_m">{info?.totalPoints === 0 ? toFixed(0, 2) : (info?.selfPoints / info?.totalPoints * 100 < 0.01 ? '<0.01' : toFixed(info?.selfPoints / info?.totalPoints * 100, 2))}%</div>
                                 </div>
                                 <div className="flex justify_between align_center mb_4">
-                                    <div className="fw_m text_4">我的预计空投</div>
-                                    <div className="fs_2 fw_m">0 TOKEN</div>
+                                    <div className="fw_m text_4">{info?.endTime * 1000 > Date.now() ? '我的预计空投' : '我的获取空投'}</div>
+                                    <div className="fs_2 fw_m">{toFmtThousand(info.pointsTotal * (info?.totalPoints === 0 ? 0 : info?.selfPoints / info?.totalPoints))} TOKEN</div>
                                 </div>
 
-                                <div className="br_6 active pa_4 flex justify_center align_center">
-                                    <i className="is_4"></i>
-                                    <span className="fs_2 fw_b ml_4">燃烧100积分</span>
-                                </div>
+                                
+                                {
+                                    info?.endTime * 1000 > Date.now() ?
+                                    <div className="br_6 active pa_4 flex justify_center align_center" onClick={mtStakePoints}>
+                                        <i className="picon p-icon-combustion is_4"></i>
+                                        <span className="fs_2 fw_b ml_4">燃烧{info?.stakePoint}积分</span>
+                                    </div>
+                                    :
+                                    <div className="br_6 active pa_4 flex justify_center align_center" onClick={()=> window.open('https://x.com/Polartonlord', '_blank')}>
+                                        <i className="picon p-icon-trade is_4"></i>
+                                        <span className="fs_2 fw_b ml_4">去DEX中进行交易</span>
+                                    </div>
+                                }
                             </div>
                             
-
-                            <div className="flex align_center justify_center mb_3">
-                                <img src={InvitePool} alt="" srcset="" />
-                                <span className="fs_3 fw_b ml_4">Invite Pool</span>
-                            </div>
-                            <div className="token_name_box pa_6 br_5">
-                                <div className="flex justify_between align_center mb_2">
-                                    <div className="fw_m text_4">分配空投总量</div>
-                                    <div className="fs_2 fw_m">30000 TOKEN</div>
-                                </div>
-                                <div className="flex justify_between align_center mb_2">
-                                    <div className="fw_m text_4">我的燃烧积分</div>
-                                    <div className="fs_2 fw_m">0 TON</div>
-                                </div>
-                                <div className="flex justify_between align_center mb_2">
-                                    <div className="fw_m text_4">我的份额占比</div>
-                                    <div className="fs_2 fw_m">00.00%</div>
-                                </div>
-                                <div className="flex justify_between align_center mb_4">
-                                    <div className="fw_m text_4">我的预计空投</div>
-                                    <div className="fs_2 fw_m">0 TOKEN</div>
-                                </div>
-
-                                <div className="br_6 active pa_4 flex justify_center align_center">
-                                    <i className="is_4"></i>
-                                    <span className="fs_2 fw_b ml_4">燃烧100积分</span>
-                                </div>
-                            </div>
                         </div>
                         :
                         <div className="dec_box">
