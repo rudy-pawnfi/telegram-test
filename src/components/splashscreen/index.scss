@@ -1,0 +1,16 @@
+.splash-screen{
+    position: absolute;
+    top: 0;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    img{
+        width: 100%;
+        height: 100%;
+    }
+    transform: translateX(0); /* 初始位置 */
+    animation: fadeOutRight 4s forwards; /* 向右淡出动画 */
+}
+.splash_screen_out{
+    display: none;
+}

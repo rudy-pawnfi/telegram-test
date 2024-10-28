@@ -8,9 +8,11 @@ import FrensPage from '../view/frens'
 import ErrorPage from '../view/error'
 import TestPage from '../view/test'
 import GamePage from '../view/game'
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import SplashScreen from '../components/splashscreen'
 const AppRouter = () => {
     const location = useLocation()
+    const [loadding, setLoadding] = useState(true)
     useEffect(() => {
         console.log('location :>> ', location);
         if (window.Telegram?.WebApp) {
@@ -46,8 +48,10 @@ const AppRouter = () => {
         }
         return 'page'
     },[location])
+    
     return (
         <>
+            <SplashScreen loadding={loadding} onAnimationEnd={() => setLoadding(false)} />
             <div className={className}>
                 <Routes>
                     <Route path={'/telegram-test'} element={<HomePage />} />

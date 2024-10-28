@@ -7,7 +7,6 @@ import { ApiServe } from '../../service';
 import TitleImg from '/images/game/title.png'
 import OverImg from '/images/game/over.png'
 import BGM from '/images/game/bgm.mp3'
-import splashImage from '/images/game/splash-image.jpg'
 import './index.scss'
 const TimeCount = 60
 let SCORE = 0
@@ -28,6 +27,8 @@ const GamePage = () => {
     const { showAlert } = useAlert();
     const [loadding, setLoadding] = useState(true)
     const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
+    const [allowNewMole, setAllowNewMole] = useState(true); // 控制新地鼠出现的状态
+
     // const initDataUnsafe = {
     //     user: {
     //         id: 5354957141
@@ -57,13 +58,14 @@ const GamePage = () => {
         })
     }
     // 游戏开始
-    const startGame = useCallback(() => {
+    const startGame = () => {
         if(gameRunning) return
-        if(gameInfo?.remain_day === 0) return showAlert('No play pass today', 'warning')
+        if(gameInfo?.remain_day <= 0) return showAlert('No play pass today', 'warning')
         clearInterval(intervals.t3);
         clearInterval(intervals.t1)
         clearInterval(intervals.t2)
         setFadeOut(true)
+        setAllowNewMole(true)
         setScore(0);
         SCORE = 0
         // TIME = 10
@@ -73,14 +75,23 @@ const GamePage = () => {
             setGameRunning(true);
             // 每2秒随机出现地鼠
             const t2 = setInterval(() => {
+                if (allowNewMole) {
                 const randomMole = Math.floor(Math.random() * 10);
-                const newMoles = moles.map((_, index) => {
-                    if (index === randomMole) {
-                        return { visible: true, hit: false }; // 随机地鼠出现，未被击中
-                    }
-                    return { visible: false, hit: false };
-                });
-                setMoles(newMoles);
+                // const newMoles = moles.map((_, index) => {
+                //     return index === randomMole && !_.visible ? { visible: true, hit: false } : _;
+                //     // if (index === randomMole) {
+                //     //     return { visible: true, hit: false }; // 随机地鼠出现，未被击中
+                //     // }
+                //     // return { visible: false, hit: false };
+                // });
+                setMoles(prevMoles => 
+                    prevMoles.map((mole, index) => {
+                      if (index === randomMole && !mole.visible) {
+                        return { visible: true, hit: false };
+                      }
+                      return mole.visible ? mole : { visible: false, hit: false }; // 保持不可见状态
+                    }));
+                }
             }, 2000);
             // 每秒减少时间
             const t1 = setInterval(() => {
@@ -99,34 +110,57 @@ const GamePage = () => {
 
             setIntervals({ t1, t2, t3: null });
         }, 2000);
-    },[]);
+    };
 
     useEffect(() => {
         if(time === -1 && !gameRunning){
             submintScor()
+            init()
         }
     },[time])
 
     // 击中地鼠
     const whackMole = (index) => {
-        if(!gameRunning) return
-        if (moles[index].visible && !moles[index].hit) {
-            SCORE = SCORE + 1
-            setScore(score + 1);
+        // if(!gameRunning) return
+        // if (moles[index].visible && !moles[index].hit) {
+        //     SCORE = SCORE + 1
+        //     setScore(score + 1);
+        //     const newMoles = moles.map((mole, i) => {
+        //         if (i === index) {
+        //             return { visible: true, hit: true }; // 设置为击中状态
+        //         }
+        //         return mole;
+        //     });
+        //     setMoles(newMoles);
+
+        //     // 1秒后隐藏击中的地鼠
+        //     setTimeout(() => {
+        //         const resetMoles = moles.map((mole, i) => (i === index ? { visible: false, hit: false } : mole));
+        //         setMoles(resetMoles);
+        //     }, 1000);
+        // }
+
+        if (moles[index].visible) {
             const newMoles = moles.map((mole, i) => {
-                if (i === index) {
-                    return { visible: true, hit: true }; // 设置为击中状态
-                }
-                return mole;
+              if (i === index) {
+                return { visible: false, hit: true }; // 击中后不再可见
+              }
+              return mole;
             });
             setMoles(newMoles);
-
-            // 1秒后隐藏击中的地鼠
+            setScore(prevScore => prevScore + 1);
+            setAllowNewMole(false);
+            // 添加闪现效果
             setTimeout(() => {
-                const resetMoles = moles.map((mole, i) => (i === index ? { visible: false, hit: false } : mole));
-                setMoles(resetMoles);
-            }, 1000);
-        }
+              setMoles(prevMoles => 
+                prevMoles.map((mole, i) => (i === index ? { visible: false, hit: false } : mole))
+              );
+            }, 200); // 控制闪现时间
+
+            setTimeout(() => {
+                setAllowNewMole(true);
+              }, 1000);
+          }
     };
 
     // 控制背景音乐播放/暂停
@@ -177,10 +211,6 @@ const GamePage = () => {
     return (
         <>
             <audio ref={audioRef} src={BGM} loop />
-            {/* {
-                loadding ? */}
-                <SplashScreen loadding={loadding} />
-                {/* : */}
                 <div className="game_page">
                     <div className="title_box flex justify_between column">
                         <div className="flex justify_between align_center back_box">
@@ -259,11 +289,4 @@ const GamePage = () => {
 }
 
 
-const SplashScreen = ({ loadding }) => {
-    return (
-      <div className={`splash-screen ${loadding ? 'splash_screen_in' : 'splash_screen_out'}`}>
-        <img src={splashImage} alt="Splash" />
-      </div>
-    );
-};
 export default GamePage
