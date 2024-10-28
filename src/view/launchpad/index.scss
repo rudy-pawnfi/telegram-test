@@ -1,5 +1,15 @@
 .launchpad_page{
-
+    .header_box{
+        background-image: url('/images/launchpad/img-launchpool.png');
+        background-size: 100% 100%;
+        // background-position: center;
+        // background-repeat: no-repeat;
+        height: 249px;
+        img{
+            width: 52px;
+            height: 60px;
+        }
+    }
     .count_down{
         border-radius: 46px;
         padding: 12px;

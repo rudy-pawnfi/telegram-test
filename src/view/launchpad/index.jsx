@@ -1,5 +1,10 @@
 import { useState } from 'react'
+import Modal from '../../components/Modal'
 import './index.scss'
+import launchpoolIcon from '/images/launchpad/img-img-launchpoolIcon.png'
+import InvitePool from '/images/launchpad/img-InvitePool.png'
+import PointsPool from '/public/images/launchpad/img-PointsPool.png'
+import TONPool from '/public/images/launchpad/img-TONPool.png'
 
 const LaunchpadPage = () => {
 
@@ -10,8 +15,8 @@ const LaunchpadPage = () => {
     const [tab, setTab] = useState('1')
     return (
         <div className="launchpad_page">
-            <div className="header_box flex column justify_end align_center">
-                <i className="mb_2"></i>
+            <div className="header_box br_5 flex column justify_end align_center overflow_hidden">
+                <img className="mb_2" src={launchpoolIcon} alt="" srcset="" />
                 <span className="fs_6 fw_b mb_4">launchpool</span>
                 <div className="count_down">
                     <div className="count_down_box flex column align_center">
@@ -56,7 +61,7 @@ const LaunchpadPage = () => {
                     tab === '1' ?
                         <div className="pool_box">
                             <div className="flex align_center justify_center mb_3">
-                                <img src="/public/images/tab/img-Farming.png" alt="" srcset="" />
+                                <img src={TONPool} alt="" srcset="" />
                                 <span className="fs_3 fw_b ml_4">TON Pool</span>
                             </div>
 
@@ -85,10 +90,39 @@ const LaunchpadPage = () => {
                             </div>
 
                             <div className="flex align_center justify_center mb_3">
-                                <img src="/public/images/tab/img-Farming.png" alt="" srcset="" />
+                                <img src={PointsPool} alt="" srcset="" />
                                 <span className="fs_3 fw_b ml_4">Points Pool</span>
                             </div>
 
+                            <div className="token_name_box pa_6 br_5 mb_3">
+                                <div className="flex justify_between align_center mb_2">
+                                    <div className="fw_m text_4">分配空投总量</div>
+                                    <div className="fs_2 fw_m">30000 TOKEN</div>
+                                </div>
+                                <div className="flex justify_between align_center mb_2">
+                                    <div className="fw_m text_4">我的燃烧积分</div>
+                                    <div className="fs_2 fw_m">0 TON</div>
+                                </div>
+                                <div className="flex justify_between align_center mb_2">
+                                    <div className="fw_m text_4">我的份额占比</div>
+                                    <div className="fs_2 fw_m">00.00%</div>
+                                </div>
+                                <div className="flex justify_between align_center mb_4">
+                                    <div className="fw_m text_4">我的预计空投</div>
+                                    <div className="fs_2 fw_m">0 TOKEN</div>
+                                </div>
+
+                                <div className="br_6 active pa_4 flex justify_center align_center">
+                                    <i className="is_4"></i>
+                                    <span className="fs_2 fw_b ml_4">燃烧100积分</span>
+                                </div>
+                            </div>
+                            
+
+                            <div className="flex align_center justify_center mb_3">
+                                <img src={InvitePool} alt="" srcset="" />
+                                <span className="fs_3 fw_b ml_4">Invite Pool</span>
+                            </div>
                             <div className="token_name_box pa_6 br_5">
                                 <div className="flex justify_between align_center mb_2">
                                     <div className="fw_m text_4">分配空投总量</div>
@@ -131,6 +165,7 @@ const LaunchpadPage = () => {
                         </div>
                 }
             </div>
+            <Modal />
         </div>
     )
 }
