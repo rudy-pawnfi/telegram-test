@@ -1,8 +1,8 @@
 @font-face {
   font-family: "picon"; /* Project id 4678886 */
-  src: url('iconfont.woff2?t=1730108089569') format('woff2'),
-       url('iconfont.woff?t=1730108089569') format('woff'),
-       url('iconfont.ttf?t=1730108089569') format('truetype');
+  src: url('iconfont.woff2?t=1730197475693') format('woff2'),
+       url('iconfont.woff?t=1730197475693') format('woff'),
+       url('iconfont.ttf?t=1730197475693') format('truetype');
 }
 
 .picon {
@@ -11,6 +11,14 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.p-icon-doubt:before {
+  content: "\e7d3";
+}
+
+.p-a-icon-LaunchpadPool:before {
+  content: "\e7cf";
 }
 
 .p-icon-trade:before {

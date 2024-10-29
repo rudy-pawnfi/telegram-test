@@ -46,7 +46,7 @@ const Countdown = ({ endTime }) => {
             {
                 remainingTime > 0 ? (
                     <div>
-                        <span>{formatTime(remainingTime)}</span>
+                        <span style={{color: '#00FF3C'}}>{formatTime(remainingTime)}</span>
                         <div className="dot-loader">
                             <div className={`dot ${activeDot === 0 ? 'active_dot' : ''}`}></div>
                             <div className={`dot ${activeDot === 1 ? 'active_dot' : ''}`}></div>

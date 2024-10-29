@@ -6,6 +6,20 @@
   "description": "polarcapsule-miniapp",
   "glyphs": [
     {
+      "icon_id": "42270631",
+      "name": "icon-doubt",
+      "font_class": "icon-doubt",
+      "unicode": "e7d3",
+      "unicode_decimal": 59347
+    },
+    {
+      "icon_id": "42270172",
+      "name": "icon- LaunchpadPool",
+      "font_class": "a-icon-LaunchpadPool",
+      "unicode": "e7cf",
+      "unicode_decimal": 59343
+    },
+    {
       "icon_id": "42252859",
       "name": "icon-trade",
       "font_class": "icon-trade",

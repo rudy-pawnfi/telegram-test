@@ -21,7 +21,7 @@ const TabBox = (props) => {
         },
         {
             label: 'LaunchpadPool',
-            icon: 'p-icon-Farming',
+            icon: 'p-a-icon-LaunchpadPool',
             link: '/telegram-test/launchpad'
         },
         {
