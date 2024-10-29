@@ -12,7 +12,7 @@ const SplashScreen = () => {
             const oneStart = sessionStorage.getItem('oneStart')
             console.log('oneStart :>> ', oneStart);
             if(!oneStart){
-                setLoadding(true)
+                // setLoadding(true)
                 return false
             }
             return true
@@ -33,12 +33,9 @@ const SplashScreen = () => {
     
     return (
         <>
-            {
-                !isShow &&
-                <div className={`splash-screen  ${!loadding && 'splash_screen_out'}`}>
-                    <img src={splashImage} alt="Splash" />
-                </div>
-            }
+            <div className={`splash-screen  ${ (isShow || !loadding) && 'splash_screen_out'}`}>
+                <img src={splashImage} alt="Splash" />
+            </div>
         </>
     );
 };
