@@ -186,14 +186,14 @@ const LaunchpadPage = () => {
                                         <span className="underline">我的份额占比</span>
                                         <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '当前池中所您质押总数量占池中份额的比例，质押占比越高，所获取的空投额度越高。', img: TONPool})}></i>
                                     </div>
-                                    <div className="fs_2 fw_m">{info?.totalTokens === 0 ? toFixed(0, 2) : (info?.selfTokens / info?.totalTokens * 100 < 0.01 ? '<0.01' : toFixed(info?.selfTokens / info?.totalTokens * 100, 2))}%</div>
+                                    <div className="fs_2 fw_m">{ !info?.totalTokens || info?.totalTokens === 0 ? toFixed(0, 2) : (info?.selfTokens / info?.totalTokens * 100 < 0.01 ? '<0.01' : toFixed(info?.selfTokens / info?.totalTokens * 100, 2))}%</div>
                                 </div>
                                 <div className="flex justify_between align_center mb_4">
                                     <div className="fw_m text_4 flex align_center">
                                         <span className="underline">{info?.endTime * 1000 > Date.now() ? '我的预计空投' : '我的获取空投'}</span>
                                         <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '根据您当前的份额占比，预计可以获得的空投额度。注：由于您当前的份额占比可能会实时变化，预计空投额度也将会实时变化。空投将在活动结束后24小时内完成。', img: TONPool})}></i>
                                     </div>
-                                    <div className="fs_2 fw_m">{toFmtThousand(info.tokensTotal * (info?.totalTokens === 0 ? 0 : info?.selfTokens / info?.totalTokens))} TOKEN</div>
+                                    <div className="fs_2 fw_m">{toFmtThousand(info.tokensTotal * (!info?.totalTokens || info?.totalTokens === 0 ? 0 : info?.selfTokens / info?.totalTokens))} TOKEN</div>
                                 </div>
 
                                 
@@ -236,14 +236,15 @@ const LaunchpadPage = () => {
                                         <span className="underline">我的份额占比</span>
                                         <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '当前池中所您燃烧积分的总分数占池中份额的比例，质押占比越高，所获取的空投额度越高。', img: PointsPool})}></i>
                                     </div>
-                                    <div className="fs_2 fw_m">{info?.totalPoints === 0 ? toFixed(0, 2) : (info?.selfPoints / info?.totalPoints * 100 < 0.01 ? '<0.01' : toFixed(info?.selfPoints / info?.totalPoints * 100, 2))}%</div>
+                                    <div className="fs_2 fw_m">{!info?.totalPoints || info?.totalPoints === 0 ? toFixed(0, 2) : (info?.selfPoints / info?.totalPoints * 100 < 0.01 ? '<0.01' : toFixed(info?.selfPoints / info?.totalPoints * 100, 2))}%</div>
                                 </div>
                                 <div className="flex justify_between align_center mb_4">
                                     <div className="fw_m text_4 flex align_center">
                                         <span className="underline">{info?.endTime * 1000 > Date.now() ? '我的预计空投' : '我的获取空投'}</span>
                                         <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '根据您当前的份额占比，预计可以获得的空投额度。注：由于您当前的份额占比可能会实时变化，预计空投额度也将会实时变化。空投将在活动结束后24小时内完成。', img: PointsPool})}></i>
                                     </div>
-                                    <div className="fs_2 fw_m">{toFmtThousand(info.pointsTotal * (info?.totalPoints === 0 ? 0 : info?.selfPoints / info?.totalPoints))} TOKEN</div>
+                                    <div className="fs_2 fw_m">
+                                        {toFmtThousand(info.pointsTotal * (!info?.totalPoints || info?.totalPoints === 0 ? 0 : (info?.selfPoints / info?.totalPoints)))} TOKEN</div>
                                 </div>
 
                                 
