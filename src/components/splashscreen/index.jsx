@@ -26,7 +26,7 @@ const SplashScreen = () => {
                 console.log('动画结束后调用回调函数 :>> ');
                 setLoadding(false); // 动画结束后调用回调函数
                 sessionStorage.setItem('oneStart', true)
-            }, 5000); // 显示时间，单位为毫秒
+            }, 4000); // 显示时间，单位为毫秒
             return () => clearTimeout(timer); // 清理定时器
         }
     }, [isShow]);
