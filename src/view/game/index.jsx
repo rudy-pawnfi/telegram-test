@@ -28,7 +28,7 @@ const GamePage = () => {
     const { showAlert } = useAlert();
     const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
     const [allowNewMole, setAllowNewMole] = useState(true); // 控制新地鼠出现的状态
-
+    const [loadding, setLoadding] = useState(false)
     // const initDataUnsafe = {
     //     user: {
     //         id: 5354957141
@@ -46,7 +46,7 @@ const GamePage = () => {
         console.log('res :>> ', res);
     }
     const submintScor = async() => {
-        console.log('1 :>> ', 1);
+        setLoadding(true)
         const res = await ApiServe.query('finishgroundhog', {
             tg_account: initDataUnsafe?.user?.id + '',
             play_points: SCORE,
@@ -56,10 +56,13 @@ const GamePage = () => {
         }).catch(err => {
             return {data:{}}
         })
+        setLoadding(false)
     }
     // 游戏开始
     const startGame = async () => {
         if(gameRunning) return
+        if(loadding) return
+        setLoadding(false)
         setMoles(new Array(10).fill({ visible: false, hit: false }))
         const res = await ApiServe.query('availableplayinfo', {
             tg_account: initDataUnsafe?.user?.id + '',
@@ -81,7 +84,6 @@ const GamePage = () => {
         console.log('intervals :>> ', intervals);
         setTimeout(() => {
             setGameRunning(true);
-            // 每2秒随机出现地鼠
             const t1 = setInterval(() => {
                 setTime((prevTime) => {
                     if (prevTime === 0) {
@@ -95,11 +97,10 @@ const GamePage = () => {
                     return prevTime - 1;
                 });
             }, 1000);
+            // 每2秒随机出现地鼠
             const t2 = setInterval(() => {
-                console.log('moles :>> ', moles);
-                console.log('!moles.some(mole => mole.visible) :>> ', !moles.some(mole => mole.visible));
                 if (!moles.some(mole => mole.visible)) {
-                    const randomMole = Math.floor(Math.random() * 9);
+                    const randomMole = Math.floor(Math.random() * 10);
                     setMoles(prevMoles => {
                       const newMoles = prevMoles.map((mole, index) => 
                         index === randomMole ? { visible: true, hit: false } : mole
@@ -125,8 +126,8 @@ const GamePage = () => {
 
     useEffect(() => {
         if(time === -1 && !gameRunning){
-            init()
             submintScor()
+            init()
         }
     },[time])
 
@@ -143,17 +144,12 @@ const GamePage = () => {
             setMoles(newMoles);
             SCORE += 1
             setScore(prevScore => prevScore + 1);
-            setAllowNewMole(false);
             // 添加闪现效果
             setTimeout(() => {
               setMoles(prevMoles => 
                 prevMoles.map((mole, i) => (i === index ? { visible: false, hit: false } : mole))
               );
             }, 200); // 控制闪现时间
-
-            setTimeout(() => {
-                setAllowNewMole(true);
-              }, 1000);
           }
     };
 

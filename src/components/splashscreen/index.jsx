@@ -12,7 +12,7 @@ const SplashScreen = () => {
             const oneStart = sessionStorage.getItem('oneStart')
             console.log('oneStart :>> ', oneStart);
             if(!oneStart){
-                setLoadding(true)
+                // setLoadding(true)
                 return false
             }
             return true
