@@ -6,6 +6,27 @@
   "description": "polarcapsule-miniapp",
   "glyphs": [
     {
+      "icon_id": "42252859",
+      "name": "icon-trade",
+      "font_class": "icon-trade",
+      "unicode": "e7d0",
+      "unicode_decimal": 59344
+    },
+    {
+      "icon_id": "42252858",
+      "name": "icon-combustion",
+      "font_class": "icon-combustion",
+      "unicode": "e7d1",
+      "unicode_decimal": 59345
+    },
+    {
+      "icon_id": "42252857",
+      "name": "icon-airdrop",
+      "font_class": "icon-airdrop",
+      "unicode": "e7d2",
+      "unicode_decimal": 59346
+    },
+    {
       "icon_id": "42188032",
       "name": "icon-Countdown",
       "font_class": "icon-Countdown",
