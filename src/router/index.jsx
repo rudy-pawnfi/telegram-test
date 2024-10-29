@@ -13,7 +13,6 @@ import SplashScreen from '../components/splashscreen'
 import LaunchpadPage from '../view/launchpad'
 const AppRouter = () => {
     const location = useLocation()
-    const [loadding, setLoadding] = useState(true)
     useEffect(() => {
         console.log('location :>> ', location);
         if (window.Telegram?.WebApp) {
@@ -52,7 +51,7 @@ const AppRouter = () => {
     
     return (
         <>
-            <SplashScreen loadding={loadding} onAnimationEnd={() => setLoadding(false)} />
+            <SplashScreen />
             <div className={className}>
                 <Routes>
                     <Route path={'/telegram-test'} element={<HomePage />} />
