@@ -9,7 +9,7 @@ const Modal = (props) => {
         <>
             {
                 visible &&
-                <div className="modal_page">
+                <div className="modal_page" onClick={close}>
                     <div className="modal_box flex column align_center br_5">
                         <img src={img} alt="" srcset="" />
                         <div className="fs_2 fw_m my_4">
