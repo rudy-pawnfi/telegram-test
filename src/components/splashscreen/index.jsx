@@ -33,12 +33,9 @@ const SplashScreen = () => {
     
     return (
         <>
-            {
-                !isShow &&
-                <div className={`splash-screen  ${!loadding && 'splash_screen_out'}`}>
-                    <img src={splashImage} alt="Splash" />
-                </div>
-            }
+            <div className={`splash-screen  ${ (isShow || !loadding) && 'splash_screen_out'}`}>
+                <img src={splashImage} alt="Splash" />
+            </div>
         </>
     );
 };
