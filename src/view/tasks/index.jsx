@@ -39,12 +39,12 @@ const TasksPage = () => {
         7: false,
         8: false
     })
-    const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
-    // const initDataUnsafe = {
-    //     user: {
-    //         id: 5354957141
-    //     }
-    // }
+    // const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
+    const initDataUnsafe = {
+        user: {
+            id: 5354957141
+        }
+    }
     console.log('wallet :>> ', wallet);
     useEffect(() => {
         init()
@@ -615,7 +615,7 @@ const TasksPage = () => {
                                                             }
                                                         </div>
                                                         :
-                                                        <div className="tasks_btn go_btn fs_2 fw_b" onClick={() => {toTg("https://x.com/polariseorg", 7)}}>
+                                                        <div className="tasks_btn go_btn fs_2 fw_b" onClick={() => {toWebsite("https://x.com/polariseorg", 7)}}>
                                                             Go
                                                         </div>
                                                 )
