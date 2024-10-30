@@ -186,7 +186,7 @@ const LaunchpadPage = () => {
                                         <span className="underline">我的份额占比</span>
                                         <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '当前池中所您质押总数量占池中份额的比例，质押占比越高，所获取的空投额度越高。', img: TONPool})}></i>
                                     </div>
-                                    <div className="fs_2 fw_m">{ !info?.totalTokens || info?.totalTokens === 0 ? toFixed(0, 2) : (info?.selfTokens / info?.totalTokens * 100 < 0.01 ? '<0.01' : toFixed(info?.selfTokens / info?.totalTokens * 100, 2))}%</div>
+                                    <div className="fs_2 fw_m gradient_text">{ !info?.totalTokens || info?.totalTokens === 0 ? toFixed(0, 2) : (info?.selfTokens / info?.totalTokens * 100 < 0.01 ? '<0.01' : toFixed(info?.selfTokens / info?.totalTokens * 100, 2))}%</div>
                                 </div>
                                 <div className="flex justify_between align_center mb_4">
                                     <div className="fw_m text_4 flex align_center">
@@ -236,7 +236,7 @@ const LaunchpadPage = () => {
                                         <span className="underline">我的份额占比</span>
                                         <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '当前池中所您燃烧积分的总分数占池中份额的比例，质押占比越高，所获取的空投额度越高。', img: PointsPool})}></i>
                                     </div>
-                                    <div className="fs_2 fw_m">{!info?.totalPoints || info?.totalPoints === 0 ? toFixed(0, 2) : (info?.selfPoints / info?.totalPoints * 100 < 0.01 ? '<0.01' : toFixed(info?.selfPoints / info?.totalPoints * 100, 2))}%</div>
+                                    <div className="fs_2 fw_m gradient_text">{!info?.totalPoints || info?.totalPoints === 0 ? toFixed(0, 2) : (info?.selfPoints / info?.totalPoints * 100 < 0.01 ? '<0.01' : toFixed(info?.selfPoints / info?.totalPoints * 100, 2))}%</div>
                                 </div>
                                 <div className="flex justify_between align_center mb_4">
                                     <div className="fw_m text_4 flex align_center">
