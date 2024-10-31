@@ -148,7 +148,7 @@ const LaunchpadPage = () => {
             </div>
 
             <div className="pa_5">
-                <div className="fs_5 fw_b text_center mb_3">tokenname</div>
+                <div className="fs_5 fw_b text_center mb_3">$TL</div>
 
                 <div className="pa_6 br_5 token_name_box mb_3">
                     <div className="flex justify_between align_center mb_2">
