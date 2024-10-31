@@ -211,7 +211,7 @@ const LaunchpadPage = () => {
                                     <span className="">{info?.endTime * 1000 > Date.now() ? 'My Airdrop' : 'My Estimated'}</span>
                                     <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: 'The airdrop amount you are expected to receive is calculated based on your current share. Please note that as your share fluctuates in real-time, so too will your estimated airdrop amount. The distribution of the airdrop will be concluded within a 24-hour window following the event\'\s conclusion', img: MadulImg3})}></i>
                                 </div>
-                                <div className="fs_2 fw_m">{toFmtThousand(info.tokensTotal * (!info?.totalTokens || info?.totalTokens === 0 ? 0 : info?.selfTokens / info?.totalTokens))} TOKEN</div>
+                                <div className="fs_2 fw_m">{toFmtThousand(toFixed(info.tokensTotal * (!info?.totalTokens || info?.totalTokens === 0 ? 0 : info?.selfTokens / info?.totalTokens), 2))} TOKEN</div>
                             </div>
 
                             
@@ -247,7 +247,7 @@ const LaunchpadPage = () => {
                                     <span className="">My Burned Points</span>
                                     <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: 'The total points you have burned during the current event', img: MadulImg2})}></i>
                                 </div>
-                                <div className="fs_2 fw_m">{toFmtThousand(info?.selfPoints || 0)} TON</div>
+                                <div className="fs_2 fw_m">{toFmtThousand(info?.selfPoints || 0)}</div>
                             </div>
                             <div className="flex justify_between align_center mb_2">
                                 <div className="fw_m text_4 flex align_center">
@@ -262,7 +262,7 @@ const LaunchpadPage = () => {
                                     <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: 'The airdrop amount you are expected to receive is calculated based on your current share. Please note that as your share fluctuates in real-time, so too will your estimated airdrop amount. The distribution of the airdrop will be concluded within a 24-hour window following the event\'\s conclusion', img: MadulImg2})}></i>
                                 </div>
                                 <div className="fs_2 fw_m">
-                                    {toFmtThousand(info.pointsTotal * (!info?.totalPoints || info?.totalPoints === 0 ? 0 : (info?.selfPoints / info?.totalPoints)))} TOKEN</div>
+                                    {toFmtThousand(toFixed(info.pointsTotal * (!info?.totalPoints || info?.totalPoints === 0 ? 0 : (info?.selfPoints / info?.totalPoints)), 2))} TOKEN</div>
                             </div>
 
                             
