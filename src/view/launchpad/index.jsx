@@ -13,6 +13,10 @@ import InvitePool from '/images/launchpad/img-InvitePool.png'
 import PointsPool from '/public/images/launchpad/img-PointsPool.png'
 import TONPool from '/public/images/launchpad/img-TONPool.png'
 
+import MadulImg1 from '/images/launchpad/img-1.png'
+import MadulImg2 from '/images/launchpad/img-2.png'
+import MadulImg3 from '/images/launchpad/img-3.png'
+
 const LaunchpadPage = () => {
 
     const tabList = [
@@ -78,7 +82,7 @@ const LaunchpadPage = () => {
     }
 
     const mtStakePoints = async() => {
-        if(info?.myPoints < info?.stakePoint) return setMadul({visible: true, dec: '您的积分不足，请完成任务获取更多积分。', img: TONPool})
+        if(info?.myPoints < info?.stakePoint) return setMadul({visible: true, dec: '您的积分不足，请完成任务获取更多积分。', img: MadulImg1})
         const res = await ApiServe.query('stakepoints', {
             tg_account: initDataUnsafe.user.id + '',
             stake_ts: Math.floor(Date.now() / 1000),
@@ -170,28 +174,28 @@ const LaunchpadPage = () => {
                                 <div className="flex justify_between align_center mb_2">
                                     <div className="fw_m text_4 flex align_center">
                                         <span className="underline">分配空投总量</span>
-                                        <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '当前池中所分配用于空投的总数量。', img: TONPool})}></i>
+                                        <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '当前池中所分配用于空投的总数量。', img: MadulImg3})}></i>
                                     </div>
                                     <div className="fs_2 fw_m">{toFmtThousand(info?.tokensTotal)} TOKEN</div>
                                 </div>
                                 <div className="flex justify_between align_center mb_2">
                                     <div className="fw_m text_4 flex align_center">
                                         <span className="underline">我的质押数量</span>
-                                        <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '当前池中所您的质押总数量', img: TONPool})}></i>
+                                        <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '当前池中所您的质押总数量', img: MadulImg3})}></i>
                                     </div>
                                     <div className="fs_2 fw_m">{toFmtThousand(info?.selfTokens || 0)} TON</div>
                                 </div>
                                 <div className="flex justify_between align_center mb_2">
                                     <div className="fw_m text_4 flex align_center">
                                         <span className="underline">我的份额占比</span>
-                                        <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '当前池中所您质押总数量占池中份额的比例，质押占比越高，所获取的空投额度越高。', img: TONPool})}></i>
+                                        <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '当前池中所您质押总数量占池中份额的比例，质押占比越高，所获取的空投额度越高。', img: MadulImg3})}></i>
                                     </div>
                                     <div className="fs_2 fw_m gradient_text">{ !info?.totalTokens || info?.totalTokens === 0 ? toFixed(0, 2) : (info?.selfTokens / info?.totalTokens * 100 < 0.01 ? '<0.01' : toFixed(info?.selfTokens / info?.totalTokens * 100, 2))}%</div>
                                 </div>
                                 <div className="flex justify_between align_center mb_4">
                                     <div className="fw_m text_4 flex align_center">
                                         <span className="underline">{info?.endTime * 1000 > Date.now() ? '我的预计空投' : '我的获取空投'}</span>
-                                        <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '根据您当前的份额占比，预计可以获得的空投额度。注：由于您当前的份额占比可能会实时变化，预计空投额度也将会实时变化。空投将在活动结束后24小时内完成。', img: TONPool})}></i>
+                                        <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '根据您当前的份额占比，预计可以获得的空投额度。注：由于您当前的份额占比可能会实时变化，预计空投额度也将会实时变化。空投将在活动结束后24小时内完成。', img: MadulImg3})}></i>
                                     </div>
                                     <div className="fs_2 fw_m">{toFmtThousand(info.tokensTotal * (!info?.totalTokens || info?.totalTokens === 0 ? 0 : info?.selfTokens / info?.totalTokens))} TOKEN</div>
                                 </div>
@@ -220,28 +224,28 @@ const LaunchpadPage = () => {
                                 <div className="flex justify_between align_center mb_2">
                                     <div className="fw_m text_4 flex align_center">
                                         <span className="underline">分配空投总量</span>
-                                        <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '当前池中所分配用于空投的总数量。', img: PointsPool})}></i>
+                                        <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '当前池中所分配用于空投的总数量。', img: MadulImg3})}></i>
                                     </div>
                                     <div className="fs_2 fw_m">{toFmtThousand(info?.pointsTotal || 0)} TOKEN</div>
                                 </div>
                                 <div className="flex justify_between align_center mb_2">
                                     <div className="fw_m text_4 flex align_center">
                                         <span className="underline">我的燃烧积分</span>
-                                        <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '您在当前活动时间内所燃烧积分的总分数', img: PointsPool})}></i>
+                                        <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '您在当前活动时间内所燃烧积分的总分数', img: MadulImg2})}></i>
                                     </div>
                                     <div className="fs_2 fw_m">{toFmtThousand(info?.selfPoints || 0)} TON</div>
                                 </div>
                                 <div className="flex justify_between align_center mb_2">
                                     <div className="fw_m text_4 flex align_center">
                                         <span className="underline">我的份额占比</span>
-                                        <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '当前池中所您燃烧积分的总分数占池中份额的比例，质押占比越高，所获取的空投额度越高。', img: PointsPool})}></i>
+                                        <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '当前池中所您燃烧积分的总分数占池中份额的比例，质押占比越高，所获取的空投额度越高。', img: MadulImg3})}></i>
                                     </div>
                                     <div className="fs_2 fw_m gradient_text">{!info?.totalPoints || info?.totalPoints === 0 ? toFixed(0, 2) : (info?.selfPoints / info?.totalPoints * 100 < 0.01 ? '<0.01' : toFixed(info?.selfPoints / info?.totalPoints * 100, 2))}%</div>
                                 </div>
                                 <div className="flex justify_between align_center mb_4">
                                     <div className="fw_m text_4 flex align_center">
                                         <span className="underline">{info?.endTime * 1000 > Date.now() ? '我的预计空投' : '我的获取空投'}</span>
-                                        <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '根据您当前的份额占比，预计可以获得的空投额度。注：由于您当前的份额占比可能会实时变化，预计空投额度也将会实时变化。空投将在活动结束后24小时内完成。', img: PointsPool})}></i>
+                                        <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '根据您当前的份额占比，预计可以获得的空投额度。注：由于您当前的份额占比可能会实时变化，预计空投额度也将会实时变化。空投将在活动结束后24小时内完成。', img: MadulImg2})}></i>
                                     </div>
                                     <div className="fs_2 fw_m">
                                         {toFmtThousand(info.pointsTotal * (!info?.totalPoints || info?.totalPoints === 0 ? 0 : (info?.selfPoints / info?.totalPoints)))} TOKEN</div>
