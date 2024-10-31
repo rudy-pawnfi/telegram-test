@@ -87,7 +87,14 @@ const LaunchpadPage = () => {
             tg_account: initDataUnsafe.user.id + '',
             stake_ts: Math.floor(Date.now() / 1000),
             stake_points: info?.stakePoint,
+        }).catch(err => {
         })
+        console.log('res :>> ', res);
+        if(res.code !== -1) {
+            showAlert('燃烧积分成功', 'success')
+        }else{
+            showAlert('燃烧积分失败', 'error')
+        }
         init()
     }
     const mtStakeToken = async() => {
