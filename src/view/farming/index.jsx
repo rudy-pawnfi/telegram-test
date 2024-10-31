@@ -10,6 +10,7 @@ import { reduceLen, toFmtThousand } from '../../untils'
 import Countdown from '../../components/countDown'
 import { useAlert } from '../../components/alertProvider'
 import { useNavigate } from 'react-router-dom'
+import LoadingSpinner from '../../components/loadding'
 const FarmingPage = () => {
 
     const wallet = useTonWallet();
@@ -17,13 +18,14 @@ const FarmingPage = () => {
     const [farmingInfo, setFarmingInfo] = useState({})
     const [useInfo, setUseInfo] = useState({})
     const { showAlert } = useAlert();
-    const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
+    // const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
+    const [loadding, setLoadding] = useState(false)
     const navigate = useNavigate()
-    // const initDataUnsafe = {
-    //     user: {
-    //         id: 5354957141
-    //     }
-    // }
+    const initDataUnsafe = {
+        user: {
+            id: 5354957141
+        }
+    }
     const [bubbles, setBubbles] = useState([]);
     const [invitInfo, setInvitInfo] = useState({})
     const [gameInfo, setGameInfo] = useState({})
@@ -31,7 +33,7 @@ const FarmingPage = () => {
         init()
     }, [])
     const init = async () => {
-
+        setLoadding(true)
         const result = await ApiServe.query('userinfo', {
             tg_account: initDataUnsafe.user.id + ''
         }).catch(err => {
@@ -65,6 +67,7 @@ const FarmingPage = () => {
         // const res1 = await ApiServe.query('farminglist', {
         //     tg_account: tonAddress
         // })
+        setLoadding(false)
     }
 
     const launchpadFarming = async () => {
@@ -116,7 +119,12 @@ const FarmingPage = () => {
         return () => clearInterval(intervalId);
     }, []);
     return (
-        <div className="farming_page pa_3">
+        <>
+            {
+                loadding ?
+                <LoadingSpinner />
+                :
+                <div className="farming_page pa_3">
             <div className="farming_bg" >
                 <img className="farming_bg_img" src={farmingBg} alt="" srcset="" />
                 {bubbles.map((bubble) => (
@@ -153,6 +161,8 @@ const FarmingPage = () => {
                 <div className="game_btn fs_2 fw_b" onClick={() => {navigate('/telegram-test/game')}}>Start</div>
             </div>
         </div>
+            }
+        </>
     )
 }
 

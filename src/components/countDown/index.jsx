@@ -82,7 +82,7 @@ const Countdown = ({ endTime, startTime, launchpadFarming, useInfo, farmingInfo 
                     :
                     <div className="farming_btn cursor flex justify_center align_center br_6 py_4 mb_7" onClick={onclickFarming}>
                         <i className="picon p-icon-StartUp is_4 mr_2"></i>
-                        <div className="fs_3 fw_b">Farming</div>
+                        <div className="fs_3 fw_b">Farm</div>
                     </div>
 
                 }
