@@ -103,14 +103,14 @@ const GamePage = () => {
                     const randomMole = Math.floor(Math.random() * 10);
                     setMoles(prevMoles => {
                       const newMoles = prevMoles.map((mole, index) => 
-                        index === randomMole ? { visible: true, hit: false } : mole
+                        index === randomMole ? { visible: true, hit: mole.hit } : mole
                       );
           
                       // 设置地鼠在一段时间后消失
                       setTimeout(() => {
                         setMoles(prevMoles => 
                           prevMoles.map((mole, index) => 
-                            index === randomMole ? { visible: false, hit: false } : mole
+                            index === randomMole ? { visible: false, hit: mole.hit } : mole
                           )
                         );
                       }, 1000); // 设置消失时间
@@ -146,10 +146,10 @@ const GamePage = () => {
             setScore(prevScore => prevScore + 1);
             // 添加闪现效果
             setTimeout(() => {
-              setMoles(prevMoles => 
-                prevMoles.map((mole, i) => (i === index ? { visible: false, hit: false } : mole))
-              );
-            }, 200); // 控制闪现时间
+                setMoles(prevMoles =>
+                  prevMoles.map((mole, i) => (i === index ? { visible: false, hit: false } : mole))
+                );
+            }, 500);
           }
     };
 

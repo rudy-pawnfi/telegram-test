@@ -154,16 +154,16 @@ const TasksPage = () => {
         const filterTask7 = result?.data?.list?.filter(val => val.task_id === "7")?.sort((a, b) => b.finish_ts - a.finish_ts)
         const filterTask8 = result?.data?.list?.filter(val => val.task_id === "8")?.sort((a, b) => b.finish_ts - a.finish_ts)
         const list = []
-        if(filterTask5.length > 0){
+        if(filterTask5 && filterTask5?.length > 0){
             list.push(filterTask5[0])
         }
-        if(filterTask6.length > 0){
+        if(filterTask6 && filterTask6?.length > 0){
             list.push(filterTask6[0])
         }
-        if(filterTask7.length > 0){
+        if(filterTask7 && filterTask7?.length > 0){
             list.push(filterTask7[0])
         }
-        if(filterTask8.length > 0){
+        if(filterTask8 && filterTask8?.length > 0){
             list.push(filterTask8[0])
         }
         setDayTaskList([...list])
