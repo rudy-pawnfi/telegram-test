@@ -145,7 +145,7 @@ const FarmingPage = () => {
 
             <div className="br_5 px_4 pt_2 pb_4 dinosaur_box flex column align_center">
                 <img className="header_img_box mb_5" src={imgTonlord} alt="" srcSet="" />
-                <div className="fs_4 fw_b mb_4">Polarlord run</div>
+                <div className="fs_4 fw_b mb_4">Whack-A-Lord</div>
                 <div className="flex align_center justify_center dinosaur_box_box mb_4">
                     <img className="mr_2" src={imgNumberOfLives} alt="" srcSet="" />
                     <span className="fs_3 fw_b">x {gameInfo?.remain_day > 0  ? gameInfo?.remain_day : 0}</span>
