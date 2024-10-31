@@ -15,7 +15,7 @@ const Modal = (props) => {
                         <div className="fs_2 fw_m my_4">
                             {dec}
                         </div>
-                        <div className="btn_box py_4 text_center br_6 w100 fs_2 fw_m" onClick={close}>好的</div>
+                        <div className="btn_box py_4 text_center br_6 w100 fs_2 fw_m" onClick={close}>OK</div>
                     </div>
                 </div>
             }
