@@ -10,8 +10,8 @@ import Countdown from './app/countDown'
 import './index.scss'
 import launchpoolIcon from '/images/launchpad/img-img-launchpoolIcon.png'
 import InvitePool from '/images/launchpad/img-InvitePool.png'
-import PointsPool from '/public/images/launchpad/img-PointsPool.png'
-import TONPool from '/public/images/launchpad/img-TONPool.png'
+import PointsPool from '/images/launchpad/img-PointsPool.png'
+import TONPool from '/images/launchpad/img-TONPool.png'
 
 import MadulImg1 from '/images/launchpad/img-1.png'
 import MadulImg2 from '/images/launchpad/img-2.png'
@@ -214,9 +214,9 @@ const LaunchpadPage = () => {
                                 </div>
 
                                 
-                                    <div className="br_6 active pa_4 flex justify_center align_center">
+                                    <div className="br_6 disable pa_4 flex justify_center align_center">
                                         <i className="picon p-icon-airdrop is_4"></i>
-                                        <span className="fs_2 fw_b ml_4">Stake X $TON</span>
+                                        <span className="fs_2 fw_b ml_4">Stake X TON</span>
                                     </div>
                             </div>
 
@@ -257,7 +257,7 @@ const LaunchpadPage = () => {
                                 </div>
 
                                 
-                                    <div className="br_6 active pa_4 flex justify_center align_center">
+                                    <div className="br_6 disable pa_4 flex justify_center align_center">
                                         <i className="picon p-icon-combustion is_4"></i>
                                         <span className="fs_2 fw_b ml_4">Burn X points</span>
                                     </div>
