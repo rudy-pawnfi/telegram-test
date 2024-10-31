@@ -8,7 +8,7 @@ import TitleImg from '/images/game/title.png'
 import OverImg from '/images/game/over.png'
 import BGM from '/images/game/bgm.mp3'
 import './index.scss'
-const TimeCount = 60
+const TimeCount = 30
 let SCORE = 0
 let TIME = 10
 const GamePage = () => {
