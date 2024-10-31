@@ -324,13 +324,14 @@ const TasksPage = () => {
                                 <div className="fw_b pb_3">Tasks</div>
                             </div>
                             <div className="pa_3">
-                                <div className="fs_4 fw_b mb_4 text_center">Capsule Tasks</div>
+                                <div className="fs_4 fw_b mb_4 text_center">Launchpad Tasks</div>
                                 <div className="tasks_list">
+                                    <div className="fs_2 fw_b text_center mb_3">Daily</div>
                                     <div className="list_box list_box_3 pa_4 flex justify_between align_center mb_3">
                                         <div className="flex align_center"> 
                                             <img className="mr_5" src={channelIcon} alt="" srcSet="" />
                                             <div>
-                                                <div className="fs_2 fw_m">login to Polarise Capsule</div>
+                                                <div className="fs_2 fw_m">Login to Polarise Capsule</div>
                                                 <div className="fs_2 text_4">+90 BP</div>
                                             </div>
                                         </div>
@@ -492,6 +493,7 @@ const TasksPage = () => {
                                         }
 
                                     </div>
+                                    <div className="fs_2 fw_b text_center mb_3">Basic Tasks</div>
                                     <div className="list_box list_box_1 pa_4 flex justify_between align_center mb_3">
                                         <div className="flex align_center">
                                             <img className="mr_5" src={imgicon_1} alt="" srcSet="" />
