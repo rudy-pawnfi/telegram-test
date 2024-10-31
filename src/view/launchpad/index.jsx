@@ -20,8 +20,8 @@ import MadulImg3 from '/images/launchpad/img-3.png'
 const LaunchpadPage = () => {
 
     const tabList = [
-        { lable: '矿池', value: '1', default: true },
-        { lable: '项目信息', value: '2', default: false },
+        { lable: 'Pool', value: '1', default: true },
+        { lable: 'Project Info', value: '2', default: false },
     ]
     const [tab, setTab] = useState('1')
     const [tonConnectUi] = useTonConnectUI();
@@ -153,15 +153,15 @@ const LaunchpadPage = () => {
 
             <div className="pa_6 br_5 token_name_box mb_3">
                 <div className="flex justify_between align_center mb_2">
-                    <div className="fw_m text_4">空投总量</div>
+                    <div className="fw_m text_4">Total Airdrop Amount</div>
                     <div className="fs_2 fw_m">{toFmtThousand(info.tokensTotal + info.pointsTotal)}</div>
                 </div>
                 <div className="flex justify_between align_center mb_2">
-                    <div className="fw_m text_4">项目时长</div>
+                    <div className="fw_m text_4">Duration</div>
                     <div className="fs_2 fw_m">4 Days</div>
                 </div>
                 <div className="flex justify_between align_center mb_2">
-                    <div className="fw_m text_4">项目结束日期</div>
+                    <div className="fw_m text_4">End Date</div>
                     <div className="fs_2 fw_m">{getFormatDate(new Date(info.endTime * 1000),"M d y")}</div>
                 </div>
             </div>
@@ -187,29 +187,29 @@ const LaunchpadPage = () => {
                         <div className="token_name_box pa_6 br_5 mb_3">
                             <div className="flex justify_between align_center mb_2">
                                 <div className="fw_m text_4 flex align_center">
-                                    <span className="">分配空投总量</span>
-                                    <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '当前池中所分配用于空投的总数量。', img: MadulImg3})}></i>
+                                    <span className="">Airdrop Amount</span>
+                                    <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: 'The allocated airdrop amount in the TON Pool', img: MadulImg3})}></i>
                                 </div>
                                 <div className="fs_2 fw_m">{toFmtThousand(info?.tokensTotal)} TOKEN</div>
                             </div>
                             <div className="flex justify_between align_center mb_2">
                                 <div className="fw_m text_4 flex align_center">
-                                    <span className="">我的质押数量</span>
-                                    <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '当前池中所您的质押总数量', img: MadulImg3})}></i>
+                                    <span className="">My Staking Amount</span>
+                                    <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: 'The total amount you have staked in this pool', img: MadulImg3})}></i>
                                 </div>
                                 <div className="fs_2 fw_m">{toFmtThousand(info?.selfTokens || 0)} TON</div>
                             </div>
                             <div className="flex justify_between align_center mb_2">
                                 <div className="fw_m text_4 flex align_center">
-                                    <span className="">我的份额占比</span>
-                                    <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '当前池中所您质押总数量占池中份额的比例，质押占比越高，所获取的空投额度越高。', img: MadulImg3})}></i>
+                                    <span className="">My Share</span>
+                                    <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: 'The proportion of your staking amount in the current pool. The higher the share, the higher the airdrop you can claim', img: MadulImg3})}></i>
                                 </div>
                                 <div className="fs_2 fw_m gradient_text">{ !info?.totalTokens || info?.totalTokens === 0 ? toFixed(0, 2) : (info?.selfTokens / info?.totalTokens * 100 < 0.01 ? '<0.01' : toFixed(info?.selfTokens / info?.totalTokens * 100, 2))}%</div>
                             </div>
                             <div className="flex justify_between align_center mb_4">
                                 <div className="fw_m text_4 flex align_center">
-                                    <span className="">{info?.endTime * 1000 > Date.now() ? '我的预计空投' : '我的获取空投'}</span>
-                                    <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '根据您当前的份额占比，预计可以获得的空投额度。注：由于您当前的份额占比可能会实时变化，预计空投额度也将会实时变化。空投将在活动结束后24小时内完成。', img: MadulImg3})}></i>
+                                    <span className="">{info?.endTime * 1000 > Date.now() ? 'My Airdrop' : 'My Estimated'}</span>
+                                    <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: 'The airdrop amount you are expected to receive is calculated based on your current share. Please note that as your share fluctuates in real-time, so too will your estimated airdrop amount. The distribution of the airdrop will be concluded within a 24-hour window following the event\'\s conclusion', img: MadulImg3})}></i>
                                 </div>
                                 <div className="fs_2 fw_m">{toFmtThousand(info.tokensTotal * (!info?.totalTokens || info?.totalTokens === 0 ? 0 : info?.selfTokens / info?.totalTokens))} TOKEN</div>
                             </div>
@@ -219,7 +219,7 @@ const LaunchpadPage = () => {
                                 info?.endTime * 1000 > Date.now() ? 
                                 <div className="br_6 active pa_4 flex justify_center align_center" onClick={mtStakeToken}>
                                     <i className="picon p-icon-airdrop is_4"></i>
-                                    <span className="fs_2 fw_b ml_4">质押{info?.stakeToken} TON获取空投</span>
+                                    <span className="fs_2 fw_b ml_4">Stake {info?.stakeToken} $TON</span>
                                 </div>
                                 :
                                 <div className="br_6 active pa_4 flex justify_center align_center" onClick={()=> window.open('https://x.com/Polartonlord', '_blank')}>
@@ -237,29 +237,29 @@ const LaunchpadPage = () => {
                         <div className="token_name_box pa_6 br_5 mb_3">
                             <div className="flex justify_between align_center mb_2">
                                 <div className="fw_m text_4 flex align_center">
-                                    <span className="">分配空投总量</span>
-                                    <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '当前池中所分配用于空投的总数量。', img: MadulImg3})}></i>
+                                    <span className="">Airdrop Amount</span>
+                                    <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: 'The allocated airdrop amount in the Points Pool', img: MadulImg3})}></i>
                                 </div>
                                 <div className="fs_2 fw_m">{toFmtThousand(info?.pointsTotal || 0)} TOKEN</div>
                             </div>
                             <div className="flex justify_between align_center mb_2">
                                 <div className="fw_m text_4 flex align_center">
-                                    <span className="">我的燃烧积分</span>
-                                    <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '您在当前活动时间内所燃烧积分的总分数', img: MadulImg2})}></i>
+                                    <span className="">My Burned Points</span>
+                                    <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: 'The total points you have burned during the current event', img: MadulImg2})}></i>
                                 </div>
                                 <div className="fs_2 fw_m">{toFmtThousand(info?.selfPoints || 0)} TON</div>
                             </div>
                             <div className="flex justify_between align_center mb_2">
                                 <div className="fw_m text_4 flex align_center">
-                                    <span className="">我的份额占比</span>
-                                    <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '当前池中所您燃烧积分的总分数占池中份额的比例，质押占比越高，所获取的空投额度越高。', img: MadulImg3})}></i>
+                                    <span className="">My Share</span>
+                                    <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: 'The proportion of your burned points in the current pool. The higher the share, the higher the airdrop you can claim', img: MadulImg3})}></i>
                                 </div>
                                 <div className="fs_2 fw_m gradient_text">{!info?.totalPoints || info?.totalPoints === 0 ? toFixed(0, 2) : (info?.selfPoints / info?.totalPoints * 100 < 0.01 ? '<0.01' : toFixed(info?.selfPoints / info?.totalPoints * 100, 2))}%</div>
                             </div>
                             <div className="flex justify_between align_center mb_4">
                                 <div className="fw_m text_4 flex align_center">
-                                    <span className="">{info?.endTime * 1000 > Date.now() ? '我的预计空投' : '我的获取空投'}</span>
-                                    <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: '根据您当前的份额占比，预计可以获得的空投额度。注：由于您当前的份额占比可能会实时变化，预计空投额度也将会实时变化。空投将在活动结束后24小时内完成。', img: MadulImg2})}></i>
+                                    <span className="">{info?.endTime * 1000 > Date.now() ? 'My Airdrop' : 'My Estimated'}</span>
+                                    <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: 'The airdrop amount you are expected to receive is calculated based on your current share. Please note that as your share fluctuates in real-time, so too will your estimated airdrop amount. The distribution of the airdrop will be concluded within a 24-hour window following the event\'\s conclusion', img: MadulImg2})}></i>
                                 </div>
                                 <div className="fs_2 fw_m">
                                     {toFmtThousand(info.pointsTotal * (!info?.totalPoints || info?.totalPoints === 0 ? 0 : (info?.selfPoints / info?.totalPoints)))} TOKEN</div>
@@ -270,7 +270,7 @@ const LaunchpadPage = () => {
                                 info?.endTime * 1000 > Date.now() ?
                                 <div className="br_6 active pa_4 flex justify_center align_center" onClick={mtStakePoints}>
                                     <i className="picon p-icon-combustion is_4"></i>
-                                    <span className="fs_2 fw_b ml_4">燃烧{info?.stakePoint}积分</span>
+                                    <span className="fs_2 fw_b ml_4">Burn {info?.stakePoint} points</span>
                                 </div>
                                 :
                                 <div className="br_6 active pa_4 flex justify_center align_center" onClick={()=> window.open('https://x.com/Polartonlord', '_blank')}>
