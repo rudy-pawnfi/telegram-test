@@ -136,8 +136,7 @@ const HomePage = () => {
             <div className="flex column align_center home_herader pt_4 br_b_5">
                 <img src={imgPolariseCapsule} alt="" srcSet="" />
                 <div className="fw_b fs_6 mb_2">Polarise Capsule </div>
-                <div className="fs_2 fw_b text_3">The First bonding curve Launchpad</div>
-                <div className="fs_2 fw_b text_3 mb_5">platform on Ton</div>
+                <div className="fs_2 fw_b text_3 mb_5 text_center">TON's #1 Bonding Curve Launchpad</div>
                 <div className="home_herader_btn cursor flex justify_center align_center br_6 mb_7">
                     <i className="picon p-icon-Farming is_4 mr_2"></i>
                     <div className="fs_3 fw_b">Star A New Coin! (Soon)</div>
