@@ -3,6 +3,10 @@
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-tap-highlight-color: transparent;
+    &::-webkit-scrollbar {
+        width: 0;
+        display: none; /* 隐藏滚动条 */
+    }
     .tasks_herader{
         height: 125px;
         background-image: url('/images/img-TasksBg.svg');
