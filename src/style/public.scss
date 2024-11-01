@@ -6,7 +6,7 @@ html {
         height: 100%;
         width: 100vw;
         overflow-x: hidden;
-        overflow-y: auto;
+        overflow-y: hidden;
         -webkit-tap-highlight-color: transparent;
         color: #fff;
         background-color: #000;
@@ -33,14 +33,20 @@ html {
             height: calc(100vh - 86px);
             overflow-y: auto;
             overflow-x: hidden;
-            -webkit-tap-highlight-color: transparent;
+            &::-webkit-scrollbar {
+                width: 0;
+                display: none; /* 隐藏滚动条 */
+            }
         }
         .page1 {
             //   padding-bottom: 62px;
             height: 100vh;
             overflow-y: auto;
             overflow-x: hidden;
-            -webkit-tap-highlight-color: transparent;
+            &::-webkit-scrollbar {
+                width: 0;
+                display: none; /* 隐藏滚动条 */
+            }
         }
         @media (min-width: 768px) {
             #root{
@@ -389,6 +395,9 @@ html {
     -ms-overflow-style: none;
     overflow-x: scroll;
     -webkit-overflow-scrolling: touch;
+    ::-webkit-scrollbar {
+        display: none; /* 隐藏滚动条 */
+    }
 }
 
 // .scroll_x::-webkit-scrollbar {
