@@ -238,7 +238,7 @@ const LaunchpadPage = () => {
                                         <span className="">My Burned Points</span>
                                         <i className="picon p-icon-doubt is_2 ml_2" onClick={() => setMadul({visible: true, dec: 'The total points you have burned during the current event', img: MadulImg2})}></i>
                                     </div>
-                                    <div className="fs_2 fw_m">0 TON</div>
+                                    <div className="fs_2 fw_m">0</div>
                                 </div>
                                 <div className="flex justify_between align_center mb_2">
                                     <div className="fw_m text_4 flex align_center">
