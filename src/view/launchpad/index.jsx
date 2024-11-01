@@ -29,7 +29,7 @@ const LaunchpadPage = () => {
     const tonAddress = useTonAddress()
     const { showAlert } = useAlert();
     const [info, setInfo] = useState({
-        endTime: 1730444400,
+        endTime: 1730454400,
         launchpadAddress: '0QBLM5tohk1hY7EQ7ijaOKVDFH68dpMH76NTllGVKb0MBG54',
         stakeToken: 1,
         tokensTotal: 3000000,
@@ -98,20 +98,24 @@ const LaunchpadPage = () => {
         }
         init()
     }
-    const mtStakeToken = async() => {
-        if(!tonAddress) return showAlert('请前往task登录', 'warning')
-        tonConnectUi.sendTransaction({
-            validUntil: Math.floor(Date.now() / 1000) + 1200,
-            messages: [
-                {
-                    address: info?.launchpadAddress,
-                    // address: "0:abffb20ca89eb26709ce50ed8eafaf151948603b85d942638ac15966fc380682", // destination address
-                    amount: (info.stakeToken * 1e9).toString(), //Toncoin in nanotons
-                    // stateInit: wallet.account.walletStateInit,
-                }
-            ]
-        }).then(async res => {
+
+    const confirmTrade = async () => {
+        setMadul({...madul, visible: false})
+        try {
+            const res = await tonConnectUi.sendTransaction({
+                validUntil: Math.floor(Date.now() / 1000) + 1200,
+                messages: [
+                    {
+                        address: info?.launchpadAddress,
+                        // address: "0:abffb20ca89eb26709ce50ed8eafaf151948603b85d942638ac15966fc380682", // destination address
+                        amount: (info.stakeToken * 1e9).toString(), //Toncoin in nanotons
+                        // stateInit: wallet.account.walletStateInit,
+                    }
+                ]
+            })
+    
             console.log('res :>> ', res);
+            debugger
             const cell = Cell.fromBoc(Buffer.from(res.boc, 'base64'))[0];
             const cellHash = cell.hash();
             showAlert(cellHash.toString('hex'), 'success')
@@ -129,9 +133,45 @@ const LaunchpadPage = () => {
                 showAlert('质押失败', 'error')
             }
             init()
-        }).catch(err => {
+        } catch (error) {
             showAlert('交易失败', 'error')
-        })
+        }
+    }
+    const mtStakeToken = async() => {
+        if(!tonAddress) return showAlert('请前往task登录', 'warning')
+        setMadul({visible: true, dec: '注意在交易时，要等待钱包确认操作弹窗交易完成', img: MadulImg1, trade: true})
+        // tonConnectUi.sendTransaction({
+        //     validUntil: Math.floor(Date.now() / 1000) + 1200,
+        //     messages: [
+        //         {
+        //             address: info?.launchpadAddress,
+        //             // address: "0:abffb20ca89eb26709ce50ed8eafaf151948603b85d942638ac15966fc380682", // destination address
+        //             amount: (info.stakeToken * 1e9).toString(), //Toncoin in nanotons
+        //             // stateInit: wallet.account.walletStateInit,
+        //         }
+        //     ]
+        // }).then(async res => {
+        //     console.log('res :>> ', res);
+        //     const cell = Cell.fromBoc(Buffer.from(res.boc, 'base64'))[0];
+        //     const cellHash = cell.hash();
+        //     showAlert(cellHash.toString('hex'), 'success')
+        //     const result = await ApiServe.query('staketokens', {
+        //         tg_account: initDataUnsafe.user.id + '',
+        //         wallet_account: tonAddress,
+        //         stake_ts: Math.floor(Date.now() / 1000),
+        //         stake_tokens: (info.stakeToken * 1e9),
+        //         tx_hash: cellHash.toString('hex')
+        //     })
+        //     console.log('result :>> ', result);
+        //     if(result.code !== -1) {
+        //         showAlert('质押成功', 'success')
+        //     }else{
+        //         showAlert('质押失败', 'error')
+        //     }
+        //     init()
+        // }).catch(err => {
+        //     showAlert('交易失败', 'error')
+        // })
     }
     return (
         <div className="launchpad_page">
@@ -304,7 +344,7 @@ const LaunchpadPage = () => {
                     </div>
             }
         </div>
-        <Modal visible={madul.visible} img={madul.img} dec={madul.dec} close={() => setMadul({...madul, visible: false})} />
+        <Modal visible={madul.visible} img={madul.img} dec={madul.dec} trade={madul.trade} confirmTrade={confirmTrade} close={() => setMadul({...madul, visible: false})} />
     </div>
     )
 }

@@ -3,8 +3,16 @@
 import './index.scss'
 import TONPool from '/public/images/launchpad/img-TONPool.png'
 const Modal = (props) => {
-    const { visible, title, icon, img, dec, close } = props
+    const { visible, title, icon, img, dec, close, trade, confirmTrade } = props
 
+
+    const mtClose = async() => {
+        if(trade) {
+            confirmTrade()
+        }else{
+            close()
+        }
+    }
     return (
         <>
             {
@@ -15,7 +23,7 @@ const Modal = (props) => {
                         <div className="fs_2 fw_m my_4">
                             {dec}
                         </div>
-                        <div className="btn_box py_4 text_center br_6 w100 fs_2 fw_m" onClick={close}>OK</div>
+                        <div className="btn_box py_4 text_center br_6 w100 fs_2 fw_m" onClick={mtClose}>OK</div>
                     </div>
                 </div>
             }
