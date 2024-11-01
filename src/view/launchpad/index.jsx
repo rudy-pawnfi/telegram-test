@@ -16,6 +16,7 @@ import TONPool from '/public/images/launchpad/img-TONPool.png'
 import MadulImg1 from '/images/launchpad/img-1.png'
 import MadulImg2 from '/images/launchpad/img-2.png'
 import MadulImg3 from '/images/launchpad/img-3.png'
+import { Cell } from '@ton/core'
 
 const LaunchpadPage = () => {
 
@@ -28,12 +29,12 @@ const LaunchpadPage = () => {
     const tonAddress = useTonAddress()
     const { showAlert } = useAlert();
     const [info, setInfo] = useState({
-        endTime: 1730535077,
+        endTime: 1730444400,
         launchpadAddress: '0QBLM5tohk1hY7EQ7ijaOKVDFH68dpMH76NTllGVKb0MBG54',
         stakeToken: 1,
         tokensTotal: 3000000,
         pointsTotal: 3000000,
-        stakePoint: 100
+        stakePoint: 1000
     })
 
     const [madul, setMadul] = useState({
@@ -111,12 +112,14 @@ const LaunchpadPage = () => {
             ]
         }).then(async res => {
             console.log('res :>> ', res);
+            const cell = Cell.fromBoc(Buffer.from(res.boc, 'base64'))[0];
+            const cellHash = cell.hash();
             const result = await ApiServe.query('staketokens', {
                 tg_account: initDataUnsafe.user.id + '',
                 wallet_account: tonAddress,
                 stake_ts: Math.floor(Date.now() / 1000),
                 stake_tokens: (info.stakeToken * 1e9),
-                tx_hash: res.boc
+                tx_hash: cellHash.toString('hex')
             })
             console.log('result :>> ', result);
             if(result.code !== -1) {
