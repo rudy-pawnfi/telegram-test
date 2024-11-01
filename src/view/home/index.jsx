@@ -20,6 +20,12 @@ const HomePage = () => {
     const tonAddress = useTonAddress()
     const initData = Telegram.WebApp;
     const initDataUnsafe = Telegram.WebApp.initDataUnsafe
+
+    // const initDataUnsafe = {
+    //     user: {
+    //         id: 5354957144
+    //     }
+    // }
     const wallet = useTonWallet(); 
     const { showAlert } = useAlert();
     console.log('initData', initData);
@@ -57,7 +63,8 @@ const HomePage = () => {
             app_name: 'Rudy_test'
         })
         const refCode = startParam && startParam?.split('ref_code=')[1];
-        if (startParam && Object.keys(result?.data).length === 0 && res?.data?.ref_code !== refCode) {
+        // const refCode = "319a3d33b70ff227a2e2"
+        if (!!refCode && result?.code === -1 && res?.data?.ref_code !== refCode) {
             // 解析 ref_code 参数
             const useInfo = await ApiServe.query('launchinviting',{
                 ref_code: refCode,
