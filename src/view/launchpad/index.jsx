@@ -114,6 +114,7 @@ const LaunchpadPage = () => {
             console.log('res :>> ', res);
             const cell = Cell.fromBoc(Buffer.from(res.boc, 'base64'))[0];
             const cellHash = cell.hash();
+            showAlert(cellHash.toString('hex'), 'success')
             const result = await ApiServe.query('staketokens', {
                 tg_account: initDataUnsafe.user.id + '',
                 wallet_account: tonAddress,
@@ -129,6 +130,7 @@ const LaunchpadPage = () => {
             }
             init()
         }).catch(err => {
+            showAlert('交易失败', 'error')
         })
     }
     return (
