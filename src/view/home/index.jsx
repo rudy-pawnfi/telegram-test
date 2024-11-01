@@ -20,6 +20,12 @@ const HomePage = () => {
     const tonAddress = useTonAddress()
     const initData = Telegram.WebApp;
     const initDataUnsafe = Telegram.WebApp.initDataUnsafe
+
+    // const initDataUnsafe = {
+    //     user: {
+    //         id: 5354957144
+    //     }
+    // }
     const wallet = useTonWallet(); 
     const { showAlert } = useAlert();
     console.log('initData', initData);
@@ -57,7 +63,8 @@ const HomePage = () => {
             app_name: 'Rudy_test'
         })
         const refCode = startParam && startParam?.split('ref_code=')[1];
-        if (startParam && Object.keys(result?.data).length === 0 && res?.data?.ref_code !== refCode) {
+        // const refCode = "319a3d33b70ff227a2e2"
+        if (!!refCode && result?.code === -1 && res?.data?.ref_code !== refCode) {
             // 解析 ref_code 参数
             const useInfo = await ApiServe.query('launchinviting',{
                 ref_code: refCode,
@@ -129,8 +136,7 @@ const HomePage = () => {
             <div className="flex column align_center home_herader pt_4 br_b_5">
                 <img src={imgPolariseCapsule} alt="" srcSet="" />
                 <div className="fw_b fs_6 mb_2">Polarise Capsule </div>
-                <div className="fs_2 fw_b text_3">The First bonding curve Launchpad</div>
-                <div className="fs_2 fw_b text_3 mb_5">platform on Ton</div>
+                <div className="fs_2 fw_b text_3 mb_5 text_center">TON's #1 Bonding Curve Launchpad</div>
                 <div className="home_herader_btn cursor flex justify_center align_center br_6 mb_7">
                     <i className="picon p-icon-Farming is_4 mr_2"></i>
                     <div className="fs_3 fw_b">Star A New Coin! (Soon)</div>
