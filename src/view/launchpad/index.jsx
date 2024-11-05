@@ -48,13 +48,13 @@ const LaunchpadPage = () => {
         dec: '',
         img: '',
     })
-    // const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
+    const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
 
-    const initDataUnsafe = {
-        user: {
-            id: 5354957141
-        }
-    }
+    // const initDataUnsafe = {
+    //     user: {
+    //         id: 5354957141
+    //     }
+    // }
     useEffect(() => {
         init()
     }, [])
@@ -79,8 +79,8 @@ const LaunchpadPage = () => {
         })
         setInfo({
             ...info,
-            selfTokens: stakeToken?.data?.self_tokens ? stakeToken?.data?.self_tokens / 1e9 : 0,
-            totalTokens: stakeToken?.data?.total_tokens ? stakeToken?.data?.total_tokens / 1e9 : 0,
+            selfTokens: stakeToken?.data?.self_tokens ? stakeToken?.data?.self_tokens : 0,
+            totalTokens: stakeToken?.data?.total_tokens ? stakeToken?.data?.total_tokens : 0,
             selfPoints: stakePoint?.data?.self_points || 0,
             totalPoints: stakePoint?.data?.total_points || 0,
             myPoints: result.data?.total_points || 0
@@ -223,7 +223,7 @@ const LaunchpadPage = () => {
                 tg_account: initDataUnsafe.user.id + '',
                 wallet_account: tonAddress,
                 stake_ts: Math.floor(Date.now() / 1000),
-                stake_tokens: (info.stakeToken * 1e9),
+                stake_tokens: info.stakeToken,
                 // tx_hash: cellHash.toString('hex'),
                 tx_hash: txFinalized.hash().toString('hex'),
                 stake_dstaddr: info?.launchpadAddress,

@@ -6,6 +6,7 @@ import TonWeb from 'tonweb'
 import { begiTonClient, Cell, utils, TonClient, TonClient4, WalletContractV4, Wallet, toNano, loadMessage, Address, storeMessage, beginCell } from '@ton/ton'
 import { mnemonicNew, mnemonicToPrivateKey, mnemonicToWalletKey } from "@ton/crypto"
 import ApiContact from "../../service/contract/handleServe";
+import { ApiServe } from "../../service";
 const TestPage = () => {
     const tonweb = new TonWeb(new TonWeb.HttpProvider('https://testnet.toncenter.com/api/v2/jsonRPC', { apiKey: '2bc257be7d0e5a24055035156b56f7a6866bcc27cbd50ec08b72d19e5fb02fb3' }));
     const nacl = TonWeb.utils.nacl;
@@ -63,41 +64,51 @@ const TestPage = () => {
         });
     };
     const send = async () => {
-        const bocData = "te6cckEBBAEAtwAB5YgAJbFsMMqp1F40MvyXNWcoPVx219J8IYz0Llo4ZILCVV4Dm0s7c////+s5QfxwAAAAjbPA1pDp4EcyGDaE3cDs7VqY1m45XDhg+CoF0mAipEIFWuxkI7IGPhaI924Xg2orclTab4OzNOFA8aLPzbwhJBUBAgoOw8htAwMCAGhCACWZzbRDJrCx2Ih3FG0cUqGKP147SYP30anLKMqU3oYCIdzWUAAAAAAAAAAAAAAAAAAAAADd8sWy";
-
-        const client = new TonClient({
-            endpoint: 'https://testnet.toncenter.com/api/v2/jsonRPC',
-        });
-         const trade = await tonConnectUi.sendTransaction({
-            validUntil: Math.floor(Date.now() / 1000) + 1200,
-            messages: [
-                {
-                    address: '0QBLM5tohk1hY7EQ7ijaOKVDFH68dpMH76NTllGVKb0MBG54',
-                    // address: "0:abffb20ca89eb26709ce50ed8eafaf151948603b85d942638ac15966fc380682", // destination address
-                    amount: (1 * 1e9).toString(), //Toncoin in nanotons
-                    // stateInit: wallet.account.walletStateInit,
-                }
-            ]
+        const result = await ApiServe.query('staketokens', {
+            "tg_account": "5354957141",
+            "wallet_account": "0QAS2LYYZVTqLxoZfkuas5Qerjtr6T4QxnoXLRwyQWEqr5mU",
+            "stake_ts": 1730814178,
+            "stake_tokens": 1,
+            "tx_hash": "95417adb14967da428ec34ccf079324f9e76dea51eaed6388e1f6ba4bbae1c36",
+            "stake_dstaddr": "0QBLM5tohk1hY7EQ7ijaOKVDFH68dpMH76NTllGVKb0MBG54",
+            "network": "Testnet",
+            "tx_lt": 27690362000001
         })
-        console.log('trade :>> ', trade);
-        const hash = Cell.fromBase64(trade.boc)
-            .hash()
-            .toString("base64");
+        // const bocData = "te6cckEBBAEAtwAB5YgAJbFsMMqp1F40MvyXNWcoPVx219J8IYz0Llo4ZILCVV4Dm0s7c////+s5QfxwAAAAjbPA1pDp4EcyGDaE3cDs7VqY1m45XDhg+CoF0mAipEIFWuxkI7IGPhaI924Xg2orclTab4OzNOFA8aLPzbwhJBUBAgoOw8htAwMCAGhCACWZzbRDJrCx2Ih3FG0cUqGKP147SYP30anLKMqU3oYCIdzWUAAAAAAAAAAAAAAAAAAAAADd8sWy";
 
-        const message = loadMessage(
-            Cell.fromBase64(trade.boc).asSlice()
-        );
-        console.log('hash :>> ', hash);
-        console.log("Message:", message.body.hash().toString("hex"));
+        // const client = new TonClient({
+        //     endpoint: 'https://testnet.toncenter.com/api/v2/jsonRPC',
+        // });
+        //  const trade = await tonConnectUi.sendTransaction({
+        //     validUntil: Math.floor(Date.now() / 1000) + 1200,
+        //     messages: [
+        //         {
+        //             address: '0QBLM5tohk1hY7EQ7ijaOKVDFH68dpMH76NTllGVKb0MBG54',
+        //             // address: "0:abffb20ca89eb26709ce50ed8eafaf151948603b85d942638ac15966fc380682", // destination address
+        //             amount: (1 * 1e9).toString(), //Toncoin in nanotons
+        //             // stateInit: wallet.account.walletStateInit,
+        //         }
+        //     ]
+        // })
+        // console.log('trade :>> ', trade);
+        // const hash = Cell.fromBase64(trade.boc)
+        //     .hash()
+        //     .toString("base64");
 
-        const txFinalized = await waitForTransaction(
-            {
-                address: tonConnectUi.account?.address ?? "",
-                hash: hash,
-            },
-            client
-        );
-        console.log('txFinalized :>> ', txFinalized.lt);
+        // const message = loadMessage(
+        //     Cell.fromBase64(trade.boc).asSlice()
+        // );
+        // console.log('hash :>> ', hash);
+        // console.log("Message:", message.body.hash().toString("hex"));
+
+        // const txFinalized = await waitForTransaction(
+        //     {
+        //         address: tonConnectUi.account?.address ?? "",
+        //         hash: hash,
+        //     },
+        //     client
+        // );
+        // console.log('txFinalized :>> ', txFinalized.lt);
         // const state = await client.getContractState('0QAS2LYYZVTqLxoZfkuas5Qerjtr6T4QxnoXLRwyQWEqr5mU')
         // console.log('state :>> ', state);
         // const lastLt = state.lastTransaction.lt;
