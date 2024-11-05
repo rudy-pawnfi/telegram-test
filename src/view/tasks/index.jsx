@@ -331,7 +331,7 @@ const TasksPage = () => {
                                         <div className="flex align_center"> 
                                             <img className="mr_5" src={channelIcon} alt="" srcSet="" />
                                             <div>
-                                                <div className="fs_2 fw_m">Login to Polarise Capsule</div>
+                                                <div className="fs_2 fw_m">Login to Polar Capsule</div>
                                                 <div className="fs_2 text_4">+90 BP</div>
                                             </div>
                                         </div>
@@ -342,7 +342,7 @@ const TasksPage = () => {
                                                 </div>
                                                 :
                                                 (
-                                                    <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('login to Polarise Capsule', 90.00, '8', 7)}>
+                                                    <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('login to Polar Capsule', 90.00, '8', 7)}>
                                                         {
                                                             isClaim === '8' ?
                                                                 <span className="loader"></span>
