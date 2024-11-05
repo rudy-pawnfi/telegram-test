@@ -240,7 +240,7 @@ const TasksPage = () => {
         claimObj[4] = true
         setClaimObj({ ...claimObj })
         localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
-        Telegram.WebApp.openTelegramLink('https://t.me/polartonlord')
+        Telegram.WebApp.openTelegramLink('https://t.me/PolarCapsuleAnn')
     }
     const toWebsite = async (url, index) => {
         claimObj[index] = true
@@ -331,7 +331,7 @@ const TasksPage = () => {
                                         <div className="flex align_center"> 
                                             <img className="mr_5" src={channelIcon} alt="" srcSet="" />
                                             <div>
-                                                <div className="fs_2 fw_m">Login to Polarise Capsule</div>
+                                                <div className="fs_2 fw_m">Login to Polar Capsule</div>
                                                 <div className="fs_2 text_4">+90 BP</div>
                                             </div>
                                         </div>
@@ -342,7 +342,7 @@ const TasksPage = () => {
                                                 </div>
                                                 :
                                                 (
-                                                    <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('login to Polarise Capsule', 90.00, '8', 7)}>
+                                                    <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('login to Polar Capsule', 90.00, '8', 7)}>
                                                         {
                                                             isClaim === '8' ?
                                                                 <span className="loader"></span>
@@ -665,7 +665,7 @@ const TasksPage = () => {
                                             <img className="mr_5" src={imgicon_5} alt="" srcSet="" />
                                             <div>
                                                 <div className="fs_2 fw_m">Invited 10 Friends</div>
-                                                <div className="fs_2 text_4">+90 BP   {invitInfo?.friends?.length || 0}/2 frens</div>
+                                                <div className="fs_2 text_4">+90 BP   {invitInfo?.friends?.length || 0}/10 frens</div>
                                             </div>
                                         </div>
                                         {
@@ -675,7 +675,7 @@ const TasksPage = () => {
                                                 </div>
                                                 :
                                                 (
-                                                    invitInfo?.friends?.length >= 2 ?
+                                                    invitInfo?.friends?.length >= 10 ?
                                                         <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Invited 10 Friends', 90.00, '4')}>
                                                             {
                                                                 isClaim === '4' ?
