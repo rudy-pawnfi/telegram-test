@@ -117,11 +117,11 @@ const HomePage = () => {
             9: false,
         }
         if(claimObj[3]){
-            Telegram.WebApp.openTelegramLink('https://t.me/polartonlord')
+            Telegram.WebApp.openTelegramLink('https://t.me/PolarCapsuleAnn')
         }else{
             claimObj[3] = true
             localStorage.setItem(initDataUnsafe.user.id + 'CLAIM', JSON.stringify(claimObj))
-            Telegram.WebApp.openTelegramLink('https://t.me/polartonlord')
+            Telegram.WebApp.openTelegramLink('https://t.me/PolarCapsuleAnn')
         }
         
 
