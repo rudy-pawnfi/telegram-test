@@ -99,7 +99,7 @@ const GamePage = () => {
             }, 1000);
             // 每2秒随机出现地鼠
             const t2 = setInterval(() => {
-                if (!moles.some(mole => mole.visible)) {
+                // if (!moles.some(mole => mole.visible)) {
                     const randomMole = Math.floor(Math.random() * 10);
                     setMoles(prevMoles => {
                       const newMoles = prevMoles.map((mole, index) => 
@@ -117,7 +117,7 @@ const GamePage = () => {
           
                       return newMoles;
                     });
-                }
+                // }
             }, 2000);
             // 每秒减少时间
             setIntervals({ t1, t2, t3: null });
