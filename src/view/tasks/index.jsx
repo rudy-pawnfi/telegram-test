@@ -39,11 +39,12 @@ const TasksPage = () => {
         7: false,
         8: false,
         9: false,
+        10: false,
     })
     const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
     // const initDataUnsafe = {
     //     user: {
-    //         id: 5354957141
+    //         id: 5354957142
     //     }
     // }
     console.log('wallet :>> ', wallet);
@@ -122,6 +123,7 @@ const TasksPage = () => {
             7: false,
             8: false,
             9: false,
+            10: false,
         }
         setClaimObj({ ...claimObj })
         const res = await ApiServe.query('getrefcode', {
@@ -653,6 +655,39 @@ const TasksPage = () => {
                                                         </div>
                                                         :
                                                         <div className="tasks_btn go_btn fs_2 fw_b" onClick={() => {toTg("https://t.me/polariseorg", 8)}}>
+                                                            Go
+                                                        </div>
+                                                )
+
+                                        }
+                                    </div>
+
+                                    <div className="list_box list_box_4 pa_4 flex justify_between align_center mb_3">
+                                        <div className="flex align_center">
+                                            <img className="mr_5" src={imgicon_4} alt="" srcSet="" />
+                                            <div>
+                                                <div className="fs_2 fw_m">RT & Like new twitter</div>
+                                                <div className="fs_2 text_4">+90 BP</div>
+                                            </div>
+                                        </div>
+                                        {
+                                            !!taskList?.find(val => val.task_id === "10") ?
+                                                <div className="tasks_btn click_btn fs_2 fw_b">
+                                                    <i className="picon p-icon-Finish is_3"></i>
+                                                </div>
+                                                :
+                                                (
+                                                    claimObj[10] ?
+                                                        <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('RT & Like new twitter', 90.00, '11', 10)}>
+                                                            {
+                                                                isClaim === '11' ?
+                                                                    <span className="loader"></span>
+                                                                    :
+                                                                    <span>Claim</span>
+                                                            }
+                                                        </div>
+                                                        :
+                                                        <div className="tasks_btn go_btn fs_2 fw_b" onClick={() => {toWebsite("https://x.com/polartonlord/status/1854051742310387843?s=46&t=uZo6mhEQgMLVY1JxdGSrGw", 10)}}>
                                                             Go
                                                         </div>
                                                 )
