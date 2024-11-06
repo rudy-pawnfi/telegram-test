@@ -26,6 +26,7 @@ import { AlertProvider } from './components/alertProvider'
 // WebApp.setBackgroundColor('000');
 WebApp.ready();
 console.log('WebApp :>> ', WebApp); 
+console.log('process.env.NODE_ENV :>> ', import.meta.env.MODE);
 createRoot(document.getElementById('root')).render(
     <StrictMode>
             <TonConnectUIProvider

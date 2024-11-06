@@ -3,7 +3,8 @@ import axios from 'axios';
 import handleApi from './handleApi';
 
 // const baseURL = "https://api-capsule.polarise.org" // 生产
-const baseURL =  "https://apipolarcapsule.pawnfi.io" // 测试
+// const baseURL =  "https://apipolarcapsule.pawnfi.io" // 测试
+const baseURL = import.meta.env.MODE === 'development' ? "https://apipolarcapsule.pawnfi.io" : "https://api-capsule.polarise.org"
 const ApiServe = {
 
     query(methodName,params={},requestType='post') {

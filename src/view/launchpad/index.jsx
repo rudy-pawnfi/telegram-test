@@ -21,13 +21,15 @@ import TonWeb from 'tonweb'
 import ApiContact from '../../service/contract/handleServe'
 import { TonClient } from '@ton/ton'
 import LoadingSpinner from '../../components/loadding'
+import { useTonClient } from '../../hooks/useTonClient'
 
 const LaunchpadPage = () => {
-    const tonweb = new TonWeb(new TonWeb.HttpProvider('https://testnet.toncenter.com/api/v2/jsonRPC', { apiKey: '2bc257be7d0e5a24055035156b56f7a6866bcc27cbd50ec08b72d19e5fb02fb3' }));
     const tabList = [
         { lable: 'Pool', value: '1', default: true },
         { lable: 'Project Info', value: '2', default: false },
     ]
+    const {client} = useTonClient()
+    console.log('client :>> ', client);
     const [tab, setTab] = useState('1')
     const [tonConnectUi] = useTonConnectUI();
     const tonAddress = useTonAddress()
@@ -181,9 +183,6 @@ const LaunchpadPage = () => {
                     }
                 ]
             })
-            const client = new TonClient({
-                endpoint: 'https://testnet.toncenter.com/api/v2/jsonRPC',
-            });
             const hash = Cell.fromBase64(res.boc)
             .hash()
             .toString("base64");
