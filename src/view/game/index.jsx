@@ -56,6 +56,7 @@ const GamePage = () => {
         }).catch(err => {
             return {data:{}}
         })
+        await init()
         setLoadding(false)
     }
     // 游戏开始
@@ -127,7 +128,6 @@ const GamePage = () => {
     useEffect(() => {
         if(time === -1 && !gameRunning){
             submintScor()
-            init()
         }
     },[time])
 
