@@ -31,7 +31,7 @@ const GamePage = () => {
     const [loadding, setLoadding] = useState(false)
     // const initDataUnsafe = {
     //     user: {
-    //         id: 5354957141
+    //         id: 5354957142
     //     }
     // }
 
@@ -56,7 +56,9 @@ const GamePage = () => {
         }).catch(err => {
             return {data:{}}
         })
+        await init()
         setLoadding(false)
+        
     }
     // 游戏开始
     const startGame = async () => {
@@ -127,7 +129,6 @@ const GamePage = () => {
     useEffect(() => {
         if(time === -1 && !gameRunning){
             submintScor()
-            init()
         }
     },[time])
 
