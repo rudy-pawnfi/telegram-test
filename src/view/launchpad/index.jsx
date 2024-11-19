@@ -35,12 +35,12 @@ const LaunchpadPage = () => {
     const tonAddress = useTonAddress()
     const { showAlert } = useAlert();
     const [info, setInfo] = useState({
-        endTime: 1730954400,
+        endTime: 1732554400,
         launchpadAddress: '0QBLM5tohk1hY7EQ7ijaOKVDFH68dpMH76NTllGVKb0MBG54',
-        stakeToken: 1,
+        stakeToken: 0.001,
         tokensTotal: 3000000,
         pointsTotal: 3000000,
-        stakePoint: 1000
+        stakePoint: 0.1
     })
 
     const [loadding, setLoadding] = useState(false)
