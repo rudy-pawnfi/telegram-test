@@ -111,7 +111,7 @@ const LaunchpadPage = () => {
         options,
         client
     ) => {
-        const { hash, refetchInterval = 1000, refetchLimit, address } = options;
+        const { hash, refetchInterval = 1000, refetchLimit=50, address } = options;
 
         return new Promise((resolve) => {
             let refetches = 0;
