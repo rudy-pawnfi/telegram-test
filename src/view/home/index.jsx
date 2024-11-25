@@ -88,6 +88,9 @@ const HomePage = () => {
             7: false,
             8: false,
             9: false,
+            10: false,
+            11: false,
+            12: false,
         }
         if(claimObj[2]){
             // Telegram.WebApp.openTelegramLink('https://x.com/elonmusk/status/1836319222982701534')
@@ -115,6 +118,9 @@ const HomePage = () => {
             7: false,
             8: false,
             9: false,
+            10: false,
+            11: false,
+            12: false,
         }
         if(claimObj[3]){
             Telegram.WebApp.openTelegramLink('https://t.me/PolarCapsuleAnn')

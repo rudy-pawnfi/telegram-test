@@ -40,13 +40,15 @@ const TasksPage = () => {
         8: false,
         9: false,
         10: false,
+        11: false,
+        12: false,
     })
-    const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
-    // const initDataUnsafe = {
-    //     user: {
-    //         id: 5354957142
-    //     }
-    // }
+    // const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
+    const initDataUnsafe = {
+        user: {
+            id: 5354957142
+        }
+    }
     console.log('wallet :>> ', wallet);
     useEffect(() => {
         init()
@@ -124,6 +126,8 @@ const TasksPage = () => {
             8: false,
             9: false,
             10: false,
+            11: false,
+            12: false,
         }
         setClaimObj({ ...claimObj })
         const res = await ApiServe.query('getrefcode', {
@@ -688,6 +692,72 @@ const TasksPage = () => {
                                                         </div>
                                                         :
                                                         <div className="tasks_btn go_btn fs_2 fw_b" onClick={() => {toWebsite("https://x.com/polartonlord/status/1854051742310387843?s=46&t=uZo6mhEQgMLVY1JxdGSrGw", 10)}}>
+                                                            Go
+                                                        </div>
+                                                )
+
+                                        }
+                                    </div>
+
+                                    <div className="list_box list_box_4 pa_4 flex justify_between align_center mb_3">
+                                        <div className="flex align_center">
+                                            <img className="mr_5" src={imgicon_4} alt="" srcSet="" />
+                                            <div>
+                                                <div className="fs_2 fw_m">Join memenana community</div>
+                                                <div className="fs_2 text_4">+90 BP</div>
+                                            </div>
+                                        </div>
+                                        {
+                                            !!taskList?.find(val => val.task_id === "11") ?
+                                                <div className="tasks_btn click_btn fs_2 fw_b">
+                                                    <i className="picon p-icon-Finish is_3"></i>
+                                                </div>
+                                                :
+                                                (
+                                                    claimObj[11] ?
+                                                        <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Join memenana community', 90.00, '12', 11)}>
+                                                            {
+                                                                isClaim === '12' ?
+                                                                    <span className="loader"></span>
+                                                                    :
+                                                                    <span>Claim</span>
+                                                            }
+                                                        </div>
+                                                        :
+                                                        <div className="tasks_btn go_btn fs_2 fw_b" onClick={() => {toTg("https://t.me/memebnana", 11)}}>
+                                                            Go
+                                                        </div>
+                                                )
+
+                                        }
+                                    </div>
+
+                                    <div className="list_box list_box_4 pa_4 flex justify_between align_center mb_3">
+                                        <div className="flex align_center">
+                                            <img className="mr_5" src={imgicon_4} alt="" srcSet="" />
+                                            <div>
+                                                <div className="fs_2 fw_m">Start memenana bot</div>
+                                                <div className="fs_2 text_4">+90 BP</div>
+                                            </div>
+                                        </div>
+                                        {
+                                            !!taskList?.find(val => val.task_id === "12") ?
+                                                <div className="tasks_btn click_btn fs_2 fw_b">
+                                                    <i className="picon p-icon-Finish is_3"></i>
+                                                </div>
+                                                :
+                                                (
+                                                    claimObj[12] ?
+                                                        <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('RT & Like new twitter', 90.00, '13', 12)}>
+                                                            {
+                                                                isClaim === '13' ?
+                                                                    <span className="loader"></span>
+                                                                    :
+                                                                    <span>Claim</span>
+                                                            }
+                                                        </div>
+                                                        :
+                                                        <div className="tasks_btn go_btn fs_2 fw_b" onClick={() => {toTg("https://t.me/memeBnana_bot/miniapp?startapp=17488876", 10)}}>
                                                             Go
                                                         </div>
                                                 )
