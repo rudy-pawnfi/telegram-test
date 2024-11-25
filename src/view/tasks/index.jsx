@@ -43,12 +43,12 @@ const TasksPage = () => {
         11: false,
         12: false,
     })
-    // const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
-    const initDataUnsafe = {
-        user: {
-            id: 5354957142
-        }
-    }
+    const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
+    // const initDataUnsafe = {
+    //     user: {
+    //         id: 5354957142
+    //     }
+    // }
     console.log('wallet :>> ', wallet);
     useEffect(() => {
         init()
