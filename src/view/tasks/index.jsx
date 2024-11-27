@@ -757,7 +757,7 @@ const TasksPage = () => {
                                                             }
                                                         </div>
                                                         :
-                                                        <div className="tasks_btn go_btn fs_2 fw_b" onClick={() => {toTg("https://t.me/memeBnana_bot/miniapp?startapp=17488876", 10)}}>
+                                                        <div className="tasks_btn go_btn fs_2 fw_b" onClick={() => {toTg("https://t.me/memeBnana_bot/miniapp?startapp=17488876", 12)}}>
                                                             Go
                                                         </div>
                                                 )
