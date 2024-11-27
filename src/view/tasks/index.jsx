@@ -46,7 +46,7 @@ const TasksPage = () => {
     const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
     // const initDataUnsafe = {
     //     user: {
-    //         id: 5354957142
+    //         id: 5354957143
     //     }
     // }
     console.log('wallet :>> ', wallet);
@@ -675,7 +675,7 @@ const TasksPage = () => {
                                             </div>
                                         </div>
                                         {
-                                            !!taskList?.find(val => val.task_id === "10") ?
+                                            !!taskList?.find(val => val.task_id === "11") ?
                                                 <div className="tasks_btn click_btn fs_2 fw_b">
                                                     <i className="picon p-icon-Finish is_3"></i>
                                                 </div>
@@ -708,7 +708,7 @@ const TasksPage = () => {
                                             </div>
                                         </div>
                                         {
-                                            !!taskList?.find(val => val.task_id === "11") ?
+                                            !!taskList?.find(val => val.task_id === "12") ?
                                                 <div className="tasks_btn click_btn fs_2 fw_b">
                                                     <i className="picon p-icon-Finish is_3"></i>
                                                 </div>
@@ -741,7 +741,7 @@ const TasksPage = () => {
                                             </div>
                                         </div>
                                         {
-                                            !!taskList?.find(val => val.task_id === "12") ?
+                                            !!taskList?.find(val => val.task_id === "13") ?
                                                 <div className="tasks_btn click_btn fs_2 fw_b">
                                                     <i className="picon p-icon-Finish is_3"></i>
                                                 </div>
