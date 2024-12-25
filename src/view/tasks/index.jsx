@@ -877,7 +877,7 @@ const TasksPage = () => {
                                     </div>
 
                                     <div className="list_box list_box_4 pa_4 flex justify_between align_center mb_3">
-                                        <div className="flex align_center">
+                                        <div className="flex align_center flex_1">
                                             <img className="mr_5" src={imgicon_3} alt="" srcSet="" />
                                             <div>
                                                 <div className="fs_2 fw_m">Claim free token airdrops on Gate.io Startup</div>
