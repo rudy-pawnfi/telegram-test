@@ -711,7 +711,7 @@ const TasksPage = () => {
                                         }
                                     </div>
 
-                                    <div className="list_box list_box_4 pa_4 flex justify_between align_center mb_3">
+                                    {/* <div className="list_box list_box_4 pa_4 flex justify_between align_center mb_3">
                                         <div className="flex align_center">
                                             <img className="mr_5" src={imgicon_4} alt="" srcSet="" />
                                             <div>
@@ -742,9 +742,9 @@ const TasksPage = () => {
                                                 )
 
                                         }
-                                    </div>
+                                    </div> */}
 
-                                    <div className="list_box list_box_4 pa_4 flex justify_between align_center mb_3">
+                                    {/* <div className="list_box list_box_4 pa_4 flex justify_between align_center mb_3">
                                         <div className="flex align_center">
                                             <img className="mr_5" src={imgicon_4} alt="" srcSet="" />
                                             <div>
@@ -775,7 +775,7 @@ const TasksPage = () => {
                                                 )
 
                                         }
-                                    </div>
+                                    </div> */}
 
                                     <div className="list_box list_box_4 pa_4 flex justify_between align_center mb_3">
                                         <div className="flex align_center">
