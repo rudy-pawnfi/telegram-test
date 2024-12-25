@@ -346,7 +346,7 @@ const TasksPage = () => {
                                 <div className="tasks_list">
                                     <div className="fs_2 fw_b text_center mb_3">Daily</div>
                                     <div className="list_box list_box_3 pa_4 flex justify_between align_center mb_3">
-                                        <div className="flex align_center"> 
+                                        <div className="flex align_center flex_1"> 
                                             <img className="mr_5" src={channelIcon} alt="" srcSet="" />
                                             <div>
                                                 <div className="fs_2 fw_m">Login to Polar Capsule</div>
@@ -374,7 +374,7 @@ const TasksPage = () => {
                                     </div>
 
                                     <div className="list_box list_box_3 pa_4 flex justify_between align_center mb_3">
-                                        <div className="flex align_center"> 
+                                        <div className="flex align_center flex_1"> 
                                             <img className="mr_5" src={channelIcon} alt="" srcSet="" />
                                             <div>
                                                 <div className="fs_2 fw_m">Visit channel</div>
@@ -409,7 +409,7 @@ const TasksPage = () => {
                                     
 
                                     <div className="list_box list_box_3 pa_4 flex justify_between align_center mb_3">
-                                        <div className="flex align_center">
+                                        <div className="flex align_center flex_1">
                                             <img className="mr_5" src={erc1000Icon} alt="" srcSet="" />
                                             <div>
                                                 <div className="fs_2 fw_m">Visit ERC-1000 website</div>
@@ -442,7 +442,7 @@ const TasksPage = () => {
                                     </div>
 
                                     <div className="list_box list_box_3 pa_4 flex justify_between align_center mb_3">
-                                        <div className="flex align_center">
+                                        <div className="flex align_center flex_1">
                                             <img className="mr_5" src={erc1000Icon} alt="" srcSet="" />
                                             <div>
                                                 <div className="fs_2 fw_m">Visit Polarise website</div>
@@ -475,7 +475,7 @@ const TasksPage = () => {
                                     </div>
 
                                     <div className="list_box list_box_2 pa_4 flex justify_between align_center mb_3">
-                                        <div className="flex align_center">
+                                        <div className="flex align_center flex_1">
                                             <img className="mr_5" src={imgicon_2} alt="" srcSet="" />
                                             <div>
                                                 <div className="fs_2 fw_m">Daily check in on-chain</div>
@@ -513,7 +513,7 @@ const TasksPage = () => {
                                     </div>
                                     <div className="fs_2 fw_b text_center mb_3">Basic Tasks</div>
                                     <div className="list_box list_box_1 pa_4 flex justify_between align_center mb_3">
-                                        <div className="flex align_center">
+                                        <div className="flex align_center flex_1">
                                             <img className="mr_5" src={imgicon_1} alt="" srcSet="" />
                                             <div>
                                                 <div className="fs_2 fw_m">Connect your wallet</div>
@@ -547,7 +547,7 @@ const TasksPage = () => {
                                     </div>
 
                                     <div className="list_box list_box_3 pa_4 flex justify_between align_center mb_3">
-                                        <div className="flex align_center">
+                                        <div className="flex align_center flex_1">
                                             <img className="mr_5" src={imgicon_3} alt="" srcSet="" />
                                             <div>
                                                 <div className="fs_2 fw_m">Follow us on X</div>
@@ -580,7 +580,7 @@ const TasksPage = () => {
                                     </div>
 
                                     <div className="list_box list_box_4 pa_4 flex justify_between align_center mb_3">
-                                        <div className="flex align_center">
+                                        <div className="flex align_center flex_1">
                                             <img className="mr_5" src={imgicon_4} alt="" srcSet="" />
                                             <div>
                                                 <div className="fs_2 fw_m">Join our TG community</div>
@@ -613,7 +613,7 @@ const TasksPage = () => {
                                     </div>
 
                                     <div className="list_box list_box_4 pa_4 flex justify_between align_center mb_3">
-                                        <div className="flex align_center">
+                                        <div className="flex align_center flex_1">
                                             <img className="mr_5" src={imgicon_3} alt="" srcSet="" />
                                             <div>
                                                 <div className="fs_2 fw_m">Follow Polarise on X</div>
@@ -646,7 +646,7 @@ const TasksPage = () => {
                                     </div>
 
                                     <div className="list_box list_box_4 pa_4 flex justify_between align_center mb_3">
-                                        <div className="flex align_center">
+                                        <div className="flex align_center flex_1">
                                             <img className="mr_5" src={imgicon_4} alt="" srcSet="" />
                                             <div>
                                                 <div className="fs_2 fw_m">Join Polarise community</div>
@@ -679,7 +679,7 @@ const TasksPage = () => {
                                     </div>
 
                                     <div className="list_box list_box_4 pa_4 flex justify_between align_center mb_3">
-                                        <div className="flex align_center">
+                                        <div className="flex align_center flex_1">
                                             <img className="mr_5" src={imgicon_4} alt="" srcSet="" />
                                             <div>
                                                 <div className="fs_2 fw_m">RT & Like new twitter</div>
@@ -778,7 +778,7 @@ const TasksPage = () => {
                                     </div> */}
 
                                     <div className="list_box list_box_4 pa_4 flex justify_between align_center mb_3">
-                                        <div className="flex align_center">
+                                        <div className="flex align_center flex_1">
                                             <img className="mr_5" src={imgicon_4} alt="" srcSet="" />
                                             <div>
                                                 <div className="fs_2 fw_m">Register a Gate.io account</div>
@@ -811,7 +811,7 @@ const TasksPage = () => {
                                     </div>
 
                                     <div className="list_box list_box_4 pa_4 flex justify_between align_center mb_3">
-                                        <div className="flex align_center">
+                                        <div className="flex align_center flex_1">
                                             <img className="mr_5" src={imgicon_3} alt="" srcSet="" />
                                             <div>
                                                 <div className="fs_2 fw_m">Follow Gate.io on X</div>
@@ -844,7 +844,7 @@ const TasksPage = () => {
                                     </div>
 
                                     <div className="list_box list_box_4 pa_4 flex justify_between align_center mb_3">
-                                        <div className="flex align_center">
+                                        <div className="flex align_center flex_1">
                                             <img className="mr_5" src={imgicon_4} alt="" srcSet="" />
                                             <div>
                                                 <div className="fs_2 fw_m">Join the Gate.io Community</div>
@@ -910,7 +910,7 @@ const TasksPage = () => {
                                     </div>
                                     
                                     <div className="list_box list_box_4 pa_4 flex justify_between align_center mb_3">
-                                        <div className="flex align_center">
+                                        <div className="flex align_center flex_1">
                                             <img className="mr_5" src={imgicon_3} alt="" srcSet="" />
                                             <div>
                                                 <div className="fs_2 fw_m">Follow Gate.io Startup on X</div>
@@ -943,7 +943,7 @@ const TasksPage = () => {
                                     </div>
                                     
                                     <div className="list_box list_box_5 pa_4 flex justify_between align_center mb_3">
-                                        <div className="flex align_center">
+                                        <div className="flex align_center flex_1">
                                             <img className="mr_5" src={imgicon_5} alt="" srcSet="" />
                                             <div>
                                                 <div className="fs_2 fw_m">Invited 10 Friends</div>
