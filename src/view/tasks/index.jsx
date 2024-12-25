@@ -42,6 +42,12 @@ const TasksPage = () => {
         10: false,
         11: false,
         12: false,
+
+        13: false,
+        14: false,
+        15: false,
+        16: false,
+        17: false,
     })
     const initDataUnsafe = Telegram?.WebApp?.initDataUnsafe
     // const initDataUnsafe = {
@@ -128,6 +134,12 @@ const TasksPage = () => {
             10: false,
             11: false,
             12: false,
+
+            13: false,
+            14: false,
+            15: false,
+            16: false,
+            17: false,
         }
         setClaimObj({ ...claimObj })
         const res = await ApiServe.query('getrefcode', {
@@ -765,6 +777,171 @@ const TasksPage = () => {
                                         }
                                     </div>
 
+                                    <div className="list_box list_box_4 pa_4 flex justify_between align_center mb_3">
+                                        <div className="flex align_center">
+                                            <img className="mr_5" src={imgicon_4} alt="" srcSet="" />
+                                            <div>
+                                                <div className="fs_2 fw_m">Register a Gate.io account</div>
+                                                <div className="fs_2 text_4">+100 BP</div>
+                                            </div>
+                                        </div>
+                                        {
+                                            !!taskList?.find(val => val.task_id === "14") ?
+                                                <div className="tasks_btn click_btn fs_2 fw_b">
+                                                    <i className="picon p-icon-Finish is_3"></i>
+                                                </div>
+                                                :
+                                                (
+                                                    claimObj[13] ?
+                                                        <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Register a Gate.io account', 100.00, '14', 13)}>
+                                                            {
+                                                                isClaim === '14' ?
+                                                                    <span className="loader"></span>
+                                                                    :
+                                                                    <span>Claim</span>
+                                                            }
+                                                        </div>
+                                                        :
+                                                        <div className="tasks_btn go_btn fs_2 fw_b" onClick={() => {toWebsite("https://www.gate.io/signup?ch=signupPFT", 13)}}>
+                                                            Go
+                                                        </div>
+                                                )
+
+                                        }
+                                    </div>
+
+                                    <div className="list_box list_box_4 pa_4 flex justify_between align_center mb_3">
+                                        <div className="flex align_center">
+                                            <img className="mr_5" src={imgicon_3} alt="" srcSet="" />
+                                            <div>
+                                                <div className="fs_2 fw_m">Follow Gate.io on X</div>
+                                                <div className="fs_2 text_4">+100 BP</div>
+                                            </div>
+                                        </div>
+                                        {
+                                            !!taskList?.find(val => val.task_id === "15") ?
+                                                <div className="tasks_btn click_btn fs_2 fw_b">
+                                                    <i className="picon p-icon-Finish is_3"></i>
+                                                </div>
+                                                :
+                                                (
+                                                    claimObj[14] ?
+                                                        <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Follow Gate.io on X', 100.00, '15', 14)}>
+                                                            {
+                                                                isClaim === '15' ?
+                                                                    <span className="loader"></span>
+                                                                    :
+                                                                    <span>Claim</span>
+                                                            }
+                                                        </div>
+                                                        :
+                                                        <div className="tasks_btn go_btn fs_2 fw_b" onClick={() => {toWebsite("https://x.com/gate_io", 14)}}>
+                                                            Go
+                                                        </div>
+                                                )
+
+                                        }
+                                    </div>
+
+                                    <div className="list_box list_box_4 pa_4 flex justify_between align_center mb_3">
+                                        <div className="flex align_center">
+                                            <img className="mr_5" src={imgicon_4} alt="" srcSet="" />
+                                            <div>
+                                                <div className="fs_2 fw_m">Join the Gate.io Community</div>
+                                                <div className="fs_2 text_4">+100 BP</div>
+                                            </div>
+                                        </div>
+                                        {
+                                            !!taskList?.find(val => val.task_id === "16") ?
+                                                <div className="tasks_btn click_btn fs_2 fw_b">
+                                                    <i className="picon p-icon-Finish is_3"></i>
+                                                </div>
+                                                :
+                                                (
+                                                    claimObj[15] ?
+                                                        <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Join the Gate.io Community', 100.00, '16', 15)}>
+                                                            {
+                                                                isClaim === '16' ?
+                                                                    <span className="loader"></span>
+                                                                    :
+                                                                    <span>Claim</span>
+                                                            }
+                                                        </div>
+                                                        :
+                                                        <div className="tasks_btn go_btn fs_2 fw_b" onClick={() => {toTg("https://t.me/gateio_en", 15)}}>
+                                                            Go
+                                                        </div>
+                                                )
+
+                                        }
+                                    </div>
+
+                                    <div className="list_box list_box_4 pa_4 flex justify_between align_center mb_3">
+                                        <div className="flex align_center">
+                                            <img className="mr_5" src={imgicon_3} alt="" srcSet="" />
+                                            <div>
+                                                <div className="fs_2 fw_m">Claim free token airdrops on Gate.io Startup</div>
+                                                <div className="fs_2 text_4">+100 BP</div>
+                                            </div>
+                                        </div>
+                                        {
+                                            !!taskList?.find(val => val.task_id === "17") ?
+                                                <div className="tasks_btn click_btn fs_2 fw_b">
+                                                    <i className="picon p-icon-Finish is_3"></i>
+                                                </div>
+                                                :
+                                                (
+                                                    claimObj[16] ?
+                                                        <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Claim free token airdrops on Gate.io Startup', 100.00, '17', 16)}>
+                                                            {
+                                                                isClaim === '17' ?
+                                                                    <span className="loader"></span>
+                                                                    :
+                                                                    <span>Claim</span>
+                                                            }
+                                                        </div>
+                                                        :
+                                                        <div className="tasks_btn go_btn fs_2 fw_b" onClick={() => {toWebsite("https://www.gate.io/startup", 16)}}>
+                                                            Go
+                                                        </div>
+                                                )
+
+                                        }
+                                    </div>
+                                    
+                                    <div className="list_box list_box_4 pa_4 flex justify_between align_center mb_3">
+                                        <div className="flex align_center">
+                                            <img className="mr_5" src={imgicon_3} alt="" srcSet="" />
+                                            <div>
+                                                <div className="fs_2 fw_m">Follow Gate.io Startup on X</div>
+                                                <div className="fs_2 text_4">+100 BP</div>
+                                            </div>
+                                        </div>
+                                        {
+                                            !!taskList?.find(val => val.task_id === "18") ?
+                                                <div className="tasks_btn click_btn fs_2 fw_b">
+                                                    <i className="picon p-icon-Finish is_3"></i>
+                                                </div>
+                                                :
+                                                (
+                                                    claimObj[17] ?
+                                                        <div className="tasks_btn click_btn fs_2 fw_b" onClick={() => claimMt('Follow Gate.io Startup on X', 100.00, '18', 17)}>
+                                                            {
+                                                                isClaim === '18' ?
+                                                                    <span className="loader"></span>
+                                                                    :
+                                                                    <span>Claim</span>
+                                                            }
+                                                        </div>
+                                                        :
+                                                        <div className="tasks_btn go_btn fs_2 fw_b" onClick={() => {toWebsite("https://x.com/Gateio_Startup", 17)}}>
+                                                            Go
+                                                        </div>
+                                                )
+
+                                        }
+                                    </div>
+                                    
                                     <div className="list_box list_box_5 pa_4 flex justify_between align_center mb_3">
                                         <div className="flex align_center">
                                             <img className="mr_5" src={imgicon_5} alt="" srcSet="" />
